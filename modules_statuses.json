@@ -1,0 +1,15 @@
+{
+    "User": true,
+    "Company": true,
+    "Branch": true,
+    "Activity": true,
+    "Payroll": true,
+    "Organization": true,
+    "Employee": true,
+    "Report": true,
+    "Timesheet": true,
+    "Settings": true,
+    "SMS": true,
+    "Loan": true,
+    "Recruitment": true
+}

@@ -1,0 +1,33 @@
+<?php
+
+namespace Modules\Organization\Http\Requests;
+
+use App\Http\Requests\RootRequest;
+
+class DesignationCreateRequest extends RootRequest{
+
+    public function authorize()
+    {
+        return is_company_group();
+    }
+
+    public function rules()
+    {
+        return [
+            "name" => "required|unique:designations|min:3",
+            'department_id' => "required",
+            'details' => "required",
+            'status' => 'required',
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+           /* 'name.required' => 'A title is required',
+            'role.required' => 'A message is required',*/
+        ];
+    }
+
+}

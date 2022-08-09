@@ -1,0 +1,41 @@
+<?php
+
+namespace Modules\Company\Entities;
+
+use App\Models\RootModel;
+
+class CompanySetting extends RootModel
+{
+
+    const ATTENDANCE_IP = "ip_based";
+    const ATTENDANCE_MANUAL = "manual";
+
+
+    protected $table = 'company_settings';
+
+    protected $fillable = [
+        'com_id', 'yearly_leave', 'employee_id_prefix', 'employee_id_length', 'has_provision_period', 'allow_overtime', 'device_ip',
+        'attendance', 'has_attendance_deduction_policy', 'allow_employee_login', 'has_allowances', 'allow_holiday_work_as_overtime',
+        'enable_device', 'allow_bulk_upload',
+    ];
+
+    public static $fetch = [
+        'com_id', 'yearly_leave', 'employee_id_prefix', 'employee_id_length', 'has_provision_period', 'allow_overtime', 'device_ip',
+        'attendance', 'has_attendance_deduction_policy', 'allow_employee_login', 'has_allowances', 'allow_holiday_work_as_overtime',
+        'enable_device', 'allow_bulk_upload',
+    ];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    /**
+     * @return company active or not
+     */
+    function company()
+    {
+        return $this->belongsTo(Company::class, 'com_id', 'id');
+    }
+
+
+}
