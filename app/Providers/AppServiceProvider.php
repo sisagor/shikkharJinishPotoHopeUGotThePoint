@@ -19,29 +19,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         Schema::defaultStringLength(150);
-
-        try {
-            // Ondemand Img manupulation
-            $this->app->singleton(\League\Glide\Server::class, function ($app) {
-
-                $filesystem = $app->make(\Illuminate\Contracts\Filesystem\Filesystem::class);
-
-                return \League\Glide\ServerFactory::create([
-                    'response' => new \League\Glide\Responses\LaravelResponseFactory(app('request')),
-                    'driver' => config('image.driver'),
-                    'presets' => config('image.sizes'),
-                    'source' => $filesystem->getDriver(),
-                    'cache' => $filesystem->getDriver(),
-                    'cache_path_prefix' => config('image.cache_dir'),
-                    'base_url' => 'image', //Don't change this value
-                ]);
-            });
-
-        } catch (\Exception $exception) {
-            Log::error("Image manipulator error");
-            Log::info($exception->getMessage());
-        }
-
     }
 
     /**

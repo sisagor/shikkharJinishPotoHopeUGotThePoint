@@ -2,7 +2,7 @@
     <div class="navbar nav_title">
         <a href="{{url('dashboard')}}" class="site_title">
             @if(config('system_settings.logo.path'))
-                <img align="center" class="img-responsive avatar-view"
+                <img  class="img-responsive logo_img"
                      src="{{ get_storage_file_url(config('system_settings.logo.path'), 'logo') }}" alt="logo">
             @else
                 <i class="fa fa-dashboard"></i>

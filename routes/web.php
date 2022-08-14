@@ -73,6 +73,8 @@ Route::middleware('auth')->group(function () {
 
     //Logout Route:
     Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
+
+    Route::get('test', [\App\Http\Controllers\TestController::class, 'test']);
 });
 
 

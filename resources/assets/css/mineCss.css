@@ -432,3 +432,30 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 #map_canvas{
     height: 100%!important;
 }
+
+.profile_img{
+    height: 150px;
+    width: 140px;
+}
+.small_img{
+    height: 200px;
+    width: 100px;
+}
+
+.mini_img{
+    height: 100px;
+    width: 60px;
+}
+.tiny_img{
+    height: 50px;
+    width: 30px;
+}
+
+.logo_img{
+    height: 50px;
+    width: 140px;
+}
+.logo_img_lg{
+    height: 110px;
+    width: 110px;
+}

@@ -57,7 +57,7 @@
                            title="{{ trans('help.logo')}}"></i>
                     </label>
                     <div class="item form-group">
-                        <img class="img-responsive avatar-view"
+                        <img class="img-responsive logo_img"
                              src="@if(!empty(config('system_settings.logo.path')))
                              {{ get_storage_file_url(config('system_settings.logo.path'), 'small') }}
                              @endif"

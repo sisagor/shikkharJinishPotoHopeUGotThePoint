@@ -1,11 +1,10 @@
 <?php
 
-namespace Modules\SMS\Http\Controllers;
+namespace Modules\Notification\Http\Controllers;
 
 use App\Models\RootModel;
 use Tzsk\Sms\Facades\Sms;
 use Illuminate\Http\Request;
-use Modules\SMS\Entities\SmsLog;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Routing\Controller;
@@ -14,11 +13,12 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Modules\Employee\Entities\Employee;
 use Yajra\DataTables\Facades\DataTables;
+use Modules\Notification\Entities\SmsLog;
 use Illuminate\Contracts\Support\Renderable;
-use Modules\SMS\Http\Requests\SmsCreateRequest;
+use Modules\Notification\Http\Requests\SmsCreateRequest;
 
 
-class SMSController extends Controller
+class EmailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class SMSController extends Controller
     public function index(Request $request)
     {
         if (! $request->ajax()){
-            return view('sms::sms.index');
+            return view('notification::sms.index');
         }
 
         $data = SmsLog::join('employees', 'employees.id', 'sms_log.employee_id')
@@ -61,7 +61,7 @@ class SMSController extends Controller
         set_action_title('send_new_sms');
         set_action('sms.sms.store');
 
-        return view('sms::sms.create');
+        return view('notification::sms.create');
     }
 
     /**
@@ -139,7 +139,7 @@ class SMSController extends Controller
      */
     public function show($id)
     {
-        return view('sms::show');
+        return view('notification::show');
     }
 
     /**
@@ -149,7 +149,7 @@ class SMSController extends Controller
      */
     public function edit($id)
     {
-        return view('sms::edit');
+        return view('notification::edit');
     }
 
     /**

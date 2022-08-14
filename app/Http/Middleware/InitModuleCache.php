@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\Role;
 use App\Models\Module;
+use App\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -50,6 +52,7 @@ class InitModuleCache
                     ->orderBy('order', 'asc')
                     ->get();
             });
+
             return true;
         }
 
@@ -78,6 +81,10 @@ class InitModuleCache
                 ->active()
                 ->orderBy('order', 'asc')
                 ->get();
+        });
+
+        Cache::rememberForever('role_permissions', function () {
+            return Permission::where('role_id', Auth::user()->role_id)->pluck('id', 'action')->toArray();
         });
 
         return true;

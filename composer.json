@@ -11,7 +11,6 @@
         "laravel/fortify": "^1.13",
         "laravel/framework": "^9.19",
         "laravel/tinker": "^2.7",
-        "league/glide-laravel": "1.*",
         "mediaburst/clockworksms": "^2.0",
         "mpdf/mpdf": "8.*",
         "nwidart/laravel-modules": "^9.0",

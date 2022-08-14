@@ -34,6 +34,7 @@ return [
         'jobs',
         'show',
         'apply',
+        'test',
 
 
     ]

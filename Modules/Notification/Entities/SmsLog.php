@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\SMS\Entities;
+namespace Modules\Notification\Entities;
 
 use App\Models\RootModel;
 use Modules\Branch\Entities\Branch;

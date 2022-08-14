@@ -856,15 +856,16 @@ if (!function_exists('image_cache_path')) {
 if (!function_exists('get_storage_file_url')) {
     function get_storage_file_url($path = null, $size = 'small')
     {
-        if (!$path) {
+        if (! $path) {
             return get_placeholder_img($size);
         }
 
-        if ($size == Null) {
+        return url('/storage/'.$path);
+
+      /*  if ($size == Null) {
             return url("image/{$path}");
         }
-
-        return url("image/{$path}?p={$size}");
+        return url("image/{$path}?p={$size}");*/
     }
 }
 

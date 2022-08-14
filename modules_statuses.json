@@ -9,7 +9,7 @@
     "Report": true,
     "Timesheet": true,
     "Settings": true,
-    "SMS": true,
+    "Notification": true,
     "Loan": true,
     "Recruitment": true
 }

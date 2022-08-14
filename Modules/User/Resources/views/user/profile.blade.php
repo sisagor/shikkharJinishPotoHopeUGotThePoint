@@ -24,14 +24,12 @@
                         {{--Form content--}}
                         <div class="col-md-3 col-sm-3  profile_left">
                             <div class="profile_img">
-                                <div id="crop-avatar">
-                                    <!-- Current avatar -->
-                                    <img class="img-responsive avatar-view" src="{{ get_storage_file_url(optional($profile->profile)->path, 'profile') }}" alt="Avatar" title="Change the avatar">
-                                    <input type="file" name="image">
-
-                                </div>
+                                <!-- Current avatar -->
+                                <img class="img-responsive profile_img" src="{{ get_storage_file_url(optional($profile->profile)->path, 'profile') }}" alt="Avatar" title="Change the avatar">
+                                <input type="file" name="image">
                             </div>
                         </div>
+
                         <div class="col-md-9 col-sm-9">
 
                             <div class="form-body">

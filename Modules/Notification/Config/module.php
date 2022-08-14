@@ -3,8 +3,8 @@
 use \App\Models\Module;
 
 return [
-    'name' => 'SMS',
-    'url' => 'sms',
+    'name' => 'Notification',
+    'url' => 'notification',
     'scope' => json_encode([Module::SCOPE_COMMON]),
     'icon' => 'fa fa-bell-o',
     'order' => 10,
@@ -42,6 +42,14 @@ return [
                     'status' => 1,
                 ],
                 [
+                    'name' => 'View SMS',
+                    'url' => 'sms/view',
+                    'action' => 'view',
+                    'show' => 0,
+                    'order' => 6,
+                    'status' => 1,
+                ],
+                [
                     'name' => 'Delete Sms log',
                     'url' => 'sms/delete',
                     'action' => 'delete',
@@ -57,7 +65,7 @@ return [
             'show' => 0,
             'scope' => json_encode([Module::SCOPE_COMMON]),
             'order' => 1,
-            'status' => 0,
+            'status' => 1,
             'menu' => [
                 [
                     'name' => 'Emails Sent Log',
@@ -88,7 +96,7 @@ return [
                     'url' => 'email/view',
                     'action' => 'view',
                     'show' => 0,
-                    'order' => 2,
+                    'order' => 6,
                     'status' => 1,
                 ],
                 [
@@ -101,7 +109,6 @@ return [
                 ],
             ],
         ],
-
     ],
 
 ];

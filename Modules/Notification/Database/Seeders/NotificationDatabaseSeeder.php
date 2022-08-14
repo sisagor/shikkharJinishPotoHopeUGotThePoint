@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\SMS\Database\Seeders;
+namespace Modules\Notification\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 
 
-class SMSDatabaseSeeder extends Seeder
+class NotificationDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +19,7 @@ class SMSDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $module = include(module_path('sms', 'Config/module.php'));
+        $module = include(module_path('notification', 'Config/module.php'));
 
         DB::beginTransaction();
 
@@ -65,7 +65,7 @@ class SMSDatabaseSeeder extends Seeder
 
         } catch (\Exception $exception) {
 
-            Log::error('Branch Seed Failed!');
+            Log::error('Notification Seed Failed!');
             Log::info(get_exception_message($exception));
             DB::rollBack();
         }

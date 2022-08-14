@@ -1,21 +1,21 @@
 <?php
 
-namespace Modules\SMS\Providers;
+namespace Modules\Notification\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Modules\Notification\Providers\RouteServiceProvider;
 
-class SMSServiceProvider extends ServiceProvider
+class NotificationServiceProvider extends ServiceProvider
 {
     /**
      * @var string $moduleName
      */
-    protected $moduleName = 'SMS';
+    protected $moduleName = 'Notification';
 
     /**
      * @var string $moduleNameLower
      */
-    protected $moduleNameLower = 'sms';
+    protected $moduleNameLower = 'notification';
 
     /**
      * Boot the application events.

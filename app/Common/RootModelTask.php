@@ -48,7 +48,6 @@ trait RootModelTask
     {
         $table = $model->getTable();
         Cache::forget($table);
-        Cache::forget($table);
         Cache::forget($table . CACHE_COMMON);
         Cache::forget($table . CACHE_COMMON . com_id());
         Cache::forget($table . CACHE_COMMON . branch_id());
@@ -60,7 +59,6 @@ trait RootModelTask
         Cache::forget($table . CACHE_SINGLE);
         Cache::forget($table . CACHE_SINGLE . Auth::id());
         Cache::forget($table . CACHE_DASHBOARD . Auth::id());
-
     }
 
 }

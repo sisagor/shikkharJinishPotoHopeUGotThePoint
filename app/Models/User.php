@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Common\HasPermission;
 use App\Common\CascadeSoftDeletes;
 use Modules\User\Entities\Profile;
 use Modules\Branch\Entities\Branch;
@@ -19,7 +20,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, SoftDeletes, CascadeSoftDeletes;
+    use Notifiable, SoftDeletes, CascadeSoftDeletes, HasPermission;
 
     const USER_SUPER_ADMIN = "super_admin";
     const USER_COMPANY_ADMIN = "company_admin";
