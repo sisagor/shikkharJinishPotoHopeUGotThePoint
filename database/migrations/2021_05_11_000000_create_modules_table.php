@@ -22,7 +22,6 @@ class CreateModulesTable extends Migration
                 $table->string('url')->nullable();
                 $table->integer('order')->nullable()->default(0);
                 $table->tinyInteger('status')->default(1);
-                $table->timestamps();
             });
         }
 
@@ -36,7 +35,6 @@ class CreateModulesTable extends Migration
                 $table->integer('order')->nullable()->default(0);
                 $table->tinyInteger('show')->default(1);
                 $table->tinyInteger('status')->default(1);
-                $table->timestamps();
                 $table->foreign('module_id')->references('id')->on('modules');
             });
         }
@@ -50,9 +48,6 @@ class CreateModulesTable extends Migration
                 $table->string('url')->nullable();
                 $table->string('action')->nullable();
                 $table->tinyInteger('show')->default(0);
-                $table->integer('order')->nullable()->default(0);
-                $table->tinyInteger('status')->default(0);
-                $table->timestamps();
                 $table->foreign('submodule_id')->references('id')->on('submodules');
             });
         }

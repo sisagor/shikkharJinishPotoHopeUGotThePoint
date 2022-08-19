@@ -38,7 +38,7 @@
                                                         @foreach ($subModule->menu as $menu)
                                                             @if($menu->show)
                                                                 <li class=" @if(unserialize(get_menu_url()) == $menu->url){{ 'current-page' }} @endif">
-                                                                    <a href="{{ url('/' . strtolower($module->url) . '/' . $menu->url) }}">{{ $menu->name }}</a>
+                                                                    <a href="{{ url(strtolower($menu->url)) }}">{{ $menu->name }}</a>
                                                                 </li>
                                                             @endif
                                                         @endforeach

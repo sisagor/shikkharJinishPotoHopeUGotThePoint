@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\Role;
+use App\Models\Menu;
 use App\Models\Module;
-use App\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -41,8 +40,7 @@ class InitModuleCache
                     $submodule->select(['id', 'name', 'module_id', 'show'])
                         ->with(['menu' => function ($menu) {
                             $menu->select(['id', 'name', 'show', 'submodule_id', 'url', 'action'])
-                                ->where('status', 1)
-                                ->orderby('order', 'asc');
+                                ->orderby('id', 'asc');
                         }])
                         ->active()
                         ->orderBy('order', 'asc');
@@ -69,8 +67,7 @@ class InitModuleCache
                                 $role->where('role_id', Auth::user()->role_id);
                             })
                                 ->select(['id', 'name', 'show', 'submodule_id', 'url', 'action'])
-                                ->where('status', 1)
-                                ->orderby('order', 'asc');
+                                ->orderby('id', 'asc');
                         }])
                         ->select(['id', 'name', 'module_id', 'show'])
                         ->active()
@@ -84,7 +81,8 @@ class InitModuleCache
         });
 
         Cache::rememberForever('role_permissions', function () {
-            return Permission::where('role_id', Auth::user()->role_id)->pluck('id', 'action')->toArray();
+            return Menu::join('role_permissions', 'role_permissions.menu_id', 'menu.id')
+                ->pluck('url', 'action')->toArray();
         });
 
         return true;

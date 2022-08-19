@@ -366,104 +366,6 @@ if (! function_exists('common_search')) {
 }
 
 
-/**get Total date count of table*/
-if (! function_exists('common_scope_filter')) {
-    //This function will use for company and branch search where need to join table;
-    function common_scope_filter($query, \Illuminate\Http\Request $request, $data = array())
-    {
-        /**Company Filter*/
-        $query = ($request->filled('com_id') && !empty($data['com_id']) && !empty($data['branch_id'])
-            ? $query->where($data['com_id'] ,$request->get('com_id'))
-            : (is_company_group() && $request->filled('branch_id')
-                ? $query->where($data['com_id'], com_id())//->whereNull('attendance_log.branch_id')
-                : (! is_branch_group()
-                    ? $query->where($data['com_id'], com_id())->whereNull($data['branch_id'])
-                    : $query->where($data['com_id'], com_id())))
-        );
-        //end Company Filter
-
-        /**Branch Filter*/
-        $query = ($request->filled('branch_id') && !empty($data['branch_id'])
-            ? $query->where($data['branch_id'], $request->get('branch_id'))
-            : (is_branch_group()
-                ? $query->where($data['branch_id'], branch_id())
-                : $query)
-        );
-        //end Branch Filter
-
-        return $query;
-    }
-}
-
-/**from date and to date filter*/
-if (! function_exists('date_filter')) {
-    function date_filter($query, \Illuminate\Http\Request $request, $data = array())
-    {
-        /**date Search*/
-        $query = ($request->filled('from_date') && $data['from_date']
-            ? $query->where($data['from_date'], '>=', Carbon::parse($request->get('from_date'))->startOfDay())
-            : $query);
-
-        $query = ($request->filled('to_date') && $data['to_date']
-            ? $query->where($data['to_date'], '<=', Carbon::parse($request->get('to_date'))->endOfDay())
-            : $query);
-        /**End date Search*/
-
-        return $query;
-    }
-}
-
-
-/**department scope and filter*/
-if (! function_exists('department_scope_filter')) {
-    function department_scope_filter($query, \Illuminate\Http\Request $request, $data = array())
-    {
-        /**department user data*/
-        return  (Auth::user()->department_id && $data['department_id']
-            ? $query->where($data['department_id'], Auth::user()->department_id)
-            : ($request->filled('department_id') ? $query->where($data['department_id'], $request->get('department_id')) : $query)
-        );
-    }
-}
-
-/**employee scope and filter*/
-if (! function_exists('employee_scope_filter')) {
-    //Employee Filter and scope data:
-    function employee_scope_filter($query, \Illuminate\Http\Request $request, $data = array())
-    {
-        /**employee search employee user data*/
-        return ($request->filled('employee_id') && !empty($data['employee_id'])
-            ? $query->where($data['employee_id'], $request->get('employee_id'))
-            : (is_employee() && $data['employee_id'] ? $query->where($data['employee_id'],  is_employee()) : $query)
-        );
-        /**employee user data*/
-    }
-}
-
-/**employee search*/
-if (! function_exists('employee_search')) {
-    function employee_search($query, \Illuminate\Http\Request $request)
-    {
-        if ($request->filled('employee_id')) {
-            $query->where('employee_id', $request->get('employee_id'));
-        }
-        return $query;
-    }
-}
-
-/**get Total date count of table*/
-if (! function_exists('month_search')) {
-    function month_search($query, \Illuminate\Http\Request $request, $filed = array())
-    {
-
-        if ($request->filled('month')) {
-            $query->where($filed['month'], 'LIKE', $request->get('month') . '%');
-        }
-        return $query;
-    }
-}
-
-
 if (! function_exists('get_setting_url')) {
     /**
      * get_payment_status_name
@@ -483,13 +385,13 @@ if (! function_exists('get_setting_url')) {
     }
 }
 
+
 if (! function_exists('get_menu_url')) {
     /** return menu url*/
     function get_menu_url()
     {
         $request = request()->segments();
-        unset($request[0]);
-
+        //unset($request[0]);
         $url = null;
 
         foreach ($request as $item) {

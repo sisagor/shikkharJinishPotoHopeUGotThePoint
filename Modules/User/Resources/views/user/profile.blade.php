@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('contents')
+    @php
+
+        //dd("working");
+        //exit();
+    @endphp
 
     <div class="row">
         <div class="col-md-12 col-sm-12">
@@ -25,7 +30,7 @@
                         <div class="col-md-3 col-sm-3  profile_left">
                             <div class="profile_img">
                                 <!-- Current avatar -->
-                                <img class="img-responsive profile_img" src="{{ get_storage_file_url(optional($profile->profile)->path, 'profile') }}" alt="Avatar" title="Change the avatar">
+                                <img class="profile_img" src="{{ get_storage_file_url(optional($profile->profile)->path, 'profile') }}" alt="Avatar" title="Change the avatar">
                                 <input type="file" name="image">
                             </div>
                         </div>

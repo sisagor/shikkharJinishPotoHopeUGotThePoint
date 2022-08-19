@@ -59,10 +59,8 @@ class PayrollDatabaseSeeder extends Seeder
                         'submodule_id' => $submoduleCreated,
                         'name' => $menu['name'],
                         'url' => $menu['url'],
-                        'order' => $menu['order'],
                         'action' => $menu['action'],
                         'show' => $menu['show'],
-                        'status' => $menu['status'],
                     ]);
                 }
             }

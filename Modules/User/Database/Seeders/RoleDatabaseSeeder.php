@@ -52,7 +52,6 @@ class RoleDatabaseSeeder extends Seeder
                             'module_id' => $module->id ?? null,
                             'submodule_id' => $submodule->id ?? null,
                             'menu_id' => $menu->id ?? null,
-                            'action' => $this->getAction($submodule->name, $menu->action)
                         ]);
                     }
                 }
@@ -88,7 +87,6 @@ class RoleDatabaseSeeder extends Seeder
                             'module_id' => $module->id ?? null,
                             'submodule_id' => $submodule->id ?? null,
                             'menu_id' => $menu->id ?? null,
-                            'action' => $this->getAction($submodule->name, $menu->action)
                         ]);
                     }
                 }
@@ -123,7 +121,6 @@ class RoleDatabaseSeeder extends Seeder
                             'module_id' => $module->id ?? null,
                             'submodule_id' => $submodule->id ?? null,
                             'menu_id' => $menu->id ?? null,
-                            'action' => $this->getAction($submodule->name, $menu->action)
                         ]);
                     }
                 }
@@ -160,7 +157,6 @@ class RoleDatabaseSeeder extends Seeder
                             'module_id' => $module->id ?? null,
                             'submodule_id' => $submodule->id ?? null,
                             'menu_id' => $menu->id ?? null,
-                            'action' => $this->getAction($submodule->name, $menu->action)
                         ]);
                     }
                 }
