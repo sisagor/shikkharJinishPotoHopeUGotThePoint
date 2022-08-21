@@ -24,8 +24,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'type_name', name: 'type_name'},
                     {data: 'leave_for', name: 'leave_for'},
                     {data: 'leave_days', name: 'leave_days'},
@@ -60,8 +59,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'type_name', name: 'type_name'},
                     {data: 'leave_for', name: 'leave_for'},
                     {data: 'start_date', name: 'start_date'},
@@ -97,8 +95,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.last_name'},
                     {data: 'type_name', name: 'type_name'},
                     {data: 'leave_for', name: 'leave_for'},
                     {data: 'start_date', name: 'start_date'},
@@ -135,8 +132,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'device_ip', name: 'device_ip'},
                     {data: 'punch_time', name: 'punch_time'},
                     {data: 'date', name: 'date'},
@@ -168,8 +164,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'device_ip', name: 'device_ip'},
                     {data: 'checkin_time', name: 'checkin_time'},
                     {data: 'checkout_time', name: 'checkout_time'},
@@ -203,8 +198,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'attendance_date', name: 'attendance_date'},
                     {data: 'status', name: 'status'},
                    /* {data: 'actions', name: 'actions'},*/
@@ -234,9 +228,8 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'employee_index', name: 'employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'employee_index', name: 'employees.employee_index'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'start_date', name: 'start_date'},
                     {data: 'end_date', name: 'end_date'},
                     {data: 'leave_days', name: 'leave_days'},

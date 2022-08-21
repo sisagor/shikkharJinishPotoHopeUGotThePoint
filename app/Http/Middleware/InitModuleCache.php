@@ -80,9 +80,14 @@ class InitModuleCache
                 ->get();
         });
 
-        Cache::rememberForever('role_permissions', function () {
+        Cache::rememberForever('action_' . Auth::id(), function () {
             return Menu::join('role_permissions', 'role_permissions.menu_id', 'menu.id')
                 ->pluck('url', 'action')->toArray();
+        });
+
+        Cache::rememberForever('url_' . Auth::id(), function () {
+            return Menu::join('role_permissions', 'role_permissions.menu_id', 'menu.id')
+                ->pluck('action', 'url')->toArray();
         });
 
         return true;

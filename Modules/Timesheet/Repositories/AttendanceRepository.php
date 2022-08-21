@@ -31,8 +31,7 @@ class AttendanceRepository extends EloquentRepository implements AttendanceRepos
             ->join('employees', 'attendances.employee_id', 'employees.id')
             ->select([
                 'employees.employee_index',
-                'employees.first_name',
-                'employees.last_name',
+                'employees.name',
                 'attendances.status',
                 'attendances.attendance_date',
                 'attendances.checkin_time',
@@ -54,8 +53,7 @@ class AttendanceRepository extends EloquentRepository implements AttendanceRepos
             ->select([
                 'attendance_log.id',
                 'employees.employee_index',
-                'employees.first_name',
-                'employees.last_name',
+                'employees.name',
                 'attendance_log.device_ip',
                 'attendance_log.punch_time',
                 'attendance_log.location',
@@ -112,8 +110,7 @@ class AttendanceRepository extends EloquentRepository implements AttendanceRepos
             ->leftJoin('leave_types', 'leave_applications.type_id', 'leave_types.id')
             ->leftJoin('employees', 'leave_applications.employee_id', 'employees.id')
             ->select(
-                'employees.first_name',
-                'employees.last_name',
+                'employees.name',
                 'employees.employee_index',
                 'leave_types.name as type',
                 'leave_applications.start_date',
@@ -175,22 +172,6 @@ class AttendanceRepository extends EloquentRepository implements AttendanceRepos
                     'status' => RootModel::STATUS_INACTIVE,
                 ];
 
-                //if employee punch;
-                if (is_employee()){
-
-                   // $position = Location::get($request->ip());
-                    $position = Location::get("103.146.92.29");
-
-                    if($position) {
-
-                        $createData = call_user_func('array_merge', $createData, [
-                           // 'location' => $position->cityName.' '. $position->postalCode. ' ' . $position->regionName,
-                            'device_ip' => $position->ip,
-                            'latitude' => $position->latitude,
-                            'longitude' => $position->longitude,
-                        ]);
-                    }
-                }
                 //Create Attendance log;
                 DB::table('attendance_log')->insert($createData);
             }

@@ -5,7 +5,7 @@ use \App\Models\Module;
 return [
     'name' => 'Recruitment',
     'url' => 'recruitment',
-    'scope' => json_encode([Module::SCOPE_COMMON, Module::SCOPE_EMPLOYEE]),
+    'scope' => json_encode([Module::SCOPE_COMPANY]),
     'icon' => 'fa fa-briefcase',
     'status' => 1,
     'order' => 9,
@@ -16,7 +16,7 @@ return [
             'name' => 'Job Posting',
             'show' => 0,
             'order' => 1,
-            'scope' => json_encode([Module::SCOPE_COMMON, Module::SCOPE_EMPLOYEE]),
+            'scope' => json_encode([Module::SCOPE_COMPANY]),
             'status' => 1,
             'menu' => [
                 [
@@ -68,7 +68,7 @@ return [
             'name' => 'Applications',
             'show' => 0,
             'order' => 2,
-            'scope' => json_encode([Module::SCOPE_COMMON, Module::SCOPE_EMPLOYEE]),
+            'scope' => json_encode([Module::SCOPE_COMPANY]),
             'status' => 1,
             'menu' => [
                 [
@@ -120,7 +120,7 @@ return [
             'name' => 'Interview',
             'show' => 0,
             'order' => 3,
-            'scope' => json_encode([Module::SCOPE_COMMON, Module::SCOPE_EMPLOYEE]),
+            'scope' => json_encode([Module::SCOPE_COMPANY]),
             'status' => 1,
             'menu' => [
                 [
@@ -172,7 +172,7 @@ return [
             'name' => 'Job Offer',
             'show' => 0,
             'order' => 10,
-            'scope' => json_encode([Module::SCOPE_COMMON, Module::SCOPE_EMPLOYEE]),
+            'scope' => json_encode([Module::SCOPE_COMPANY]),
             'status' => 1,
             'menu' => [
                 [

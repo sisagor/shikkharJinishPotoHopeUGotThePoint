@@ -410,7 +410,7 @@ if (! function_exists('get_menu_url')) {
         $menuUrl  = preg_replace('/\bupdate\b/u', 'edit', $url);
         $menuUrl  = preg_replace('/\bstore\b/u', 'add', $menuUrl);
 
-        return serialize($menuUrl);
+        return ($menuUrl);
     }
 }
 
@@ -424,33 +424,11 @@ if (! function_exists('get_module_url')) {
 }
 
 
-if (! function_exists('get_menu_route')) {
-    /** return menu url*/
-    function get_menu_route(object $menu, $id = null): string
-    {
-        $moduleUrl = ($menu->moduleUrl);
-
-        $menuUrl = str_replace('/', '.', $menu->url);
-
-        if (str_contains($menu->moduleUrl, '-')) {
-            $exp = explode('-', $menu->moduleUrl);
-            $moduleUrl = ($exp[0] . ucfirst($exp[1]));
-        }
-
-        if (str_contains($menuUrl, '-')) {
-            $exp = explode('-', $menuUrl);
-            $menuUrl = ($exp[0] . ucfirst($exp[1]));
-        }
-
-        return (isset($id) ? route($moduleUrl . '.' . $menuUrl, $id) : route($moduleUrl . '.' . $menuUrl));
-    }
-}
-
 if (! function_exists('has_permission')) {
     /**add new button*/
     function has_permission($action): bool
     {
-        if (! \App\Common\CheckPermissionsByAction::hasPermission($action)) {
+        if (! \App\Common\HasPermission::hasPermission($action)) {
             return false;
         }
         return true;
@@ -461,7 +439,7 @@ if (! function_exists('has_permission_url')) {
     /**add new button*/
     function has_permission_url($url): bool
     {
-        if (!  \App\Common\CheckPermissionsByUrl::hasPermissionByUrl($url)) {
+        if (!  \App\Common\HasPermission::hasPermissionUrl($url)) {
             return false;
         }
         return true;
@@ -759,7 +737,7 @@ if (!function_exists('get_storage_file_url')) {
     function get_storage_file_url($path = null, $size = 'small')
     {
         if (! $path) {
-            return get_placeholder_img($size);
+            return null;
         }
 
         return url('/storage/'.$path);

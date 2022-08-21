@@ -487,7 +487,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
             ->addColumn('approval_status', function ($row) {
                 return  get_approval_status($row->status);
             })->addColumn('action', function ($row) {
-                return edit_via_action('editEducation', $row->id, 'employee.education.edit', 'modal') . delete_button($row->id);
+                return edit_button('employee.education.edit', $row->id) . delete_button('employee.education.delete', $row->id);
             })
             ->rawColumns(['action'])
             ->make(true);

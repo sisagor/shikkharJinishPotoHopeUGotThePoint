@@ -4,15 +4,10 @@ namespace Modules\Timesheet\Repositories;
 
 use App\Models\RootModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Modules\Timesheet\Entities\Absent;
 use Modules\Employee\Entities\Employee;
 use App\Repositories\EloquentRepository;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Timesheet\Entities\Attendance;
-use Stevebauman\Location\Facades\Location;
 use Modules\Timesheet\Entities\AttendanceLog;
 use Modules\Timesheet\Entities\LeaveApplication;
 

@@ -40,7 +40,7 @@ class EmployeeTypeController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('componentSettings.employmentType.edit', $row) . trash_button('componentSettings.employmentType.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -62,7 +62,7 @@ class EmployeeTypeController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('componentSettings.employmentType.restore', $row) . delete_button('componentSettings.employmentType.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

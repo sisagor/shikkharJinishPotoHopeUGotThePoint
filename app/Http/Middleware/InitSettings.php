@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\SystemSetting;
+use App\Common\HasPermission;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use App\Common\CheckModulePermissions;
 use Illuminate\Support\Facades\Session;
 
 class InitSettings
@@ -51,7 +51,7 @@ class InitSettings
 
             if (! config('system.use_cache')) {
                 if (str_contains($request->getRequestUri(), 'logout')) {
-                    CheckModulePermissions::clearCache();
+                    HasPermission::clearCache();
                 }
             }
         }

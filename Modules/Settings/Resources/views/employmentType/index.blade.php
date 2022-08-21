@@ -1,4 +1,11 @@
-@extends('layouts.tableTab', ['title' => 'employment_types', 'btnType' => 'modal'])
+@extends('layouts.tableTab',
+    ['title' => 'employment_types']
+)
+
+{{--Add button--}}
+@section('buttons')
+     {!! add_button('componentSettings.employmentType.add', 'new_employment_type') !!}
+@endsection
 
 {{--only for company properies--}}
 @section('adminFilter')

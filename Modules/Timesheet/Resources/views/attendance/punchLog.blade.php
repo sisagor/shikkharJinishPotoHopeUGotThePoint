@@ -1,8 +1,20 @@
 
-@extends('layouts.table', ['title' => 'punch_log', 'btnType' => 'modal', 'filter' => 1])
+@extends('layouts.table', ['title' => 'punch_log',  'filter' => 1])
+
+
+@section('buttons')
+
+    @if(config('app.demo'))
+        @if(! is_employee())
+            {!! add_button('timesheet.attendance.add', 'new_punch') !!}
+        @endif
+    @endif
+
+@endsection
+
 
 @section('filter')
-   {{-- @if(! is_employee())
+  {{-- @if(! is_employee())
        <div class="col-md-2">
             <select class="form-control select2-ajax" data-text="{{trans('help.search_employee')}}"
                     data-link="{{route('employee.getEmployee')}}" name="employee" id="employee-filter">
@@ -13,7 +25,6 @@
 
     {!! date_filter_filed(5) !!}
 
-
 @endsection
 
 @section('table')
@@ -22,8 +33,7 @@
         <tr>
             <th>#</th>
             <th>{{trans('app.employee_index')}}</th>
-            <th>{{trans('app.first_name')}}</th>
-            <th>{{trans('app.last_name')}}</th>
+            <th>{{trans('app.name')}}</th>
             <th>{{trans('app.device_ip')}}</th>
             <th>{{trans('app.punch_time')}}</th>
             <th>{{trans('app.date')}}</th>
@@ -41,7 +51,7 @@
 
     @if($attType == \Modules\Company\Entities\CompanySetting::ATTENDANCE_IP)
         <script>
-            $('#new_punch').addClass('hide');
+            //$('#new_punch').addClass('hide');
         </script>
        {{-- <style> #new_punch{display: none!important;}</style>--}}
     @endif

@@ -78,14 +78,9 @@
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
                         <div class="clearfix"></div>
-                        <li class="dropdown">
-                            {!! add_button($btnType ?? null) !!}
-                        </li>
-                        @if(! empty($customBtn))
-                            <li class="dropdown mr-10">
-                               @yield('customBtn')
-                            </li>
-                        @endif
+
+                        @yield('buttons')
+
                     </ul>
                     <div class="clearfix"></div>
                 </div>

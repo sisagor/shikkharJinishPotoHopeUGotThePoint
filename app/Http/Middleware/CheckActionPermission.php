@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Common\HasPermission;
 use Illuminate\Support\Facades\Auth;
-use App\Common\CheckModulePermissions;
 use App\Exceptions\UnauthorizedException;
 
 
@@ -22,8 +22,8 @@ class CheckActionPermission
         //Check if logged out of destroy session then clear the cache:
         if (Auth::user()) {
             //Check permission
-            if (! CheckModulePermissions::hasPermission()) {
-                throw new UnauthorizedException('Unauthorized action', 403);
+            if (! HasPermission::hasPermissionUrl(get_menu_url())) {
+                abort('403');
             }
         }
 

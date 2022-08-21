@@ -22,8 +22,8 @@ class CreateSystemSettingsTable extends Migration
                 $table->json('sms_events')->nullable();
                 $table->string('email_notification')->nullable();
                 $table->integer('pagination')->default(25);
+                $table->tinyInteger('use_cache')->default(0);
                 $table->integer('report_pagination')->default(100);
-                $table->tinyInteger('use_cache')->default(0)->nullable();
                 $table->integer('timezone_id')->nullable();
                 $table->integer('currency_id')->nullable();
                 $table->tinyInteger('show_currency_symbol')->default(0)->nullable();
@@ -31,6 +31,7 @@ class CreateSystemSettingsTable extends Migration
                 $table->tinyInteger('has_tax_policy')->default(0)->nullable();
                 $table->tinyInteger('system_realtime_notification')->default(0)->nullable();
                 $table->mediumText('mix')->nullable();
+                $table->string('login_image')->nullable();
                 $table->timestamps();
             });
         }

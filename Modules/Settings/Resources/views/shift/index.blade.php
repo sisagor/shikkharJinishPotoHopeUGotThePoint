@@ -25,6 +25,12 @@
 @endsection
 {{--End Section--}}
 
+{{--Add button--}}
+@section('buttons')
+    {!! add_button('componentSettings.shift.add', 'new_shift') !!}
+@endsection
+
+
 @section('active')
     <table class="active-table table table-striped table-bordered no-footer dtr-inline w-100"
             role="grid" aria-describedby="datatable-buttons_info">

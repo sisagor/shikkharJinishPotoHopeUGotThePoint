@@ -54,7 +54,7 @@ class HolidayController extends Controller
             ->addIndexColumn()
             //->setTotalRecords($this->employeeCount('employees', \request()))
             ->addColumn('action', function ($row) {
-                return edit_button($row->id, 'modal') . delete_button($row->id);
+                return delete_button('componentSettings.holiday.delete',$row->id);
             })
             ->addColumn('status', function ($row) {
                 return get_status($row->status);

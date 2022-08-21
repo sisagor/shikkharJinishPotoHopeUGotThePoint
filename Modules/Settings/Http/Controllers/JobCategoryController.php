@@ -42,7 +42,7 @@ class JobCategoryController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('componentSettings.jobCategory.edit', $row) . trash_button('componentSettings.jobCategory.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -58,7 +58,7 @@ class JobCategoryController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('componentSettings.jobCategory.restore', $row) . delete_button('componentSettings.jobCategory.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

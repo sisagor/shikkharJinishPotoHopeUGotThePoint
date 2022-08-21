@@ -54,7 +54,7 @@ class CompanyController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('company.company.edit', $row) . trash_button('company.company.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -73,7 +73,7 @@ class CompanyController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('company.company.restore', $row) . delete_button('company.company.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

@@ -24,8 +24,7 @@
         <tr>
             <th>#</th>
             <th>{{trans('app.employee_index')}}</th>
-            <th>{{trans('app.first_name')}}</th>
-            <th>{{trans('app.last_name')}}</th>
+            <th>{{trans('app.name')}}</th>
             <th>{{trans('app.attendance_date')}}</th>
             <th>{{trans('app.status')}}</th>
         </tr>

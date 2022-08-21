@@ -13,8 +13,7 @@
         <tr>
             <th>#</th>
             <th>{{trans('app.employee_index')}}</th>
-            <th>{{trans('app.first_name')}}</th>
-            <th>{{trans('app.last_name')}}</th>
+            <th>{{trans('app.name')}}</th>
             <th>{{trans('app.salary_month')}}</th>
             <th>{{trans('app.basic_salary')}}</th>
             <th> {{trans('app.allowance')}}</th>

@@ -31,6 +31,7 @@ class AttendanceController extends Controller
      */
     public function index(Request $request)
     {
+
         if (! $request->ajax()) {
             return view('timesheet::attendance.index');
         }
@@ -74,7 +75,7 @@ class AttendanceController extends Controller
                 return ($row->punch_time) ? date('Y-m-d', strtotime($row->punch_time)) : null;
             })
             ->addColumn('actions', function ($row) {
-                if ($row->latitude && $row->longitude && has_permission('view') && ! is_employee())
+                if ($row->latitude && $row->longitude && has_permission('timesheet.attendance.view') && ! is_employee())
                 {
                     return  '<a href="' . route('timesheet.attendance.view', $row) . '" target="_blank"><i class="fa fa-map-o"></i></a>';
                 }

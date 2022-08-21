@@ -24,6 +24,10 @@
 @endsection
 {{--End Section--}}
 
+{{--Add button--}}
+@section('buttons')
+    {!! add_button('componentSettings.leaveType.add', 'new_leave_type') !!}
+@endsection
 
 @section('active')
 

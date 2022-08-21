@@ -1,10 +1,12 @@
-@extends('layouts.app', ['title' => 'holidays', 'btnType' => 'modal'])
+@extends('layouts.app', ['title' => 'holidays'])
 @php
     use \Illuminate\Support\Carbon;
 @endphp
+
 @section('styles')
     <link href="{{mix('css/datatable.css')}}" type="stylesheet" />
 @endsection
+
 @section('contents')
     <div class="row">
         <div class="col-md-12 col-sm-12">
@@ -28,7 +30,7 @@
                         </li>
                         <div class="clearfix"></div>
                         <li class="dropdown ml-2">
-                            {!! add_button('modal') !!}
+                            {!! add_button('componentSettings.holiday.add', 'new_holiday') !!}
                         </li>
                     </ul>
                     <div class="clearfix"></div>

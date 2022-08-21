@@ -48,7 +48,7 @@ class RoleController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row) . trash_button($row);
+                    return edit_button('userManagements.role.edit', $row, 0) . trash_button('userManagements.role.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -67,7 +67,7 @@ class RoleController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('userManagements.role.restore', $row) . delete_button('userManagements.role.delete',$row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

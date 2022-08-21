@@ -45,7 +45,7 @@ class ShiftController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('componentSettings.shift.edit', $row, 'modal') . trash_button('componentSettings.shift.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -67,7 +67,7 @@ class ShiftController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('componentSettings.shift.restore', $row) . delete_button('componentSettings.shift.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

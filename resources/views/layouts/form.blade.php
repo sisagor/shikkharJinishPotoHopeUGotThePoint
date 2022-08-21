@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('contents')
-    @if (!empty(session('action')))
+    @if (! empty(session('action')))
         {{-- $title --}}
         <div class="row">
             <div class="col-md-12 col-sm-12">
@@ -11,9 +11,8 @@
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
-                            <li>
-                                {!! list_button() !!}
-                            </li>
+                             @yield('buttons')
+                            <li></li>
                             {{--  <li><a class="close-link"><i class="fa fa-close"></i></a>
                               </li>--}}
                         </ul>
@@ -34,7 +33,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6 offset-md-5 form-padding">
                                         <button type="submit" onclick="return confirm('Are you sure?')" name="submit"
-                                                value="1" class="btn btn-primary">
+                                                value="1" class="btn btn-success">
                                             @if(!empty(session('actionId'))) {{session('actionBtn') ?? trans('app.update')}} @else {{session('actionBtn') ?? trans('app.save')}} @endif
                                         </button>
                                         <button type="reset" id="resetButton" class="btn btn-secondary">Reset</button>

@@ -21,10 +21,9 @@ class Filter
     //company and branch filter and scope:
     public function commonScopeFilter($data = array()): Filter
     {
-
         /**Company Filter*/
-        $this->returnQquery = ( $this->request->filled('com_id') && !empty($data['com_id']) && !empty($data['branch_id'])
-            ?$this->query->where($data['com_id'] ,$this->request->get('com_id'))
+        $this->returnQquery = ($this->request->filled('com_id') && !empty($data['com_id']) && !empty($data['branch_id'])
+            ? $this->query->where($data['com_id'] ,$this->request->get('com_id'))
             : (is_company_group() && $this->request->filled('branch_id')
                 ? $this->query->where($data['com_id'], com_id())//->whereNull('attendance_log.branch_id')
                 : ( is_admin_group() ? $this->query

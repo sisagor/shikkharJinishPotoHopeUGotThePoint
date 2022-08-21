@@ -17,7 +17,7 @@
         <div class="menu_section">
             <ul class="nav side-menu">
 
-                @if(is_admin_group() || is_company_admin() || is_branch_admin())
+                @if(is_admin_group() || is_company_group() || is_branch_group())
                     <li class="@if(request()->is('settings') || request()->is('branch/settings')|| request()->is('company/settings')){{ 'current-page' }} @endif">
                         <a href="{{get_setting_url()}}"><i class="fa fa-cogs"></i> <strong>{{trans('app.settings')}}</strong></a>
                     </li>
@@ -41,7 +41,7 @@
                                                     @endif
                                                     @foreach ($subModule->menu as $menu)
                                                         @if($menu->show)
-                                                            <li class=" @if(unserialize(get_menu_url()) == $menu->url){{ 'current-page' }} @endif">
+                                                            <li class=" @if(get_menu_url() == $menu->url){{ 'current-page' }} @endif">
                                                                 <a href="{{ url(strtolower($menu->url) ) }}">{{ $menu->name }}</a>
                                                             </li>
                                                         @endif

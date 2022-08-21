@@ -36,7 +36,7 @@ class TaxController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('componentSettings.tax.edit', $row) . trash_button('componentSettings.tax.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -55,7 +55,7 @@ class TaxController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('componentSettings.tax.restore', $row) . delete_button('componentSettings.tax.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

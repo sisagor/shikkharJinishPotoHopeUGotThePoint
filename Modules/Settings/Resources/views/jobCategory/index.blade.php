@@ -24,6 +24,11 @@
 @endsection
 {{--End Section--}}
 
+{{--Add button--}}
+@section('buttons')
+    {!! add_button('componentSettings.jobCategory.add', 'new_job_category') !!}
+@endsection
+
 @section('active')
     <table class="active-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
         <thead>

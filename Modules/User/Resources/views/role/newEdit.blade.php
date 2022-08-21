@@ -1,5 +1,10 @@
 @extends('layouts.form', ['title' => 'edit_role'])
 
+{{--button use this--}}
+@section('buttons')
+    {!! list_button('userManagements.roles', 'roles') !!}
+@endsection
+
 @section('form')
 
     <div class="form-body mt-2">

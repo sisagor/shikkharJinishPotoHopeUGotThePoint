@@ -17,7 +17,7 @@
             </div>
             <div class="modal-footer footer-content">
                 <button id="submitButton" type="submit" onclick="return confirm('Are you sure?')" name="submit"
-                        value="1" class="btn btn-primary">
+                        value="1" class="btn btn-success">
                     @if(!empty(session('actionId'))) {{session('actionBtn') ?? trans('app.update')}} @else {{ session('actionBtn') ?? trans('app.save') }} @endif
                 </button>
                 <button type="button" id="close_modal" class="close btn btn-secondary"  data-dismiss="modal">{{trans('app.close')}}</button>

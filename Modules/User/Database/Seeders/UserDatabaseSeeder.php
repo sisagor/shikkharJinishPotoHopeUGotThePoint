@@ -79,7 +79,7 @@ class UserDatabaseSeeder extends DatabaseSeeder
 
             foreach ($users as $key => $user) {
                 $profileId = DB::table('profiles')->insertGetId($profile[$key]);
-                DB::table('users')->insert($user);
+                 DB::table('users')->insert($user);
 
                 if (File::isDirectory($this->demo_dir)) {
                     $img = $this->demo_dir . "/user.jpg";

@@ -24,8 +24,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'type_name', name: 'type_name'},
                     {data: 'start_date', name: 'start_date'},
                     {data: 'end_date', name: 'end_date'},
@@ -60,8 +59,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'device_ip', name: 'device_ip'},
                     {data: 'checkin_time', name: 'checkin_time'},
                     {data: 'checkout_time', name: 'checkout_time'},
@@ -143,8 +141,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'month', name: 'month'},
                     {data: 'basic_salary', name: 'basic_salary'},
                     {data: 'allowance', name: 'allowance'},

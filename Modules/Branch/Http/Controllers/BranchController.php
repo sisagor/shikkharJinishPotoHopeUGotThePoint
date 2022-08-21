@@ -47,7 +47,7 @@ class BranchController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('branch.branch.edit', $row) . trash_button('branch.branch.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -66,7 +66,7 @@ class BranchController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('branch.branch.restore', $row) . delete_button('branch.branch.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

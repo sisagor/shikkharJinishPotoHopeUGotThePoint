@@ -1,4 +1,9 @@
-@extends('layouts.tableTab', ['title' => 'branches', 'btnType' => 'modal'])
+@extends('layouts.tableTab', ['title' => 'branches'])
+
+{{--button use this--}}
+@section('buttons')
+    {!! add_button('branch.branch.add', 'new_branch') !!}
+@endsection
 
 {{--only for company properies--}}
 @section('adminFilter')

@@ -41,7 +41,7 @@ class LeaveTypeController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('componentSettings.leaveType.edit', $row, 'modal') . trash_button('componentSettings.leaveType.trash',$row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -57,7 +57,7 @@ class LeaveTypeController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('componentSettings.leaveType.restore',$row) . delete_button('componentSettings.leaveType.delete',$row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

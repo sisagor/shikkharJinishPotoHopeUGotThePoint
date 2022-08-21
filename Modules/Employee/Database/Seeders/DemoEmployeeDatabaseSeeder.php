@@ -51,7 +51,7 @@ class DemoEmployeeDatabaseSeeder extends Seeder
 
                 DB::table('users')->insert([
                     'com_id' => 1,
-                    'branch_id' => ($i % 2 == 0) ? 1 : null,
+                    'branch_id' => ($i > 4 ) ? 1 : null,
                     'name' => "Employee" . ' ' . $i,
                     'email' => $email,
                     'level' => User::USER_EMPLOYEE,

@@ -2,7 +2,7 @@
     <div class="navbar nav_title">
         <a href="{{url('dashboard')}}" class="site_title">
             @if(config('system_settings.logo.path'))
-                <img align="center" class="img-responsive avatar-view"
+                <img align="center" class="img-responsive logo_img"
                      src="{{ get_storage_file_url(config('system_settings.logo.path'), 'logo') }}" alt="logo">
             @else
                 <i class="fa fa-dashboard"></i>
@@ -37,7 +37,7 @@
                                                         @endif
                                                         @foreach ($subModule->menu as $menu)
                                                             @if($menu->show)
-                                                                <li class=" @if(unserialize(get_menu_url()) == $menu->url){{ 'current-page' }} @endif">
+                                                                <li class=" @if(get_menu_url() == $menu->url){{ 'current-page' }} @endif">
                                                                     <a href="{{ url(strtolower($menu->url)) }}">{{ $menu->name }}</a>
                                                                 </li>
                                                             @endif
