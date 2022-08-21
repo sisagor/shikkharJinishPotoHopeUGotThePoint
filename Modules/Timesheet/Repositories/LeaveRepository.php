@@ -31,8 +31,7 @@ class LeaveRepository extends EloquentRepository implements LeaveRepositoryInter
             ->join('leave_types', 'leave_types.id', 'leave_applications.type_id')
             ->select(
                 'employees.employee_index',
-                'employees.first_name',
-                'employees.last_name',
+                'employees.name',
                 'leave_types.name as type_name',
                 'leave_applications.id',
                 'leave_applications.start_date',

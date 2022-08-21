@@ -94,16 +94,15 @@ class BranchRepository extends EloquentRepository implements BranchRepositoryInt
     {
         try {
 
-
             DB::beginTransaction();
 
-            $update = $model->update([
+            $model->update([
                 'name' => $request->get('name'),
                 'phone' => $request->get('phone'),
                 'email' => $request->get('email'),
                 'address' => $request->get('address'),
+                'status' => $request->get('status'),
             ]);
-
 
             $model->user->update([
                 'role_id' => $request->get('role_id'),
@@ -115,7 +114,7 @@ class BranchRepository extends EloquentRepository implements BranchRepositoryInt
 
             DB::commit();
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             Log::error("Branch update Failed");
             Log::info(get_exception_message($e));

@@ -1,34 +1,39 @@
-@extends('layouts.table', ['title' => 'salary_structure_components', 'btnType' => 'modal'])
+@extends('layouts.tableTab', ['title' => 'salary_structure_components'])
 
-@section('table')
-    <table class="default-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
+@section('buttons')
+    {!! add_button('payroll.structure.add', 'new_salary_structure') !!}
+@endsection
+
+@section('active')
+    <table class="active-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
         <thead>
             <tr>
                 <th>#</th>
-                @if(is_super_admin())
-                    <th>{{trans('app.belongs_to')}}</th>
-                @endif
                 <th>{{trans('app.type')}}</th>
                 <th>{{trans('app.name')}}</th>
                 <th>{{trans('app.status')}}</th>
                 <th>{{trans('app.action')}}</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach($structures as $key => $item)
-                <tr>
-                    <td>{{  $key + 1 }}</td>
-                    @if(is_super_admin())
-                        <td>@if($item->company){{ $item->company->name }}@endif</td>
-                    @endif
-                    <td>{{ $item->type }}</td>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ get_status($item->status)}}</td>
-                    <td>
-                        {!! edit_button($item, 'modal') !!} {!! delete_button($item) !!}
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
+        <tbody></tbody>
     </table>
+@endsection
+
+@section('trash')
+    <table class="trash-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{trans('app.type')}}</th>
+                <th>{{trans('app.name')}}</th>
+                <th>{{trans('app.status')}}</th>
+                <th>{{trans('app.action')}}</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+@endsection
+
+@section('tableTabScripts')
+    @include('payroll::scripts.structure')
 @endsection

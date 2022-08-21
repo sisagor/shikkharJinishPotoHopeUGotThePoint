@@ -17,16 +17,7 @@
                         <small>{{ trans('app.employee_details') }}</small></h2>
                     @if(! is_employee())
                         <ul class="nav navbar-right panel_toolbox">
-                            <li>
-                                @if(has_permission_url('employees'))
-                                    <a href="{{route('employee.employees')}}" class="btn btn-info">{{trans('app.active_employees')}}</a>
-                                @endif
-                            </li>
-                            <li>
-                                @if(has_permission_url('employees/inactive'))
-                                    <a href="{{route('employee.employees.inactive')}}" class="btn btn-primary">{{trans('app.inactive_employees')}}</a>
-                                @endif
-                            </li>
+                            {!! list_button('employee.employees.inactive', 'inactive_employees'). " " . list_button('employee.employees', 'employees') !!}
                         </ul>
                     @endif
                     <div class="clearfix"></div>
@@ -34,17 +25,17 @@
                {{-- //Contents--}}
                 <div class="x_content">
                     <ul  class="nav nav-tabs mb-2" id="myTab" role="tablist">
-                        @if(has_permission('editEmployment') && ! is_employee())
+                        @if(has_permission('employee.employment.edit') && ! is_employee())
                             <li class="nav-item w-15">
-                                <a class="nav-link @if(session('tab') == "employment") active @endif thin-tab" id="home-tab" data-toggle="tab" href="#employmentInformation"
+                                <a class="nav-link active thin-tab" id="home-tab" data-toggle="tab" href="#employmentInformation"
                                    role="tab" aria-controls="home"
                                    aria-selected="true">{{trans('app.employment_information')}}</a>
                             </li>
                         @endif
 
-                        @if(has_permission('editPersonal'))
+                        @if(has_permission('employee.personal.edit'))
                             <li class="nav-item w-15">
-                                <a class="nav-link @if(session('tab') == "personal") active @endif thin-tab" id="profile-tab" data-toggle="tab" href="#personalInfo"
+                                <a class="nav-link @if(session('tab') == "personal") active @endif @if(is_employee()) active @endif thin-tab" id="profile-tab" data-toggle="tab" href="#personalInfo"
                                    role="tab"
                                    aria-controls="profile"
                                    aria-selected="false">{{trans('app.personal_information')}}</a>
@@ -57,20 +48,20 @@
                                aria-selected="true">{{trans('app.leaves')}}</a>
                         </li>
 
-                        @if(has_permission('listEducation'))
+                        @if(has_permission('employee.educations'))
                             <li class="nav-item w-15">
                                 <a class="nav-link thin-tab" id="contact-tab" data-toggle="tab" href="#educationInfo" role="tab"
                                    aria-controls="contact"
                                    aria-selected="false">{{trans('app.educational_information')}}</a>
                             </li>
                         @endif
-                        @if(has_permission('listAddress'))
+                        @if(has_permission('employee.addresses'))
                             <li class="nav-item w-15">
                                 <a class="nav-link thin-tab" id="addresses-tab" data-toggle="tab" href="#addresses" role="tab"
                                    aria-controls="contact" aria-selected="false">{{trans('app.addresses')}}</a>
                             </li>
                         @endif
-                        @if(has_permission('listDocument'))
+                        @if(has_permission('employee.documents'))
                             <li class="nav-item w-15">
                                 <a class="nav-link thin-tab" id="contact-tab" data-toggle="tab" href="#document" role="tab"
                                    aria-controls="contact" aria-selected="false">{{trans('app.documents')}}</a>
@@ -83,7 +74,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade @if(session('tab') == "employment") show active @endif" id="employmentInformation" role="tabpanel"
                                  aria-labelledby="employmentInformation-tab">
-                                @if(has_permission('editEmployment') && ! is_employee())
+                                @if(has_permission('employee.employment.edit') && ! is_employee())
                                     <form method="post" enctype="multipart/form-data"
                                           action="{{route('employee.employment.update', $employee->id)}}?employmentInfo">
                                         @csrf
@@ -111,7 +102,7 @@
                             {{--Personal Information--}}
                             <div class="tab-pane fade @if(session('tab') == "personal") show active @endif" id="personalInfo" role="tabpanel"
                                  aria-labelledby="personalInfo-tab">
-                                @if(has_permission('editPersonal'))
+                                @if(has_permission('employee.personal.edit'))
                                     <form method="post" enctype="multipart/form-data"
                                           action="{{route('employee.personal.update', $employee->id)}}">
                                         @csrf
@@ -143,7 +134,7 @@
 
                             {{--Educational Information--}}
                             <div class="tab-pane fade" id="educationInfo" role="tabpanel" aria-labelledby="educationInfo-tab">
-                                @if(has_permission('listEducation'))
+                                @if(has_permission('employee.addresses'))
                                     @include('employee::education.index')
                                 @endif
                             </div>
@@ -151,7 +142,7 @@
 
                             {{--Aaddresses--}}
                             <div class="tab-pane fade" id="addresses" role="tabpanel" aria-labelledby="addresses-tab">
-                                @if(has_permission('listAddress'))
+                                @if(has_permission('employee.educations'))
                                     @include('employee::address.index')
                                 @endif
                             </div>
@@ -159,7 +150,7 @@
 
                             {{--Documents--}}
                             <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
-                                @if(has_permission('listDocument'))
+                                @if(has_permission('employee.documents'))
                                     @include('employee::document.index')
                                 @endif
                             </div>

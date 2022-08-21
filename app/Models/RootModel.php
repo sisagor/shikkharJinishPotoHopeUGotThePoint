@@ -104,13 +104,7 @@ abstract class RootModel extends Model
      */
     public function scopeCompanyScope($query)
     {
-        return (
-            is_company_admin()
-            ? Schema::hasColumn($this->getTable(), 'branch_id')
-            ? $query->where('branch_id', null)->where('com_id', com_id())
-            : $query->where('com_id', com_id())
-            : $query
-        );
+        return (is_company_admin() ? $query->where('com_id', com_id()) : $query);
     }
 
 

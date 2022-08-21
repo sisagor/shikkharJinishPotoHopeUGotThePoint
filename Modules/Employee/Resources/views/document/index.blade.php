@@ -5,11 +5,12 @@
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
-                @if(has_permission('addDocument'))
+                @if(has_permission('employee.document.add'))
                     <a class="btn btn-info ajax-modal-btn" href="javascript:void(0)"
                        data-link="{{route('employee.document.add', $employee->id)}}"><i
                             class="fa fa-plus"></i> {{trans('app.new_document')}}</a>
                 @endif
+
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -32,11 +33,11 @@
                         <td>{{$item->name}}</td>
                         <td>{{$item->doc_name}}</td>
                         <td>
-                            @if(has_permission('exportDocument'))
+                            @if(has_permission('employee.document.export'))
                                 <a class="btn btn-warning" href="{{(get_file_url(optional($item)->path))}}"
                                    download><i class="fa fa-download"></i></a>
                             @endif
-                            @if(has_permission('deleteDocument'))
+                            @if(has_permission('employee.document.delete'))
                                 <a class="btn btn-danger" onclick="return confirm('are you sure?')"
                                    href="{{route('employee.document.delete', [$employee,$item])}}">
                                     <i class="fa fa-trash"></i></a>

@@ -1,7 +1,6 @@
 @extends('layouts.form')
 
 @section('form')
-
     <div class="form-body">
         <div class="row">
             {{--Employemnt Info--}}
@@ -107,7 +106,7 @@
             {{--End Personal Info--}}
 
             @if(config('company_settings.allow_employee_login') && empty($employee))
-                <div class="row col-md-12 custom-bar mt-3 mb-2">
+                <div class="col-md-12 custom-bar mt-3 mb-2">
                     <strong class="font25">{{trans('app.create_user')}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;
                     <input class="checkbox mt-1" name="create_user" value="1" type="checkbox" id="createUser">
                 </div>
@@ -182,3 +181,8 @@
     @include('employee::scripts.employee')
 @endsection
 
+<style>
+    .checkbox{
+        top: 0!important;
+    }
+</style>

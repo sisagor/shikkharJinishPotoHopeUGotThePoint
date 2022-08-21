@@ -43,12 +43,12 @@ class LeaveController extends Controller
             return view('timesheet::leave.index');
         }
 
-        $table =  DataTables::of( $this->repository->pending($request))
+        $table =  DataTables::of($this->repository->pending($request))
             ->addIndexColumn();
 
             if(! is_employee()) {
                 $table->addColumn('action', function ($row) {
-                    return view_button($row->id, 'modal');
+                    return view_button('timesheet.leave.view', $row->id);
                 });
             }
 

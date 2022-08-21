@@ -5,7 +5,7 @@
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
-                @if(has_permission('addEducation'))
+                @if(has_permission('employee.education.add'))
                     <a class="btn btn-info ajax-modal-btn" href="javascript:void(0)"
                        data-link="{{route('employee.education.add', $employee)}}"><i
                             class="fa fa-plus"></i> {{trans('app.new_education')}}</a>
@@ -37,11 +37,11 @@
                         <td>{{$item->cgpa}}</td>
                         <td>{{$item->out_of}}</td>
                         <td>
-                            @if(has_permission('editEducation'))
+                            @if(has_permission('employee.education.edit',))
                                 <a class="btn btn-warning ajax-modal-btn" href="javascript:void(0)"
                                    data-link="{{route('employee.education.edit', $item)}}"><i class="fa fa-pencil"></i></a>
                             @endif
-                            @if(has_permission('deleteEducation'))
+                            @if(has_permission('employee.education.delete'))
                                 <a class="btn btn-danger" href="{{route('employee.education.delete', $item)}}"
                                    onclick="return confirm('are you sure?')"><i class="fa fa-trash"></i></a>
                             @endif

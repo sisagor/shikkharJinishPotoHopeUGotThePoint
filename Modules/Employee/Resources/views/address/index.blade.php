@@ -5,7 +5,7 @@
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
-                @if(has_permission('addAddress'))
+                @if(has_permission('employee.address.add'))
                     <a class="btn btn-info ajax-modal-btn" href="javascript:void(0)"
                        data-link="{{route('employee.address.add', $employee->id)}}">
                         <i class="fa fa-plus"></i> {{trans('app.new_address')}}</a>
@@ -37,12 +37,12 @@
                         <td>{{$item->address}}</td>
                         <td>{{$item->country->name}}</td>
                         <td>
-                            @if(has_permission('editAddress'))
+                            @if(has_permission('employee.address.edit'))
                                 <a class="btn btn-warning ajax-modal-btn" href="javascript:void(0)"
                                    data-link="{{route('employee.address.edit', $item)}}">
                                     <i class="fa fa-pencil"></i></a>
                             @endif
-                            @if(has_permission('deleteAddress'))
+                            @if(has_permission('employee.address.delete'))
                                 <a class="btn btn-danger" href="{{route('employee.address.delete', $item)}}"
                                    onclick="return confirm('are you sure?')">
                                     <i class="fa fa-trash"></i></a>

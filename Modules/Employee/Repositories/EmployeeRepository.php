@@ -32,7 +32,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
             ->with('department:id,name')
             ->with('designation:id,name')
             ->with('employeeType:id,name')
-            ->select('id', 'status', 'department_id', 'designation_id', 'type_id', 'employee_index', 'first_name', 'last_name', 'email', 'phone', 'device_id')
+            ->select('id', 'status', 'department_id', 'designation_id', 'type_id', 'employee_index', 'name', 'email', 'phone', 'device_id')
             ->where('status', RootModel::STATUS_ACTIVE);
 
         //department filter and scope:
@@ -50,7 +50,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
             ->with('department:id,name')
             ->with('designation:id,name')
             ->with('employeeType:id,name')
-            ->select('id', 'status', 'department_id', 'designation_id', 'type_id', 'employee_index', 'first_name', 'last_name', 'email', 'phone', 'device_id');
+            ->select('id', 'status', 'department_id', 'designation_id', 'type_id', 'employee_index', 'name', 'email', 'phone', 'device_id');
 
         //department filter and scope:
         $data = (\request()->filled('department_id') ? $data->where('department_id', \request()->get('department_id'))
@@ -67,7 +67,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
             ->with('department:id,name')
             ->with('designation:id,name')
             ->with('employeeType:id,name')
-            ->select('id', 'status', 'department_id', 'designation_id', 'type_id', 'employee_index', 'first_name', 'last_name', 'email', 'phone', 'device_id')
+            ->select('id', 'status', 'department_id', 'designation_id', 'type_id', 'employee_index', 'name', 'email', 'phone', 'device_id')
             ->where('status', RootModel::STATUS_INACTIVE);
 
         //department filter and scope:
@@ -85,7 +85,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
             ->with('department:id,name')
             ->with('designation:id,name')
             ->with('employeeType:id,name')
-            ->select('id', 'status', 'department_id', 'designation_id', 'type_id', 'employee_index', 'first_name', 'last_name', 'email', 'phone', 'device_id')
+            ->select('id', 'status', 'department_id', 'designation_id', 'type_id', 'employee_index', 'name', 'email', 'phone', 'device_id')
             ->where('status', RootModel::STATUS_INACTIVE);
 
         //department filter and scope:
@@ -108,6 +108,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
                 'employee_index' => $request->get('employee_index'),
                 'first_name' => $request->get('first_name'),
                 'last_name' => $request->get('last_name'),
+                'name' => $request->get('first_name') . ' ' . $request->get('last_name'),
                 'email' => $request->get('email'),
                 'phone' => $request->get('phone'),
                 'joining_date' => $request->get('joining_date'),
@@ -252,6 +253,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
             $employee->update([
                 'first_name' => $request->get('first_name'),
                 'last_name' => $request->get('last_name'),
+                'name' => $request->get('first_name') . ' ' . $request->get('last_name'),
                 'email' => $request->get('email'),
                 'phone' => $request->get('phone'),
                 'gender' => $request->get('gender'),

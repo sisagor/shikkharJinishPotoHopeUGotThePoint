@@ -5,7 +5,7 @@
             <div class="profile_img">
                 <div id="crop-avatar">
                     <!-- Current avatar -->
-                    <img class="img-responsive avatar-view"
+                    <img class="img-responsive profile_img"
                          src="{{ get_storage_file_url(optional($employee->profile)->path, 'profile') }}"
                          alt="{{trans('app.employee_image')}}" title="{{trans('app.employee_image')}}">
                     <input type="file" name="image">

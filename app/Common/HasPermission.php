@@ -67,8 +67,8 @@ trait HasPermission
             return true;
         }
 
-        if(str_contains('/', $url)) {
-            $exp = explode($url);
+        if(str_contains($url, '/')) {
+            $exp = explode('/', $url);
             $url = end($exp);
         }
 

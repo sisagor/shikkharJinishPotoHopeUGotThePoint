@@ -5,7 +5,7 @@
 @section('buttons')
 
     @if(config('app.demo'))
-        @if(! is_employee())
+        @if( is_employee())
             {!! add_button('timesheet.attendance.add', 'new_punch') !!}
         @endif
     @endif

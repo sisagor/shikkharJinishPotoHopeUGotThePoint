@@ -34,13 +34,13 @@ return [
                 [
                     'name' => 'Inactive Employees',
                     'url' => 'employee/employees/inactive',
-                    'action' => 'employee.employee.inactive',
+                    'action' => 'employee.employees.inactive',
                     'show' => 1,
                 ],
                 [
                     'name' => 'Edit Employment information',
                     'url' => 'employee/employment/edit',
-                    'action' => 'employee.employee.edit',
+                    'action' => 'employee.employment.edit',
                     'show' => 0,
                 ],
                 [
@@ -97,8 +97,8 @@ return [
                 ],
                 [
                     'name' => 'Employee Educations',
-                    'url' => 'employee/education/list',
-                    'action' => 'employee.education.list',
+                    'url' => 'employee/educations',
+                    'action' => 'employee.educations',
                     'show' => 0,
                 ],
                 [
@@ -129,8 +129,8 @@ return [
                 ],
                 [
                     'name' => 'Employee Addresses',
-                    'url' => 'employee/address/list',
-                    'action' => 'employee.address.list',
+                    'url' => 'employee/addresses',
+                    'action' => 'employee.addresses',
                     'show' => 0,
                 ],
                 [
@@ -161,8 +161,8 @@ return [
                 ],
                 [
                     'name' => 'Documents',
-                    'url' => 'employee/document/list',
-                    'action' => 'employee.document.list',
+                    'url' => 'employee/documents',
+                    'action' => 'employee.documents',
                     'show' => 0,
                 ],
                 [

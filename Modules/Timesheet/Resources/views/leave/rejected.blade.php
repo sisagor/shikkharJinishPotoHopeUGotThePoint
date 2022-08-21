@@ -11,8 +11,7 @@
         <tr>
             <th>#</th>
             <th>{{trans('app.employee_index')}}</th>
-            <th>{{trans('app.first_name')}}</th>
-            <th>{{trans('app.last_name')}}</th>
+            <th>{{trans('app.name')}}</th>
             <th>{{trans('app.leave_type')}}</th>
             <th>{{trans('app.leave_for')}}</th>
             <th>{{trans('app.start_date')}}</th>

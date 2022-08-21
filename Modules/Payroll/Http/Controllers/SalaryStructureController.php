@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Modules\Payroll\Entities\SalaryStructure;
 use Modules\Payroll\Http\Requests\SalaryStructureCreateRequest;
 use Modules\Payroll\Http\Requests\SalaryStructureUpdateRequest;
+use Yajra\DataTables\Facades\DataTables;
 
 
 class SalaryStructureController extends Controller
@@ -23,10 +24,14 @@ class SalaryStructureController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $structures = $this->model->companyScope()->get();
-        return view('payroll::structure.index', compact('structures'));
+        if (! $request->ajax()){
+            return view('payroll::structure.index');
+        }
+
+       return DataTables::make($this->model->companyScope())
+            ->make(true);
     }
 
     /**

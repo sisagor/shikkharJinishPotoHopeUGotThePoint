@@ -71,7 +71,7 @@ class EmployeeController extends Controller
                 ->addIndexColumn()
                 //->setTotalRecords($this->employeeCount('employees', \request()))
                 ->addColumn('action', function ($row) {
-                    return view_button($row->id) . trash_button($row->id);
+                    return view_button('employee.employee.view', $row->id, 0) . trash_button('employee.employee.trash',$row->id);
                 })
                 ->addColumn('department', function ($row) {
                     return $row->department->name ?? null;
@@ -98,7 +98,7 @@ class EmployeeController extends Controller
                 ->addIndexColumn()
                 //->setTotalRecords($this->employeeCount('employees', \request()))
                 ->addColumn('action', function ($row) {
-                    return restore_button($row->id) . delete_button($row->id);
+                    return restore_button('employee.employee.restore', $row->id) . delete_button('employee.employee.delete', $row->id);
                 })
                 ->addColumn('department', function ($row) {
                     return $row->department->name ?? null;
@@ -140,7 +140,7 @@ class EmployeeController extends Controller
                 ->addIndexColumn()
                 //->setTotalRecords($this->employeeCount('employees', \request()))
                 ->addColumn('action', function ($row) {
-                    return view_button($row->id) . trash_button($row->id);
+                    return view_button('employee.employee.view', $row->id, 0) . trash_button('employee.employee.trash',$row->id);
                 })
                 ->addColumn('department', function ($row) {
                     return $row->department->name ?? null;
@@ -167,7 +167,7 @@ class EmployeeController extends Controller
                 ->addIndexColumn()
                 //->setTotalRecords($this->employeeCount('employees', \request()))
                 ->addColumn('action', function ($row) {
-                    return restore_button($row->id) . delete_button($row->id);
+                    return restore_button('employee.employee.restore', $row->id) . delete_button('employee.employee.delete', $row->id);
                 })
                 ->addColumn('department', function ($row) {
                     return $row->department->name ?? null;
