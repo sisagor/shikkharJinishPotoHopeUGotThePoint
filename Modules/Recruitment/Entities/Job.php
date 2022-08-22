@@ -11,7 +11,6 @@ use Modules\Settings\Entities\JobCategory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-
 class Job extends RootModel
 {
     use SoftDeletes, CascadeSoftDeletes;

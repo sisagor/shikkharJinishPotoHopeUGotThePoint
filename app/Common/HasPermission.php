@@ -25,6 +25,9 @@ trait HasPermission
 
     public static function hasPermissionUrl($url): bool
     {
+        if (! $url){
+            return true;
+        }
         //check if need to skip;
         if(self::skipPermission($url))
         {

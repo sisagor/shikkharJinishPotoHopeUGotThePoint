@@ -131,12 +131,12 @@ class SalaryStructureController extends Controller
     {
         if ($structure->delete()) {
 
-            sendActivityNotification(trans('msg.noty.trashed', ['model' => trans('model.salary_structure')]));
+            sendActivityNotification(trans('msg.noty.soft_deleted', ['model' => trans('model.salary_structure')]));
 
-            return redirect()->back()->with('success', trans('msg.trash_success', ['model' => trans('model.salary_structure')]));
+            return redirect()->back()->with('success', trans('msg.soft_delete_success', ['model' => trans('model.salary_structure')]));
         }
 
-        return redirect()->back()->with('success', trans('msg.trash_failed', ['model' => trans('model.salary_structure')]));
+        return redirect()->back()->with('success', trans('msg.soft_delete_failed', ['model' => trans('model.salary_structure')]));
     }
 
     /**

@@ -47,7 +47,7 @@ class PayrollController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button('payroll.structure.edit', $row) . trash_button('payroll.structure.trash', $row);
+                    return edit_button('payroll.rule.edit', $row, 0) . trash_button('payroll.rule.trash', $row);
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
@@ -65,7 +65,7 @@ class PayrollController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function($row) {
-                    return restore_button('payroll.structure.restore', $row) . delete_button('payroll.structure.delete', $row);
+                    return restore_button('payroll.rule.restore', $row) . delete_button('payroll.rule.delete', $row);
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
@@ -153,13 +153,15 @@ class PayrollController extends Controller
      */
     public function trash(SalaryRule $rule): RedirectResponse
     {
-        if ($this->repository->destroy($rule)) {
-            sendActivityNotification(trans('msg.noty.trash', ['model' => trans('model.salary_rule')]));
 
-            return redirect()->back()->with('success', trans('msg.delete_success', ['model' => trans('model.salary_rule')]));
+        if ($rule->delete()) {
+
+            sendActivityNotification(trans('msg.noty.soft_delete', ['model' => trans('model.salary_rule')]));
+
+            return redirect()->back()->with('success', trans('msg.soft_delete_success', ['model' => trans('model.salary_rule')]));
         }
 
-        return redirect()->back()->with('error', trans('msg.delete_failed', ['model' => trans('model.salary_rule')]));
+        return redirect()->back()->with('error', trans('msg.soft_delete_failed', ['model' => trans('model.salary_rule')]));
     }
 
     /**

@@ -52,7 +52,7 @@ class InterviewController extends Controller
                     return $interviewers;
                 })
                 ->addColumn('action', function ($row) {
-                    return view_button($row, 'modal'). edit_button($row, "modal") . trash_button($row);
+                    return view_button('recruitment.interview.view', $row). edit_button('recruitment.interview.edit', $row, "modal") . trash_button('recruitment.interview.trash', $row);
                 })
                 ->rawColumns(['status', 'action', 'details', 'interviewers'])
                 ->make(true);
@@ -77,7 +77,7 @@ class InterviewController extends Controller
                     return $interviewers;
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('recruitment.interview.restore', $row) . delete_button('recruitment.interview.delete', $row);
                 })
                 ->rawColumns(['status', 'action', 'details', 'interviewers'])
                 ->make(true);

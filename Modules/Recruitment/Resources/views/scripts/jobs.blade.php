@@ -55,6 +55,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'category.name', name: 'category.name'},
+                    {data: 'position', name: 'position'},
                     {data: 'experience', name: 'experience'},
                     {data: 'vacancy', name: 'vacancy'},
                     {data: 'expire_date', name: 'expire_date'},

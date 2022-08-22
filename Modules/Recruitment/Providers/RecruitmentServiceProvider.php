@@ -3,7 +3,7 @@
 namespace Modules\Recruitment\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RecruitmentServiceProvider extends ServiceProvider
 {

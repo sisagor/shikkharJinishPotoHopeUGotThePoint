@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SalaryRuleStructure extends RootModel {
 
-    use SoftDeletes;
+    //use SoftDeletes;
 
     protected $table = 'salary_rule_structures';
 

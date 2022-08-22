@@ -20,7 +20,7 @@ class SalaryStructure extends RootModel
     const TYPE_PROVIDENT = "Provident";
     const TYPE_INSURANCE = "Insurance";
 
-    protected $fillable = ['id', 'com_id', 'name', 'type', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['id', 'com_id', 'name', 'type', 'status', 'created_by', 'updated_by', 'deleted_at'];
 
     function company()
     {

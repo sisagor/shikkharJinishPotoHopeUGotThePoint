@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Modules\Recruitment\Entities\Job;
+use Modules\Recruitment\Database\Factories\JobFactory;
 use Modules\Settings\Database\Seeders\DemoJobCategoryDatabaseSeeder;
 
 class RecruitmentDatabaseSeeder extends Seeder
@@ -67,6 +69,8 @@ class RecruitmentDatabaseSeeder extends Seeder
             if(config('app.demo')){
                 $this->call(DemoJobCategoryDatabaseSeeder::class);
                 $this->call(DemoJobDatabaseSeeder::class);
+                $this->call(DemoJobApplicationDatabaseSeeder::class);
+                $this->call(DemoJobInterviewDatabaseSeeder::class);
             }
 
         } catch (\Exception $exception) {

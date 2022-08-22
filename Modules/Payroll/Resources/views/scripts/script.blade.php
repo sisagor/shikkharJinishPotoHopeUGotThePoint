@@ -33,8 +33,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'month', name: 'month'},
                     {data: 'basic_salary', name: 'basic_salary'},
                     {data: 'allowance', name: 'allowance'},
@@ -77,8 +76,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
-                    {data: 'first_name', name: 'employees.first_name'},
-                    {data: 'last_name', name: 'employees.last_name'},
+                    {data: 'name', name: 'employees.name'},
                     {data: 'month', name: 'month'},
                     {data: 'basic_salary', name: 'basic_salary'},
                     {data: 'allowance', name: 'allowance'},

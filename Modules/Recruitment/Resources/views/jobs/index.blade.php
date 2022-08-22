@@ -1,4 +1,4 @@
-@extends('layouts.tableTab', ['title' => 'job_posting', 'btnType' => 'modal', 'customBtn' => 1])
+@extends('layouts.tableTab', ['title' => 'job_posting'])
 
 {{--only for company properies--}}
 @section('adminFilter')
@@ -24,8 +24,9 @@
 @endsection
 {{--End Section--}}
 
-@section('customBtn')
-<a class="btn btn-warning" target="_blank" href="{!! route('jobs') !!}">{{trans('app.cms')}}</a>
+@section('buttons')
+    {!! add_button('recruitment.jobPosting.add', 'new_job') !!}
+    <li><a class="btn btn-secondary" target="_blank" href="{!! route('jobs') !!}"> <i class="fa fa-globe"></i> {{trans('app.cms')}}</a></li>
 @endsection
 
 @section('active')

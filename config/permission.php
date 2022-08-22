@@ -3,7 +3,6 @@
 return [
 
     'skip' => [
-        //'login' => 1,
         'logout' => 1,
         'dashboard' => 1,
         'profile' => 1,

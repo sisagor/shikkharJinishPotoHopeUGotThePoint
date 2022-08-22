@@ -27,7 +27,7 @@ class PayrollRepository extends EloquentRepository implements PayrollRepositoryI
     /*Get all salary rules*/
     public function all()
     {
-        return $this->model::with('designation:id,name')->mine();
+        return $this->model::with('designation:id,name')->companyScope();
     }
 
     /*Store Company*/

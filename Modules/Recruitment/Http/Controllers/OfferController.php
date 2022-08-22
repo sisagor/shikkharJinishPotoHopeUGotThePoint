@@ -21,8 +21,6 @@ class OfferController extends Controller
     {
         $this->repo = $repository;
     }
-
-
     /**
      * section job posting
       */

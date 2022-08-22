@@ -404,7 +404,7 @@ if (! function_exists('get_menu_url')) {
         $url = rtrim($url, '/');
 
         if (empty($url)) {
-            return serialize(request()->segment(1));
+            return request()->segment(1);
         }
 
         $menuUrl  = preg_replace('/\bupdate\b/u', 'edit', $url);

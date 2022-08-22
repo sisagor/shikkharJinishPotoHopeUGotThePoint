@@ -1,4 +1,4 @@
-@extends('layouts.table', ['title' => 'job_offers', 'btnType' => 'modal'])
+@extends('layouts.table', ['title' => 'job_offers'])
 
 {{--only for company properies--}}
 @section('adminFilter')
@@ -23,6 +23,10 @@
     @endif
 @endsection
 {{--End Section--}}
+
+@section('buttons')
+    {!! add_button('recruitment.offer.add', 'create_offer') !!}
+@endsection
 
 @section('table')
     <table class="active-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">

@@ -49,9 +49,9 @@ class JobController extends Controller
                     return substr(json_decode($row->requirements), 0, 500);
                 })
                 ->addColumn('action', function ($row) {
-                    return view_button($row, 'modal'). edit_button($row, "modal") . trash_button($row);
+                    return view_button('recruitment.jobPosting.view', $row). edit_button('recruitment.jobPosting.edit', $row) . trash_button('recruitment.jobPosting.trash', $row);
                 })
-                ->rawColumns(['status', 'action', 'details', 'requirements'])
+                ->rawColumns(['action', 'details', 'requirements'])
                 ->make(true);
         }
 
@@ -66,9 +66,9 @@ class JobController extends Controller
                     return substr(json_decode($row->requirements), 0, 500);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('recruitment.jobPosting.restore', $row) . delete_button('recruitment.jobPosting.delete',$row);
                 })
-                ->rawColumns(['status', 'action', 'details', 'requirements'])
+                ->rawColumns(['action', 'details', 'requirements'])
                 ->make(true);
         }
     }

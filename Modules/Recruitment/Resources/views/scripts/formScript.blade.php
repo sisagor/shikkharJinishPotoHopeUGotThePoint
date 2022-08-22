@@ -7,7 +7,7 @@
             console.log("working")
             //Summer Note
             $(".summernote").summernote({
-                height: 150,
+                height: 130,
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear', 'list']],
                     ['fontsize', ['fontsize']],

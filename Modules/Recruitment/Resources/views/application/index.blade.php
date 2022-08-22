@@ -1,4 +1,4 @@
-@extends('layouts.tableTab', ['title' => 'job_posting', 'btnType' => 'modal'])
+@extends('layouts.tableTab', ['title' => 'job_posting'])
 
 {{--only for company properies--}}
 @section('adminFilter')

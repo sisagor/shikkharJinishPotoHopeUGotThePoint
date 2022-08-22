@@ -544,5 +544,7 @@ return [
     'job_offers' => 'Job Offers',
     'new_offer' => 'New Job Offer',
     'edit_offer' => 'Edit Job Offer',
+    'cms' => 'CMS',
+    'create_offer_latter' => 'Create Offer Latter',
 
 ];

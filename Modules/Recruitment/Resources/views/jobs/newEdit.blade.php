@@ -4,9 +4,8 @@
 
     <div class="showNotification"></div>
 
-    <div class="form-body">
-        <div class="row">
-
+    <div class="row">
+        <div class="form-body">
             <div class="col-md-6 col-sm-6">
                 <label class="col-form-label label-align" for="category_id">
                     {{trans('app.job_category')}} <span class="required">*</span>
