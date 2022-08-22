@@ -45,7 +45,7 @@ class DeductionPolicyController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, "modal") . trash_button($row);
+                    return edit_button('organization.deductionPolicy.edit', $row) . trash_button('organization.deductionPolicy.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -53,9 +53,7 @@ class DeductionPolicyController extends Controller
 
         if ($request->get('type') == "trash"){
 
-            $trash = $data->onlyTrashed();
-
-            return DataTables::of($trash)
+            return DataTables::of($data->onlyTrashed())
                 ->addIndexColumn()
                 ->editColumn('deduction_amount', function ($row) {
                     return ($row->is_percent ? $row->deduction_amount.'%' : get_formatted_currency($row->deduction_amount, 2 ));
@@ -64,7 +62,7 @@ class DeductionPolicyController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('organization.deductionPolicy.restore', $row) . delete_button('organization.deductionPolicy.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

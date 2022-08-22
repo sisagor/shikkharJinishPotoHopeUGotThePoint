@@ -4,6 +4,7 @@ namespace Modules\Payroll\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Payroll\Entities\SalaryStructure;
 use Modules\Payroll\Http\Requests\SalaryStructureCreateRequest;
@@ -30,8 +31,31 @@ class SalaryStructureController extends Controller
             return view('payroll::structure.index');
         }
 
-       return DataTables::make($this->model->companyScope())
-            ->make(true);
+        $data = $this->model->companyScope();
+
+        if($request->get('type') == "active") {
+
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    return edit_button('payroll.structure.edit', $row) . trash_button('payroll.structure.trash', $row);
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+
+        }
+
+        if($request->get('type') == "trash") {
+
+            return DataTables::of($data->onlyTrashed())
+                ->addIndexColumn()
+                ->addColumn('action', function($row) {
+                    return restore_button('payroll.structure.restore', $row) . delete_button('payroll.structure.delete', $row);
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
 
     /**
@@ -49,9 +73,9 @@ class SalaryStructureController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function store(SalaryStructureCreateRequest $request)
+    public function store(SalaryStructureCreateRequest $request): RedirectResponse
     {
         $create = $this->model->create($request->validated());
 
@@ -70,7 +94,7 @@ class SalaryStructureController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(SalaryStructure $structure)
+    public function edit(SalaryStructure $structure): Renderable
     {
         set_action('payroll.structure.update', $structure);
         set_action_title('update_component');
@@ -82,9 +106,9 @@ class SalaryStructureController extends Controller
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function update(SalaryStructureUpdateRequest $request, SalaryStructure $structure)
+    public function update(SalaryStructureUpdateRequest $request, SalaryStructure $structure): RedirectResponse
     {
         $update = $structure->update($request->validated());
 
@@ -101,11 +125,47 @@ class SalaryStructureController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function destroy(SalaryStructure $structure)
+    public function trash(SalaryStructure $structure): RedirectResponse
     {
-        if ($structure->forceDelete()) {
+        if ($structure->delete()) {
+
+            sendActivityNotification(trans('msg.noty.trashed', ['model' => trans('model.salary_structure')]));
+
+            return redirect()->back()->with('success', trans('msg.trash_success', ['model' => trans('model.salary_structure')]));
+        }
+
+        return redirect()->back()->with('success', trans('msg.trash_failed', ['model' => trans('model.salary_structure')]));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function restore($structure): RedirectResponse
+    {
+        if (SalaryStructure::onlyTrashed()->find($structure)->restore()) {
+
+            sendActivityNotification(trans('msg.noty.restore', ['model' => trans('model.salary_structure')]));
+
+            return redirect()->back()->with('success', trans('msg.restore_success', ['model' => trans('model.salary_structure')]));
+        }
+
+        return redirect()->back()->with('success', trans('msg.restore_failed', ['model' => trans('model.salary_structure')]));
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function destroy($structure): RedirectResponse
+    {
+        if (SalaryStructure::onlyTrashed()->find($structure)->forceDlete()) {
+
             sendActivityNotification(trans('msg.noty.deleted', ['model' => trans('model.salary_structure')]));
 
             return redirect()->back()->with('success', trans('msg.delete_success', ['model' => trans('model.salary_structure')]));

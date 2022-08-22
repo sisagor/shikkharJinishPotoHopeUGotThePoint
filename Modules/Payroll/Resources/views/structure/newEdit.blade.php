@@ -27,7 +27,7 @@
                 </label>
                 <div class="item form-group">
                     <input  class="form-control" type="text" id="name" name="name" required
-                            value="@if($structure) {{$structure->name}} @endif" placeholder="{{trans('app.name')}}">
+                            value="@if($structure){{$structure->name}}@endif" placeholder="{{trans('app.name')}}">
                 </div>
             </div>
 

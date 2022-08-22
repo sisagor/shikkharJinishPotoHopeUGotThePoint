@@ -8,7 +8,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{!!  route('payroll.structures').'?type=active' !!}',
+                    url: '{!!  route('payroll.rules').'?type=active' !!}',
                     data: function (d) {
                         if ($('#company-filter').length) {
                             d.company_id = $('#company-filter').val();
@@ -26,8 +26,10 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'type', name: 'type'},
                     {data: 'name', name: 'name'},
+                    {data: 'designation.name', name: 'designation.name'},
+                    {data: 'basic_salary', name: 'basic_salary'},
+                    {data: 'details', name: 'details'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
@@ -40,7 +42,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{!!  route('payroll.structures').'?type=trash' !!}',
+                    url: '{!!  route('payroll.rules').'?type=trash' !!}',
                     data: function (d) {
                         if ($('#company-filter').length) {
                             d.company_id = $('#company-filter').val();
@@ -58,8 +60,10 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'type', name: 'type'},
                     {data: 'name', name: 'name'},
+                    {data: 'designation.name', name: 'designation.name'},
+                    {data: 'basic_salary', name: 'basic_salary'},
+                    {data: 'details', name: 'details'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],

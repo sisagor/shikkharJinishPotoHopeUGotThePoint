@@ -1,7 +1,7 @@
 @extends('layouts.tableTab', ['title' => 'salary_structure_components'])
 
 @section('buttons')
-    {!! add_button('payroll.structure.add', 'new_salary_structure') !!}
+    {!! add_button('payroll.structure.add', 'new_component') !!}
 @endsection
 
 @section('active')
@@ -34,6 +34,6 @@
     </table>
 @endsection
 
-@section('tableTabScripts')
+@section('tableTabScript')
     @include('payroll::scripts.structure')
 @endsection

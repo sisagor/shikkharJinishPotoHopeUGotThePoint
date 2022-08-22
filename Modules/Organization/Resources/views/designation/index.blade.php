@@ -24,6 +24,10 @@
 @endsection
 {{--End Section--}}
 
+@section('buttons')
+    {!! add_button('organization.designation.add', 'new_designation') !!}
+@endsection
+
 @section('active')
     <table class="active-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
         <thead>

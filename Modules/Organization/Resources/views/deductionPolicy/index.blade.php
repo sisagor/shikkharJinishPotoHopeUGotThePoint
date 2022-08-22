@@ -1,4 +1,4 @@
-@extends('layouts.tableTab', ['title' => 'attendance_deduction_policy', 'btnType' => 'modal'])
+@extends('layouts.tableTab', ['title' => 'attendance_deduction_policy'])
 
 {{--only for company properies--}}
 @section('adminFilter')
@@ -23,6 +23,10 @@
     @endif
 @endsection
 {{--End Section--}}
+
+@section('buttons')
+    {!! add_button('organization.deductionPolicy.add', 'new_deduction_policy') !!}
+@endsection
 
 @section('active')
     <table class="active-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">

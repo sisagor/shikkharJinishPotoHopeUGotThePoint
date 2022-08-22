@@ -43,7 +43,7 @@ class DepartmentController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('organization.department.edit', $row) . trash_button('organization.department.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -59,7 +59,7 @@ class DepartmentController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('organization.department.restore', $row) . delete_button('organization.department.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

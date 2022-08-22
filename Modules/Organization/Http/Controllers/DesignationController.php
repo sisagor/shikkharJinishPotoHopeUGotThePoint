@@ -44,7 +44,7 @@ class DesignationController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('organization.designation.edit', $row) . trash_button('organization.designation.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -62,7 +62,7 @@ class DesignationController extends Controller
                     return get_status($row->status);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('organization.designation.restore', $row) . delete_button('organization.designation.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

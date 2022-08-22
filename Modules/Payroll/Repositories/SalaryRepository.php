@@ -3,32 +3,29 @@
 namespace Modules\Payroll\Repositories;
 
 use App\Common\Filter;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Modules\Payroll\Entities\Salary;
-use Modules\Payroll\Entities\SalaryRule;
-use Modules\Timesheet\Entities\Attendance;
-use Yajra\DataTables\Facades\DataTables;
 use App\Repositories\EloquentRepository;
 
 
-class PayrollRepository extends EloquentRepository implements PayrollRepositoryInterface
+class SalaryRepository extends EloquentRepository implements SalaryRepositoryInterface
 {
     public $model;
 
-    public function __construct(SalaryRule $rule)
+    public function __construct(Salary $rule)
     {
         $this->model = $rule;
     }
 
-    /*Get all salary rules*/
     public function all()
     {
-        return $this->model::with('designation:id,name')->mine();
+        return $this->model->mine();
+
     }
+
 
     /*Store Company*/
     public function store(Request $request): bool
