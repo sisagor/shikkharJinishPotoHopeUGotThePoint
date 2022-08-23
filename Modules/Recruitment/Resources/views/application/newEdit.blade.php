@@ -1,4 +1,4 @@
-@extends('layouts.modal', ['title' => 'new_offer', 'size' => 'lg'])
+@extends('layouts.modal', ['title' => 'edit_job', 'size' => 'lg'])
 
 @section('modal')
 
@@ -7,16 +7,16 @@
 
             <div class="col-md-6 col-sm-6">
                 <label class="col-form-label label-align" for="parent_id">
-                    {{trans('app.job_application')}} <span class="required">*</span>
+                    {{trans('app.job')}} <span class="required">*</span>
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.job_application')}}"></i>
+                       title="{{ trans('help.job')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <select class="form-control" data-link="{{route('recruitment.application.ajax')}}"
+                    <select class="form-control" data-link="{{route('recruitment.application.ajax')}}" disabled
                             data-child-id="job_application_id" id="parent_id" name="job_id" required>
                         <option value="">{{trans('app.select')}}</option>
                         @foreach($jobs as $id => $name)
-                            <option value="{{ $id }}" @if(! empty($interview))@if($interview->job_id == $id) selected @endif @endif>{{ $name }}</option>
+                            <option value="{{ $id }}" @if(! empty($application))@if($application->job_id == $id) selected @endif @endif>{{ $name }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -1,4 +1,4 @@
-@extends('layouts.modal', ['title' => 'new_job', 'size' => 'lg'])
+@extends('layouts.modal', ['title' => 'new_offer', 'size' => 'lg'])
 
 @section('modal')
 

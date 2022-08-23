@@ -4,6 +4,7 @@ namespace Modules\Recruitment\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Recruitment\Entities\Job;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Recruitment\Entities\JobApplication;
@@ -62,6 +63,7 @@ class JobApplicationController extends Controller
         }
     }
 
+
     /**
      * Show the specified resource.
      * @param int $id
@@ -82,7 +84,8 @@ class JobApplicationController extends Controller
     {
         set_action('recruitment.application.update', $application);
         set_action_title('edit_application');
-        return view('recruitment::application.newEdit', compact('application'));
+        $jobs = Job::where('status', Job::STATUS_OPEN)->pluck('position', 'id');
+        return view('recruitment::application.newEdit', compact('application', 'jobs'));
     }
 
 

@@ -21,7 +21,7 @@ Route::prefix('recruitment')->name('recruitment.')->middleware(['auth'])->group(
 
     Route::get('job-posting',  [JobController::class, 'index'])->name('jobPosting');
     Route::get('job-posting/add', [JobController::class, 'create'])->name('jobPosting.add');
-    Route::post('job-posting/add', [JobController::class, 'store'])->name('jobPosting.store');
+    Route::post('job-posting/store', [JobController::class, 'store'])->name('jobPosting.store');
     Route::get('job-posting/{job}/edit', [JobController::class, 'edit'])->name('jobPosting.edit');
     Route::post('job-posting/{job}/update', [JobController::class, 'update'])->name('jobPosting.update');
     Route::post('job-posting/{job}/update', [JobController::class, 'update'])->name('jobPosting.update');
