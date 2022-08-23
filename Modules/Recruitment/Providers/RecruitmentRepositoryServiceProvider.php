@@ -2,16 +2,15 @@
 
 namespace Modules\Recruitment\Providers;
 
-
 use Illuminate\Support\ServiceProvider;
-use Modules\Recruitment\Repositories\InterviewRepository;
-use Modules\Recruitment\Repositories\InterviewRepositoryInterface;
 use Modules\Recruitment\Repositories\JobRepository;
+use Modules\Recruitment\Repositories\OfferRepository;
+use Modules\Recruitment\Repositories\InterviewRepository;
 use Modules\Recruitment\Repositories\JobRepositoryInterface;
 use Modules\Recruitment\Repositories\JobApplicationRepository;
+use Modules\Recruitment\Repositories\OfferRepositoryInterface;
+use Modules\Recruitment\Repositories\InterviewRepositoryInterface;
 use Modules\Recruitment\Repositories\JobApplicationRepositoryInterface;
-
-
 
 
 class RecruitmentRepositoryServiceProvider extends ServiceProvider
@@ -32,6 +31,11 @@ class RecruitmentRepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(
            InterviewRepositoryInterface::class,
             InterviewRepository::class
+        );
+
+        $this->app->singleton(
+           OfferRepositoryInterface::class,
+            OfferRepository::class
         );
 
     }

@@ -28,7 +28,7 @@ class DemoJobApplicationDatabaseSeeder extends Seeder
             $faker = Factory::create();
 
             //$jobs = Job::where('status', Job::STATUS_OPEN)->get();
-            $jobs = DB::table('job_posting')->select('id')->where('status', Job::STATUS_OPEN)->get();
+            $jobs = DB::table('job_postings')->select('id')->where('status', Job::STATUS_OPEN)->get();
 
             foreach ($jobs as $key => $item){
 

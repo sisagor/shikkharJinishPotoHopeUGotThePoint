@@ -38,4 +38,10 @@ class JobApplication extends RootModel
         return $this->belongsTo(Job::class, 'job_id', 'id');
     }
 
+    //Return parent job
+    public function interview()
+    {
+        return $this->belongsTo(Job::class, 'job_application_id', 'id');
+    }
+
 }

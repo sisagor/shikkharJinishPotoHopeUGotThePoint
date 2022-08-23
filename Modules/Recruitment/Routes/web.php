@@ -51,7 +51,6 @@ Route::prefix('recruitment')->name('recruitment.')->middleware(['auth'])->group(
     Route::get('interview/{interview}/restore', [InterviewController::class, 'restore'])->name('interview.restore');
     Route::get('interview/{interview}/delete', [InterviewController::class, 'delete'])->name('interview.delete');
 
-
     //Job Offer
     Route::get('offers', [OfferController::class, 'index'])->name('offers');
     Route::get('offer/add', [OfferController::class, 'create'])->name('offer.add');
@@ -59,5 +58,6 @@ Route::prefix('recruitment')->name('recruitment.')->middleware(['auth'])->group(
     Route::get('offer/{Job}/edit', [OfferController::class, 'edit'])->name('offer.edit');
     Route::post('offer/{Job}/update', [OfferController::class, 'update'])->name('offer.update');
     Route::get('offer/{Job}/view', [OfferController::class, 'show'])->name('offer.view');
+    Route::get('offer/ajax', [OfferController::class, 'getSelectedCandidate'])->name('offer.ajax');
 
 });

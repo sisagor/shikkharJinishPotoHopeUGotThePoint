@@ -7,7 +7,7 @@ use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Modules\Recruitment\Entities\Interview;
+use Modules\Recruitment\Entities\JobInterview;
 use Modules\Recruitment\Entities\Job;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Recruitment\Entities\JobApplication;
@@ -32,26 +32,26 @@ class DemoJobInterviewDatabaseSeeder extends Seeder
 
             foreach ($jobs as $key => $item){
 
-                DB::table('job_interview')->insert([
+                DB::table('job_interviews')->insert([
 
                     'com_id' => 1,
                     'job_id' => $item->job_id,
                     'job_application_id' => $item->id,
                     'interview_date' => Carbon::now()->addDays(10)->format('Y-m-d'),
-                    'interviewers' => json_encode([1, 2]),
+                    'interviewers' => [1, 2],
                     'details' => $faker->paragraph(5),
-                    'status' => ($key > 0 ? Interview::STATUS_SCHEDULED : Interview::STATUS_PASS)
+                    'status' => ($key > 0 ? JobInterview::STATUS_SCHEDULED : JobInterview::STATUS_PASS)
                 ]);
             }
 
 
-            $interviews = DB::table('job_interview')->select('job_application_id', 'status')->get();
+            $interviews = DB::table('job_interviews')->select('job_application_id', 'status')->get();
 
             foreach ($interviews as $interview){
-                if ($interview->status == Interview::STATUS_PASS){
-                    $status = ['status' => JobApplication::STATUS_JOB_OFFER];
+                if ($interview->status == JobInterview::STATUS_PASS){
+                    $status = ['status' => JobApplication::STATUS_INTERVIEW];
                 }
-                if ($interview->status == Interview::STATUS_FAIL){
+                if ($interview->status == JobInterview::STATUS_FAIL){
                     $status = ['status' => JobApplication::STATUS_REJECTED];
                 }
 

@@ -3,11 +3,9 @@
 namespace Modules\Recruitment\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Modules\Recruitment\Entities\Job;
-use Modules\Recruitment\Database\Factories\JobFactory;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Settings\Database\Seeders\DemoJobCategoryDatabaseSeeder;
 
 class RecruitmentDatabaseSeeder extends Seeder

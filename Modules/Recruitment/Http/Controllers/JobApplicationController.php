@@ -41,7 +41,7 @@ class JobApplicationController extends Controller
                     return substr(json_decode($row->cover_later), 0, 500);
                 })
                 ->addColumn('action', function ($row) {
-                    return view_button($row, 'modal'). edit_button($row, "modal") . trash_button($row);
+                    return view_button('recruitment.application.view', $row). edit_button('recruitment.application.edit', $row) . trash_button('recruitment.application.trash', $row);
                 })
                 ->rawColumns(['status', 'action', 'cover_later'])
                 ->make(true);
@@ -55,7 +55,7 @@ class JobApplicationController extends Controller
                     return substr(json_decode($row->cover_later), 0, 250);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('recruitment.application.restore', $row) . delete_button('recruitment.application.delete', $row);
                 })
                 ->rawColumns(['status', 'action', 'cover_later'])
                 ->make(true);

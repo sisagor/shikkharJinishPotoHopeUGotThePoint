@@ -23,7 +23,7 @@ class DemoJobDatabaseSeeder extends Seeder
 
         try {
 
-            DB::table('job_posting')->insert([
+            DB::table('job_postings')->insert([
                 'com_id' => 1,
                 'category_id' => 1,
                 'position' => 'Software Engineer',
@@ -37,7 +37,7 @@ class DemoJobDatabaseSeeder extends Seeder
                 'status' => Job::STATUS_OPEN,
             ]);
 
-            DB::table('job_posting')->insert([
+            DB::table('job_postings')->insert([
                 'com_id' => 1,
                 'category_id' => 1,
                 'position' => 'Junior Software Engineer',
@@ -51,7 +51,7 @@ class DemoJobDatabaseSeeder extends Seeder
                 'status' => Job::STATUS_OPEN,
             ]);
 
-            DB::table('job_posting')->insert([
+            DB::table('job_postings')->insert([
                 'com_id' => 1,
                 'category_id' => 2,
                 'position' => 'Account Manager',
@@ -65,7 +65,7 @@ class DemoJobDatabaseSeeder extends Seeder
                 'status' => Job::STATUS_OPEN,
             ]);
 
-            DB::table('job_posting')->insert([
+            DB::table('job_postings')->insert([
                 'com_id' => 1,
                 'category_id' => 2,
                 'position' => 'Junior Account Manager',
@@ -79,7 +79,7 @@ class DemoJobDatabaseSeeder extends Seeder
                 'status' => Job::STATUS_OPEN,
             ]);
 
-            DB::table('job_posting')->insert([
+            DB::table('job_postings')->insert([
                 'com_id' => 1,
                 'category_id' => 3,
                 'position' => 'HR Manager',
@@ -92,7 +92,7 @@ class DemoJobDatabaseSeeder extends Seeder
                 'expire_date' => Carbon::now()->addMonth()->format('Y-m-d'),
                 'status' => Job::STATUS_OPEN,
             ]);
-            DB::table('job_posting')->insert([
+            DB::table('job_postings')->insert([
                 'com_id' => 1,
                 'category_id' => 3,
                 'position' => 'Junior HR Manager',

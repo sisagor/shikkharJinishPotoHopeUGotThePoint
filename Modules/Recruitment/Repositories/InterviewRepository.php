@@ -8,7 +8,7 @@ use Illuminate\Queue\Jobs\JobName;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\EloquentRepository;
-use Modules\Recruitment\Entities\Interview;
+use Modules\Recruitment\Entities\JobInterview;
 use Modules\Recruitment\Entities\Job;
 use Modules\Recruitment\Entities\JobApplication;
 
@@ -17,7 +17,7 @@ class InterviewRepository extends EloquentRepository implements InterviewReposit
 {
     public $model;
 
-    public function __construct(Interview $branch)
+    public function __construct(JobInterview $branch)
     {
         $this->model = $branch;
     }
@@ -48,7 +48,7 @@ class InterviewRepository extends EloquentRepository implements InterviewReposit
                 'address' => $request->get('address'),
                 'interviewers' => json_encode($request->get('interviewers')),
                 'details' => json_encode($request->get('details')),
-                'status' => Interview::STATUS_SCHEDULED,
+                'status' => JobInterview::STATUS_SCHEDULED,
             ]);
 
         } catch (\Exception $e) {

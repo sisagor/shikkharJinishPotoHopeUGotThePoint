@@ -6,7 +6,7 @@ use App\Common\Filter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Modules\Recruitment\Entities\Interview;
+use Modules\Recruitment\Entities\JobInterview;
 use Modules\Recruitment\Entities\Job;
 use App\Repositories\EloquentRepository;
 use Modules\Recruitment\Entities\JobApplication;

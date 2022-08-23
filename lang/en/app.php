@@ -545,6 +545,9 @@ return [
     'new_offer' => 'New Job Offer',
     'edit_offer' => 'Edit Job Offer',
     'cms' => 'CMS',
-    'create_offer_latter' => 'Create Offer Latter',
+    'create_offer' => 'Create Offer',
+    'offer_details' => 'Offer Details',
+    'title' => 'Title',
+    'applicant_name' => 'Applicant Name',
 
 ];

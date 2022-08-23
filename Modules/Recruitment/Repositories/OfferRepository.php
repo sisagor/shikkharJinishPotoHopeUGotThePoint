@@ -3,36 +3,38 @@
 namespace Modules\Recruitment\Repositories;
 
 use App\Common\Filter;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Modules\Recruitment\Entities\Job;
 use App\Repositories\EloquentRepository;
-use Modules\Recruitment\Entities\Interview;
-
+use Modules\Recruitment\Entities\JobOffer;
+use Illuminate\Database\Eloquent\Collection;
+use Modules\Recruitment\Entities\JobInterview;
+use Modules\Recruitment\Entities\JobApplication;
 
 
 class OfferRepository extends EloquentRepository implements OfferRepositoryInterface
 {
     public $model;
 
-    public function __construct(Interview $branch)
+    public function __construct(JobOffer $branch)
     {
         $this->model = $branch;
     }
 
     /*Get all branches*/
-    public function index(Request $request)
+    public function offers(Request $request)
     {
-        $query =  $this->model
+        $query = $this->model
             ->with('application:id,name')
             ->with('application.job:id,position');
         return (new Filter($request, $query))
-            ->statusFilter(['status' => 'status'])
+            ->commonScopeFilter(['com_id' => 'com_id', 'branch_id' => 'branch_id'])
             ->execute();
 
     }
-
 
     /*Store Branch*/
     public function store(Request $request): bool
@@ -42,17 +44,14 @@ class OfferRepository extends EloquentRepository implements OfferRepositoryInter
             $this->model->create([
                 'job_id' => $request->get('job_id'),
                 'job_application_id' => $request->get('job_application_id'),
-                'interview_date' => $request->get('interview_date'),
-                'interview_time' => $request->get('interview_time'),
-                'address' => $request->get('address'),
-                'interviewers' => json_encode($request->get('interviewers')),
+                'title' => $request->get('title'),
                 'details' => json_encode($request->get('details')),
-                'status' => Interview::STATUS_SCHEDULED,
+                'status' => JobOffer::STATUS_PENDING,
             ]);
 
         } catch (\Exception $e) {
 
-            Log::error("Interview create failed");
+            Log::error("Offer create failed");
             Log::info(get_exception_message($e));
 
             return false;
@@ -70,12 +69,9 @@ class OfferRepository extends EloquentRepository implements OfferRepositoryInter
             $model->update([
                 'job_id' => $request->get('job_id'),
                 'job_application_id' => $request->get('job_application_id'),
-                'interview_date' => $request->get('interview_date'),
-                'interview_time' => $request->get('interview_time'),
-                'address' => $request->get('address'),
-                'interviewers' => json_encode($request->get('interviewers')),
+                'title' => $request->get('title'),
                 'details' => json_encode($request->get('details')),
-                'status' => $request->get('status'),
+                'status' => JobOffer::STATUS_PENDING,
             ]);
 
         } catch (\Exception $e) {
@@ -116,6 +112,22 @@ class OfferRepository extends EloquentRepository implements OfferRepositoryInter
     public function getJobs()
     {
         return Job::where('status', Job::STATUS_OPEN)->pluck('position', 'id');
+    }
+
+
+    /**
+     * get candidate by job jobPosting id.
+     * @return Collection
+     */
+    public function getApplicationCandidate(Request $request)
+    {
+        return JobApplication::query()
+            ->join('job_interviews', 'job_interviews.job_application_id', 'job_applications.id')
+            ->where('job_applications.job_id', $request->get('id'))
+            ->where('job_applications.status', JobApplication::STATUS_INTERVIEW)
+            ->where('job_interviews.status', JobInterview::STATUS_PASS)
+            ->select('job_applications.id', 'job_applications.name as text')
+            ->get();
     }
 
 

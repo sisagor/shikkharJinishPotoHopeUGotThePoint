@@ -15,7 +15,7 @@ class Job extends RootModel
 {
     use SoftDeletes, CascadeSoftDeletes;
 
-    protected $table = 'job_posting';
+    protected $table = 'job_postings';
 
     const STATUS_OPEN = "open";
     const STATUS_CLOSE = "closed";

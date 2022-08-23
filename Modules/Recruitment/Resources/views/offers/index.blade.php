@@ -1,4 +1,4 @@
-@extends('layouts.table', ['title' => 'job_offers'])
+@extends('layouts.tableTab', ['title' => 'offers'])
 
 {{--only for company properies--}}
 @section('adminFilter')
@@ -25,32 +25,43 @@
 {{--End Section--}}
 
 @section('buttons')
-    {!! add_button('recruitment.offer.add', 'create_offer') !!}
+    {!! add_button('recruitment.offer.add', 'new_offer') !!}
 @endsection
 
-@section('table')
+@section('active')
     <table class="active-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
         <thead>
         <tr>
             <th>#</th>
-            <th>{{trans('app.category')}}</th>
-            <th>{{trans('app.position')}}</th>
-            <th>{{trans('app.experience')}}</th>
-            <th>{{trans('app.vacancy')}}</th>
-            <th>{{trans('app.expire_date')}}</th>
-            <th>{{trans('app.status')}}</th>
+            <th>{{trans('app.job')}}</th>
+            <th>{{trans('app.applicant_name')}}</th>
+            <th>{{trans('app.title')}}</th>
             <th>{{trans('app.details')}}</th>
-            <th>{{trans('app.requirements')}}</th>
+            <th>{{trans('app.status')}}</th>
             <th>{{trans('app.action')}}</th>
-
         </tr>
         </thead>
         <tbody></tbody>
     </table>
 @endsection
 
-@section('tableScript')
+@section('trash')
+    <table class="trash-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>{{trans('app.job')}}</th>
+            <th>{{trans('app.applicant_name')}}</th>
+            <th>{{trans('app.title')}}</th>
+            <th>{{trans('app.details')}}</th>
+            <th>{{trans('app.status')}}</th>
+            <th>{{trans('app.action')}}</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+@endsection
 
+@section('tableTabScript')
     @include('recruitment::scripts.offer')
-
 @endsection

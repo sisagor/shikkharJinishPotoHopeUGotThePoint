@@ -13,8 +13,8 @@ class CreateRecruitmentTable extends Migration
      */
     public function up()
     {
-        if (! Schema::hasTable('job_posting')) {
-            Schema::create('job_posting', function (Blueprint $table) {
+        if (! Schema::hasTable('job_postings')) {
+            Schema::create('job_postings', function (Blueprint $table) {
                 $table->id();
                 $table->bigInteger('com_id')->unsigned()->nullable();
                 $table->bigInteger('branch_id')->unsigned()->nullable();
@@ -55,12 +55,12 @@ class CreateRecruitmentTable extends Migration
                 $table->softDeletes();
                 $table->foreign('com_id')->references('id')->on('companies')->onDelete('SET NULL');
                 $table->foreign('branch_id')->references('id')->on('branches')->onDelete('SET NULL');
-                $table->foreign('job_id')->references('id')->on('job_posting')->onDelete('SET NULL');
+                $table->foreign('job_id')->references('id')->on('job_postings')->onDelete('SET NULL');
             });
         }
 
-        if (! Schema::hasTable('job_interview')) {
-            Schema::create('job_interview', function (Blueprint $table) {
+        if (! Schema::hasTable('job_interviews')) {
+            Schema::create('job_interviews', function (Blueprint $table) {
                 $table->id();
                 $table->bigInteger('com_id')->unsigned()->nullable();
                 $table->bigInteger('branch_id')->unsigned()->nullable();
@@ -76,7 +76,26 @@ class CreateRecruitmentTable extends Migration
                 $table->softDeletes();
                 $table->foreign('com_id')->references('id')->on('companies')->onDelete('SET NULL');
                 $table->foreign('branch_id')->references('id')->on('branches')->onDelete('SET NULL');
-                $table->foreign('job_id')->references('id')->on('job_posting')->onDelete('SET NULL');
+                $table->foreign('job_id')->references('id')->on('job_postings')->onDelete('SET NULL');
+                $table->foreign('job_application_id')->references('id')->on('job_applications')->onDelete('SET NULL');
+            });
+        }
+
+        if (! Schema::hasTable('job_offers')) {
+            Schema::create('job_offers', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('com_id')->unsigned()->nullable();
+                $table->bigInteger('branch_id')->unsigned()->nullable();
+                $table->bigInteger('job_id')->unsigned()->nullable();
+                $table->bigInteger('job_application_id')->unsigned()->nullable();
+                $table->string('title')->nullable();
+                $table->mediumText('details')->nullable();
+                $table->enum('status', ['pending', 'confirmed'])->default('pending');
+                $table->timestamps();
+                $table->softDeletes();
+                $table->foreign('com_id')->references('id')->on('companies')->onDelete('SET NULL');
+                $table->foreign('branch_id')->references('id')->on('branches')->onDelete('SET NULL');
+                $table->foreign('job_id')->references('id')->on('job_postings')->onDelete('SET NULL');
                 $table->foreign('job_application_id')->references('id')->on('job_applications')->onDelete('SET NULL');
             });
         }
@@ -90,8 +109,9 @@ class CreateRecruitmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('job_postings');
         Schema::dropIfExists('job_applications');
-        Schema::dropIfExists('job_interview');
+        Schema::dropIfExists('job_interviews');
+        Schema::dropIfExists('job_offers');
     }
 }

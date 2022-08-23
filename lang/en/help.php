@@ -127,7 +127,8 @@ return [
     'interview_date' => 'Interview Date',
     'interview_time' => 'Interview Time',
     'interview_place' => 'Interview Place / location',
-    'job' => 'Job',
-    'candidate' => 'Candidate',
+    'job' => 'Job / Job post',
+    'candidate' => 'Candidate / Applicant',
+    'title' => 'Title / Subject',
 
 ];

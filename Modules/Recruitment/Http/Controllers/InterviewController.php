@@ -5,7 +5,7 @@ namespace Modules\Recruitment\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Yajra\DataTables\Facades\DataTables;
-use Modules\Recruitment\Entities\Interview;
+use Modules\Recruitment\Entities\JobInterview;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Recruitment\Http\Requests\InterviewCreateRequest;
 use Modules\Recruitment\Repositories\InterviewRepositoryInterface;
@@ -119,7 +119,7 @@ class InterviewController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show(Interview $interview)
+    public function show(JobInterview $interview)
     {
         return view('recruitment::interview.show', compact('interview'));
     }
@@ -129,7 +129,7 @@ class InterviewController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(Interview $interview)
+    public function edit(JobInterview $interview)
     {
         set_action_title('edit_job');
         set_action('recruitment.interview.update', $interview);
@@ -144,7 +144,7 @@ class InterviewController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(InterviewCreateRequest $request, Interview $interview)
+    public function update(InterviewCreateRequest $request, JobInterview $interview)
     {
         if ($this->repo->update($request, $interview)) {
 
@@ -161,7 +161,7 @@ class InterviewController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function trash(Interview $interview)
+    public function trash(JobInterview $interview)
     {
         if ($interview->delete()) {
 

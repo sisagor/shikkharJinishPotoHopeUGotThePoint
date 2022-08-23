@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Employee\Entities\Employee;
 
 
-class Interview extends RootModel
+class JobInterview extends RootModel
 {
     use SoftDeletes, CascadeSoftDeletes;
 
-    protected $table = 'job_interview';
+    protected $table = 'job_interviews';
 
     const STATUS_SCHEDULED = "scheduled";
     const STATUS_PASS = "pass";
