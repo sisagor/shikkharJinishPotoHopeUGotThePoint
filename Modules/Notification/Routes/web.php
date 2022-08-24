@@ -17,7 +17,7 @@ use Modules\Notification\Http\Controllers\EmailController;
 
 Route::prefix('notification')->name('notification.')->middleware(['auth'])->group(function () {
 
-    Route::get('sms-log', [SMSController::class, 'index'])->name('sms');
+    Route::get('sms/logs', [SMSController::class, 'index'])->name('sms.logs');
     Route::get('sms/add', [SMSController::class, 'create'])->name('sms.add');
     Route::post('sms/store', [SMSController::class, 'store'])->name('sms.store');
     Route::post('sms/delete', [SMSController::class, 'destroy'])->name('sms.delete');

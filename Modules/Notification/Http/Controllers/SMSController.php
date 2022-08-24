@@ -5,15 +5,16 @@ namespace Modules\Notification\Http\Controllers;
 use App\Models\RootModel;
 use Tzsk\Sms\Facades\Sms;
 use Illuminate\Http\Request;
-use Modules\Notification\Entities\SmsLog;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Modules\Employee\Entities\Employee;
 use Yajra\DataTables\Facades\DataTables;
+use Modules\Notification\Entities\SmsLog;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Notification\Http\Requests\SmsCreateRequest;
 
@@ -22,19 +23,18 @@ class SMSController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Renderable
      */
     public function index(Request $request)
     {
         if (! $request->ajax()){
-            return view('notification::sms.index');
+            return view('notification::email.index');
         }
 
         $data = SmsLog::join('employees', 'employees.id', 'sms_log.employee_id')
             ->select(
                 'sms_log.*',
                 'employees.employee_index',
-                DB::raw('CONCAT(`first_name`, " ", `last_name`) as employee_name'),
+                'employees.name',
                 'employees.phone',
             );
 
@@ -42,10 +42,10 @@ class SMSController extends Controller
             ->addIndexColumn()
             //->setTotalRecords($this->employeeCount('employees', \request()))
             ->editColumn('status', function ($row) {
-                return get_sms_status($row->status);
+                //return get_sms_status($row->status);
             })
             ->addColumn('action', function ($row) {
-                return delete_button($row->id);
+                //return delete_button($row->id);
             })
             ->rawColumns(['action', 'status'])
             ->make(true);
@@ -67,7 +67,7 @@ class SMSController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @return Renderable
+     * @return RedirectResponse
      */
     public function store(SmsCreateRequest $request)
     {
@@ -139,7 +139,7 @@ class SMSController extends Controller
      */
     public function show($id)
     {
-        return view('notification::show');
+        return view('notification::sms.show');
     }
 
     /**
@@ -149,14 +149,14 @@ class SMSController extends Controller
      */
     public function edit($id)
     {
-        return view('notification::edit');
+        return view('notification::sms.edit');
     }
 
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -166,7 +166,7 @@ class SMSController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

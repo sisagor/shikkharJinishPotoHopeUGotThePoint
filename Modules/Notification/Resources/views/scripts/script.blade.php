@@ -8,7 +8,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{!!  route('sms.sms') !!}',
+                    url: '{!!  route('notification.sms.logs') !!}',
                     data: function (d) {
                         if ($('#company-filter').length) {
                             d.company_id = $('#company-filter').val();

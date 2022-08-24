@@ -22,6 +22,7 @@ return [
         'sms' => 'SMS',
         'loans' => 'Loans',
         'recruitment' => 'Recruitment',
+        'notification' => 'Notification',
     ],
 
     'months' =>[

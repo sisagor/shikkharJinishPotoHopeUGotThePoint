@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/sms', function (Request $request) {
+Route::middleware('auth:api')->get('/notification', function (Request $request) {
     return $request->user();
 });

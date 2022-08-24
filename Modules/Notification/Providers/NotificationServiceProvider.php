@@ -3,7 +3,7 @@
 namespace Modules\Notification\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Modules\Notification\Providers\RouteServiceProvider;
+use Illuminate\Database\Eloquent\Factory;
 
 class NotificationServiceProvider extends ServiceProvider
 {
@@ -84,8 +84,10 @@ class NotificationServiceProvider extends ServiceProvider
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
+            $this->loadJsonTranslationsFrom($langPath, $this->moduleNameLower);
         } else {
             $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
+            $this->loadJsonTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
         }
     }
 
