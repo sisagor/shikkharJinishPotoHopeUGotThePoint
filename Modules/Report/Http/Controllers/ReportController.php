@@ -68,13 +68,6 @@ class ReportController extends Controller
 
 
         $table = DataTables::of($data)
-            ->editColumn('name', function ($row) {
-                return ($row->first_name. " ". $row->last_name);
-            })
-            ->filterColumn('name', function ($query, $keyword) {
-                $keywords = trim($keyword);
-                $query->whereRaw("CONCAT(first_name, last_name) like ?", ["%{$keywords}%"]);
-            })
             ->addColumn('hidden', function ($row){
 
                 $holidays = [];

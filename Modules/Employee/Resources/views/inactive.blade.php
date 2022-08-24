@@ -31,7 +31,7 @@
             <th>{{trans('app.department')}}</th>
             <th>{{trans('app.designation')}}</th>
             <th>{{trans('app.employee_type')}}</th>
-            <th>{{trans('app.full_name')}}</th>
+            <th>{{trans('app.name')}}</th>
             <th>{{trans('app.email')}}</th>
             <th>{{trans('app.phone')}}</th>
             <th>{{trans('app.device_id')}}</th>
@@ -54,7 +54,7 @@
             <th>{{trans('app.department')}}</th>
             <th>{{trans('app.designation')}}</th>
             <th>{{trans('app.employee_type')}}</th>
-            <th>{{trans('app.full_name')}}</th>
+            <th>{{trans('app.name')}}</th>
             <th>{{trans('app.email')}}</th>
             <th>{{trans('app.phone')}}</th>
             <th>{{trans('app.device_id')}}</th>

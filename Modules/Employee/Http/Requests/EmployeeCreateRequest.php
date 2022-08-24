@@ -23,8 +23,7 @@ class EmployeeCreateRequest extends RootRequest
         }
 
         $data = array_merge($data, [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required',
             'phone' => 'required|max:15',
             'status' => 'required',
             'email' => 'required|email|unique:users|unique:employees',

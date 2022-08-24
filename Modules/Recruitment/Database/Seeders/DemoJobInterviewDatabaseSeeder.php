@@ -7,9 +7,9 @@ use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Modules\Recruitment\Entities\JobInterview;
 use Modules\Recruitment\Entities\Job;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Recruitment\Entities\JobInterview;
 use Modules\Recruitment\Entities\JobApplication;
 
 
@@ -33,34 +33,20 @@ class DemoJobInterviewDatabaseSeeder extends Seeder
             foreach ($jobs as $key => $item){
 
                 DB::table('job_interviews')->insert([
-
                     'com_id' => 1,
                     'job_id' => $item->job_id,
                     'job_application_id' => $item->id,
                     'interview_date' => Carbon::now()->addDays(10)->format('Y-m-d'),
-                    'interviewers' => [1, 2],
-                    'details' => $faker->paragraph(5),
+                    //'interviewers' => [1, 2],
+                    'address' => $faker->address(),
+                    'details' => json_encode($faker->paragraph(5)),
                     'status' => ($key > 0 ? JobInterview::STATUS_SCHEDULED : JobInterview::STATUS_PASS)
                 ]);
-            }
-
-
-            $interviews = DB::table('job_interviews')->select('job_application_id', 'status')->get();
-
-            foreach ($interviews as $interview){
-                if ($interview->status == JobInterview::STATUS_PASS){
-                    $status = ['status' => JobApplication::STATUS_INTERVIEW];
-                }
-                if ($interview->status == JobInterview::STATUS_FAIL){
-                    $status = ['status' => JobApplication::STATUS_REJECTED];
-                }
-
-                DB::table('job_applications')->where('id', $interview->job_application_id)->update($status);
             }
         }
         catch (\Exception $exception)
         {
-            Log::error("job application create Error!");
+            Log::error("job Interview create Error!");
             Log::info(get_exception_message($exception));
         }
     }

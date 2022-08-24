@@ -39,6 +39,7 @@ class RecruitmentServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(RecruitmentRepositoryServiceProvider::class);
+        $this->app->register(EventServiceProvider::class);
     }
 
     /**

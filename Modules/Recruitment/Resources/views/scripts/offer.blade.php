@@ -51,7 +51,6 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'application.job.position', name: 'application.job.position'},
                     {data: 'application.name', name: 'application.name'},
                     {data: 'title', name: 'title'},

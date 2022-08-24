@@ -51,6 +51,28 @@
                 </div>
             </div>
 
+            @if($offer)
+                {{--Status--}}
+                <div class="col-md-6 col-sm-6">
+                    <label class="col-form-label label-align" for="status">
+                        {{trans('app.status')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.status')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" name="status" id="status">
+                            <option value="">{{trans('app.select')}}</option>
+                            @foreach(config('recruitment.offer_status') as $status)
+                                <option value="{{$status['key']}}"
+                                     @if($offer)
+                                        @if($status['key'] == $offer->status) selected @endif
+                                     @endif> {{$status['value']}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            @endif
 
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="details">
@@ -59,7 +81,7 @@
                        title="{{ trans('help.job_offer_details')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea id="offer_details" class="form-control summernote" name="offer_details" placeholder="{{trans('app.offer_details')}}">@if($offer){!! json_decode($offersss->offer_details) !!}@endif</textarea>
+                    <textarea id="offer_details" class="form-control summernote" name="details" placeholder="{{trans('app.offer_details')}}">@if($offer){!! json_decode($offer->details) !!}@endif</textarea>
                 </div>
             </div>
 

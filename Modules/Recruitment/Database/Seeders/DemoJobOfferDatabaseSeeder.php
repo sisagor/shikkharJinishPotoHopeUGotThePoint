@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Modules\Recruitment\Entities\Job;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Recruitment\Entities\JobOffer;
 use Modules\Recruitment\Entities\JobInterview;
 use Modules\Recruitment\Entities\JobApplication;
 
 
-class DemoJobInterviewDatabaseSeeder extends Seeder
+class DemoJobOfferDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -28,26 +29,23 @@ class DemoJobInterviewDatabaseSeeder extends Seeder
         {
             $faker = Factory::create();
             //$jobs = Job::where('status', Job::STATUS_OPEN)->get();
-            $jobs = DB::table('job_applications')->select('id', 'job_id')->where('status', JobApplication::STATUS_INTERVIEW)->get();
+            $interviews = DB::table('job_interviews')->select('id', 'job_id', 'job_application_id')->where('status', JobInterview::STATUS_PASS)->get();
 
-            dd($jobs);
+            foreach ($interviews as $key => $item){
 
-            foreach ($jobs as $key => $item){
-
-                DB::table('job_interviews')->insert([
+                DB::table('job_offers')->insert([
                     'com_id' => 1,
                     'job_id' => $item->job_id,
-                    'job_application_id' => $item->id,
-                    'interview_date' => Carbon::now()->addDays(10)->format('Y-m-d'),
-                    'interviewers' => [1, 2],
-                    'details' => $faker->paragraph(5),
-                    'status' => ($key > 0 ? JobInterview::STATUS_SCHEDULED : JobInterview::STATUS_PASS)
+                    'job_application_id' => $item->job_application_id,
+                    'title' => $faker->title(),
+                    'details' => json_encode($faker->paragraph(5)),
+                    'status' => JobOffer::STATUS_PENDING
                 ]);
             }
         }
         catch (\Exception $exception)
         {
-            Log::error("job application create Error!");
+            Log::error("job Offer create Error!");
             Log::info(get_exception_message($exception));
         }
     }

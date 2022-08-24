@@ -19,16 +19,14 @@ class PersonalInfoUpdateRequest extends RootRequest
 
         if ($employee->user){
             return [
-                'first_name' => 'required',
-                'last_name' => 'required',
+                'name' => 'required',
                 'phone' => 'required',
                 'email' => 'required|email|unique:employees,email,'.$this->id.'|unique:users,email,'.$employee->user->id,
             ];
         }
 
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|unique:employees,email,'.$this->id,
         ];

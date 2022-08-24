@@ -53,12 +53,6 @@ class Employee extends RootModel
         'leave_policy_id', 'card_no','device_id',
     ];
 
-
-    public function getFullNameAttribute() // notice that the attribute name is in CamelCase.
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
-
     public function company()
     {
         return $this->belongsTo(Company::class, 'com_id', 'id');

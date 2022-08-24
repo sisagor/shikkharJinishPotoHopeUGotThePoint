@@ -263,7 +263,7 @@ return [
     'yearly_leave' => 'Yearly Leave (in days)',
     'employee_id_prefix' => 'Employee ID Prefix,(max 3 character)',
     'employee_id' => 'Employee ID',
-    'employee_id_length' => 'Employee ID length (including prefix)',
+    'employee_id_length' => 'Employee ID length (including prefix max 9)',
     'employment_status' => 'Employment Status',
     'leave_types' => 'Leave Types',
     'new_leave_type' => 'New Leave Type',
@@ -539,6 +539,7 @@ return [
     'interview_time' => 'Interview Time',
     'interview_place' => 'Interview Place',
     'interviewers' => 'Interviewers',
+    'interviews' => 'Interviews',
     'new_interview' => 'New Interview',
     'job' => 'Job',
     'job_offers' => 'Job Offers',
@@ -549,5 +550,6 @@ return [
     'offer_details' => 'Offer Details',
     'title' => 'Title',
     'applicant_name' => 'Applicant Name',
+    'default_password' => 'Default Password',
 
 ];

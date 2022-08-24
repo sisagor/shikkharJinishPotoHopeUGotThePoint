@@ -106,9 +106,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
 
             $employee = $this->model->create([
                 'employee_index' => $request->get('employee_index'),
-                'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name'),
-                'name' => $request->get('first_name') . ' ' . $request->get('last_name'),
+                'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'phone' => $request->get('phone'),
                 'joining_date' => $request->get('joining_date'),
@@ -120,7 +118,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
                 User::create([
                     'com_id' => com_id(),
                     'branch_id' => branch_id(),
-                    'name' => $request->get('first_name') . ' ' . $request->get('last_name'),
+                    'name' => $request->get('name'),
                     'email' => $request->get('email'),
                     'role_id' => $request->get('role_id'),
                     'level' => User::USER_EMPLOYEE,
@@ -251,9 +249,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
 
             //dd(Carbon::createFromDate($request->get('joining_date')));
             $employee->update([
-                'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name'),
-                'name' => $request->get('first_name') . ' ' . $request->get('last_name'),
+                'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'phone' => $request->get('phone'),
                 'gender' => $request->get('gender'),
@@ -263,7 +259,7 @@ class EmployeeRepository extends EloquentRepository implements EmployeeRepositor
 
             if ($employee->user) {
                 $employee->user->update([
-                    'name' => $employee->full_name,
+                    'name' => $employee->name,
                     'email' => $request->get('email'),
                 ]);
             }

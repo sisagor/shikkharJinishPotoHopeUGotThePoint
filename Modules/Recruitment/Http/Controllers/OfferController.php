@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Modules\Recruitment\Entities\Job;
 use Illuminate\Http\RedirectResponse;
+use Modules\Recruitment\Entities\JobOffer;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Recruitment\Http\Requests\OfferCreateRequest;
@@ -31,8 +32,6 @@ class OfferController extends Controller
      */
     public function index(Request $request)
     {
-        //dd($this->repo->offers($request)->get());
-
         if (! $request->ajax()){
             return view('recruitment::offers.index');
         }
@@ -46,13 +45,13 @@ class OfferController extends Controller
                 ->editColumn('details', function ($row){
                     return substr(json_decode($row->details), 0, 500);
                 })
-                ->editColumn('status', function ($row){
-                    return get_status($row->status);
-                })
                 ->addColumn('action', function ($row) {
                     return edit_button('recruitment.offer.edit', $row) . trash_button('recruitment.offer.trash', $row);
+                    /*return ($row->status == JobOffer::STATUS_PENDING)
+                        ? edit_button('recruitment.offer.edit', $row) . trash_button('recruitment.offer.trash', $row)
+                        : trash_button('recruitment.offer.trash', $row) ;*/
                 })
-                ->rawColumns(['status', 'action', 'details'])
+                ->rawColumns(['action', 'details'])
                 ->make(true);
         }
 
@@ -63,13 +62,10 @@ class OfferController extends Controller
                 ->editColumn('cover_later', function ($row){
                     return substr(json_decode($row->details), 0, 500);
                 })
-                ->editColumn('status', function ($row){
-                    return get_status($row->status);
-                })
                 ->addColumn('action', function ($row) {
                     return restore_button('recruitment.offer.restore', $row) . delete_button('recruitment.offer.delete', $row);
                 })
-                ->rawColumns(['status', 'action', 'details'])
+                ->rawColumns(['action', 'details'])
                 ->make(true);
         }
     }
@@ -121,12 +117,12 @@ class OfferController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(Job $job): Renderable
+    public function edit(JobOffer $offer): Renderable
     {
         set_action_title('edit_offer');
-        set_action('recruitment.offer.update', $job);
-        $jobCategory = $this->repo->jobCategories();
-        return view('recruitment::offers.newEdit', compact('job', 'jobCategory'));
+        set_action('recruitment.offer.update', $offer);
+        $jobs = Job::where('status', Job::STATUS_OPEN)->pluck('position', 'id');
+        return view('recruitment::offers.newEdit', compact('offer', 'jobs'));
     }
 
     /**
@@ -135,9 +131,9 @@ class OfferController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(JobCreateRequest $request, Job $job) : RedirectResponse
+    public function update(OfferCreateRequest $request, JobOffer $offer) : RedirectResponse
     {
-        if ($this->repo->update($request, $job)) {
+        if ($this->repo->update($request, $offer)) {
 
             sendActivityNotification(trans('msg.noty.updated', ['model' => trans('model.job')]));
 

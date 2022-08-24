@@ -69,6 +69,7 @@ class RecruitmentDatabaseSeeder extends Seeder
                 $this->call(DemoJobDatabaseSeeder::class);
                 $this->call(DemoJobApplicationDatabaseSeeder::class);
                 $this->call(DemoJobInterviewDatabaseSeeder::class);
+                $this->call(DemoJobOfferDatabaseSeeder::class);
             }
 
         } catch (\Exception $exception) {

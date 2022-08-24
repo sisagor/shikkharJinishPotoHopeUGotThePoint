@@ -52,5 +52,7 @@ class EventServiceProvider extends ServiceProvider
             Log::channel('joblog')->info('......................... Job Processed Successfully .............................');
         });
         //
+
+
     }
 }

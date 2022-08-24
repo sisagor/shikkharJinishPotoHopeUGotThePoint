@@ -55,9 +55,13 @@ Route::prefix('recruitment')->name('recruitment.')->middleware(['auth'])->group(
     Route::get('offers', [OfferController::class, 'index'])->name('offers');
     Route::get('offer/add', [OfferController::class, 'create'])->name('offer.add');
     Route::post('offer/store', [OfferController::class, 'store'])->name('offer.store');
-    Route::get('offer/{Job}/edit', [OfferController::class, 'edit'])->name('offer.edit');
-    Route::post('offer/{Job}/update', [OfferController::class, 'update'])->name('offer.update');
-    Route::get('offer/{Job}/view', [OfferController::class, 'show'])->name('offer.view');
+    Route::get('offer/{offer}/edit', [OfferController::class, 'edit'])->name('offer.edit');
+    Route::post('offer/{offer}/update', [OfferController::class, 'update'])->name('offer.update');
+    Route::get('offer/{offer}/view', [OfferController::class, 'show'])->name('offer.view');
     Route::get('offer/ajax', [OfferController::class, 'getSelectedCandidate'])->name('offer.ajax');
+    Route::get('offer/{offer}/trash', [OfferController::class, 'trash'])->name('offer.trash');
+    Route::get('offer/{offer}/restore', [OfferController::class, 'restore'])->name('offer.restore');
+    Route::get('offer/{offer}/delete', [OfferController::class, 'delete'])->name('offer.delete');
+
 
 });

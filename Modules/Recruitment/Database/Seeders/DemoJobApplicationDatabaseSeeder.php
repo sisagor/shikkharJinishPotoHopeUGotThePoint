@@ -39,11 +39,11 @@ class DemoJobApplicationDatabaseSeeder extends Seeder
                     'phone' => $faker->phoneNumber(),
                     'email' => $faker->email(),
                     'expected_salary' => $faker->randomNumber(5),
-                    'cover_later' => $faker->paragraph(5),
+                    'cover_later' => json_encode($faker->paragraph(5)),
                     'status' => (
                         $key < 3 ? JobApplication::STATUS_APPROVED
                         : ( $key < 5 ? JobApplication::STATUS_INTERVIEW
-                            : JobApplication::STATUS_JOB_OFFER
+                            : JobApplication::STATUS_REJECTED
                         )
                     )
                 ]);

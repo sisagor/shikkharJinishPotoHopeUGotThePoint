@@ -42,19 +42,6 @@ class EmployeeController extends Controller
     }
 
     /**
-     * get employee unique id depend on company set length
-     * @return string
-     */
-    private function getEmployeeUniqueId(): string
-    {
-        $index = DB::table('employees')->select('employee_index')->orderBy('id', 'desc')->first();
-        $total = (substr($index->employee_index, strlen(config('company_settings.employee_id_prefix'))));
-        $length = (config('company_settings.employee_id_length') - strlen(config('company_settings.employee_id_prefix')));
-        $int = sprintf("%0" . $length . "d", $total + 1);
-        return config('company_settings.employee_id_prefix') . $int;
-    }
-
-    /**
      * Display a listing of the resource.
      * @return Renderable
      */
@@ -148,9 +135,6 @@ class EmployeeController extends Controller
                 ->addColumn('designation', function ($row) {
                     return $row->designation->name ?? null;
                 })
-                ->addColumn('full_name', function ($row) {
-                    return $row->full_name;
-                })
                 ->addColumn('employee_type', function ($row) {
                     return $row->employeeType->name ?? null;
                 })
@@ -175,9 +159,6 @@ class EmployeeController extends Controller
                 ->addColumn('designation', function ($row) {
                     return $row->designation->name ?? null;
                 })
-                ->addColumn('full_name', function ($row) {
-                    return $row->full_name;
-                })
                 ->addColumn('employee_type', function ($row) {
                     return $row->employeeType->name ?? null;
                 })
@@ -195,11 +176,10 @@ class EmployeeController extends Controller
      */
     public function create(): Renderable
     {
-
         set_action('employee.employee.store');
         set_action_title('new_employee');
         $employee = [];
-        $empId = $this->getEmployeeUniqueId();
+        $empId = make_employee_unique_id();
 
         return view('employee::new', compact('employee', 'empId'));
     }
@@ -564,7 +544,7 @@ class EmployeeController extends Controller
             ->where(function ($name) use ($request) {
                 $name->where('employee_index', 'LIKE', $request->get('search') . '%');
             })
-            ->select('id', DB::raw('CONCAT(first_name, " ", last_name) as text'));
+            ->select('id', 'name as text');
 
             if (is_company_admin()){
                 $employees->companyScope();

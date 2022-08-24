@@ -8,6 +8,11 @@ return [
         ['key' => "closed" , 'value' => "Closed"],
     ],
 
+    'offer_status' => [
+        ['key' => "pending" , 'value' => "Pending"],
+        ['key' => "confirmed" , 'value' => "Confirmed"],
+    ],
+
     'app_status' => [
         ['key' => "pending" , 'value' => "Pending"],
         ['key' => "approved" , 'value' => "Approved"],

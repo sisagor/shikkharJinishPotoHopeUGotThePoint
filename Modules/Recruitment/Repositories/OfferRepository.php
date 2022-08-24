@@ -71,7 +71,7 @@ class OfferRepository extends EloquentRepository implements OfferRepositoryInter
                 'job_application_id' => $request->get('job_application_id'),
                 'title' => $request->get('title'),
                 'details' => json_encode($request->get('details')),
-                'status' => JobOffer::STATUS_PENDING,
+                'status' => $request->get('status'),
             ]);
 
         } catch (\Exception $e) {
@@ -129,6 +129,7 @@ class OfferRepository extends EloquentRepository implements OfferRepositoryInter
             ->select('job_applications.id', 'job_applications.name as text')
             ->get();
     }
+
 
 
 }

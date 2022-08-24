@@ -44,6 +44,7 @@ class CreateCompaniesTable extends Migration
             $table->tinyInteger('allow_holiday_work_as_overtime')->default(0);
             $table->tinyInteger('enable_device', )->default(0)->nullable();
             $table->tinyInteger('allow_bulk_upload')->default(0)->nullable();
+            $table->string('default_password')->default('123456')->nullable();
             //$table->decimal('provident_fund_company_amount', 20, 2)->default(0)->nullable();
             //$table->tinyInteger('provident_fund_company_amount_percent')->default(0)->nullable();
             $table->string('device_ip', 20)->nullable();

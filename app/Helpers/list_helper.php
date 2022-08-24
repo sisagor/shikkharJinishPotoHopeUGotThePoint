@@ -4,6 +4,7 @@ use \App\Models\Role;
 use \App\Models\User;
 use \App\Models\Module;
 use \Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use \Modules\Branch\Entities\Branch;
 use \Modules\Company\Entities\Company;
 use \Illuminate\Support\Facades\Cache;
@@ -496,6 +497,19 @@ if (! function_exists('get_job_categories')) {
     function get_job_categories()
     {
         return \Modules\Settings\Entities\JobCategory::active()->with('jobs:id,category_id,position')->get();
+    }
+}
+
+
+/**get employee unique ID*/
+if (! function_exists('make_employee_unique_id')) {
+    function make_employee_unique_id(): string
+    {
+        $index = DB::table('employees')->select('employee_index')->orderBy('id', 'desc')->first();
+        $total = (substr($index->employee_index, strlen(config('company_settings.employee_id_prefix'))));
+        $length = (config('company_settings.employee_id_length') - strlen(config('company_settings.employee_id_prefix')));
+        $int = sprintf("%0" . $length . "d", $total + 1);
+        return config('company_settings.employee_id_prefix') . $int;
     }
 }
 

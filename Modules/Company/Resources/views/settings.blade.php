@@ -147,6 +147,18 @@
                        title="{{ trans('help.employee_settings')}}"></i>
                 </legend>
 
+                <div class="col-md-12 col-sm-12">
+                    <label class="col-form-label label-align" for="employee_id_length">
+                        {{trans('app.default_password')}} (max 16) <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                           title="{{ trans('help.default_password')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input class="form-control" type="text" maxlength="2" id="default_password"
+                               value="{{config('company_settings.default_password')}}"
+                               name="default_password"/>
+                    </div>
+                </div>
 
                 <div class="col-md-12 col-sm-12">
                     <label class="col-form-label label-align" for="employee_id_prefix">
@@ -163,7 +175,7 @@
 
                 <div class="col-md-12 col-sm-12">
                     <label class="col-form-label label-align" for="employee_id_length">
-                        {{trans('app.employee_id_length')}} max 9 <span class="required">*</span>
+                        {{trans('app.employee_id_length')}} <span class="required">*</span>
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                            title="{{ trans('help.employee_id_length')}}"></i>
                     </label>
@@ -173,7 +185,6 @@
                                name="employee_id_length"/>
                     </div>
                 </div>
-
 
                 <div class="col-md-12 col-sm-12">
                     <div class="">

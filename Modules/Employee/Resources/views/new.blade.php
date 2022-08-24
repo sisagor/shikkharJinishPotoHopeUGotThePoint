@@ -19,22 +19,12 @@
 
             {{--Personal Info--}}
             <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="first_name">
-                    {{trans('app.first_name')}} <span class="required">*</span>
+                <label class="col-form-label label-align" for="name">
+                    {{trans('app.name')}} <span class="required">*</span>
                 </label>
                 <div class="item form-group">
-                    <input class="form-control" type="text" id="first_name" name="first_name" required
-                           placeholder="{{trans('app.first_name')}}">
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="last_name">
-                    {{trans('app.last_name')}} <span class="required">*</span>
-                </label>
-                <div class="item form-group">
-                    <input class="form-control" type="text" id="last_name" name="last_name" required
-                           placeholder="{{trans('app.last_name')}}">
+                    <input class="form-control" type="text" id="name" name="name" required
+                           placeholder="{{trans('app.name')}}">
                 </div>
             </div>
 

@@ -208,6 +208,7 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
                 'allow_holiday_work_as_overtime' => $request->get('allow_holiday_work_as_overtime') ?? 0,
                 'device_ip' => $request->get('device_ip'),
                 'enable_device' => $request->get('enable_device'),
+                'default_password' => $request->get('default_password'),
                 // 'insurance_company_amount' => ($hasInsurance ? $request->get('insurance_company_amount') : 0),
                 //'insurance_company_amount_percent' => ($hasInsurance ? $request->get('insurance_company_amount_percent') : 0),
                 ///'provident_fund_company_amount' => ($hasProvident ? $request->get('provident_fund_company_amount') : 0),
