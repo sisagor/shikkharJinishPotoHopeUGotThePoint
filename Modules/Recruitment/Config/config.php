@@ -26,6 +26,12 @@ return [
         ['key' => "scheduled" , 'value' => "Scheduled"],
         ['key' => "pass" , 'value' => "Pass"],
         ['key' => "fail" , 'value' => "Fail"],
+    ],
+
+    'content_type' => [
+        ['key' => "home" , 'value' => "Home"],
+        ['key' => "about" , 'value' => "About"],
+        ['key' => "contact" , 'value' => "Contact"],
     ]
 
 

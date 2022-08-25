@@ -100,6 +100,15 @@ class CreateRecruitmentTable extends Migration
             });
         }
 
+        if (! Schema::hasTable('cms')) {
+            Schema::create('cms', function (Blueprint $table) {
+                $table->id();
+                $table->string('key')->nullable();
+                $table->json('content')->nullable();
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -113,5 +122,6 @@ class CreateRecruitmentTable extends Migration
         Schema::dropIfExists('job_applications');
         Schema::dropIfExists('job_interviews');
         Schema::dropIfExists('job_offers');
+        Schema::dropIfExists('cms');
     }
 }

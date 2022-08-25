@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
 
 class CreateNotificationTable extends Migration
 {
@@ -45,6 +46,20 @@ class CreateNotificationTable extends Migration
                 $table->foreign('com_id')->references('id')->on('companies')->onDelete('SET NULL');
                 $table->foreign('branch_id')->references('id')->on('branches')->onDelete('SET NULL');
                 $table->foreign('employee_id')->references('id')->on('employees')->onDelete('SET NULL');
+            });
+        }
+
+        if (! Schema::hasTable('schedule_email_sms')) {
+            Schema::create('schedule_email_sms', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('com_id')->unsigned()->nullable();
+                $table->bigInteger('branch_id')->unsigned()->nullable();
+                $table->enum('type', ['email', 'sms'])->nullable();
+                $table->json('details')->nullable();
+                $table->tinyInteger('status')->default(0);
+                $table->timestamps();
+                $table->foreign('com_id')->references('id')->on('companies')->onDelete('SET NULL');
+                $table->foreign('branch_id')->references('id')->on('branches')->onDelete('SET NULL');
             });
         }
     }

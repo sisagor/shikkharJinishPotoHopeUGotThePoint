@@ -1,0 +1,48 @@
+@extends('layouts.modal', ['title' => 'new_offer', 'size' => 'lg'])
+
+@section('modal')
+
+    <div class="showNotification"></div>
+
+    <div class="row">
+        <div class="form-body">
+
+            {{--Status--}}
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="key">
+                    {{trans('app.content_type')}} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.content_type')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <select class="form-control" name="key" id="key">
+                        <option value="">{{trans('app.select')}}</option>
+                        @foreach(config('recruitment.content_type') as $type)
+                            <option value="{{$type['key']}}"
+                                    @if($cms) @if($type['key'] == $cms->key) selected @endif @endif> {{$type['value']}}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="body">
+                    {{trans('app.body')}} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.body')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <textarea  id="offer_details" class="form-control summernote w-100" name="body" placeholder="{{trans('app.offer_details')}}">@if($cms){!! json_decode($cms->body) !!}@endif</textarea>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+@endsection
+
+@include('recruitment::scripts.formScript')
+
+
+

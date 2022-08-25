@@ -130,5 +130,6 @@ return [
     'job' => 'Job / Job post',
     'candidate' => 'Candidate / Applicant',
     'title' => 'Title / Subject',
+    'phone_numbers' => 'Insert phone numbers here with comma separated (01826....56,01953....54)',
 
 ];

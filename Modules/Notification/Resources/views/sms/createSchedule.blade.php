@@ -32,12 +32,12 @@
             </div>
 
             <div class="col-md-12 col-sm-12">
-                <label class="col-form-label label-align" for="employee_id">
-                    {{trans('app.employees')}}
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.left_empty_if_all')}}"></i>
+                <label class="col-form-label label-align" for="phone_numbers">
+                    {{trans('app.phone_numbers')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.phone_numbers')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control" name="numbers[]" id="numbers" placeholder="insert numbers separate by comma (,) ex: 01715....45, 01826....56"></textarea>
+                    <textarea class="form-control" name="numbers[]" id="numbers" placeholder="insert numbers separate by comma (,) ex: 01715....45, 01826....56">@if(! empty($sms)) {!! $sms->numbers !!} @endif</textarea>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
                        title="{{ trans('help.sms_body')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control"  id="body" name="body" required>@if(! empty($sms)){!! $sms->body !!}</textarea>
+                    <textarea class="form-control"  id="body" name="body" required> @if(! empty($sms)){!! $sms->body !!}@endif </textarea>
                 </div>
             </div>
 

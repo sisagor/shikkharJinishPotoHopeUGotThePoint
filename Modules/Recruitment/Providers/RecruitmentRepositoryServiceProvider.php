@@ -3,6 +3,8 @@
 namespace Modules\Recruitment\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Recruitment\Repositories\CmsRepository;
+use Modules\Recruitment\Repositories\CmsRepositoryInterface;
 use Modules\Recruitment\Repositories\JobRepository;
 use Modules\Recruitment\Repositories\OfferRepository;
 use Modules\Recruitment\Repositories\InterviewRepository;
@@ -36,6 +38,10 @@ class RecruitmentRepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(
            OfferRepositoryInterface::class,
             OfferRepository::class
+        );
+        $this->app->singleton(
+           CmsRepositoryInterface::class,
+            CmsRepository::class
         );
 
     }

@@ -555,6 +555,10 @@ return [
     'schedule_sms' => 'Schedule Sms',
     'schedule_time' => 'Schedule Time',
     'schedule_type' => 'Schedule Type',
+    'phone_numbers' => 'Phone numbers',
+    'new_content' => 'new Content',
+    'content_type' => 'Content Type',
+
 
 
 ];

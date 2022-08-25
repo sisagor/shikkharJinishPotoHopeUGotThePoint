@@ -225,6 +225,52 @@ return [
                 ],
             ],
         ],
+
+        [
+            'name' => 'CMS',
+            'show' => 0,
+            'order' => 10,
+            'scope' => json_encode([Module::SCOPE_COMPANY]),
+            'status' => 1,
+            'menu' => [
+                [
+                    'name' => 'New Content',
+                    'url' => 'recruitment/cms/add',
+                    'action' => 'recruitment.cms.add',
+                    'show' => 0,
+                ],
+                [
+                    'name' => 'CMS',
+                    'url' => 'recruitment/cms',
+                    'action' => 'recruitment.cms',
+                    'show' => 1,
+                ],
+                [
+                    'name' => 'Edit CMS',
+                    'url' => 'recruitment/cms/edit',
+                    'action' => 'recruitment.cms.edit',
+                    'show' => 0,
+                ],
+                [
+                    'name' => 'Delete CMS',
+                    'url' => 'recruitment/cms/delete',
+                    'action' => 'recruitment.cms.delete',
+                    'show' => 0,
+                ],
+                [
+                    'name' => 'View CMS',
+                    'url' => 'recruitment/cms/view',
+                    'action' => 'recruitment.cms.view',
+                    'show' => 0,
+                ],
+                [
+                    'name' => 'Delete CMS',
+                    'url' => 'recruitment/cms/delete',
+                    'action' => 'recruitment.cms.delete',
+                    'show' => 0,
+                ],
+            ],
+        ],
     ],
 
 ];

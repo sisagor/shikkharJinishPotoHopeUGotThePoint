@@ -25,7 +25,6 @@ return [
         //Attendance
         'On Absent',
         'On Late',
-
-    ]
+    ],
 
 ];
