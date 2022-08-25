@@ -9,7 +9,7 @@ use Modules\Employee\Entities\Employee;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class SmsLog extends RootModel
+class EmailLog extends RootModel
 {
 
     use SoftDeletes;
@@ -21,11 +21,11 @@ class SmsLog extends RootModel
 
 
     protected $fillable = [
-        'id', 'com_id', 'branch_id', 'employee_id', 'sms', 'created_by'
+        'id', 'com_id', 'branch_id', 'employee_id', 'email', 'subject', 'body', 'created_by'
     ];
 
     public static $fecth = [
-        'id', 'com_id', 'branch_id', 'employee_id', 'sms' , 'created_by'
+        'id', 'com_id', 'branch_id', 'employee_id','email', 'subject', 'body', 'created_by'
     ];
 
     function company()

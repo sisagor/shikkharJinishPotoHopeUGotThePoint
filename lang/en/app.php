@@ -552,5 +552,9 @@ return [
     'title' => 'Title',
     'applicant_name' => 'Applicant Name',
     'default_password' => 'Default Password',
+    'schedule_sms' => 'Schedule Sms',
+    'schedule_time' => 'Schedule Time',
+    'schedule_type' => 'Schedule Type',
+
 
 ];

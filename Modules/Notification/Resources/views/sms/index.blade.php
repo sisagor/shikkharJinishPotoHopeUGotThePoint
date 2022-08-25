@@ -1,4 +1,4 @@
-@extends('layouts.table', ['title' => 'sms_log', 'filter' => 1, 'btnType' => 'modal'])
+@extends('layouts.table', ['title' => 'sms_log', 'filter' => 1])
 
 
 @section('filter')
@@ -22,6 +22,11 @@
     </div>--}}
 @endsection
 
+@section('buttons')
+
+{!! add_button('notification.sms.add', 'send_new_sms') !!}
+@endsection
+
 @section('table')
     <table class="sms-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
         <thead>
@@ -41,5 +46,5 @@
 @endsection
 
 @section('tableScript')
-    @include('sms::scripts.script')
+    @include('notification::scripts.script')
 @endsection

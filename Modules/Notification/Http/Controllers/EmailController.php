@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Modules\Employee\Entities\Employee;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Notification\Entities\SmsLog;
+use Modules\Notification\Entities\EmailLog;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Notification\Http\Requests\SmsCreateRequest;
 
@@ -22,20 +23,19 @@ class EmailController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     * @return //Renderable
      */
     public function index(Request $request)
     {
         if (! $request->ajax()){
-            return view('notification::sms.index');
+            return view('notification::email.index');
         }
 
-        $data = SmsLog::join('employees', 'employees.id', 'sms_log.employee_id')
+        $data = EmailLog::join('employees', 'employees.id', 'email_log.employee_id')
             ->select(
-                'sms_log.*',
+                'email_log.*',
                 'employees.employee_index',
-                DB::raw('CONCAT(`first_name`, " ", `last_name`) as employee_name'),
-                'employees.phone',
+                'employees.name as employee_name',
             );
 
         return DataTables::of($data)
@@ -45,7 +45,10 @@ class EmailController extends Controller
                 return get_sms_status($row->status);
             })
             ->addColumn('action', function ($row) {
-                return delete_button($row->id);
+                return view_button('notification.email.view', $row, 0) . delete_button('notification.email.delete', $row->id);
+            })
+            ->addColumn('body', function ($row) {
+                return substr(json_decode($row->body), 0, 500);
             })
             ->rawColumns(['action', 'status'])
             ->make(true);

@@ -5,7 +5,6 @@ namespace Modules\Notification\Http\Controllers;
 use App\Models\RootModel;
 use Tzsk\Sms\Facades\Sms;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -27,14 +26,14 @@ class SMSController extends Controller
     public function index(Request $request)
     {
         if (! $request->ajax()){
-            return view('notification::email.index');
+            return view('notification::sms.index');
         }
 
         $data = SmsLog::join('employees', 'employees.id', 'sms_log.employee_id')
             ->select(
                 'sms_log.*',
                 'employees.employee_index',
-                'employees.name',
+                'employees.name as employee_name',
                 'employees.phone',
             );
 
@@ -42,15 +41,16 @@ class SMSController extends Controller
             ->addIndexColumn()
             //->setTotalRecords($this->employeeCount('employees', \request()))
             ->editColumn('status', function ($row) {
-                //return get_sms_status($row->status);
+                return get_sms_status($row->status);
             })
             ->addColumn('action', function ($row) {
-                //return delete_button($row->id);
+                return view_button('notification.sms.view', $row, 0) . delete_button('notification.sms.delete', $row->id);
             })
             ->rawColumns(['action', 'status'])
             ->make(true);
 
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -59,10 +59,12 @@ class SMSController extends Controller
     public function create()
     {
         set_action_title('send_new_sms');
-        set_action('Notification.sms.store');
+        set_action('notification.sms.store');
+        set_action_button('Send Sms');
 
         return view('notification::sms.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -130,6 +132,32 @@ class SMSController extends Controller
         }
 
         return redirect()->back()->with('error', trans('msg.sent_failed', ['model' => trans('model.sms')]));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function createScheduleSms()
+    {
+        set_action_title('schedule_sms');
+        set_action('notification.sms.schedule.store');
+        //set_action_button('Save');
+
+        return view('notification::sms.createSchedule');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function storeScheduleSms()
+    {
+        set_action_title('send_schedule_sms');
+        set_action('notification.schedule.store');
+        //set_action_button('Save');
+
+        return view('notification::sms.createSchedule');
     }
 
     /**

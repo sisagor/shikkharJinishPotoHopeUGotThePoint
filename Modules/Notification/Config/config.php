@@ -1,5 +1,12 @@
 <?php
 
 return [
-    'name' => 'Notification'
+    'name' => 'Notification',
+
+    'schedule' => [
+        'daily' => "Daily",
+        'weekly' => "weekly",
+        'fortnight' => "Fortnight",
+        'monthly' => "Monthly"
+    ]
 ];
