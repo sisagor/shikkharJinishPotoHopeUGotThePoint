@@ -15,11 +15,11 @@ class ScheduleEmailSms extends RootModel
 
 
     protected $fillable = [
-        'id', 'com_id', 'branch_id', 'type', 'details'
+        'id', 'com_id', 'branch_id', 'delivery_type', 'delivery_time', 'type', 'details'
     ];
 
     public static $fecth = [
-        'id', 'com_id', 'branch_id', 'type', 'details'
+        'id', 'com_id', 'branch_id', 'delivery_type', 'delivery_time', 'type', 'details'
     ];
 
     function company()

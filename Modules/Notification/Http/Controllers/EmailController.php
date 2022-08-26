@@ -150,9 +150,14 @@ class EmailController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function createScheduleEmail()
     {
-        return view('notification::edit');
+        set_action('notification.email.schedule.store');
+        set_action_title('schedule_email');
+
+        $email = [];
+
+        return view('notification::email.createSchedule', compact('email'));
     }
 
     /**

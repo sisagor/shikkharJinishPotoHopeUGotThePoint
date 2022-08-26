@@ -11,7 +11,7 @@
                        title="{{ trans('help.schedule_time')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <input class="form-control timePicker" name="schedule_time" id="time" value="@if(! empty($sms)) {!! $sms->delivery_time !!} @endif">
+                    <input class="form-control timePicker" name="schedule_time" id="time" value=" @if(! empty($email)) {!! $email->delivery_time !!} @endif">
                 </div>
             </div>
 
@@ -25,19 +25,19 @@
                     <select class="form-control" name="schedule_type" id="schedule_type">
                         <option value="">{{trans('app.select')}}</option>
                         @foreach(config('notification.schedule') as $key => $item)
-                            <option value="{{$key}}" @if(! empty($sms) && $sms->delivery_type == $key)selected @endif>{{ $item }}</option>
+                            <option value="{{$key}}" @if(! empty($email) && $email->delivery_type == $key) selected @endif>{{ $item }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
 
             <div class="col-md-12 col-sm-12">
-                <label class="col-form-label label-align" for="phone_numbers">
-                    {{trans('app.phone_numbers')}}
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.phone_numbers')}}"></i>
+                <label class="col-form-label label-align" for="emails">
+                    {{trans('app.emails')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.emails')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control" name="numbers[]" id="numbers" placeholder="insert numbers separate by comma (,) ex: 01715....45, 01826....56">@if(! empty($sms)) {!! $sms->numbers !!} @endif</textarea>
+                    <textarea class="form-control" name="emails[]" id="emails" placeholder="insert emails separate by comma (,) ex: admin@demo.com, user@demo.com">@if(! empty($email)) {!! $email->emails !!} @endif</textarea>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
                        title="{{ trans('help.sms_body')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control"  id="body" name="body" required> @if(! empty($sms)){!! $sms->body !!}@endif </textarea>
+                    <textarea class="form-control"  id="body" name="body" required> @if(! empty($email)){!! $email->body !!}@endif </textarea>
                 </div>
             </div>
 
