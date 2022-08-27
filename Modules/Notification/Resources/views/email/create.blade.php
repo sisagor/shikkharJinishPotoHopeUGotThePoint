@@ -6,7 +6,7 @@
 
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="departments">
-                    {{trans('app.departments')}}
+                    {{trans('app.department')}}
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                        title="{{ trans('help.click_to_select_department')}}"></i>
                 </label>
@@ -22,7 +22,7 @@
 
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="employee_id">
-                    {{trans('app.employees')}}
+                    {{trans('app.employees')}}  (left empty iff you want to send all)
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                        title="{{ trans('help.left_empty_if_all')}}"></i>
                 </label>
@@ -35,13 +35,23 @@
             </div>
 
             <div class="col-md-12 col-sm-12">
-                <label class="col-form-label label-align" for="body">
-                    {{trans('app.sms_body')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.sms_body')}}"></i>
+                <label class="col-form-label label-align" for="subject">
+                    {{trans('app.subject')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.subject')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control"  id="body" name="sms" required></textarea>
+                    <input class="form-control" name="subject" id="subject" placeholder="insert subject here">
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="body">
+                    {{trans('app.body')}} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.body')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <textarea class="form-control"  id="body" name="body" required></textarea>
                 </div>
             </div>
 

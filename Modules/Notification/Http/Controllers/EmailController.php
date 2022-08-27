@@ -64,9 +64,9 @@ class EmailController extends Controller
     public function create()
     {
         set_action_title('send_new_sms');
-        set_action('sms.sms.store');
+        set_action('notification.email.store');
 
-        return view('notification::sms.create');
+        return view('notification::email.create');
     }
 
     /**

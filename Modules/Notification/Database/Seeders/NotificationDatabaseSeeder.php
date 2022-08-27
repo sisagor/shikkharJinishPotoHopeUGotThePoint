@@ -59,6 +59,11 @@ class NotificationDatabaseSeeder extends Seeder
             }
             //End Module Menu Seed
 
+            if(config('app.demo')){
+                $this->call(ScheduleSmsDatabaseSeeder::class);
+                $this->call(ScheduleEmailDatabaseSeeder::class);
+            }
+
 
         } catch (\Exception $exception) {
 

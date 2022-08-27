@@ -6,7 +6,7 @@
 
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="departments">
-                    {{trans('app.departments')}}
+                    {{trans('app.department')}}
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                        title="{{ trans('help.click_to_select_department')}}"></i>
                 </label>

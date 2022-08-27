@@ -45,13 +45,23 @@
             </div>
 
             <div class="col-md-12 col-sm-12">
-                <label class="col-form-label label-align" for="body">
-                    {{trans('app.sms_body')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.sms_body')}}"></i>
+                <label class="col-form-label label-align" for="subject">
+                    {{trans('app.subject')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.subject')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control"  id="body" name="body" required> @if(! empty($json)){!! $json->body !!}@endif </textarea>
+                    <input class="form-control" name="subject" id="subject" placeholder="insert subject here" value="@if(! empty($json)){!! $json->subject !!}@endif">
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="body">
+                    {{trans('app.body')}} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.body')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <textarea class="form-control" id="body" name="body" required> @if(! empty($json)){!! $json->body !!}@endif </textarea>
                 </div>
             </div>
 

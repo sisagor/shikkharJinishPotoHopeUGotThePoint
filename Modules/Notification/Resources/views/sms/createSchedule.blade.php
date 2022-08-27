@@ -1,6 +1,6 @@
 @extends('layouts.form')
 @php
-    $json = json_decode($sms->details);
+    $json = json_decode($sms?->details);
     //dd($json);
 @endphp
 @section('form')

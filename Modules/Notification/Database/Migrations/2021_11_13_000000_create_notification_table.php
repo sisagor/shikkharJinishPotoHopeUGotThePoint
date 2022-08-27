@@ -37,8 +37,8 @@ class CreateNotificationTable extends Migration
                 $table->bigInteger('com_id')->unsigned()->nullable();
                 $table->bigInteger('branch_id')->unsigned()->nullable();
                 $table->bigInteger('employee_id')->unsigned()->nullable();
-                $table->string('subject')->nullable();
                 $table->string('email')->nullable();
+                $table->string('subject')->nullable();
                 $table->json('body')->nullable();
                 $table->tinyInteger('status')->default(1);
                 $table->timestamps();

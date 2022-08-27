@@ -131,5 +131,7 @@ return [
     'candidate' => 'Candidate / Applicant',
     'title' => 'Title / Subject',
     'phone_numbers' => 'Insert phone numbers here with comma separated (01826....56,01953....54)',
+    'subject' => 'Email subject',
+    'body' => 'Email body',
 
 ];

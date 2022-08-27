@@ -6,15 +6,12 @@ use App\Models\RootModel;
 use Modules\Branch\Entities\Branch;
 use Modules\Company\Entities\Company;
 use Modules\Employee\Entities\Employee;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class EmailLog extends RootModel
 {
 
-    use SoftDeletes;
-
-    protected $table = 'sms_log';
+    protected $table = 'email_log';
 
     const SENT = 1;
     const FAILED = 0;

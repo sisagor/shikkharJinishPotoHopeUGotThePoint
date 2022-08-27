@@ -558,8 +558,11 @@ return [
     'phone_numbers' => 'Phone numbers',
     'new_content' => 'new Content',
     'content_type' => 'Content Type',
-    'emails ' => 'Emails',
-    'schedule_email ' => 'Schedule Email',
+    'emails' => 'Emails',
+    'schedule_email' => 'Schedule Email',
+    'email_log' => 'Email Logs',
+    'send_email' => 'Send Email',
+    'subject' => 'Subject',
 
 
 
