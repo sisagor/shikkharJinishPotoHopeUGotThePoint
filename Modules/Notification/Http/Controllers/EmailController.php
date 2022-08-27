@@ -3,6 +3,8 @@
 namespace Modules\Notification\Http\Controllers;
 
 use App\Models\RootModel;
+use Modules\Notification\Entities\ScheduleEmailSms;
+use Modules\Notification\Http\Requests\ScheduleEmailCreateRequest;
 use Tzsk\Sms\Facades\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -155,7 +157,7 @@ class EmailController extends Controller
         set_action('notification.email.schedule.store');
         set_action_title('schedule_email');
 
-        $email = [];
+        $email = ScheduleEmailSms::where('type', ScheduleEmailSms::TYPE_EMAIL)->first();
 
         return view('notification::email.createSchedule', compact('email'));
     }
@@ -166,9 +168,23 @@ class EmailController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function storeScheduleEmail(ScheduleEmailCreateRequest $request)
     {
-        //
+        $save = ScheduleEmailSms::updateOrCreate(
+            [
+                'type' => ScheduleEmailSms::TYPE_EMAIL
+            ],[
+            'type' => ScheduleEmailSms::TYPE_EMAIL,
+            'delivery_time' => $request->get('delivery_time'),
+            'delivery_type' => $request->get('delivery_type'),
+            'details' => json_encode(['emails' => $request->get('emails'), 'body' => $request->get('body')]),
+        ]);
+
+        if($save)
+        {
+            return redirect()->back()->with('success', trans('msg.create_success', ['model' => trans('model.schedule_email')]));
+        }
+        return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.schedule_email')]))->withInput();
     }
 
     /**

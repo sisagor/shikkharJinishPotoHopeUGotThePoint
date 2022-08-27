@@ -3,7 +3,7 @@
 namespace Modules\Notification\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Modules\Notification\Console\ScheduleEmail;
 
 class NotificationServiceProvider extends ServiceProvider
 {
@@ -28,6 +28,9 @@ class NotificationServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        $this->commands([
+            ScheduleEmail::class,
+        ]);
     }
 
     /**

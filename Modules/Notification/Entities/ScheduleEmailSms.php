@@ -13,6 +13,9 @@ class ScheduleEmailSms extends RootModel
 
     protected $table = 'schedule_email_sms';
 
+    const TYPE_EMAIL = "email";
+    const TYPE_SMS = "sms";
+
 
     protected $fillable = [
         'id', 'com_id', 'branch_id', 'delivery_type', 'delivery_time', 'type', 'details'

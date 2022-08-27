@@ -41,4 +41,6 @@ return [
     'job_application' => 'Job Application',
     'interview' => 'Interview',
     'job_category' => 'Job Category',
+    'schedule_sms' => 'Schedule SMS',
+    'schedule_email' => 'Schedule Email',
 ];

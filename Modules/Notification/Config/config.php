@@ -5,7 +5,7 @@ return [
 
     'schedule' => [
         'daily' => "Daily",
-        'weekly' => "weekly",
+        'weekly' => "Weekly",
         'fortnight' => "Fortnight",
         'monthly' => "Monthly"
     ]

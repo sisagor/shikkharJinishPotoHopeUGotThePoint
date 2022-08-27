@@ -3,6 +3,8 @@
 namespace Modules\Notification\Http\Controllers;
 
 use App\Models\RootModel;
+use Modules\Notification\Entities\ScheduleEmailSms;
+use Modules\Notification\Http\Requests\ScheduleSmsCreateRequest;
 use Tzsk\Sms\Facades\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -142,62 +144,34 @@ class SMSController extends Controller
     {
         set_action_title('schedule_sms');
         set_action('notification.sms.schedule.store');
+        $sms = ScheduleEmailSms::where('type', ScheduleEmailSms::TYPE_SMS)->first();
         //set_action_button('Save');
 
-        return view('notification::sms.createSchedule');
+        return view('notification::sms.createSchedule', compact('sms'));
     }
 
     /**
      * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function storeScheduleSms()
-    {
-        set_action_title('send_schedule_sms');
-        set_action('notification.schedule.store');
-        //set_action_button('Save');
-
-        return view('notification::sms.createSchedule');
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('notification::sms.show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('notification::sms.edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function storeScheduleSms(ScheduleSmsCreateRequest $request)
     {
-        //
+        $save = ScheduleEmailSms::updateOrCreate(
+            [
+                'type' => ScheduleEmailSms::TYPE_SMS
+            ],[
+            'type' => ScheduleEmailSms::TYPE_SMS,
+            'delivery_time' => $request->get('delivery_time'),
+            'delivery_type' => $request->get('delivery_type'),
+            'details' => json_encode(['numbers' => $request->get('numbers'), 'body' => $request->get('body')]),
+        ]);
+
+        if($save)
+        {
+            return redirect()->back()->with('success', trans('msg.create_success', ['model' => trans('model.schedule_sms')]));
+        }
+        return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.schedule_sms')]));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return RedirectResponse
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

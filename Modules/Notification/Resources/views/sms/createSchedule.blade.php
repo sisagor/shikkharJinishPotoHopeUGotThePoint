@@ -1,5 +1,8 @@
 @extends('layouts.form')
-
+@php
+    $json = json_decode($sms->details);
+    //dd($json);
+@endphp
 @section('form')
     <div class="form-body">
         <div class="row">
@@ -11,7 +14,7 @@
                        title="{{ trans('help.schedule_time')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <input class="form-control timePicker" name="schedule_time" id="time" value="@if(! empty($sms)) {!! $sms->delivery_time !!} @endif">
+                    <input class="form-control timePicker" name="delivery_time" id="time" value="@if(! empty($sms)) {!! $sms->delivery_time !!} @endif">
                 </div>
             </div>
 
@@ -22,7 +25,7 @@
                        title="{{ trans('help.click_to_select_department')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <select class="form-control" name="schedule_type" id="schedule_type">
+                    <select class="form-control" name="delivery_type" id="schedule_type">
                         <option value="">{{trans('app.select')}}</option>
                         @foreach(config('notification.schedule') as $key => $item)
                             <option value="{{$key}}" @if(! empty($sms) && $sms->delivery_type == $key)selected @endif>{{ $item }}</option>
@@ -37,7 +40,7 @@
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.phone_numbers')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control" name="numbers[]" id="numbers" placeholder="insert numbers separate by comma (,) ex: 01715....45, 01826....56">@if(! empty($sms)) {!! $sms->numbers !!} @endif</textarea>
+                    <textarea class="form-control" name="numbers" id="numbers" placeholder="insert numbers separate by comma (,) ex: 01715....45, 01826....56">@if(! empty($json)) {!! $json->numbers !!} @endif</textarea>
                 </div>
             </div>
 
@@ -48,7 +51,7 @@
                        title="{{ trans('help.sms_body')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control"  id="body" name="body" required> @if(! empty($sms)){!! $sms->body !!}@endif </textarea>
+                    <textarea class="form-control"  id="body" name="body" required> @if(! empty($json)){!! $json->body !!}@endif </textarea>
                 </div>
             </div>
 
