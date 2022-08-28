@@ -20,6 +20,7 @@ class CreateNotificationTable extends Migration
                 $table->bigInteger('com_id')->unsigned()->nullable();
                 $table->bigInteger('branch_id')->unsigned()->nullable();
                 $table->bigInteger('employee_id')->unsigned()->nullable();
+                $table->string('phone')->nullable();
                 $table->mediumText('sms')->nullable();
                 $table->tinyInteger('status')->default(0);
                 $table->timestamps();

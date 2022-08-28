@@ -27,7 +27,7 @@ class DemoSmsGatewaySeeder extends DatabaseSeeder
                 'created_at' => Carbon::now(),
             ]);
 
-        }catch (Exception $exception){
+        }catch (\Exception $exception){
             \Log::error('sms gateway seed error');
             \Log::info(get_exception_message($exception));
         }

@@ -2,14 +2,12 @@
 
 namespace Modules\Notification\Http\Controllers;
 
-use App\Models\RootModel;
 use Carbon\Carbon;
-use Modules\Notification\Entities\ScheduleEmailSms;
-use Modules\Notification\Http\Requests\ScheduleSmsCreateRequest;
+use App\Models\RootModel;
 use Tzsk\Sms\Facades\Sms;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Config;
@@ -18,7 +16,9 @@ use Modules\Employee\Entities\Employee;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Notification\Entities\SmsLog;
 use Illuminate\Contracts\Support\Renderable;
+use Modules\Notification\Entities\ScheduleEmailSms;
 use Modules\Notification\Http\Requests\SmsCreateRequest;
+use Modules\Notification\Http\Requests\ScheduleSmsCreateRequest;
 
 
 class SMSController extends Controller
@@ -32,13 +32,7 @@ class SMSController extends Controller
             return view('notification::sms.index');
         }
 
-        $data = SmsLog::join('employees', 'employees.id', 'sms_log.employee_id')
-            ->select(
-                'sms_log.*',
-                'employees.employee_index',
-                'employees.name as employee_name',
-                'employees.phone',
-            );
+        $data = SmsLog::select(SmsLog::$fecth);
 
         return DataTables::of($data)
             ->addIndexColumn()
@@ -50,7 +44,7 @@ class SMSController extends Controller
                 return Carbon::parse($row->created_at)->format('Y-m-d h:i A');
             })
             ->addColumn('action', function ($row) {
-                return view_button('notification.sms.view', $row, 0) . delete_button('notification.sms.delete', $row->id);
+                return delete_button('notification.sms.delete', $row->id);
             })
             ->rawColumns(['action', 'status'])
             ->make(true);
@@ -99,31 +93,28 @@ class SMSController extends Controller
 
             $employees = Employee::where('status', RootModel::STATUS_ACTIVE)->select('id', 'phone');
             $employees = (! empty($departments) ? $employees->where('department_id', $department) : $employees);
-            $employees = (!empty($employeePost) ? $employees->whereIn('id', array_values($employees)) : $employees)->get();
+            $employees = (! empty($employeePost) ? $employees->whereIn('id', array_values($employeePost)) : $employees)->get();
 
             foreach ($employees as $item) {
 
-                str_replace('+', '', $item->phone);
+                //str_replace('+', '', $item->phone);
 
-                if (strlen($item->phone) < 11) {
+                if (strlen($item->phone) < 14) {
                     Session::flash('warning', 'Phone number is not valid');
                     continue;
                 }
 
                 $send = Sms::send($message, function ($sms) use($item) {
-                    $sms->to($item->phone);
+                    $sms->to('+8801826319556');
                 });
 
 
                 if ($send) {
 
                     SmsLog::create([
-                        'com_id' => com_id(),
-                        'branch_id' => branch_id(),
-                        'employee_id' => $item->id,
+                        'phone' => $item->phone,
                         'sms' => $message,
                         'status' => 1,
-                        'created_by' => Auth::id(),
                     ]);
 
                     return redirect()->back()->with('success', trans('msg.sent_success', ['model' => trans('model.sms')]));
@@ -132,7 +123,6 @@ class SMSController extends Controller
         }
         catch (\Exception $exception){
             //dd($exception);
-
             Log::error("sms error");
             Log::error($exception->getMessage());
         }
@@ -172,9 +162,9 @@ class SMSController extends Controller
 
         if($save)
         {
-            return redirect()->back()->with('success', trans('msg.create_success', ['model' => trans('model.schedule_sms')]));
+            return redirect()->back()->with('success', trans('msg.create_success', ['model' => trans('model.sms')]));
         }
-        return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.schedule_sms')]));
+        return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.sms')]));
     }
 
 

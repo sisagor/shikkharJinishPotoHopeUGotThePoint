@@ -133,5 +133,10 @@ return [
     'phone_numbers' => 'Insert phone numbers here with comma separated (01826....56,01953....54)',
     'subject' => 'Email subject',
     'body' => 'Email body',
+    'phone_country_code' => 'Phone Country Code',
+    'phone_number' => 'Phone Number',
+    'log_settings' => 'Log Settings',
+    'store_email_log' => 'Store Email Log',
+    'store_sms_log' => 'Store Sms Log',
 
 ];

@@ -40,7 +40,7 @@
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.phone_numbers')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control" name="numbers" id="numbers" placeholder="insert numbers separate by comma (,) ex: 01715....45, 01826....56">@if(! empty($json)) {!! $json->numbers !!} @endif</textarea>
+                    <textarea class="form-control" name="numbers" id="numbers" placeholder="insert numbers separate by comma (,) ex: +8801715....45, +8801826....56">@if(! empty($json)) {!! $json->numbers !!} @endif</textarea>
                 </div>
             </div>
 

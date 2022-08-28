@@ -36,6 +36,9 @@ class SystemSetting extends RootModel
         'has_tax_policy',
         'system_realtime_notification',
         'mix',
+        'phone_country_code',
+        'store_email_log',
+        'store_sms_log',
     ];
 
     public static $fetch = [
@@ -52,6 +55,9 @@ class SystemSetting extends RootModel
         'has_tax_policy',
         'system_realtime_notification',
         'mix',
+        'phone_country_code',
+        'store_email_log',
+        'store_sms_log',
     ];
 
     public function timezone()

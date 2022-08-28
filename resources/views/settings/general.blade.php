@@ -184,44 +184,6 @@
             </div>
         </fieldset>
 
-
-        <fieldset class="mt-2">
-            <legend>{{ trans('app.notification_settings') }}
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                   title="{{ trans('help.notification_settings')}}"></i>
-            </legend>
-            <div class="col-md-12 col-sm-12">
-                <div class="">
-                    <ul class="to_do">
-
-                        <li class="checkbox-todo-custom mt-2">
-                            <div class="col-md-12 col-12" style="position: relative; margin-top: -4px;">
-                                <input type="checkbox" value="1" class="flat"
-                                       name="system_realtime_notification"
-                                       @if(config('system_settings.system_realtime_notification')) checked @endif> &nbsp; &nbsp;
-                                <strong
-                                    style="font-size: large"> {{trans('app.system_realtime_notification')}} </strong>
-                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                   title="{{ trans('help.system_realtime_notification')}}"></i>
-                            </div>
-                        </li>
-
-                        <li class="checkbox-todo-custom mt-3">
-                            <div class="col-md-12 col-12" style="position: relative; margin-top: -4px;">
-                                <input type="checkbox" value="1" class="flat"
-                                       name="email_notification"
-                                       @if(config('system_settings.email_notification')) checked @endif> &nbsp;&nbsp;
-                                <strong style="font-size: large"> {{trans('app.email_notification')}} </strong>
-                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                   title="{{ trans('help.email_notification')}}"></i>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </fieldset>
-
         <fieldset class="mt-2">
             <legend>{{ trans('app.taxation') }}
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
@@ -239,6 +201,29 @@
                                title="{{ trans('help.has_tax_policy')}}"></i>
                         </div>
                     </li>
+                </ul>
+            </div>
+        </fieldset>
+
+        <fieldset class="mt-2">
+            <legend>{{ trans('app.phone_number') }}
+                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                   title="{{ trans('help.phone_number')}}"></i>
+            </legend>
+            <div class="col-md-12 col-sm-12">
+                <ul class="to_do">
+
+                    <div class="col-md-12 col-sm-12">
+                        <label class="col-form-label label-align" for="system_name">
+                            {{trans('app.phone_country_code')}} <span class="required">*</span>
+                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                               title="{{ trans('help.phone_country_code')}}"></i>
+                        </label>
+                        <div class="item form-group">
+                            <input class="form-control" type="text" id="system_name" name="phone_country_code"
+                                   required value="{{config('system_settings.phone_country_code')}}">
+                        </div>
+                    </div>
                 </ul>
             </div>
         </fieldset>

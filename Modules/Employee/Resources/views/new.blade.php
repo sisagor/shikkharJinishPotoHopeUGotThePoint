@@ -47,7 +47,7 @@
                        title="{{ trans('help.phone')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <input class="form-control" type="text" id="phone" name="phone" required
+                    <input class="form-control" type="text" id="phone" name="phone" required value="{{config('system_settings.phone_country_code')}}"
                            placeholder="{{trans('app.phone')}}">
                 </div>
             </div>

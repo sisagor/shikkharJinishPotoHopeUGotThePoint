@@ -32,8 +32,6 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>{{trans('app.employee_index')}}</th>
-            <th>{{trans('app.employee_name')}}</th>
             <th>{{trans('app.phone')}}</th>
             <th>{{trans('app.body')}}</th>
             <th>{{trans('app.sent_at')}}</th>

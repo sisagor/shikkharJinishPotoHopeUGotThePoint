@@ -27,7 +27,7 @@ class ScheduleSmsDatabaseSeeder extends Seeder
                 'type' => ScheduleEmailSms::TYPE_SMS,
                 'delivery_type' => 'daily',
                 'delivery_time' => Carbon::now()->setTime(12, 0, 0)->format('H:i:s'),
-                'details' => json_encode(['numbers' => '018526319556,01766296281', 'body' => 'Testing mail from inta']),
+                'details' => json_encode(['numbers' => '+88018526319556, +8801766296281', 'body' => 'Testing mail from inta']),
                 'status' => RootModel::STATUS_ACTIVE,
             ]);
 

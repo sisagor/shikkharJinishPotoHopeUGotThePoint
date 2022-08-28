@@ -38,7 +38,7 @@ class DemoEmployeeDatabaseSeeder extends Seeder
                     'first_name' => "Employee",
                     'last_name' => $i,
                     'email' => $email,
-                    'phone' => rand(1111111, 9999999),
+                    'phone' => "+8801826319556",
                     'department_id' => ($i > 4 ) ? 2 : 1,
                     'designation_id' => ($i > 4 ) ? 1 : 2,
                     'shift_id' => 1,

@@ -20,6 +20,7 @@ class CreateSystemSettingsTable extends Migration
                 $table->string('system_phone')->nullable();
                 $table->string('system_email')->nullable();
                 $table->json('sms_events')->nullable();
+                $table->string('phone_country_code', 10)->nullable();
                 $table->string('email_notification')->nullable();
                 $table->integer('pagination')->default(25);
                 $table->tinyInteger('use_cache')->default(0);
@@ -32,6 +33,8 @@ class CreateSystemSettingsTable extends Migration
                 $table->tinyInteger('system_realtime_notification')->default(0)->nullable();
                 $table->mediumText('mix')->nullable();
                 $table->string('login_image')->nullable();
+                $table->tinyInteger('store_email_log')->default(0)->nullable();
+                $table->tinyInteger('store_sms_log')->default(0)->nullable();
                 $table->timestamps();
             });
         }

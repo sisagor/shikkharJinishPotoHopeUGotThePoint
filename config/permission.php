@@ -9,6 +9,7 @@ return [
         'password' => 1,
         'settings' => 1,
         'update' => 1,
+        'edit' => 1,
         'smsGateway' => 1,
         'image' => 1,
         'print' => 1,

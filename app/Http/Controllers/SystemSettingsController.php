@@ -42,21 +42,34 @@ class SystemSettingsController extends Controller
 
         $system = SystemSetting::find(1);
 
-        $update = $system->update([
-            'system_name' => $request->get('system_name'),
-            'system_email' => $request->get('system_email'),
-            'system_phone' => $request->get('system_phone'),
-            'email_notification' => $request->get('email_notification') ?? 0,
-            'sms_notification' => $request->get('sms_notification') ?? 0,
-            'pagination' => $request->get('pagination'),
-            'report_pagination' => $request->get('report_pagination'),
-            'currency_id' => $request->get('currency_id'),
-            'timezone_id' => $request->get('timezone_id'),
-            'show_currency_symbol' => $request->get('show_currency_symbol'),
-            'show_space_after_symbol' => $request->get('show_space_after_symbol'),
-            'has_tax_policy' => $request->get('has_tax_policy'),
-            'system_realtime_notification' => $request->get('system_realtime_notification'),
-        ]);
+        if($request->get('notificationSetting')){
+
+            $update = $system->update([
+                'email_notification' => $request->get('email_notification') ?? 0,
+                'sms_notification' => $request->get('sms_notification') ?? 0,
+                'system_realtime_notification' => $request->get('system_realtime_notification'),
+                'store_email_log' => $request->get('store_email_log'),
+                'store_sms_log' => $request->get('store_sms_log'),
+            ]);
+        }
+        else
+        {
+            $update = $system->update([
+                'system_name' => $request->get('system_name'),
+                'system_email' => $request->get('system_email'),
+                'system_phone' => $request->get('system_phone'),
+                'pagination' => $request->get('pagination'),
+                'report_pagination' => $request->get('report_pagination'),
+                'currency_id' => $request->get('currency_id'),
+                'timezone_id' => $request->get('timezone_id'),
+                'show_currency_symbol' => $request->get('show_currency_symbol'),
+                'show_space_after_symbol' => $request->get('show_space_after_symbol'),
+                'has_tax_policy' => $request->get('has_tax_policy'),
+                'phone_country_code' => $request->get('phone_country_code'),
+            ]);
+
+        }
+
 
         if ($request->has('logo')) {
             $system->updateImage($request->file('logo'), 'logo');

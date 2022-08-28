@@ -11,12 +11,19 @@ class SystemSettingsUpdateRequest extends RootRequest
 
     public function rules()
     {
-        return [
-            'system_name' => 'required',
-            'system_phone' => 'required',
-            'system_email' => 'required',
-            'pagination' => 'required',
-        ];
+        if(! $this->get('notificationSetting')){
+            return [
+                'system_name' => 'required',
+                'system_phone' => 'required',
+                'system_email' => 'required',
+                'pagination' => 'required',
+            ];
+        }
+        else{
+            return [
+
+            ];
+        }
 
     }
 

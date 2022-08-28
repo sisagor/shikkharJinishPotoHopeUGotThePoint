@@ -506,24 +506,16 @@ if (! function_exists('make_employee_unique_id')) {
     function make_employee_unique_id(): string
     {
         $index = DB::table('employees')->select('employee_index')->orderBy('id', 'desc')->first();
-        $total = (substr($index->employee_index, strlen(config('company_settings.employee_id_prefix'))));
+        $offset = (strlen(config('company_settings.employee_id_prefix')) !== 0
+            ? strlen(config('company_settings.employee_id_prefix'))
+            : 3);
+        $total = (substr($index->employee_index, $offset));
         $length = (config('company_settings.employee_id_length') - strlen(config('company_settings.employee_id_prefix')));
         $int = sprintf("%0" . $length . "d", $total + 1);
         return config('company_settings.employee_id_prefix') . $int;
     }
 }
 
-/**get employee unique ID*/
-if (! function_exists('make_employee_unique_id')) {
-    function make_employee_unique_id(): string
-    {
-        $index = DB::table('employees')->select('employee_index')->orderBy('id', 'desc')->first();
-        $total = (substr($index->employee_index, strlen(config('company_settings.employee_id_prefix'))));
-        $length = (config('company_settings.employee_id_length') - strlen(config('company_settings.employee_id_prefix')));
-        $int = sprintf("%0" . $length . "d", $total + 1);
-        return config('company_settings.employee_id_prefix') . $int;
-    }
-}
 
 
 

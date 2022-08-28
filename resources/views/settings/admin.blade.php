@@ -32,6 +32,12 @@
                                role="tab" aria-controls="home"
                                aria-selected="true">{{trans('app.sms_settings')}}</a>
                         </li>
+
+                        <li class="nav-item w-15">
+                            <a class="nav-link thin-tab" id="home-tab" data-toggle="tab" href="#notificationSettings"
+                               role="tab" aria-controls="home"
+                               aria-selected="true">{{trans('app.notification_settings')}}</a>
+                        </li>
                     </ul >
 
                     <div class="tab-content" id="myTabContent">
@@ -46,6 +52,12 @@
                              aria-labelledby="smsSettings-tab">
                             {{--general settings--}}
                             @include('settings.smsSettings')
+                        </div>
+
+                        <div class="tab-pane fade" id="notificationSettings" role="tabpanel"
+                             aria-labelledby="smsSettings-tab">
+                            {{--general settings--}}
+                            @include('settings.notification')
                         </div>
 
                     </div>

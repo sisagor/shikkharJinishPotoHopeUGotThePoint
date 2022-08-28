@@ -2,12 +2,16 @@
 
 namespace Modules\Notification\Console;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Modules\Notification\Jobs\NotificationJob;
+use Modules\Notification\Jobs\SmsNotificationJob;
 use Modules\Notification\Entities\ScheduleEmailSms;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Modules\Notification\Notifications\SendEmailNotification;
 
 class ScheduleSMS extends Command
 {
@@ -43,9 +47,15 @@ class ScheduleSMS extends Command
     public function handle()
     {
         try {
-            $email = ScheduleEmailSms::where('type', ScheduleEmailSms::TYPE_EMAIL)->first();
+            $sms = ScheduleEmailSms::where('type', ScheduleEmailSms::TYPE_SMS)->select('details')->first();
 
-            dd($email);
+            if ($sms) {
+                $json = json_decode($sms->details);
+                $numbers = explode(',', $json->numbers);
+                $body = ($json->body ?? null);
+
+                dispatch(new SmsNotificationJob($numbers, $body))->delay(Carbon::now()->addMinute());
+            }
 
         }
         catch (\Exception $exception)

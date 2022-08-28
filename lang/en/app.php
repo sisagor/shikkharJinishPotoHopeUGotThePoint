@@ -563,9 +563,15 @@ return [
     'email_log' => 'Email Logs',
     'send_email' => 'Send Email',
     'subject' => 'Subject',
-    'sent_at' => 'Sent At',
+    'sent_at' => 'Sent at',
     'to_email' => 'To Email',
     'view_email' => 'View Email',
+    'phone_number' => 'Phone Number',
+    'phone_country_code' => 'Phone Country Code',
+    'log_settings' => 'Log Settings',
+    'store_email_log' => 'Store Email Log',
+    'store_sms_log' => 'Store Sms Log',
+
 
 
 
