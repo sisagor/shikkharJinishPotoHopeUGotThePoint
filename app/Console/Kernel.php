@@ -97,14 +97,14 @@ class Kernel extends ConsoleKernel
               $this->getEvent($smsDetails->delivery_type, $run)
                   ->at(Carbon::parse($smsDetails->delivery_time)->format('H:i'))
                   ->timezone('asia/dhaka')
-                 ->onSuccess(function (Stringable $output) {
+                  ->onSuccess(function (Stringable $output) {
                      Log::info("Schedule sms sent success!");
                      Log::info($output);
-                 })
-                 ->onFailure(function (Stringable $output) {
+                  })
+                  ->onFailure(function (Stringable $output) {
                      Log::error("Schedule sms sent failed!");
                      Log::info($output);
-                 });
+                  });
         }
         //end schedule sms
 

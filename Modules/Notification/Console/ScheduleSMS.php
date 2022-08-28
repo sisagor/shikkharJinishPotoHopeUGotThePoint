@@ -4,14 +4,10 @@ namespace Modules\Notification\Console;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Modules\Notification\Jobs\NotificationJob;
 use Modules\Notification\Jobs\SmsNotificationJob;
 use Modules\Notification\Entities\ScheduleEmailSms;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
-use Modules\Notification\Notifications\SendEmailNotification;
+
 
 class ScheduleSMS extends Command
 {
