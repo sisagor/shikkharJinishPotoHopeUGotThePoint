@@ -18,11 +18,11 @@ class EmailLog extends RootModel
 
 
     protected $fillable = [
-        'id', 'com_id', 'branch_id', 'employee_id', 'email', 'subject', 'body', 'created_by'
+        'id', 'com_id', 'branch_id', 'employee_id', 'email', 'subject', 'body'
     ];
 
     public static $fecth = [
-        'id', 'com_id', 'branch_id', 'employee_id','email', 'subject', 'body', 'created_by'
+        'id', 'email', 'subject', 'body', 'status', 'created_at',
     ];
 
     function company()

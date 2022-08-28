@@ -4,7 +4,7 @@ namespace Modules\Notification\Http\Requests;
 
 use App\Http\Requests\RootRequest;
 
-class SmsCreateRequest extends RootRequest
+class EmailCreateRequest extends RootRequest
 {
 
     public function authorize()
@@ -15,8 +15,8 @@ class SmsCreateRequest extends RootRequest
     public function rules()
     {
         return [
-            //'employees' => 'required|array|min:1',
-            'sms' => 'required',
+            'subject' => 'required',
+            'body' => 'required',
         ];
     }
 

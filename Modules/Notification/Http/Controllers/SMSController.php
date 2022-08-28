@@ -3,6 +3,7 @@
 namespace Modules\Notification\Http\Controllers;
 
 use App\Models\RootModel;
+use Carbon\Carbon;
 use Modules\Notification\Entities\ScheduleEmailSms;
 use Modules\Notification\Http\Requests\ScheduleSmsCreateRequest;
 use Tzsk\Sms\Facades\Sms;
@@ -44,6 +45,9 @@ class SMSController extends Controller
             //->setTotalRecords($this->employeeCount('employees', \request()))
             ->editColumn('status', function ($row) {
                 return get_sms_status($row->status);
+            })
+            ->addColumn('created_at', function ($row) {
+                return Carbon::parse($row->created_at)->format('Y-m-d h:i A');
             })
             ->addColumn('action', function ($row) {
                 return view_button('notification.sms.view', $row, 0) . delete_button('notification.sms.delete', $row->id);

@@ -32,6 +32,7 @@ Route::prefix('notification')->name('notification.')->middleware(['auth'])->grou
         Route::get('email/add', 'create')->name('email.add');
         Route::post('email/store','store')->name('email.store');
         Route::post('email/delete', 'destroy')->name('email.delete');
+        Route::get('email/{email}view', 'show')->name('email.view');
         //Schedule Emails
         Route::get('email/schedule/add','createScheduleEmail')->name('email.schedule.add');
         Route::post('email/schedule/store', 'storeScheduleEmail')->name('email.schedule.store');

@@ -563,6 +563,9 @@ return [
     'email_log' => 'Email Logs',
     'send_email' => 'Send Email',
     'subject' => 'Subject',
+    'sent_at' => 'Sent At',
+    'to_email' => 'To Email',
+    'view_email' => 'View Email',
 
 
 

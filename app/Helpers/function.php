@@ -1124,7 +1124,18 @@ if (! function_exists('get_sms_status')) {
     /**add new button*/
     function get_sms_status($status)
     {
-        return (($status == \Modules\SMS\Entities\SmsLog::SENT)
+        return (($status ==\Modules\Notification\Entities\SmsLog::SENT)
+            ? '<span> <i class="fa fa-check" style="font-size: xx-large;color: #0eaa6f;"></i></span>'
+            : '<span> <i class="fa fa-close" style="font-size: xx-large;color: darkred;"></i></span>'
+        );
+    }
+}
+
+if (! function_exists('get_email_status')) {
+    /**add new button*/
+    function get_email_status($status)
+    {
+        return (($status ==\Modules\Notification\Entities\EmailLog::SENT)
             ? '<span> <i class="fa fa-check" style="font-size: xx-large;color: #0eaa6f;"></i></span>'
             : '<span> <i class="fa fa-close" style="font-size: xx-large;color: darkred;"></i></span>'
         );

@@ -50,7 +50,7 @@ class AttendanceLateHour extends Notification
         return (new MailMessage)
             ->from(get_sender_email(), get_sender_name())
             ->subject(trans('mail.attendance_late.subject', ['hour' => '']))
-            ->markdown('timesheet::mails.attendanceLateHour', ['data' => ['name' => $this->notifyTo->full_name, 'hour' => $this->data],
+            ->markdown('timesheet::mails.attendanceLateHour', ['data' => ['name' => $this->notifyTo->name, 'hour' => $this->data],
                 'url' => route('timesheet.leaves')]);
     }
 

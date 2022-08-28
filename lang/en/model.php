@@ -35,6 +35,7 @@ return [
     'leave_policy' => 'Leave Policy',
     'holiday' => 'Holiday',
     'sms' => 'SMS',
+    'email' => 'Email',
     'absent' => 'Absent',
     'loan' => 'Loan',
     'job' => 'Job',

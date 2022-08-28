@@ -40,7 +40,7 @@
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.emails')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control" name="emails" id="emails" placeholder="insert emails separate by comma (,) ex: admin@demo.com, user@demo.com">@if(! empty($json)) {!! $json->emails !!} @endif</textarea>
+                    <textarea class="form-control" name="emails" id="emails" placeholder="insert emails separate by comma (,) ex: admin@demo.com, user@demo.com">@if(! empty($json->emails)) {!! $json->emails !!} @endif</textarea>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.subject')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <input class="form-control" name="subject" id="subject" placeholder="insert subject here" value="@if(! empty($json)){!! $json->subject !!}@endif">
+                    <input class="form-control" name="subject" id="subject" placeholder="insert subject here" value="@if(! empty($json->subject)){!! $json->subject !!}@endif">
                 </div>
             </div>
 
@@ -61,7 +61,7 @@
                        title="{{ trans('help.body')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea class="form-control" id="body" name="body" required> @if(! empty($json)){!! $json->body !!}@endif </textarea>
+                    <textarea class="form-control" id="body" name="body" required> @if(! empty($json->body)){!! $json->body !!}@endif </textarea>
                 </div>
             </div>
 

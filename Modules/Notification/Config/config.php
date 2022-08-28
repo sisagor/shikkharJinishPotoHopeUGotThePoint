@@ -6,7 +6,10 @@ return [
     'schedule' => [
         'daily' => "Daily",
         'weekly' => "Weekly",
-        'fortnight' => "Fortnight",
         'monthly' => "Monthly"
-    ]
+    ],
+
+    'email' => [],
+
+    'sms' => []
 ];

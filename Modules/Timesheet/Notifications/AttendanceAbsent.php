@@ -54,7 +54,7 @@ class AttendanceAbsent extends Notification
             ->from(get_sender_email(), get_sender_name())
             ->subject(trans('mail.attendance_absent.subject'))
             ->markdown('timesheet::mails.attendanceAbsent',
-                ['data' => ['name' => $this->notifyTo->full_name],
+                ['data' => ['name' => $this->notifyTo->name],
                     'url' => route('timesheet.leaves')]);
     }
 

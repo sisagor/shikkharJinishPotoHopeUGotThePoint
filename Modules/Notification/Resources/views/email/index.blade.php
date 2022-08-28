@@ -31,11 +31,10 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>{{trans('app.employee_id')}}</th>
-            <th>{{trans('app.name')}}</th>
             <th>{{trans('app.email')}}</th>
             <th>{{trans('app.subject')}}</th>
             <th>{{trans('app.body')}}</th>
+            <th>{{trans('app.sent_at')}}</th>
             <th>{{trans('app.status')}}</th>
             <th class="action-buttons">{{trans('app.action')}}</th>
         </tr>

@@ -9,14 +9,6 @@
                 serverSide: true,
                 ajax: {
                     url: '{!!  route('notification.sms.logs') !!}',
-                    data: function (d) {
-                        if ($('#company-filter').length) {
-                            d.company_id = $('#company-filter').val();
-                        }
-                        if ($('#branch-filter').length) {
-                            d.branch_id = $('#branch-filter').val();
-                        }
-                    },
                 },
                 type: 'GET',
                 //dom: 'Bfrtip',
@@ -26,10 +18,9 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'employee_index', name: 'employee_index'},
-                    {data: 'employee_name', name: 'employee_name'},
                     {data: 'phone', name: 'phone'},
                     {data: 'sms', name: 'sms'},
+                    {data: 'created_at', name: 'created_at'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
@@ -44,14 +35,6 @@
                 serverSide: true,
                 ajax: {
                     url: '{!!  route('notification.email.logs') !!}',
-                    data: function (d) {
-                        if ($('#company-filter').length) {
-                            d.company_id = $('#company-filter').val();
-                        }
-                        if ($('#branch-filter').length) {
-                            d.branch_id = $('#branch-filter').val();
-                        }
-                    },
                 },
                 type: 'GET',
                 //dom: 'Bfrtip',
@@ -61,29 +44,16 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'employee_index', name: 'employee_index'},
-                    {data: 'employee_name', name: 'employee_name'},
                     {data: 'email', name: 'phone'},
                     {data: 'subject', name: 'subject'},
                     {data: 'body', name: 'body'},
+                    {data: 'created_at', name: 'created_at'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
-            });
-
-
-
-            $('#company-filter').on('change', function () {
-                pendingSalary.ajax.reload();
-                approvedSalary.ajax.reload();
-            });
-
-            $('#branch-filter').on('change', function () {
-                pendingSalary.ajax.reload();
-                approvedSalary.ajax.reload();
             });
 
         });
