@@ -2,12 +2,11 @@
 
 namespace Modules\Notification\Http\Controllers;
 
-use App\Models\RootModel;
 use Carbon\Carbon;
-
+use App\Models\RootModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 use Modules\Employee\Entities\Employee;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Notification\Entities\EmailLog;
