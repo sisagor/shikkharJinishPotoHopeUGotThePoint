@@ -21,6 +21,18 @@ use \App\Http\Controllers\frontEnd\FrontEndController;
 Route::get('clear', function () {
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
     \Illuminate\Support\Facades\Artisan::call('optimize');
+
+    //clear attendance from machine;
+    if (request()->get('ip')){
+        try {
+            $zkt = new \App\Services\ZKTService(request()->get('íp'));
+            $zkt->clearAttendance();
+            return "attendance log clear success!";
+        }
+        catch (Exception $exception){
+            dd($exception);
+        }
+    }
 });
 
 
