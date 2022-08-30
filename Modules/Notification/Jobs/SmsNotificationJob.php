@@ -2,9 +2,11 @@
 
 namespace Modules\Notification\Jobs;
 
+use Carbon\Carbon;
 use Tzsk\Sms\Facades\Sms;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
@@ -22,8 +24,6 @@ class SmsNotificationJob implements ShouldQueue
     public $numbers;
 
     public $body;
-
-    public $notifiable;
 
     protected $tries = 5;
 
@@ -51,22 +51,36 @@ class SmsNotificationJob implements ShouldQueue
     {
         $numbers = $this->numbers;
         // Send notifications to all active channels
-        foreach($numbers as $number) {
 
-            $send = Sms::send($this->body, function($sms) use ($number) {
-                $sms->to($number);
-            });
+        try {
+            foreach($numbers as $number) {
 
-            $status = 0;
+                $send = Sms::send($this->body, function($sms) use ($number) {
+                    $sms->to($number);
+                });
 
-            if($send){
-                $status = 1;
-            }
+                $status = 0;
 
-            if(config('system_settings.store_email_log')) {
-                SmsLog::create(['phone' => $number, 'sms' => $this->body, 'status' => $status,]);
+                if($send){
+                    $status = 1;
+                }
+
+                if(get_config_value('store_sms_log')) {
+
+                    DB::table('sms_log')->insert([
+                        'phone' => $number,
+                        'sms' => $this->body,
+                        'status' => $status,
+                        'created_at' => Carbon::now()->format('Y-m-d')
+                    ]);
+                }
             }
         }
+        catch(\Exception $exception){
+            Log::error("Schedule sms sent error");
+            Log::info(get_exception_message($exception));
+        }
+
     }
 
 }

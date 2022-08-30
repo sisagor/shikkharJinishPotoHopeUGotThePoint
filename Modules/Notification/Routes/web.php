@@ -19,7 +19,7 @@ Route::prefix('notification')->name('notification.')->middleware(['auth'])->grou
         Route::get('sms/logs', 'index')->name('sms.logs');
         Route::get('sms/add','create')->name('sms.add');
         Route::post('sms/store','store')->name('sms.store');
-        Route::post('sms/delete', 'destroy')->name('sms.delete');
+        Route::get('sms/{sms}/delete', 'destroy')->name('sms.delete');
         //Schedule sms
         Route::get('sms/schedule/add','createScheduleSms')->name('sms.schedule.add');
         Route::post('sms/schedule/store', 'storeScheduleSms')->name('sms.schedule.store');
@@ -31,7 +31,7 @@ Route::prefix('notification')->name('notification.')->middleware(['auth'])->grou
         Route::get('email/logs', 'index')->name('email.logs');
         Route::get('email/add', 'create')->name('email.add');
         Route::post('email/store','store')->name('email.store');
-        Route::post('email/delete', 'destroy')->name('email.delete');
+        Route::post('email/{email}/delete', 'destroy')->name('email.delete');
         Route::get('email/{email}view', 'show')->name('email.view');
         //Schedule Emails
         Route::get('email/schedule/add','createScheduleEmail')->name('email.schedule.add');

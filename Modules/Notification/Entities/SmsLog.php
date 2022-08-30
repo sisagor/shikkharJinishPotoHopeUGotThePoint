@@ -20,7 +20,7 @@ class SmsLog extends RootModel
 
 
     protected $fillable = [
-        'id', 'com_id', 'phone', 'branch_id', 'employee_id', 'sms'
+        'id', 'com_id', 'phone', 'branch_id', 'employee_id', 'sms','status',
     ];
 
     public static $fecth = [

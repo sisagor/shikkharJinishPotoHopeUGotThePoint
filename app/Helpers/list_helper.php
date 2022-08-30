@@ -500,6 +500,14 @@ if (! function_exists('get_job_categories')) {
     }
 }
 
+/**get get_salary_rule_structure_components by id*/
+if (! function_exists('get_config_value')) {
+    function get_config_value($key)
+    {
+        return DB::table('system_settings')->select($key)->whereNotNull($key)->count();
+    }
+}
+
 
 /**get employee unique ID*/
 if (! function_exists('make_employee_unique_id')) {

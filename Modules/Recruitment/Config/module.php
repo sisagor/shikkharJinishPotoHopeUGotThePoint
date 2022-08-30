@@ -67,7 +67,7 @@ return [
         [
             'name' => 'Applications',
             'show' => 0,
-            'order' => 2,
+            'order' => 4,
             'scope' => json_encode([Module::SCOPE_COMPANY]),
             'status' => 1,
             'menu' => [
@@ -119,7 +119,7 @@ return [
         [
             'name' => 'Interview',
             'show' => 0,
-            'order' => 3,
+            'order' => 5,
             'scope' => json_encode([Module::SCOPE_COMPANY]),
             'status' => 1,
             'menu' => [
@@ -171,7 +171,7 @@ return [
         [
             'name' => 'Job Offer',
             'show' => 0,
-            'order' => 10,
+            'order' => 9,
             'scope' => json_encode([Module::SCOPE_COMPANY]),
             'status' => 1,
             'menu' => [
@@ -229,7 +229,7 @@ return [
         [
             'name' => 'CMS',
             'show' => 0,
-            'order' => 10,
+            'order' => 12,
             'scope' => json_encode([Module::SCOPE_COMPANY]),
             'status' => 1,
             'menu' => [

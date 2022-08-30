@@ -14,7 +14,8 @@
                        title="{{ trans('help.schedule_time')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <input class="form-control timePicker" name="delivery_time" id="time" value="@if(! empty($email)){!! $email->delivery_time !!}@endif">
+                    <input class="form-control timePicker" name="delivery_time" id="time"
+                           value="@if(! empty($email)){!! \Carbon\Carbon::parse($email->delivery_time)->format('h:i A') !!}@endif">
                 </div>
             </div>
 

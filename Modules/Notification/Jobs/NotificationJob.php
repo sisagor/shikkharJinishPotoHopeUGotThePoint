@@ -2,8 +2,10 @@
 
 namespace Modules\Notification\Jobs;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
@@ -51,22 +53,35 @@ class NotificationJob implements ShouldQueue
     public
     function handle()
     {
-
         // Send notifications to all active channels
+        try {
 
-        foreach ($this->emails as $email) {
-            $sent = Mail::to($email)->send(new $this->notifiable($email, $this->subject, $this->body));
+            foreach($this->emails as $email) {
+                $sent = Mail::to($email)->send(new $this->notifiable($email, $this->subject, $this->body));
 
-            $status = 0;
-            if ($sent){
-                $status = 1;
+                $status = 0;
+                if($sent) {
+                    $status = 1;
+                }
+
+                if(get_config_value('store_email_log')) {
+
+                    DB::table('email_log')->insert([
+                        'email' => $email,
+                        'subject' => $this->subject,
+                        'body' => json_encode($this->body),
+                        'status' => $status,
+                        'created_at' => Carbon::now()->format('Y-m-d')
+                    ]);
+                }
+                //Mail::to($this->details['email'])->send($email);
             }
+        }
+        catch(\Exception $exception)
+        {
+            Log::error("Schedule email sent error!");
+            Log::info(get_exception_message($exception));
 
-            if(config('system_settings.store_email_log')){
-                EmailLog::create(['email' => $email, 'subject' => $this->subject, 'body' =>json_encode( $this->body), 'status' => $status]);
-            }
-
-            //Mail::to($this->details['email'])->send($email);
         }
     }
 

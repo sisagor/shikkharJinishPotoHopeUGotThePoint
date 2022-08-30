@@ -93,9 +93,9 @@ class Kernel extends ConsoleKernel
          $smsDetails = $this->getSchedule(ScheduleEmailSms::TYPE_SMS);
 
         if ($smsDetails) {
-              $run = $schedule->command('inta:scheduleSms');
-              $this->getEvent($smsDetails->delivery_type, $run)
-                  ->at(Carbon::parse($smsDetails->delivery_time)->format('H:i'))
+              $run = $schedule->command('inta:scheduleSms')->everyMinute()
+              //$this->getEvent($smsDetails->delivery_type, $run)
+                  //->at(Carbon::parse($smsDetails->delivery_time)->format('H:i'))
                   ->timezone('asia/dhaka')
                   ->onSuccess(function (Stringable $output) {
                      Log::info("Schedule sms sent success!");
