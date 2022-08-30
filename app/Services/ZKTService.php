@@ -9,9 +9,11 @@ class ZKTService
 {
 
     protected $zkt;
+    protected $ip;
 
     public function __construct($ip)
     {
+        $this->ip = $ip;
         //Create Object
         $this->zkt = new ZKTeco($ip);
         //Check connection
@@ -26,11 +28,11 @@ class ZKTService
 
             Log::error("Device not connected");
             if (is_company_admin()) {
-                Log::info("Device ip " . config('company_settings.device_ip'));
+                Log::info("Device ip " . $this->ip);
             }
             else
             {
-                Log::info("Device ip " . config('branch_settings.device_ip'));
+                Log::info("Device ip " . $this->ip);
             }
             return false;
         }
