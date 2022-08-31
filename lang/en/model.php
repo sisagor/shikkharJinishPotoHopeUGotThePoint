@@ -44,4 +44,5 @@ return [
     'job_category' => 'Job Category',
     'schedule_sms' => 'Schedule SMS',
     'schedule_email' => 'Schedule Email',
+    'cms' => 'Cms Content',
 ];

@@ -571,6 +571,7 @@ return [
     'log_settings' => 'Log Settings',
     'store_email_log' => 'Store Email Log',
     'store_sms_log' => 'Store Sms Log',
+    'content' => 'Content',
 
 
 

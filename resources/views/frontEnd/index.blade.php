@@ -2,7 +2,7 @@
 
 @section('contents')
 
-    {!! $home !!}
+    {!!  json_decode($home->content) !!}
 
 @endsection
 

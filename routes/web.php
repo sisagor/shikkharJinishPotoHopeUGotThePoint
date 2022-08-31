@@ -33,6 +33,8 @@ Route::get('clear', function () {
             dd($exception);
         }
     }
+
+    return "Cache cleared!";
 });
 
 

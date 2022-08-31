@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\frontEnd;
 
+use Modules\Recruitment\Entities\Cms;
 use App\Http\Requests\JobApplicationRequest;
 use App\Services\FrontEndService;
 use Illuminate\Http\Request;
@@ -29,8 +30,9 @@ class FrontEndController extends Controller
      */
     public function index(Request $request)
     {
-        $home = null;
-        return view('frontEnd.layouts.app', compact('home'));
+        $home = Cms::where('type', Cms::TYPE_HOME)->select('content')->first();
+
+        return view('frontEnd.index', compact('home'));
     }
 
     /**

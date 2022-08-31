@@ -21,10 +21,8 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'application.job.position', name: 'application.job.position'},
-                    {data: 'application.name', name: 'application.name'},
-                    {data: 'title', name: 'title'},
-                    {data: 'details', name: 'details'},
+                    {data: 'type', name: 'type'},
+                    {data: 'content', name: 'content'},
                     {data: 'status', name: 'status', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],

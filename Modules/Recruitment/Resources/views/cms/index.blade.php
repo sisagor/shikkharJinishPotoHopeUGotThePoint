@@ -34,10 +34,8 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>{{trans('app.job')}}</th>
-            <th>{{trans('app.applicant_name')}}</th>
-            <th>{{trans('app.title')}}</th>
-            <th>{{trans('app.details')}}</th>
+            <th>{{trans('app.type')}}</th>
+            <th>{{trans('app.content')}}</th>
             <th>{{trans('app.status')}}</th>
             <th>{{trans('app.action')}}</th>
         </tr>

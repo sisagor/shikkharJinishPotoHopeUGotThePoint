@@ -15,7 +15,7 @@ class Cms extends RootModel
     //protected $cascadeDeletes = ['job_applications', 'job_interview'];
 
     protected $fillable = [
-        'id', 'type', 'content',
+        'id', 'type', 'content', 'status',
     ];
 
 

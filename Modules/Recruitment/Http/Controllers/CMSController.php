@@ -5,9 +5,12 @@ namespace Modules\Recruitment\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Recruitment\Entities\Job;
+use Modules\Recruitment\Entities\Cms;
+use Illuminate\Http\RedirectResponse;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Recruitment\Http\Requests\JobCreateRequest;
+use Modules\Recruitment\Http\Requests\CmsCreateRequest;
 use Modules\Recruitment\Repositories\CmsRepositoryInterface;
 
 
@@ -35,20 +38,19 @@ class CMSController extends Controller
         }
 
         $data = $this->repo->index($request);
-        $types = config('recruitment.content_type');
 
         return DataTables::of($data)
             ->addIndexColumn()
-            ->editColumn('key', function ($row) use($types){
-                return ($types['key'] == $row->key ? $types['value'] : '');
+            ->editColumn('content', function ($row){
+                return substr(json_decode($row->content), 0, 500);
             })
-            ->editColumn('body', function ($row){
-               // return substr(json_decode($row->body), 0, 500);
+            ->editColumn('status', function ($row) {
+                return get_status($row->status);
             })
             ->addColumn('action', function ($row) {
                 return view_button('recruitment.cms.view', $row). edit_button('recruitment.cms.edit', $row) . delete_button('recruitment.cms.delete', $row);
             })
-            ->rawColumns(['action', 'body'])
+            ->rawColumns(['action', 'content', 'status'])
             ->make(true);
 
     }
@@ -69,18 +71,18 @@ class CMSController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function store(JobCreateRequest $request)
+    public function store(CmsCreateRequest $request)
     {
         if ($this->repo->store($request)) {
 
-            sendActivityNotification(trans('msg.noty.created', ['model' => trans('model.job')]));
+            sendActivityNotification(trans('msg.noty.created', ['model' => trans('model.cms')]));
 
-            return redirect()->back()->with('success', trans('msg.create_success', ['model' => trans('model.job')]));
+            return redirect()->back()->with('success', trans('msg.create_success', ['model' => trans('model.cms')]));
         }
 
-        return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.job')]))->withInput();
+        return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.cms')]))->withInput();
     }
 
     /**
@@ -88,9 +90,9 @@ class CMSController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show(Job $job)
+    public function show(Cms $cms)
     {
-        return view('recruitment::jobs.show', compact('job'));
+        return view('recruitment::cms.show', compact('cms'));
     }
 
     /**
@@ -98,81 +100,47 @@ class CMSController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(Job $job)
+    public function edit(Cms $cms)
     {
-        set_action_title('edit_job');
-        set_action('recruitment.jobPosting.update', $job);
-        $jobCategory = $this->repo->jobCategories();
-        return view('recruitment::jobs.newEdit', compact('job', 'jobCategory'));
+        set_action_title('edit_cms');
+        set_action('recruitment.cms.update', $cms);
+        return view('recruitment::cms.newEdit', compact('cms'));
     }
 
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function update(JobCreateRequest $request, Job $job)
+    public function update(CmsCreateRequest $request, Cms $cms)
     {
-        if ($this->repo->update($request, $job)) {
+        if ($this->repo->update($request, $cms)) {
 
-            sendActivityNotification(trans('msg.noty.updated', ['model' => trans('model.job')]));
+            sendActivityNotification(trans('msg.noty.updated', ['model' => trans('model.cms')]));
 
-            return redirect()->back()->with('success', trans('msg.update_success', ['model' => trans('model.job')]));
+            return redirect()->back()->with('success', trans('msg.update_success', ['model' => trans('model.cms')]));
         }
 
-        return redirect()->back()->with('error', trans('msg.update_failed', ['model' => trans('model.job')]))->withInput();
+        return redirect()->back()->with('error', trans('msg.update_failed', ['model' => trans('model.cms')]))->withInput();
     }
 
-    /**
-     * soft delete the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function trash(Job $job)
-    {
-        if ($job->delete()) {
-
-            sendActivityNotification(trans('msg.noty.soft_deleted', ['model' => trans('model.job')]));
-
-            return redirect()->back()->with('success', trans('msg.soft_delete_success', ['model' => trans('model.job')]));
-        }
-
-        return redirect()->back()->with('error', trans('msg.soft_delete_failed', ['model' => trans('model.job')]))->withInput();
-    }
 
     /**
      * Remove the specified resource from storage.
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function restore($loan)
+    public function destroy(Cms $cms)
     {
-        if ($this->repo->restore($loan)) {
+        if ($cms->forceDelete()) {
 
-            sendActivityNotification(trans('msg.noty.restored', ['model' => trans('model.job')]));
+            sendActivityNotification(trans('msg.noty.deleted', ['model' => trans('model.cms')]));
 
-            return redirect()->back()->with('success', trans('msg.restore_success', ['model' => trans('model.job')]));
+            return redirect()->back()->with('success', trans('msg.delete_success', ['model' => trans('model.cms')]));
         }
 
-        return redirect()->back()->with('error', trans('msg.restore_failed', ['model' => trans('model.job')]))->withInput();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy(Job $job)
-    {
-        if ($job->forceDelete()) {
-
-            sendActivityNotification(trans('msg.noty.deleted', ['model' => trans('model.job')]));
-
-            return redirect()->back()->with('success', trans('msg.delete_success', ['model' => trans('model.job')]));
-        }
-
-        return redirect()->back()->with('error', trans('msg.delete_failed', ['model' => trans('model.job')]))->withInput();
+        return redirect()->back()->with('error', trans('msg.delete_failed', ['model' => trans('model.cms')]))->withInput();
     }
 
     /**
