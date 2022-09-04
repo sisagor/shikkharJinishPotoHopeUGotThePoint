@@ -39,6 +39,7 @@ class SystemSetting extends RootModel
         'phone_country_code',
         'store_email_log',
         'store_sms_log',
+        'login_image',
     ];
 
     public static $fetch = [
@@ -58,6 +59,7 @@ class SystemSetting extends RootModel
         'phone_country_code',
         'store_email_log',
         'store_sms_log',
+        'login_image',
     ];
 
     public function timezone()

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class SystemSettingsSeeder extends DatabaseSeeder
 {
@@ -50,8 +51,41 @@ class SystemSettingsSeeder extends DatabaseSeeder
                         ]
                     ]);
                 }
+
+
+                $loginImg = $this->demo_dir . "/cover2.jpeg";
+
+                if ($this->disk->put($targetFile, file_get_contents($img))) {
+                    DB::table('images')->insert([
+                        [
+                            'name' => $name,
+                            'path' => $targetFile,
+                            'extension' => 'png',
+                            'type' => 'logo',
+                            'imageable_id' => $id,
+                            'imageable_type' => 'App\Models\SystemSetting',
+                            'created_at' => Carbon::Now(),
+                            'updated_at' => Carbon::Now(),
+                        ]
+                    ]);
+                }
+
+
             }
 
+            $loginImage = public_path('css/login/img/cover2.jpeg');
+
+            if (file_exists($loginImage)) {
+
+                if (Storage::put(storage_path('/images'), $loginImage)) {
+
+                    DB::table('system_settings')->update([
+                        [
+                            'login_image' => storage_path('/images')."/cover2.jpeg",
+                        ]
+                    ]);
+                }
+            }
 
         } catch (\Exception $exception) {
             \Illuminate\Support\Facades\Log::error('System seed failed!');

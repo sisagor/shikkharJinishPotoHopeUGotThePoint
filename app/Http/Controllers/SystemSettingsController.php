@@ -54,7 +54,7 @@ class SystemSettingsController extends Controller
         }
         else
         {
-            $update = $system->update([
+             $update = $system->update([
                 'system_name' => $request->get('system_name'),
                 'system_email' => $request->get('system_email'),
                 'system_phone' => $request->get('system_phone'),
@@ -67,13 +67,19 @@ class SystemSettingsController extends Controller
                 'has_tax_policy' => $request->get('has_tax_policy'),
                 'phone_country_code' => $request->get('phone_country_code'),
             ]);
-
         }
-
 
         if ($request->has('logo')) {
             $system->updateImage($request->file('logo'), 'logo');
         }
+
+        if ($request->hasFile('login_image')){
+            $path = save_image($request->file('login_image'));
+            $system->update([
+                'login_image' => $path,
+            ]);
+        }
+
         if ($update) {
             return redirect()->back()->with('success', trans('msg.update_success', ['model' => trans('model.system_setting')]));
         }
