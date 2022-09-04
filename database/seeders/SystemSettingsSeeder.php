@@ -52,39 +52,17 @@ class SystemSettingsSeeder extends DatabaseSeeder
                     ]);
                 }
 
+                //login image:
+                $img2 = $this->demo_dir . "/cover2.jpeg";
+                $filePath = $this->dir . DIRECTORY_SEPARATOR . "cover2.jpeg";
 
-                $loginImg = $this->demo_dir . "/cover2.jpeg";
-
-                if ($this->disk->put($targetFile, file_get_contents($img))) {
-                    DB::table('images')->insert([
-                        [
-                            'name' => $name,
-                            'path' => $targetFile,
-                            'extension' => 'png',
-                            'type' => 'logo',
-                            'imageable_id' => $id,
-                            'imageable_type' => 'App\Models\SystemSetting',
-                            'created_at' => Carbon::Now(),
-                            'updated_at' => Carbon::Now(),
-                        ]
-                    ]);
+                if ($this->disk->put($filePath, file_get_contents($img2))) {
+                    DB::table('system_settings')->where('id', $id)->update([
+                            'login_image' => $filePath,
+                            'updated_at' => Carbon::now(),
+                        ]);
                 }
 
-
-            }
-
-            $loginImage = public_path('css/login/img/cover2.jpeg');
-
-            if (file_exists($loginImage)) {
-
-                if (Storage::put(storage_path('/images'), $loginImage)) {
-
-                    DB::table('system_settings')->update([
-                        [
-                            'login_image' => storage_path('/images')."/cover2.jpeg",
-                        ]
-                    ]);
-                }
             }
 
         } catch (\Exception $exception) {
