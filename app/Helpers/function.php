@@ -4,6 +4,8 @@
 use App\Models\User;
 use App\Models\RootModel;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Modules\Branch\Entities\BranchSetting;
@@ -1204,6 +1206,26 @@ if (! function_exists('notice')) {
                 </button>
                 <strong>'.$type.'!</strong> '.$msg.'
                 </div>';
+
+    }
+}
+
+if (! function_exists('save_image')) {
+    /**Month search filed*/
+    function save_image($image)
+    {
+        if (getAllowedMaxImgSize() < number_format($image->getSize() / 1048576,2)){
+            Session::flash('error', 'image size too big');
+            return false;
+        }
+
+        $dir = image_storage_dir();
+        if(! Storage::exists($dir)) {
+            Storage::makeDirectory($dir, 0775, true, true);
+        }
+        $path = Storage::put($dir, $image);
+
+        return $path;
 
     }
 }

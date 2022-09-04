@@ -34,7 +34,9 @@
 
             <div class="col-md-12 col-lg-10 col-sm-12 col-12">
                 <div class="wrap d-md-flex">
-                    <div class="img imgSrc"></div>
+                    <div class="img">
+                        <img src=" {{ get_storage_file_url((\App\Models\SystemSetting::select('login_image')->first())->login_image) }}" alt="Login page image">
+                    </div>
                     <div class="login-wrap p-4 p-md-5">
                         <div class="d-flex">
                             <div class="w-100">

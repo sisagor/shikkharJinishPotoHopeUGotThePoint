@@ -66,6 +66,22 @@
                     </div>
                 </div>
 
+                <div class="col-md-12 col-sm-12">
+                    <label class="col-form-label label-align" for="logo">
+                        {{trans('app.login_page_image')}} (536 * 478 px)
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                           title="{{ trans('help.login_page_image')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <img class="img-responsive logo_img"
+                             src="@if(!empty(config('system_settings.login_image')))
+                             {{ get_storage_file_url(config('system_settings.login_image')) }}
+                             @endif"
+                             alt="login page image">
+                        <input type="file" id="logo" name="login_image">
+                    </div>
+                </div>
+
             </div>
         </fieldset>
 

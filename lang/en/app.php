@@ -572,6 +572,7 @@ return [
     'store_email_log' => 'Store Email Log',
     'store_sms_log' => 'Store Sms Log',
     'content' => 'Content',
+    'login_page_image' => 'Login Page Image',
 
 
 
