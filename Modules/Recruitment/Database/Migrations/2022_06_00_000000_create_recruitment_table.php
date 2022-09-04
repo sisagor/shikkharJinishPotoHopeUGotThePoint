@@ -103,8 +103,9 @@ class CreateRecruitmentTable extends Migration
         if (! Schema::hasTable('cms')) {
             Schema::create('cms', function (Blueprint $table) {
                 $table->id();
-                $table->string('key')->nullable();
+                $table->string('type')->nullable();
                 $table->json('content')->nullable();
+                $table->tinyInteger('status')->default(0)->nullable();
                 $table->timestamps();
             });
         }
