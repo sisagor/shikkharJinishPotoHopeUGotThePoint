@@ -42,7 +42,7 @@ if (! function_exists('is_admin_group')) {
     /** return company id*/
     function is_admin_group()
     {
-        return Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() && ! Auth::user()->com_id && ! Auth::user()->com_id;
+        return Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isAdminUser();
     }
 }
 
