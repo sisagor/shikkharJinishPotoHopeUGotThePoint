@@ -30,8 +30,8 @@ class FrontEndController extends Controller
      */
     public function index(Request $request)
     {
-        $home = Cms::where('type', Cms::TYPE_HOME)->select('content')->first();
 
+        $home = Cms::where('type', Cms::TYPE_HOME)->select('content')->first();
         return view('frontEnd.index', compact('home'));
     }
 

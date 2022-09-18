@@ -2,7 +2,9 @@
 
 @section('contents')
 
-    {!!  json_decode($home->content) !!}
+    @if(! empty($home->content))
+        {!!  json_decode($home->content) !!}
+    @endif
 
 @endsection
 

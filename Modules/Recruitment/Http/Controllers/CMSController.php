@@ -4,12 +4,10 @@ namespace Modules\Recruitment\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Recruitment\Entities\Job;
 use Modules\Recruitment\Entities\Cms;
 use Illuminate\Http\RedirectResponse;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Contracts\Support\Renderable;
-use Modules\Recruitment\Http\Requests\JobCreateRequest;
 use Modules\Recruitment\Http\Requests\CmsCreateRequest;
 use Modules\Recruitment\Repositories\CmsRepositoryInterface;
 
