@@ -3,8 +3,8 @@
 namespace Modules\Employee\Http\Controllers;
 
 
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Address;
 use App\Models\Document;
 use Illuminate\Http\Request;
@@ -185,9 +185,9 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store employee information to the storage
      * @param Request $request
-     * @return Renderable
+     * @return RedirectResponse
      */
     public function store(EmployeeCreateRequest $request): RedirectResponse
     {
@@ -217,7 +217,7 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update employee employment information
      * @param Request $request
      * @param int $id
      * @return Renderable
@@ -236,6 +236,11 @@ class EmployeeController extends Controller
     }
 
 
+    /**
+     * update employee personal information
+     * @param int $id
+     * @return RedirectResponse
+     */
     public function updatePersonalInfo(PersonalInfoUpdateRequest $request, $id): RedirectResponse
     {
         Session::put('tab', 'personal');
@@ -254,7 +259,7 @@ class EmployeeController extends Controller
     /**
      *move to trash
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
     public function trash($id): RedirectResponse
     {
@@ -267,9 +272,9 @@ class EmployeeController extends Controller
     }
 
     /**
-     *move to trash
+     * restore employee
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
     public function restore($id): RedirectResponse
     {
@@ -286,7 +291,7 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove employee resource from storage.
      * @param int $id
      * @return Renderable
      */
@@ -303,7 +308,10 @@ class EmployeeController extends Controller
 
 
 
-    /**Educations */
+    /**
+     * Educations
+     * @param $employeeId
+     */
     public function educations(Request $request, $employeeId)
     {
         if ( $request->ajax()){
@@ -312,7 +320,7 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Start Create Education
+     *  Create Education
      * @return Renderable
      */
     public function createEducation($employeeId): Renderable
@@ -342,7 +350,7 @@ class EmployeeController extends Controller
 
 
     /**
-     * Create Education
+     * Edit  Education
      * @return Renderable
      */
     public function editEducation(EmployeeEducation $education): Renderable
@@ -563,7 +571,10 @@ class EmployeeController extends Controller
     }
 
 
-    #get leave policy:
+    /**
+     * get leave policy via ajax from throughout the system
+     * @return JsonResponse
+     */
     public function getLeavePolicy(Request $request)
     {
         $employee = Employee::with('leavePolicy:id,type_id,name')
@@ -579,7 +590,10 @@ class EmployeeController extends Controller
     }
 
 
-    #get leave policy:
+    /**
+     * get taken leave via ajax from throughout the system
+     * @return JsonResponse
+     */
     public function getTakenLeave(Request $request)
     {
         $data = ['levels' => [], 'data' => []];
@@ -601,11 +615,13 @@ class EmployeeController extends Controller
 
         }
 
-
         return \response()->json($data);
     }
 
-
+    /**
+     * Sync company employee information with device;
+     * @return Renderable
+     */
     public function syncCompanyEmployeeWithDevice(Request $request)
     {
 
@@ -619,11 +635,12 @@ class EmployeeController extends Controller
 
         $message = "Sync Failed Try again after check your configuration";
         return view('partials.systemMessage', compact('message'));
-
     }
 
-
-
+    /**
+     * Sync branch employee info with device
+     * @return Renderable
+     */
     public function syncBranchEmployeeWithDevice(Request $request)
     {
 
@@ -641,6 +658,10 @@ class EmployeeController extends Controller
     }
 
 
+    /**
+     * bulk upload employee information form
+     * @return Renderable
+     */
     public function bulkUploadExample(Request $request)
     {
         set_action_title('import_employee');
@@ -649,6 +670,10 @@ class EmployeeController extends Controller
 
     }
 
+    /**
+     * store bulk upload employee information
+     * @return RedirectResponse
+     */
     public function bulkUpload(Request $request)
     {
 
@@ -669,9 +694,10 @@ class EmployeeController extends Controller
     }
 
 
-    /*
-     * Check provision period
-     * */
+    /**
+     * Check provision period of employee
+     * @return bool
+     */
     public function checkProvisionPeriod(Request $request)
     {
         if(! config('company_settings.has_provision_period'))

@@ -97,7 +97,6 @@ mix.scripts([
     'resources/assets/vendors/autosize/dist/autosize.min.js',
     //'resources/assets/vendors/starrr/dist/starrr.js',
     'resources/assets/summerNote/summernote-bs4.js',
-    'resources/assets/js/ckEditor.js',
 
 ], 'public/js/vendor.js');
 
