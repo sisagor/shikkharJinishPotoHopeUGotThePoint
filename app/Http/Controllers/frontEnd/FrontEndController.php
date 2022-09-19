@@ -40,9 +40,9 @@ class FrontEndController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function aboutuS(Request $request)
+    public function about(Request $request)
     {
-        $about = null;
+        $about = Cms::where('type', Cms::TYPE_ABOUT)->select('content')->first();
         return view('frontEnd.about', compact('about'));
     }
 
@@ -52,9 +52,9 @@ class FrontEndController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function contactUs(Request $request)
+    public function contact(Request $request)
     {
-        $contact = null;
+        $contact = Cms::where('type', Cms::TYPE_CONTACT)->select('content')->first();
         return view('frontEnd.contact', compact('contact'));
     }
 

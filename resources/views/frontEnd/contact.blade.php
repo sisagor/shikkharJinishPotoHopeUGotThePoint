@@ -2,6 +2,8 @@
 
 @section('contents')
 
-    {!! $contact !!}
+    @include('frontEnd.header', ['title' => "Contact us"])
+
+    {!! (! empty($contact->content) ? json_decode($contact->content) : null)  !!}
 
 @endsection

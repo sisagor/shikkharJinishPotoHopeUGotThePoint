@@ -46,8 +46,8 @@ Route::get('jobs', [FrontEndController::class, 'jobs'])->name('jobs');
 Route::get('jobs/{id}/show', [FrontEndController::class, 'jobShow'])->name('job.show');
 Route::get('jobs/{id}/apply', [FrontEndController::class, 'jobApply'])->name('job.apply');
 Route::post('jobs/{id}/apply', [FrontEndController::class, 'jobApplyStore'])->name('job.apply.store');
-Route::get('about-us', [FrontEndController::class, 'aboutUs'])->name('aboutUs');
-Route::get('contact-us', [FrontEndController::class, 'contactUs'])->name('contactUs');
+Route::get('about-us', [FrontEndController::class, 'about'])->name('about');
+Route::get('contact-us', [FrontEndController::class, 'contact'])->name('contact');
 
 
 Route::get('/', function () {

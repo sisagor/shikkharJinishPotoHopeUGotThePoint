@@ -96,10 +96,10 @@
                                     <a class="nav-link" href="{{route('jobs')}}">Jobs <span class="sr-only"></span></a>
                                 </li>
                                   <li class="nav-item @if(request()->is('about-us')) active @endif">
-                                    <a class="nav-link" href="{{ route('aboutUs') }}">About Us <span class="sr-only"></span></a>
+                                    <a class="nav-link" href="{{ route('about') }}">About Us <span class="sr-only"></span></a>
                                 </li>
                                   <li class="nav-item @if(request()->is('contact-us')) active @endif">
-                                    <a class="nav-link" href="{{route('contactUs')}}">Contact Us <span class="sr-only"></span></a>
+                                    <a class="nav-link" href="{{route('contact')}}">Contact Us <span class="sr-only"></span></a>
                                 </li>
 
                             </ul>

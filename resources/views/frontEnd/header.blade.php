@@ -1,4 +1,3 @@
-
 <style>
     .we_header{
         height: 150px;

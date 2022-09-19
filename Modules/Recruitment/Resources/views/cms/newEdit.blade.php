@@ -54,16 +54,16 @@
             </div>
         </div>
 
-        <div class="col-md-12 col-sm-12">
+       {{-- <div class="col-md-12 col-sm-12">
             <label class="col-form-label label-align" for="body">
                 {{trans('app.body')}} <span class="required">*</span>
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                    title="{{ trans('help.body')}}"></i>
             </label>
             <div class="item form-group">
-                <textarea  id="editor" class="form-control " name="content" placeholder="{{trans('app.content')}}">@if($cms){!! json_decode($cms->content) !!}@endif</textarea>
+                <textarea style="min-height: 200px; width: 100%"  id="editor" class="form-control " name="content" placeholder="{{trans('app.content')}}">@if($cms){!! json_decode($cms->content) !!}@endif</textarea>
             </div>
-        </div>
+        </div>--}}
     </div>
 
 @endsection
