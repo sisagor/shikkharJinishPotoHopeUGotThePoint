@@ -53,6 +53,10 @@ class Employee extends RootModel
         'leave_policy_id', 'card_no','device_id',
     ];
 
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class, 'employee_id', 'id');
+    }
     public function company()
     {
         return $this->belongsTo(Company::class, 'com_id', 'id');

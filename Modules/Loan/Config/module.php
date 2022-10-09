@@ -7,7 +7,7 @@ return [
     'url' => 'loans',
     'scope' => json_encode([Module::SCOPE_COMMON, Module::SCOPE_EMPLOYEE]),
     'icon' => 'fa fa-credit-card',
-    'status' => 0,
+    'status' => 1,
     'order' => 8,
 
     //Submodules
@@ -81,7 +81,7 @@ return [
             'show' => 0,
             'order' => 1,
             'scope' => json_encode([Module::SCOPE_COMMON, Module::SCOPE_EMPLOYEE]),
-            'status' => 1,
+            'status' => 0,
             'menu' => [
                 [
                     'name' => 'New Installments',
