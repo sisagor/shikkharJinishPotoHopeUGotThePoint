@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ZKTService;
 use Illuminate\Http\Request;
 use App\Services\DashboardService;
 use Illuminate\Notifications\DatabaseNotification;
@@ -33,12 +34,14 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $dashboard = "dashboard";
-        //$dashboard = "admin";
 
-        //$position = Location::get('103.146.92.29');
-
-        //dd($position);
-
+       /* $zkt = new ZKTService('10.8.10.11');
+        if ( $zkt->connect()){
+            $zkt->enableDevice();
+            $zkt->getAttendance();
+            $zkt->clearAttendance();
+            var_dump($zkt->getUser());
+        }*/
         return is_employee() ? view('partials.dashboard.employee') : view('partials.dashboard.'.$dashboard);
     }
 
