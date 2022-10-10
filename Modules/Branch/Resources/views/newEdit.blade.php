@@ -56,10 +56,10 @@
 
             <div class="col-md-6 col-sm-6">
                 <label class="col-form-label label-align" for="address">
-                    {{trans('app.address')}}
+                    {{trans('app.address')}} <span class="required">*</span>
                 </label>
                 <div class="item form-group">
-                    <input id="email" class="form-control" type="text" name="address"
+                    <input id="email" class="form-control" type="text" name="address" required
                            value="@if($branch){{ $branch->address }}@endif" placeholder="{{trans('app.address')}}">
                 </div>
             </div>

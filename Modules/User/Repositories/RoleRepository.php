@@ -48,7 +48,6 @@ class RoleRepository extends EloquentRepository implements RoleRepositoryInterfa
                     'module_id' => $exp2[0] ?? null,
                     'submodule_id' => $exp2[1] ?? null,
                     'menu_id' => $exp2[2] ?? null,
-                    'action' => $this->getAction($exp1[1]),
                 ]);
             }
 

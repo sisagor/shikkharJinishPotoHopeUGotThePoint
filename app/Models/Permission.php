@@ -7,8 +7,7 @@ class Permission extends RootModel {
 
     protected $table = 'role_permissions';
 
-    protected $fillable = ['id', 'role_id', 'module_id', 'submodule_id', 'menu_id', 'action'];
-
+    protected $fillable = ['id', 'role_id', 'module_id', 'submodule_id', 'menu_id'];
 
     public function role()
     {
