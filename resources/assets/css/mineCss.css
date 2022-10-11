@@ -461,6 +461,11 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 }
 
 .plus_button{
-    margin-left: -10px!important;
+    margin-left: -5px!important;
     margin-top: 31.5px!important;
+}
+
+.btn i {
+    margin-right: 5px!important;
+    margin-left: 5px!important;
 }

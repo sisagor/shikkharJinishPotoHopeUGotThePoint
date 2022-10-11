@@ -21,6 +21,13 @@
 @endsection
 
 
+@section('buttons')
+
+    {!! add_button('employee.employee.add', 'new_employee') !!}
+
+@endsection
+
+
 @section('active')
     <table class="inactive-table-active table table-striped table-bordered no-footer dtr-inline w-100"
           role="grid" aria-describedby="datatable-buttons_info">
