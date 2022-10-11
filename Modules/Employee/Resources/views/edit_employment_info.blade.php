@@ -8,74 +8,118 @@
                    title="{{ trans('help.employee_id')}}"></i>
             </label>
             <div class="item form-group">
-                <input class="form-control" readonly
-                       value="{{$employee->employee_index}}">
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-6">
-            <label class="col-form-label label-align" for="parent_id">
-                {{trans('app.department')}} <span class="required">*</span>
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                   title="{{ trans('help.department')}}"></i>
-            </label>
-            <div class="item form-group">
-                <select class="form-control" data-link="{{route('organization.designation.get')}}"
-                        data-child-id="designation_id" id="parent_id" name="department_id" required>
-                    <option value="">{{trans('app.select')}}</option>
-                    @foreach(get_departments() as $id => $name)
-                        <option value="{{ $id }}"
-                                @if($employee->department_id == $id) selected @endif >{{ $name }}</option>
-                    @endforeach
-                </select>
+                <input class="form-control" readonly value="{{$employee->employee_index}}">
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-6">
-            <label class="col-form-label label-align" for="designation_id">
-                {{trans('app.designation')}} <span class="required">*</span>
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                   title="{{ trans('help.designation')}}"></i>
-            </label>
-            <div class="item form-group">
-                <select class="form-control" id="designation_id" name="designation_id" required>
-                    @if(! empty($employee->designation))
-                        <option value="{{$employee->designation_id}}">{{$employee->designation->name}}</option>
-                    @endif
-                </select>
+        <div class="col-md-6 col-sm-6 col-12">
+            <div class="row">
+                <div class="col-md-11 col-sm-6 col-11">
+                    <label class="col-form-label label-align" for="parent_id">
+                        {{trans('app.department')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.department')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" data-link="{{route('organization.designation.get')}}"
+                                data-child-id="designation_id" id="parent_id" name="department_id" required>
+                            <option value="">{{trans('app.select')}}</option>
+                            @foreach(get_departments() as $id => $name)
+                                <option value="{{ $id }}"
+                                        @if($employee->department_id == $id) selected @endif >{{ $name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-1">
+                    <div class="item form-group plus_button">
+                        <a href="javascript:void(0)" data-link="{{ route('organization.department.add') }}" class="ajax-modal-btn btn btn-info">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-6">
-            <label class="col-form-label label-align" for="shift_id">
-                {{trans('app.shift')}} <span class="required">*</span>
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                   title="{{ trans('help.shift')}}"></i>
-            </label>
-            <div class="item form-group">
-                <select class="form-control" id="shift_id" name="shift_id" required>
-                    <option value="">{{trans('app.select')}}</option>
-                    @foreach(get_shifts() as $id => $shift)
-                        <option value="{{$id}}"
-                                @if($employee->shift_id == $id) selected @endif >{{ $shift }}</option>
-                    @endforeach
-                </select>
+        <div class="col-md-6 col-sm-6 col-12">
+            <div class="row">
+                <div class="col-md-11 col-sm-11 col-11">
+                    <label class="col-form-label label-align" for="designation_id">
+                        {{trans('app.designation')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.designation')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" id="designation_id" name="designation_id" required>
+                            @if(! empty($employee->designation))
+                                <option value="{{$employee->designation_id}}">{{$employee->designation->name}}</option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-1">
+                    <div class="item form-group plus_button">
+                        <a href="javascript:void(0)" data-link="{{ route('organization.designation.add') }}" class="ajax-modal-btn btn btn-info">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-6">
-            <label class="col-form-label label-align" for="type_id">
-                {{trans('app.employee_type')}} <span class="required">*</span>
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                   title="{{ trans('help.employee_type')}}"></i>
-            </label>
-            <div class="item form-group">
-                <select class="form-control" id="type_id" name="type_id" required>
-                    <option value="">{{trans('app.select')}}</option>
-                    @foreach(get_employee_types() as $id => $type)
-                        <option value="{{$id}}"
-                                @if($employee->type_id == $id) selected @endif>{{ $type }}</option>
-                    @endforeach
-                </select>
+        <div class="col-md-6 col-sm-6 col-12">
+            <div class="row">
+                <div class="col-md-11 col-sm-11 col-11">
+                    <label class="col-form-label label-align" for="shift_id">
+                        {{trans('app.shift')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.shift')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" id="shift_id" name="shift_id" required>
+                            <option value="">{{trans('app.select')}}</option>
+                            @foreach(get_shifts() as $id => $shift)
+                                <option value="{{$id}}"
+                                        @if($employee->shift_id == $id) selected @endif >{{ $shift }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-1">
+                    <div class="item form-group plus_button">
+                        <a href="javascript:void(0)" data-link="{{ route('componentSettings.shift.add') }}" class="ajax-modal-btn btn btn-info">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-12">
+            <div class="row">
+                <div class="col-md-11 col-sm-11 col-11">
+                    <label class="col-form-label label-align" for="type_id">
+                        {{trans('app.employee_type')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.employee_type')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" id="type_id" name="type_id" required>
+                            <option value="">{{trans('app.select')}}</option>
+                            @foreach(get_employee_types() as $id => $type)
+                                <option value="{{$id}}"
+                                        @if($employee->type_id == $id) selected @endif>{{ $type }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-1 col-sm-1 col-1">
+                    <div class="item form-group plus_button">
+                        <a href="javascript:void(0)" data-link="{{ route('componentSettings.employmentType.add') }}" class="ajax-modal-btn btn btn-info">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 

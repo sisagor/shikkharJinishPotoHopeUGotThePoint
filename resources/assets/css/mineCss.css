@@ -459,3 +459,8 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     height: 110px;
     width: 110px;
 }
+
+.plus_button{
+    margin-left: -10px!important;
+    margin-top: 31.5px!important;
+}

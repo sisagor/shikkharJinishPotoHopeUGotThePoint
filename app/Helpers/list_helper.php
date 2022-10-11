@@ -517,9 +517,10 @@ if (! function_exists('make_employee_unique_id')) {
         $offset = (strlen(config('company_settings.employee_id_prefix')) !== 0
             ? strlen(config('company_settings.employee_id_prefix'))
             : 3);
-        $total = (substr($index->employee_index, $offset));
+        $total =(! empty($index) ? (substr($index->employee_index, $offset)) : 0);
         $length = (config('company_settings.employee_id_length') - strlen(config('company_settings.employee_id_prefix')));
         $int = sprintf("%0" . $length . "d", $total + 1);
+
         return config('company_settings.employee_id_prefix') . $int;
     }
 }

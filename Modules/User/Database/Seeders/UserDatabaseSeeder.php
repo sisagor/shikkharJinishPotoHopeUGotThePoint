@@ -105,6 +105,8 @@ class UserDatabaseSeeder extends DatabaseSeeder
                 }
             }
 
+            DB::table('users')->where('level', 'branch_admin')->update(['com_id' => 1]);
+
             DB::commit();
 
         } catch (\Exception $exception) {

@@ -1,5 +1,10 @@
 @extends('layouts.form')
 
+{{--button use this--}}
+@section('buttons')
+    {!! list_button('employee.employees', 'employees') !!}
+@endsection
+
 @section('form')
     <div class="form-body">
         <div class="row">

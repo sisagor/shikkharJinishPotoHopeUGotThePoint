@@ -742,7 +742,7 @@ if (!function_exists('get_storage_file_url')) {
             return null;
         }
 
-        return url('/storage/'.$path);
+        return url('public/storage/'.$path);
 
       /*  if ($size == Null) {
             return url("image/{$path}");

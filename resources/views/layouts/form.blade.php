@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('contents')
     @if (! empty(session('action')))
         {{-- $title --}}
