@@ -217,18 +217,30 @@
 
         {{--provision--}}
         <div class="col-md-6 col-sm-6">
-            <label class="col-form-label label-align" for="leave_policy">
-                {{trans('app.leave_policy')}} <span class="required">*</span>
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                   title="{{ trans('help.leave_policy')}}"></i>
-            </label>
-            <div class="item form-group">
-                <select class="form-control" id="leave_policy" name="leave_policy_id" required>
-                    <option value="">{{trans('app.select')}}</option>
-                    @foreach(get_leave_policies() as $key => $item)
-                        <option value="{{ $key }}" @if($employee->leave_policy_id == $key) selected @endif>{{ $item }}</option>
-                    @endforeach
-                </select>
+            <div class="row">
+                <div class="col-md-11 col-sm-11">
+                    <label class="col-form-label label-align" for="leave_policy">
+                        {{trans('app.leave_policy')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.leave_policy')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" id="leave_policy" name="leave_policy_id" required>
+                            <option value="">{{trans('app.select')}}</option>
+                            @foreach(get_leave_policies() as $key => $item)
+                                <option value="{{ $key }}" @if($employee->leave_policy_id == $key) selected @endif>{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-1 col-sm-1 col-1">
+                    <div class="item form-group plus_button">
+                        <a href="javascript:void(0)" data-link="{{ route('organization.leavePolicy.add') }}" class="ajax-modal-btn btn btn-info">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
