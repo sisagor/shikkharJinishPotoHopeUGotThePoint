@@ -7,7 +7,7 @@ return [
     'url' => 'reports',
     'scope' => json_encode([Module::SCOPE_COMMON, Module::SCOPE_EMPLOYEE]),
     'icon' => 'fa fa-history',
-    'order' => 15,
+    'order' => 100,
     'status' => 1,
     'submodules' => [
         [

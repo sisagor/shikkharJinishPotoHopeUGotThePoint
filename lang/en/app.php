@@ -573,6 +573,11 @@ return [
     'store_sms_log' => 'Store Sms Log',
     'content' => 'Content',
     'login_page_image' => 'Login Page Image',
+    'wallet_settings' => 'Wallet Settings',
+    'has_welfare_fund' => 'Has Welfare Fund',
+    'has_gratuity' => 'Has Gratuity',
+    'employee_pf' => 'Employee PF',
+    'company_pf' => 'Company PF',
 
 
 

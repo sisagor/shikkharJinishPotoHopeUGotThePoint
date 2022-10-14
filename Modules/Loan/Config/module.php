@@ -8,7 +8,7 @@ return [
     'scope' => json_encode([Module::SCOPE_COMMON, Module::SCOPE_EMPLOYEE]),
     'icon' => 'fa fa-credit-card',
     'status' => 1,
-    'order' => 8,
+    'order' => 9,
 
     //Submodules
     'submodules' => [

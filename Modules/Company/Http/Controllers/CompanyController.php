@@ -221,7 +221,7 @@ class CompanyController extends Controller
     public function settings(): Renderable
     {
         //dd(config('company_settings'));
-        return view('company::settings');
+        return view('company::settings.settings');
     }
 
 

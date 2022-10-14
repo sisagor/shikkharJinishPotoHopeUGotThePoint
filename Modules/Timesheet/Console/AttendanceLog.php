@@ -71,7 +71,7 @@ class AttendanceLog extends Command
         }
         else
         {
-            Log::error("Device not connected");
+            //Log::error("Device not connected");
             return false;
         }
         ///return $this->getAttendanceFromMachine();
@@ -83,6 +83,7 @@ class AttendanceLog extends Command
 
         try {
 
+            $this->service->enableDevice();
             $attendances = $this->service->getAttendance();
 
             DB::beginTransaction();
@@ -128,6 +129,7 @@ class AttendanceLog extends Command
 
             DB::commit();
 
+            $this->info("Attendance log created successfully!");
             //$this->service->clearAttendance();
 
         }
@@ -136,7 +138,6 @@ class AttendanceLog extends Command
             Log::info(get_exception_message($exception));
         }
 
-        $this->info("Attendance log created successfully!");
     }
 
 }
