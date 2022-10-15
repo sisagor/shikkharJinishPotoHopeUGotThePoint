@@ -56,9 +56,11 @@ class RunAttendanceCommand extends Command
                 ->get();
 
             foreach ($companies as $company) {
-                Session::put('com_id', $company->com_id);
-                Artisan::call('inta:getAtt ' . $company->device_ip);
-                Session::forget('com_id');
+                if ($company->device_ip) {
+                    Session::put('com_id', $company->com_id);
+                    Artisan::call('inta:getAtt ' . $company->device_ip);
+                    Session::forget('com_id');
+                }
             }
 
             //Branch device ip
@@ -71,19 +73,19 @@ class RunAttendanceCommand extends Command
             //Log::info($branches);
 
             foreach ($branches as $branch) {
-                Session::put('branch_id', $branch->branch_id);
-                Artisan::call('inta:getAtt ' . $branch->device_ip);
-                Session::forget('branch_id');
+                if ($branch->device_ip) {
+                    Session::put('branch_id', $branch->branch_id);
+                    Artisan::call('inta:getAtt ' . $branch->device_ip);
+                    Session::forget('branch_id');
+                }
             }
 
-        }catch (\Exception $exception){
+            $this->info("Attendance log created successfully.");
+        }
+        catch (\Exception $exception){
             Log::error('Attendance log create failed');
             Log::info(get_exception_message($exception));
-
-            //$this->info("Attendance log create failed. check log file for more details");
         }
-
-        //$this->info("Attendance log created successfully.");
 
     }
 

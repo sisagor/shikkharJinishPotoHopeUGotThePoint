@@ -57,21 +57,14 @@ class AttendanceLog extends Command
 
         if ($this->service->connect()){
             /// $this->service->clearUsers();
-
             //$data = $this->service->setUser(5,"5", 'sagor', '123456', 0, "0000765423");
-
             //($this->service->clearUsers());
-
-            //dd($this->service->getUser());
             //dd($this->service->getAttendance());
             $this->getAttendanceFromMachine();
-
             return true;
-
         }
         else
         {
-            Log::error("Device not connected");
             return false;
         }
         ///return $this->getAttendanceFromMachine();
@@ -83,7 +76,10 @@ class AttendanceLog extends Command
 
         try {
 
+            $this->service->enableDevice();
             $attendances = $this->service->getAttendance();
+
+            $this->info($this->service->getUser());
 
             DB::beginTransaction();
 
@@ -93,7 +89,6 @@ class AttendanceLog extends Command
                 (session('com_id') ?  $emp->where('com_id', session('com_id')) : $emp);
                 (session('branch_id') ?  $emp->where('branch_id', session('branch_id')) : $emp);
                 $emp = $emp->where('device_id', $att['id'])->first();
-
 
                 if (! $emp) {
                     continue;
