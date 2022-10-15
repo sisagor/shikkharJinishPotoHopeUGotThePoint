@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 
-class CreateProvidentFundTable extends Migration
+class CreateWalletTable extends Migration
 {
     /**
      * Run the migrations.
@@ -33,14 +33,14 @@ class CreateProvidentFundTable extends Migration
 
 
         if (! Schema::hasTable('transactions')) {
-            Schema::create('provident_funds', function (Blueprint $table) {
+            Schema::create('transactions', function (Blueprint $table) {
                 $table->id();
                 $table->bigInteger('com_id')->unsigned()->nullable();
                 $table->bigInteger('branch_id')->unsigned()->nullable();
                 $table->bigInteger('employee_id')->unsigned()->nullable();
                 $table->string('trx_id')->nullable();
                 $table->date('date')->nullable();
-                $table->enum('type', [ 'welfare', 'Loan', 'salary_advance', 'company_pf', 'employee_pf', 'gratuity'])->nullable();
+                $table->enum('type', [ 'welfare', 'Loan', 'installment', 'salary_advance', 'company_pf', 'employee_pf', 'gratuity'])->nullable();
                 $table->string('title')->nullable();
                 $table->decimal('debit', 20, 6)->default(0)->nullable();
                 $table->decimal('credit', 20, 6)->default(0)->nullable();

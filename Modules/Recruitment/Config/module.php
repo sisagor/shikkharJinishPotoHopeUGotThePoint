@@ -8,7 +8,7 @@ return [
     'scope' => json_encode([Module::SCOPE_COMPANY]),
     'icon' => 'fa fa-briefcase',
     'status' => 1,
-    'order' => 9,
+    'order' => 10,
 
     //Submodules
     'submodules' => [

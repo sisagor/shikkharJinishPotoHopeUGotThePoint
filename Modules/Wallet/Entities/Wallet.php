@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Employee\Entities;
+namespace Modules\Wallet\Entities;
 
 use App\Models\User;
 use App\Models\RootModel;
-
+use Modules\Employee\Entities\Employee;
 
 class Wallet extends RootModel
 {
@@ -32,6 +32,16 @@ class Wallet extends RootModel
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'id');
+    }
+
+
+
+    /**
+     * @return float|int
+     */
+    public function getAvailableBalance()
+    {
+        return $this->employee()->sum('amount');
     }
 
 

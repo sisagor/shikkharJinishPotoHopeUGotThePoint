@@ -123,6 +123,7 @@ class AttendanceLog extends Command
 
             DB::commit();
 
+            $this->info("Attendance log created successfully!");
             //$this->service->clearAttendance();
 
         }
@@ -131,7 +132,6 @@ class AttendanceLog extends Command
             Log::info(get_exception_message($exception));
         }
 
-        $this->info("Attendance log created successfully!");
     }
 
 }

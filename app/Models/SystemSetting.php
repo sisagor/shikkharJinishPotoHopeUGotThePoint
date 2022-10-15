@@ -15,52 +15,31 @@ class SystemSetting extends RootModel
      *
      * @var array
      */
-
     protected $timestampes = false;
+
 
     protected $casts = [
         'sms_events' => 'array',
     ];
 
     protected $fillable = [
-        'system_name',
-        'system_phone',
-        'system_email',
-        'sms_events',
-        'email_notification',
-        'pagination',
-        'currency_id',
-        'timezone_id',
-        'show_currency_symbol',
-        'show_space_after_symbol',
-        'has_tax_policy',
-        'system_realtime_notification',
-        'mix',
-        'phone_country_code',
-        'store_email_log',
-        'store_sms_log',
-        'login_image',
+        //System
+        'system_name', 'system_phone', 'system_email', 'sms_events', 'email_notification', 'pagination',
+        'report_pagination', 'currency_id', 'timezone_id', 'show_currency_symbol', 'show_space_after_symbol',
+        'has_tax_policy', 'system_realtime_notification', 'mix', 'phone_country_code', 'store_email_log',
+        'store_sms_log', 'login_image',
+        //
     ];
 
     public static $fetch = [
-        'system_name',
-        'system_phone',
-        'system_email',
-        'sms_events',
-        'email_notification',
-        'pagination',
-        'currency_id',
-        'timezone_id',
-        'show_currency_symbol',
-        'show_space_after_symbol',
-        'has_tax_policy',
-        'system_realtime_notification',
-        'mix',
-        'phone_country_code',
-        'store_email_log',
-        'store_sms_log',
-        'login_image',
+        //system
+        'system_name', 'system_phone', 'system_email', 'sms_events', 'email_notification', 'pagination',
+        'report_pagination', 'currency_id', 'timezone_id', 'show_currency_symbol', 'show_space_after_symbol',
+        'has_tax_policy', 'system_realtime_notification', 'mix', 'phone_country_code', 'store_email_log',
+        'store_sms_log', 'login_image',
     ];
+
+
 
     public function timezone()
     {

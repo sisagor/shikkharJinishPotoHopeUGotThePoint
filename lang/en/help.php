@@ -32,7 +32,7 @@ return [
     'pagination' => 'This will apply in every list',
     'logo' => 'System logo',
     'employee_settings' => 'Will apply on all company and branch employees',
-    'has_provident_fund' => 'If yes it will show provident fund type in salary structure component creation, have to has allowances',
+    'has_provident_fund' => 'If yes it will cut the given percent fom employee salary',
     'allow_overtime' => 'If yes it will show when employee create',
     'has_insurance' => 'If yes it will show insurance type in salary structure component creation, have to has allowances',
     'attendance_system' => 'If manual system will allow manual attendance, if ip based attendance will count from ip based device',
@@ -139,5 +139,9 @@ return [
     'store_email_log' => 'Store Email Log',
     'store_sms_log' => 'Store Sms Log',
     'login_page_image' => 'This image will show in login page',
+    'has_welfare_fund' => 'Has welfare fund or not?',
+    'has_gratuity' => 'Has gratuity or not?',
+    'employee_pf' => 'Employee provident fund %',
+    'company_pf' => 'Company provident fund %',
 
 ];

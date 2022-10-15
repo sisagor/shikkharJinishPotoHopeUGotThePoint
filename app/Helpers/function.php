@@ -67,7 +67,7 @@ if (! function_exists('is_company_admin')) {
     /** return company id*/
     function is_company_admin()
     {
-        return Auth::user()->com_id && Auth::user()->level == User::USER_COMPANY_ADMIN;
+        return (Auth::user() && Auth::user()->com_id && Auth::user()->level == User::USER_COMPANY_ADMIN);
     }
 }
 
@@ -75,7 +75,7 @@ if (! function_exists('is_company_group')) {
     /** return company id*/
     function is_company_group()
     {
-        return (Auth::user()->com_id && (Auth::user()->level == User::USER_COMPANY_ADMIN || User::USER_ADMIN) && ! Auth::user()->branch_id);
+        return (Auth::user() && Auth::user()->com_id && (Auth::user()->level == User::USER_COMPANY_ADMIN || User::USER_ADMIN) && ! Auth::user()->branch_id);
     }
 }
 
