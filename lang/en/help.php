@@ -143,5 +143,7 @@ return [
     'has_gratuity' => 'Has gratuity or not?',
     'employee_pf' => 'Employee provident fund %',
     'company_pf' => 'Company provident fund %',
+    'welfare' => 'Welfare fund settings',
+    'welfare_fund_amount' => 'This amount will cut from employee salary.',
 
 ];

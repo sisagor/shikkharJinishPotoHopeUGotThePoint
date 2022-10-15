@@ -14,7 +14,6 @@
             <div class="col-md-12 col-sm-12">
                 <div class="">
                     <ul class="to_do">
-
                         <li class="checkbox-todo-custom mt-2">
                             <div class="col-md-12 col-12 custom-checkbox2">
                                 <input type="checkbox" value="1" class="flat"
@@ -26,38 +25,35 @@
                                    title="{{ trans('help.has_provident_fund')}}"></i>
                             </div>
                         </li>
-
-                        <div class="col-md-12 col-sm-12">
-                            <label class="col-form-label label-align" for="employee_pf">
-                                {{trans('app.employee_pf')}} (in percent)
-                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                   title="{{ trans('help.employee_pf')}}"></i>
-                            </label>
-                            <div class="item form-group">
-                                <input class="form-control" type="text" maxlength="2" id="employee_pf"
-                                       value="{{config('company_settings.employee_pf')}}"
-                                       name="employee_pf"/>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 col-sm-12">
-                            <label class="col-form-label label-align" for="company_pf">
-                                {{trans('app.company_pf')}} (in percent)
-                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                   title="{{ trans('help.company_pf')}}"></i>
-                            </label>
-                            <div class="item form-group">
-                                <input class="form-control" type="text" maxlength="2" id="company_pf"
-                                       value="{{config('company_settings.company_pf')}}"
-                                       name="company_pf"/>
-                            </div>
-                        </div>
-
                     </ul>
+
+                    <div class="col-md-12 col-sm-12">
+                        <label class="col-form-label label-align" for="employee_pf">
+                            {{trans('app.employee_pf')}} (in percent)
+                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                               title="{{ trans('help.employee_pf')}}"></i>
+                        </label>
+                        <div class="item form-group">
+                            <input class="form-control" type="text" maxlength="2" id="employee_pf"
+                                   value="{{config('company_settings.employee_pf') ?? 0}}"
+                                   name="employee_pf" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12">
+                        <label class="col-form-label label-align" for="company_pf">
+                            {{trans('app.company_pf')}} (in percent)
+                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                               title="{{ trans('help.company_pf')}}"></i>
+                        </label>
+                        <div class="item form-group">
+                            <input class="form-control" type="text" maxlength="2" id="company_pf"
+                                   value="{{config('company_settings.company_pf') ?? 0}}"
+                                   name="company_pf"/>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
         </fieldset>
     </div>
 
@@ -78,21 +74,32 @@
 
     <div class="col-md-6 col-sm-6">
         <fieldset>
-            <legend>{{ trans('app.employee_settings') }}
+            <legend>{{ trans('app.welfare') }}
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                   title="{{ trans('help.employee_settings')}}"></i>
+                   title="{{ trans('help.welfare')}}"></i>
             </legend>
 
+            <ul class="to_do">
+                <li class="checkbox-todo-custom mt-2">
+                    <div class="col-md-12 col-12 custom-checkbox2">
+                        <input type="checkbox" value="1" class="flat"
+                               name="has_welfare_fund" @if(config('company_settings.has_welfare')) checked @endif /> &nbsp;
+                        <strong class="font18"> {{trans('app.has_welfare_fund')}} </strong>
+                        <i class="fa fa-question-circle" data-toggle="tooltip"
+                           data-placement="top"
+                           title="{{ trans('help.has_welfare_fund')}}"></i>
+                    </div>
+                </li>
+            </ul>
+
             <div class="col-md-12 col-sm-12">
-                <label class="col-form-label label-align" for="employee_id_length">
-                    {{trans('app.default_password')}} (max 16) <span class="required">*</span>
+                <label class="col-form-label label-align" for="welfare_fund_amount">
+                    {{trans('app.welfare_fund_amount')}} (in percent)
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                       title="{{ trans('help.default_password')}}"></i>
+                       title="{{ trans('help.welfare_fund_amount')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <input class="form-control" type="text" maxlength="2" id="default_password"
-                           value="{{config('company_settings.default_password')}}"
-                           name="default_password"/>
+                    <input class="form-control" type="text" id="default_password" value="{{config('company_settings.welfare_fund_amount') ?? 0}}" name="welfare_fund_amount" />
                 </div>
             </div>
 

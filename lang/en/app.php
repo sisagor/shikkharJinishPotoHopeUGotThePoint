@@ -578,6 +578,9 @@ return [
     'has_gratuity' => 'Has Gratuity',
     'employee_pf' => 'Employee PF',
     'company_pf' => 'Company PF',
+    'welfare' => 'welfare',
+    'has_welfare' => 'Has Welfare',
+    'welfare_fund_amount' => 'Welfare Fund Amount',
 
 
 
