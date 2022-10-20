@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <form action="{{ route('login') }}" class="signin-form" method="post">
         @csrf
         <div class="form-group mb-3">

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\Exceptions\RoleNotFoundException;
 use App\Exceptions\UserInactiveException;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 
@@ -35,7 +36,6 @@ class Authenticate extends Middleware
             auth()->logout();
             throw new UserInactiveException(trans('msg.user_inactive'));
         }
-
         ///Cache::forget('role_permissions_'.Auth::id());
 
         return $next($request);

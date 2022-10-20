@@ -20,7 +20,7 @@ use \App\Http\Controllers\frontEnd\FrontEndController;
 
 Route::get('clear', function () {
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
-    \Illuminate\Support\Facades\Artisan::call('optimize');
+    //\Illuminate\Support\Facades\Artisan::call('optimize');
 
     //clear attendance from machine;
     if (request()->get('ip')){
@@ -90,13 +90,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('test', [\App\Http\Controllers\TestController::class, 'test']);
 });
-
-
-///For Image Manipulations;
-Route::get('image/{path}', function (\League\Glide\Server $server, \Illuminate\Http\Request $request, $path) {
-    return $server->getImageResponse($path, $request->all());
-})->where('path', '.+');
-
 
 
 

@@ -32,7 +32,7 @@ class InitSettings
             // updateVisitorTable($request);
             // }
 
-            if (! $this->check_installed()){
+           /* if (! $this->check_installed()){
                 if (! $this->verify()){
                     die('<h1>' . trans('installer_messages.license_corrupted') . '</h1>');
                 }
@@ -47,7 +47,7 @@ class InitSettings
 
                     die('<h1>' . trans('installer_messages.license_corrupted') . '</h1>');
                 }
-            }
+            }*/
 
             if (! config('system.use_cache')) {
                 if (str_contains($request->getRequestUri(), 'logout')) {

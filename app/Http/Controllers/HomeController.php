@@ -6,6 +6,7 @@ use App\Services\ZKTService;
 use Illuminate\Http\Request;
 use App\Services\DashboardService;
 use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\Facades\Auth;
 
 
 class HomeController extends Controller
@@ -18,12 +19,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
-
-        $this->middleware('auth');
-
+        //$this->middleware('auth');
         $this->service = new DashboardService();
-
     }
 
     /**
@@ -34,7 +31,6 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $dashboard = "dashboard";
-
        /* $zkt = new ZKTService('10.8.10.11');
         if ( $zkt->connect()){
             $zkt->enableDevice();
