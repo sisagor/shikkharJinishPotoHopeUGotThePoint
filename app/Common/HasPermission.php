@@ -15,8 +15,9 @@ trait HasPermission
     public static function hasPermission(string $action): bool
     {
         $permissions =  Cache::get('action_'.Auth::id());
+
         //dd($permission);
-        if(array_key_exists($action, $permissions)){
+        if($permissions && array_key_exists($action, $permissions)){
             return true;
         }
         return false;
@@ -35,8 +36,9 @@ trait HasPermission
         }
 
         $permissions =  Cache::get('url_'.Auth::id());
+
         //check the permission;
-        if(array_key_exists($url, $permissions))
+        if($permissions && array_key_exists($url, $permissions))
         {
             return true;
         }
