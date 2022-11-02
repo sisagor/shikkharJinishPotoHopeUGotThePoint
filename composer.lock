@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a082a12895a2890b02687a290bb0a91b",
+    "content-hash": "08659b605d3affa509bab93e37b11a99",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1192,6 +1192,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v9.36.3",
             "source": {
                 "type": "git",
@@ -1202,6 +1203,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/80ba0561b3682b96743e1c152fde0698bbdb2412",
                 "reference": "80ba0561b3682b96743e1c152fde0698bbdb2412",
+=======
+            "version": "v9.36.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "0bcd350eec1974c9f912f129368587ef7e43722b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/0bcd350eec1974c9f912f129368587ef7e43722b",
+                "reference": "0bcd350eec1974c9f912f129368587ef7e43722b",
+>>>>>>> 852b03da32a21fd45281460d2c2414e7f4a637a0
                 "shasum": ""
             },
             "require": {
@@ -9937,5 +9950,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.3.0"
 }

@@ -12,5 +12,3 @@ const LI_SALT = "72bc2712cc204c65"; //license salt
 
 //The URL will connect the license server;
 const LI_ROOT_URL =  "http://admin.intadev.net/api/";
-
-?>

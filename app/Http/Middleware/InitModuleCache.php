@@ -20,7 +20,6 @@ class InitModuleCache
     public function handle($request, Closure $next)
     {
         //\Artisan::call('optimize');
-
         if (Auth::user()) {
             //Cache all modules from permission:
             $this->cacheModulePermissions();
