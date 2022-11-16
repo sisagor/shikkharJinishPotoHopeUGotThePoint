@@ -8,7 +8,7 @@ class EmployeeCreateRequest extends RootRequest
 {
     public function authorize()
     {
-        return is_company_group() || is_branch_admin();
+        return (! is_admin() && ! is_super_admin() && has_permission('employee.employee.add'));
     }
 
     public function rules()

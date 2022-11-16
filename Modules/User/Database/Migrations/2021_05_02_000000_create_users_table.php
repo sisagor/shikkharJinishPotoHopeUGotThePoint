@@ -43,6 +43,7 @@ class CreateUsersTable extends Migration
                 $table->bigInteger('role_id')->unsigned()->nullable();
                 $table->bigInteger('profile_id')->unsigned()->nullable();
                 $table->bigInteger('employee_id')->unsigned()->nullable();
+                $table->string('manager', 10)->nullable();
                 $table->string('name');
                 $table->string('email')->unique();
                 $table->string('level')->nullable();

@@ -26,9 +26,11 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
             ->with(['user' => function($item){
                 $item->with('department:id,name')
                     ->with('role:id,name')
-                    ->select('id','role_id','department_id','profile_id','level','status')
-                    ->where('level', '!=', User::USER_SUPER_ADMIN)->where('level', '!=', User::USER_ADMIN_ADMIN);
-            }]);
+                    ->select('id','role_id','department_id','profile_id','level','status', 'manager');
+            }])
+            ->whereHas('user', function ($query){
+                $query->where('level', '!=', User::USER_SUPER_ADMIN)->where('level', '!=', User::USER_ADMIN_ADMIN);
+            });
     }
 
     public function trashOnly()
@@ -39,9 +41,11 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
                 $item->withTrashed()
                 ->with('department:id,name')
                 ->with('role:id,name')
-                ->select('id','role_id','department_id','profile_id','level','status')
-                ->where('level', '!=', User::USER_SUPER_ADMIN)->where('level', '!=', User::USER_ADMIN_ADMIN);
-            }]);
+                ->select('id','role_id','department_id','profile_id','level','status', 'manager');
+            }])
+            ->whereHas('user', function ($query){
+                $query->where('level', '!=', User::USER_SUPER_ADMIN)->where('level', '!=', User::USER_ADMIN_ADMIN);
+            });
     }
 
     /*Store user*/
@@ -66,6 +70,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
                 'department_id' => $request->get('department_id'),
                 'profile_id' => $profile->id,
                 'role_id' => $request->get('role_id'),
+                'manager' => $request->get('manager'),
                 'level' => User::USER_ADMIN,
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
@@ -108,6 +113,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
             $model->user->update([
                 'role_id' => $request->get('role_id'),
                 'department_id' => $request->get('department_id'),
+                'manager' => $request->get('manager'),
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'status' => $request->get('status'),

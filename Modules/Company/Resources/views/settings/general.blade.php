@@ -3,7 +3,7 @@
 <form method="post" enctype="multipart/form-data" action="{{route('company.company.settings.update')}}">
     @csrf
     <div class="clearfix"></div>
-
+    <input type="hidden" name="general_settings" value="1">
     <div class="col-md-6 col-sm-6">
         <fieldset>
             <legend>{{ trans('app.general_settings') }}
@@ -172,7 +172,7 @@
                 <div class="">
                     <ul class="to_do">
 
-                        <li class="checkbox-todo-custom mt-2">
+                        <li class="checkbox-todo-custom mt-3">
                             <div class="col-md-12 col-12 custom-checkbox2">
                                 <input type="checkbox" value="1" class="flat"
                                        name="allow_employee_login"
@@ -184,7 +184,7 @@
                             </div>
                         </li>
 
-                        <li class="checkbox-todo-custom mt-2">
+                        <li class="checkbox-todo-custom mt-3">
                             <div class="col-md-12 COL-12 custom-checkbox2" >
                                 <input type="checkbox" value="1" class="flat" name="allow_overtime"
                                        @if(config('company_settings.allow_overtime')) checked @endif /> &nbsp;

@@ -28,7 +28,6 @@
                            role="tab" aria-controls="home"
                            aria-selected="true">{{trans('app.wallet_settings')}}</a>
                     </li>
-
                 </ul>
 
                 <div class="tab-content" id="myTabContent">

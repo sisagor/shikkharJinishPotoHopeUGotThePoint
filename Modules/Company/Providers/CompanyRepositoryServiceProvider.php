@@ -16,7 +16,6 @@ class CompanyRepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(
             CompanyRepositoryInterface::class,
             CompanyRepository::class,
-
         );
 
     }

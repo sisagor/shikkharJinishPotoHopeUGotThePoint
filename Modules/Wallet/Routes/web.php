@@ -11,6 +11,13 @@
 |
 */
 
-Route::prefix('wallet')->group(function() {
-    Route::get('/', 'WalletController@index');
+
+use Illuminate\Support\Facades\Route;
+use Modules\Wallet\Http\Controllers\WalletController;
+
+
+Route::prefix('wallet')->name('wallet.')->middleware('auth')->group(function () {
+
+    ##Leave Applications
+    Route::get('wallet', [WalletController::class, 'index'])->name('dashboard')->name('wallet');
 });

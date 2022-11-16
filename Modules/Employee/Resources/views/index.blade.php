@@ -44,7 +44,7 @@
         </li>
     @endif
 
-    {!! add_button('employee.employee.add', 'new_employee') !!}
+    {!! add_button('employee.employee.add', 'new_employee', 0) !!}
 
 @endsection
 

@@ -22,6 +22,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'department', name: 'department'},
+                    {data: 'user.manager', name: 'user.manager'},
                     {data: 'name', name: 'name'},
                     {data: 'phone', name: 'phone'},
                     {data: 'email', name: 'email'},
@@ -54,6 +55,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'department', name: 'department'},
+                    {data: 'user.manager', name: 'user.manager'},
                     {data: 'name', name: 'name'},
                     {data: 'phone', name: 'phone'},
                     {data: 'email', name: 'email'},

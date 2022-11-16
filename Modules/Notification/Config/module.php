@@ -7,7 +7,7 @@ return [
     'url' => 'notification',
     'scope' => json_encode([Module::SCOPE_COMMON]),
     'icon' => 'fa fa-bell-o',
-    'order' => 12,
+    'order' => 99,
     'status' => 1,
     'submodules' => [
         [

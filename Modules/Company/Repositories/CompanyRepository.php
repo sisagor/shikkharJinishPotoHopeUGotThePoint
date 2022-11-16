@@ -183,37 +183,48 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
 
     public function updateSettings(Request $request): bool
     {
+        $setting = CompanySetting::where('com_id', com_id())->first();
 
         try {
 
-            if ($request->get('enable_device')){
+            if ($request->has('general_settings')) {
 
-                $service = new ZKTService(get_device_ip());
-                $service->connect();
+                if ($request->get('enable_device')) {
+                    $service = new ZKTService(get_device_ip());
+                    $service->connect();
+                }
+
+                $setting->update([
+                    'yearly_leave' => $request->get('yearly_leave'),
+                    'employee_id_prefix' => $request->get('employee_id_prefix'),
+                    'employee_id_length' => $request->get('employee_id_length'),
+                    'attendance' => $request->get('attendance'),
+                    'has_provision_period' => $request->get('has_provision_period') ?? 0,
+                    'allow_overtime' => $request->get('allow_overtime') ?? 0,
+                    'has_attendance_deduction_policy' => $request->get('has_attendance_deduction_policy') ?? 0,
+                    'has_allowances' => $request->get('has_allowances') ?? 0,
+                    'allow_employee_login' => $request->get('allow_employee_login') ?? 0,
+                    'allow_holiday_work_as_overtime' => $request->get('allow_holiday_work_as_overtime') ?? 0,
+                    'device_ip' => $request->get('device_ip'),
+                    'enable_device' => $request->get('enable_device'),
+                    'default_password' => $request->get('default_password'),
+                ]);
             }
 
-            $setting = CompanySetting::where('com_id', com_id())->first();
-            $setting->update([
-                'yearly_leave' => $request->get('yearly_leave'),
-                'employee_id_prefix' => $request->get('employee_id_prefix'),
-                'employee_id_length' => $request->get('employee_id_length'),
-                'attendance' => $request->get('attendance'),
-                'has_provision_period' => $request->get('has_provision_period') ?? 0,
-                //'has_provident_fund' => $request->get('has_provident_fund') ?? 0,
-                //'has_insurance' => $request->get('has_insurance') ?? 0,
-                'allow_overtime' => $request->get('allow_overtime') ?? 0,
-                'has_attendance_deduction_policy' => $request->get('has_attendance_deduction_policy') ?? 0,
-                'has_allowances' => $request->get('has_allowances') ?? 0,
-                'allow_employee_login' => $request->get('allow_employee_login') ?? 0,
-                'allow_holiday_work_as_overtime' => $request->get('allow_holiday_work_as_overtime') ?? 0,
-                'device_ip' => $request->get('device_ip'),
-                'enable_device' => $request->get('enable_device'),
-                'default_password' => $request->get('default_password'),
-                // 'insurance_company_amount' => ($hasInsurance ? $request->get('insurance_company_amount') : 0),
-                //'insurance_company_amount_percent' => ($hasInsurance ? $request->get('insurance_company_amount_percent') : 0),
-                ///'provident_fund_company_amount' => ($hasProvident ? $request->get('provident_fund_company_amount') : 0),
-                // 'provident_fund_company_amount_percent' => ($hasProvident ? $request->get('provident_fund_company_amount_percent') : 0),
-            ]);
+            if ($request->has('wallet_settings')) {
+
+                $setting->update([
+                    'has_provident_fund' => $request->get('has_provident_fund') ?? 0,
+                    'employee_pf' => $request->get('employee_pf') ?? 0,
+                    'company_pf' => $request->get('company_pf') ?? 0,
+
+                    'has_welfare_fund' => $request->get('has_welfare_fund') ?? 0,
+                    'welfare_fund_amount' => $request->get('welfare_fund_amount') ?? 0,
+
+                    'has_gratuity' => $request->get('has_gratuity') ?? 0,
+                    'gratuity_apply_after' => $request->get('gratuity_apply_after') ?? 0,
+                ]);
+            }
 
         } catch (\Exception $exception) {
            // dd($exception);

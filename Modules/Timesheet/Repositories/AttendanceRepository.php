@@ -157,11 +157,12 @@ class AttendanceRepository extends EloquentRepository implements AttendanceRepos
             {
                 $emp = Employee::select('id', 'com_id', 'branch_id', 'first_name', 'last_name', 'employee_index')->where('id', $id)->first();
 
-                if (! $emp)
+                $check = Attendance::where('employee_id', $emp->id)->whereDate('attendance_date', $checkinDate)->where('status', RootModel::PRESENT)->count();
+
+                if (! $emp || $check)
                 {
                     continue;
                 }
-
                 //If admin or officials create punch
                 $createData = [
                     'com_id' => $emp->com_id,

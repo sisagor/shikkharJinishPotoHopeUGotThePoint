@@ -12,5 +12,6 @@
     "Loan": true,
     "Recruitment": true,
     "Notification": true,
-    "Wallet": true
+    "Wallet": true,
+    "Billing": true
 }

@@ -78,8 +78,7 @@ class AttendanceLog extends Command
 
             $this->service->enableDevice();
             $attendances = $this->service->getAttendance();
-
-            $this->info($this->service->getUser());
+            //$this->info($this->service->getUser());
 
             DB::beginTransaction();
 
@@ -128,7 +127,7 @@ class AttendanceLog extends Command
 
         }
         catch (\Exception $exception) {
-            Log::error("Attendance Taking from machine");
+            Log::error("Attendance Taking from machine Failed!");
             Log::info(get_exception_message($exception));
         }
 

@@ -7,7 +7,7 @@ return [
     'url' => 'activities',
     'scope' => json_encode([Module::SCOPE_COMMON]),
     'icon' => 'fa fa-history',
-    'order' => 8,
+    'order' => 15,
     'status' => 0,
     'submodules' => [
         [

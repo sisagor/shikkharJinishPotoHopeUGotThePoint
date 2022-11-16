@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
 
 class CreateCompaniesTable extends Migration
 {
@@ -45,8 +46,15 @@ class CreateCompaniesTable extends Migration
             $table->tinyInteger('enable_device', )->default(0)->nullable();
             $table->tinyInteger('allow_bulk_upload')->default(0)->nullable();
             $table->string('default_password')->default('123456')->nullable();
-            //$table->decimal('provident_fund_company_amount', 20, 2)->default(0)->nullable();
-            //$table->tinyInteger('provident_fund_company_amount_percent')->default(0)->nullable();
+            //wallet settings!
+            $table->tinyInteger('has_provident_fund')->default(0)->nullable();
+            $table->decimal('employee_pf', 10, 2)->default(0)->nullable();
+            $table->decimal('company_pf', 10, 2)->default(0)->nullable();
+            $table->tinyInteger('has_welfare_fund')->default(0)->nullable();
+            $table->decimal('has_welfare_amount', 10, 2)->default(0)->nullable();
+            $table->tinyInteger('has_gratuity')->default(0)->nullable();
+            $table->integer('gratuity_apply_after')->default(0)->nullable();
+            //End wallet setting
             $table->string('device_ip', 20)->nullable();
             $table->timestamps();
             $table->foreign('com_id')->references('id')->on('companies')->onDelete('CASCADE');

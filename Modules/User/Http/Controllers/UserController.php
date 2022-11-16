@@ -36,16 +36,14 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-
         //dd($this->user->users()->get());
-
         if(! $request->ajax()){
             return view('user::user.index');
         }
 
         if ($request->get('type') == "active"){
 
-            return DataTables::of( $this->user->all())
+            return DataTables::of($this->user->all())
                 ->addIndexColumn()
                 ->editColumn('department', function ($row) {
                     return (! empty($row->user) && ! empty($row->user->department) ? $row->user->department->name : null);
@@ -60,7 +58,7 @@ class UserController extends Controller
                     return (! empty($row->user) ? get_status($row->user->status) : null );
                 })
                 ->addColumn('action', function ($row) {
-                    return edit_button($row, 'modal') . trash_button($row);
+                    return edit_button('userManagements.user.edit', $row) . trash_button('userManagements.user.trash', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -84,7 +82,7 @@ class UserController extends Controller
                     return (! empty($row->user) ?  get_status($row->user->status) : null);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button($row) . delete_button($row);
+                    return restore_button('userManagements.user.restore', $row) . delete_button('userManagements.user.delete', $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

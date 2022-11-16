@@ -14,7 +14,7 @@ class CompanySettingsUpdateRequest extends RootRequest
     public function rules()
     {
         return [
-            'attendance' => 'required',
+           // 'attendance' => 'required',
         ];
 
     }

@@ -36,9 +36,7 @@ Route::prefix('user-managements')->name('userManagements.')->middleware(['auth']
     //ajax
    //Route::get('user/getComBranch', [UserController::class, 'getCompanyOrBranch'])->name('user.getComBranch');
 
-
     /** Start Role */
-
     Route::get('roles', [RoleController::class, 'index'])->name('roles');
     Route::get('role/add', [RoleController::class, 'create'])->name('role.add');
     Route::post('role/store', [RoleController::class, 'store'])->name('role.store');
