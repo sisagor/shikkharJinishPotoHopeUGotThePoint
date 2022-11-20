@@ -98,8 +98,8 @@ class AttendanceLog extends Command
                     ->where('employee_id', $emp->id)
                     ->where('punch_time', $att['timestamp']);
 
-                ($emp->com_id ?  $emp->where('com_id', $emp->com_id)->whereNotNull('com_id') : $emp);
-                ($emp->branch_id ?  $emp->where('branch_id', $emp->branch_id)->whereNotNull('branch_id') : $emp);
+                ($emp->com_id ?  $check->where('com_id', $emp->com_id)->whereNotNull('com_id') : $emp);
+                ($emp->branch_id ?  $check->where('branch_id', $emp->branch_id)->whereNotNull('branch_id') : $emp);
 
                 $check = $check->count();
 

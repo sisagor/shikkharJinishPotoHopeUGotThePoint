@@ -469,6 +469,8 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     margin-right: 5px!important;
     margin-left: 5px!important;
 }
-.icheckbox_flat-green, .iradio_flat-green{
+
+.icheckbox_flat-green, .iradio_flat-green
+{
     margin-bottom: 5px!important;
 }
