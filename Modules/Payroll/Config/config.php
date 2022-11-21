@@ -15,4 +15,12 @@ return [
         SalaryStructure::TYPE_OVERTIME,
     ],
 
+
+    //Configure pay scales;
+    'pay_scale' => [
+        'increment_one' => 6,
+        'increment_two' => 15,
+    ],
+
+
 ];

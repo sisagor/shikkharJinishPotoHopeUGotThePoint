@@ -42,10 +42,21 @@ class CreatePayrollTable extends Migration
                 $table->softDeletes();
                 $table->integer('created_by')->default(0);
                 $table->foreign('com_id')->references('id')->on('companies')->onDelete('NO ACTION');
-                $table->foreign('designation_id')->references('id')->on('designations')->onDelete('NO ACTION');;
+                $table->foreign('designation_id')->references('id')->on('designations')->onDelete('NO ACTION');
             });
         }
 
+        if (! Schema::hasTable('salary_rule_increments')) {
+            Schema::create('salary_rule_increments', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('salary_rule_id')->unsigned()->nullable();
+                $table->decimal('increment_one_amount', 10, 6);
+                $table->integer('increment_one_year');
+                $table->decimal('increment_two_amount', 10, 6);
+                $table->integer('increment_two_year');
+                $table->foreign('salary_rule_id')->references('id')->on('salary_rules')->onDelete('CASCADE');
+            });
+        }
 
         if (! Schema::hasTable('salary_rule_structures')) {
             Schema::create('salary_rule_structures', function (Blueprint $table) {

@@ -1263,7 +1263,7 @@
 .main_menu span.fa {
     float: right;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 6px;
     font-size: 10px;
     min-width: inherit;
     color: #C4CFDA;
@@ -2706,7 +2706,7 @@ ul.to_do {
 }
 
 ul.to_do li {
-    /*background: #f3f3f3;*/
+    background: #f3f3f3;
     border-radius: 3px;
     position: relative;
     padding: 7px;

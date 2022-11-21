@@ -581,8 +581,8 @@ return [
     'welfare' => 'welfare',
     'has_welfare' => 'Has Welfare',
     'welfare_fund_amount' => 'Welfare Fund Amount',
-
-
+    'gratuity_apply_after' => 'Gratuity Apply After',
+    'gratuity' => 'Gratuity',
 
 
 ];
