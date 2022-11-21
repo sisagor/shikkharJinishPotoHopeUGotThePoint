@@ -24,21 +24,23 @@
                                    data-placement="top"
                                    title="{{ trans('help.has_provident_fund')}}"></i>
                             </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <label class="col-form-label label-align" for="employee_pf">
+                                    {{trans('app.employee_pf')}} (in percent)
+                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                                       title="{{ trans('help.employee_pf')}}"></i>
+                                </label>
+                                <div class="item form-group">
+                                    <input class="form-control" type="text" maxlength="2" id="employee_pf"
+                                           value="{{config('company_settings.employee_pf') ?? 0}}"
+                                           name="employee_pf" />
+                                </div>
+                            </div>
                         </li>
                     </ul>
 
-                    <div class="col-md-12 col-sm-12">
-                        <label class="col-form-label label-align" for="employee_pf">
-                            {{trans('app.employee_pf')}} (in percent)
-                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                               title="{{ trans('help.employee_pf')}}"></i>
-                        </label>
-                        <div class="item form-group">
-                            <input class="form-control" type="text" maxlength="2" id="employee_pf"
-                                   value="{{config('company_settings.employee_pf') ?? 0}}"
-                                   name="employee_pf" />
-                        </div>
-                    </div>
+
 
                     <div class="col-md-12 col-sm-12">
                         <label class="col-form-label label-align" for="company_pf">
@@ -89,19 +91,19 @@
                            data-placement="top"
                            title="{{ trans('help.has_welfare_fund')}}"></i>
                     </div>
+
+                    <div class="col-md-12 col-sm-12">
+                        <label class="col-form-label label-align" for="welfare_fund_amount">
+                            {{trans('app.welfare_fund_amount')}} (in percent)
+                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                               title="{{ trans('help.welfare_fund_amount')}}"></i>
+                        </label>
+                        <div class="item form-group">
+                            <input class="form-control" type="text" id="default_password" value="{{config('company_settings.welfare_fund_amount') ?? 0}}" name="welfare_fund_amount" />
+                        </div>
+                    </div>
                 </li>
             </ul>
-
-            <div class="col-md-12 col-sm-12">
-                <label class="col-form-label label-align" for="welfare_fund_amount">
-                    {{trans('app.welfare_fund_amount')}} (in percent)
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                       title="{{ trans('help.welfare_fund_amount')}}"></i>
-                </label>
-                <div class="item form-group">
-                    <input class="form-control" type="text" id="default_password" value="{{config('company_settings.welfare_fund_amount') ?? 0}}" name="welfare_fund_amount" />
-                </div>
-            </div>
 
         </fieldset>
 
@@ -121,20 +123,20 @@
                            data-placement="top"
                            title="{{ trans('help.has_gratuity')}}"></i>
                     </div>
+
+                    <div class="col-md-12 col-sm-12">
+                        <label class="col-form-label label-align" for="gratuity_apply_after">
+                            {{trans('app.gratuity_apply_after')}} (in year)
+                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                               title="{{ trans('help.gratuity_apply_after')}}"></i>
+                        </label>
+                        <div class="item form-group">
+                            <input class="form-control" type="number" id="gratuity_apply_after" value="{{config('company_settings.gratuity_apply_after') ?? 0}}"
+                                   name="gratuity_apply_after" placeholder="1" />
+                        </div>
+                    </div>
                 </li>
             </ul>
-
-            <div class="col-md-12 col-sm-12">
-                <label class="col-form-label label-align" for="gratuity_apply_after">
-                    {{trans('app.gratuity_apply_after')}} (in year)
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                       title="{{ trans('help.gratuity_apply_after')}}"></i>
-                </label>
-                <div class="item form-group">
-                    <input class="form-control" type="number" id="gratuity_apply_after" value="{{config('company_settings.gratuity_apply_after') ?? 0}}"
-                           name="gratuity_apply_after" placeholder="1" />
-                </div>
-            </div>
 
         </fieldset>
     </div>
