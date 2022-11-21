@@ -7,6 +7,7 @@
 
 {{--Salary Rule Basic Info--}}
 <div class="col-md-4 col-sm-4">
+
     <fieldset>
         <legend>{{ trans('app.salary_rule_info') }}
             <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.salary_rule_info')}}"></i>
@@ -25,7 +26,6 @@
                 </select>
             </div>
          </div>
-
         <div class="col-md-12 col-sm-12">
             <label class="col-form-label label-align" for="name">
                 {{trans('app.name')}} <span class="required">*</span>
@@ -36,6 +36,7 @@
                         value="@if($rule){{$rule->name}}@endif" placeholder="{{trans('app.name')}}">
             </div>
         </div>
+
         <div class="col-md-12 col-sm-12">
             <label class="col-form-label label-align" for="basic_salary">
                 {{trans('app.basic_salary')}} <span class="required">*</span>
@@ -47,6 +48,32 @@
             </div>
         </div>
 
+        @if(config('company_settings.has_increment'))
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="increment_amount">
+                    {{trans('app.increment_amount')}} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.basic_salary')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input  class="form-control" type="text" id="increment_amount" name="increment_amount"
+                            value="@if($rule){{round($rule->increment_amount, 2)}}@endif" placeholder="{{trans('placeholder.increment_amount')}}">
+                </div>
+            </div>
+        @endif
+
+        @if(config('company_settings.has_efficient_bar'))
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="efficient_bar_amount">
+                    {{trans('app.efficient_bar_amount')}} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.efficient_bar_amount')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input  class="form-control" type="text" id="efficient_bar_amount" name="efficient_bar_amount"
+                            value="@if($rule){{round($rule->efficient_bar_amount, 2)}}@endif" placeholder="{{trans('placeholder.efficient_bar_amount')}}">
+                </div>
+            </div>
+        @endif
+
         <div class="col-md-12 col-sm-12">
             <label class="col-form-label label-align" for="details">
                 {{trans('app.details')}}
@@ -56,7 +83,6 @@
                 <textarea  class="form-control" type="text" required id="details" name="details">@if($rule){{$rule->details}}@endif</textarea>
             </div>
         </div>
-
         <div class="col-md-12 col-sm-12">
             <label class="col-form-label label-align" for="status">
                 {{trans('app.status')}} <span class="required">*</span>
@@ -75,6 +101,7 @@
         </div>
 
     </fieldset>
+
 </div>
 
 

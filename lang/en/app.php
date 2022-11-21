@@ -581,6 +581,15 @@ return [
     'welfare' => 'welfare',
     'has_welfare' => 'Has Welfare',
     'welfare_fund_amount' => 'Welfare Fund Amount',
+    'payroll_settings' => 'Payroll Settings',
+    'increment_settings' => 'Increment Settings',
+    'efficient_settings' => 'Efficient Settings',
+    'has_increment' => 'Has Increment',
+    'has_efficient_bar' => 'Has Efficient Bar',
+    'increment_year' => 'Increment Year',
+    'efficient_bar_year' => 'Efficient Bar Year',
+    'efficient_bar_settings' => 'Efficient Bar Settings',
+
 
 
 

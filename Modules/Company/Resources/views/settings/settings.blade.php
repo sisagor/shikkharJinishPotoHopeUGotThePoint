@@ -28,6 +28,12 @@
                            role="tab" aria-controls="home"
                            aria-selected="true">{{trans('app.wallet_settings')}}</a>
                     </li>
+
+                    <li class="nav-item w-15">
+                        <a class="nav-link thin-tab" id="home-tab" data-toggle="tab" href="#payrollSettings"
+                           role="tab" aria-controls="home"
+                           aria-selected="true">{{trans('app.payroll_settings')}}</a>
+                    </li>
                 </ul>
 
                 <div class="tab-content" id="myTabContent">
@@ -41,6 +47,12 @@
                          aria-labelledby="smsSettings-tab">
                         {{--general settings--}}
                        @include('company::settings.wallet')
+                    </div>
+
+                    <div class="tab-pane fade" id="payrollSettings" role="tabpanel"
+                         aria-labelledby="smsSettings-tab">
+                        {{--general settings--}}
+                       @include('company::settings.payroll')
                     </div>
 
                 </div>

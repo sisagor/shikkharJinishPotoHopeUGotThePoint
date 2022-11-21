@@ -15,4 +15,15 @@ return [
         SalaryStructure::TYPE_OVERTIME,
     ],
 
+    'amount' => [
+        'increment_amount',
+        'efficiency_bar_amount',
+    ],
+
+     'year' => [
+        'increment_year' => 6,
+        'efficiency_bar_year' => 15,
+    ],
+
+
 ];

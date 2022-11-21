@@ -36,13 +36,16 @@ class CreatePayrollTable extends Migration
                 $table->bigInteger('designation_id')->unsigned()->nullable();
                 $table->string('name');
                 $table->decimal('basic_salary', 20, 6);
+                $table->decimal('increment_amount', 10, 6);
+                $table->decimal('efficient_bar_amount', 10, 6);
                 $table->string('details');
+                $table->json('components');
                 $table->tinyInteger('status')->default(1);
                 $table->timestamps();
                 $table->softDeletes();
                 $table->integer('created_by')->default(0);
                 $table->foreign('com_id')->references('id')->on('companies')->onDelete('NO ACTION');
-                $table->foreign('designation_id')->references('id')->on('designations')->onDelete('NO ACTION');;
+                $table->foreign('designation_id')->references('id')->on('designations')->onDelete('NO ACTION');
             });
         }
 
@@ -75,6 +78,8 @@ class CreatePayrollTable extends Migration
                 $table->longText('details')->nullable();
                 $table->decimal('tax', 20, 6)->nullable();
                 $table->decimal('total', 20, 6)->default(0)->nullable();
+                $table->decimal('gross_amount', 20, 6)->default(0)->nullable();
+                $table->decimal('net_amount', 20, 6)->default(0)->nullable();
                 $table->decimal('paid_amount', 20, 6)->default(0)->nullable();
                 $table->decimal('due_amount', 20, 6)->default(0)->nullable();
                 $table->tinyInteger('is_paid')->default(0)->nullable();
@@ -87,6 +92,16 @@ class CreatePayrollTable extends Migration
                 $table->foreign('employee_id')->references('id')->on('employees')->onDelete('NO ACTION');
             });
         }
+
+       /* if (! Schema::hasTable('salary_details')) {
+            Schema::create('salary_details', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('salary_id')->unsigned()->nullable();
+                $table->string('key');
+                $table->string('value');
+                $table->foreign('salary_id')->references('id')->on('salaries')->onDelete('CASCADE');
+            });
+        }*/
 
        /* if (! Schema::hasTable('salary_advance')) {
             Schema::create('salary_advance', function (Blueprint $table) {

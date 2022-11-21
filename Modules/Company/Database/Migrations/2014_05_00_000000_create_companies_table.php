@@ -55,6 +55,12 @@ class CreateCompaniesTable extends Migration
             $table->tinyInteger('has_gratuity')->default(0)->nullable();
             $table->integer('gratuity_apply_after')->default(0)->nullable();
             //End wallet setting
+            //Increment:
+            $table->tinyInteger('has_increment')->default(0)->nullable();
+            $table->tinyInteger('has_efficient_bar')->default(0)->nullable();
+            $table->integer('increment_year')->default(0)->nullable();
+            $table->integer('efficient_bar_year')->default(0)->nullable();
+            //Increment
             $table->string('device_ip', 20)->nullable();
             $table->timestamps();
             $table->foreign('com_id')->references('id')->on('companies')->onDelete('CASCADE');

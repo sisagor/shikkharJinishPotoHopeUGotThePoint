@@ -145,5 +145,11 @@ return [
     'company_pf' => 'Company provident fund %',
     'welfare' => 'Welfare fund settings',
     'welfare_fund_amount' => 'This amount will cut from employee salary.',
+    'increment_settings' => 'Salary increment configuration',
+    'efficient_bar_settings' => 'Efficient bar configuration',
+    'has_increment' => 'This will confirm system calculate the increment',
+    'has_efficient_bar' => 'This will confirm system calculate efficient bar',
+    'increment_year' => 'How much year the increment continue?!',
+    'efficient_bar_year' => 'How much year the efficient bar continue?!',
 
 ];
