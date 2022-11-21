@@ -35,7 +35,7 @@ class CreatePayrollTable extends Migration
                 $table->bigInteger('com_id')->unsigned()->nullable();
                 $table->bigInteger('designation_id')->unsigned()->nullable();
                 $table->string('name');
-                $table->decimal('basic_salary', 20, 6);
+                $table->decimal('basic_salary', 10, 6);
                 $table->decimal('increment_amount', 10, 6);
                 $table->decimal('efficient_bar_amount', 10, 6);
                 $table->string('details');
@@ -49,25 +49,13 @@ class CreatePayrollTable extends Migration
             });
         }
 
-        if (! Schema::hasTable('salary_rule_increments')) {
-            Schema::create('salary_rule_increments', function (Blueprint $table) {
-                $table->id();
-                $table->bigInteger('salary_rule_id')->unsigned()->nullable();
-                $table->decimal('increment_one_amount', 10, 6);
-                $table->integer('increment_one_year');
-                $table->decimal('increment_two_amount', 10, 6);
-                $table->integer('increment_two_year');
-                $table->foreign('salary_rule_id')->references('id')->on('salary_rules')->onDelete('CASCADE');
-            });
-        }
-
         if (! Schema::hasTable('salary_rule_structures')) {
             Schema::create('salary_rule_structures', function (Blueprint $table) {
                 $table->id();
                 $table->bigInteger('salary_rule_id')->unsigned()->nullable();
                 $table->bigInteger('salary_structure_id')->unsigned()->nullable();
                 $table->tinyInteger('is_percent')->default(0);
-                $table->decimal('amount', 20, 6)->default(0);
+                $table->decimal('amount', 10, 6)->default(0);
                 $table->foreign('salary_rule_id')->references('id')->on('salary_rules')->onDelete('CASCADE');
                 $table->foreign('salary_structure_id')->references('id')->on('salary_structures')->onDelete('CASCADE');
             });
@@ -81,18 +69,18 @@ class CreatePayrollTable extends Migration
                 $table->bigInteger('salary_rule_id')->unsigned()->nullable();
                 $table->bigInteger('employee_id')->unsigned()->nullable();
                 $table->string('month')->nullable();
-                $table->decimal('basic_salary', 20, 6)->default(0)->nullable();
-                $table->decimal('allowance', 20, 6)->default(0)->nullable();
-                $table->decimal('deduction', 20, 6)->default(0)->nullable();
-                $table->decimal('other_allowance', 20, 6)->default(0)->nullable();
-                $table->decimal('other_deduction', 20, 6)->default(0)->nullable();
+                $table->decimal('basic_salary', 10, 6)->default(0)->nullable();
+                $table->decimal('allowance', 10, 6)->default(0)->nullable();
+                $table->decimal('deduction', 10, 6)->default(0)->nullable();
+                $table->decimal('other_allowance', 10, 6)->default(0)->nullable();
+                $table->decimal('other_deduction', 10, 6)->default(0)->nullable();
                 $table->longText('details')->nullable();
-                $table->decimal('tax', 20, 6)->nullable();
-                $table->decimal('total', 20, 6)->default(0)->nullable();
-                $table->decimal('gross_amount', 20, 6)->default(0)->nullable();
-                $table->decimal('net_amount', 20, 6)->default(0)->nullable();
-                $table->decimal('paid_amount', 20, 6)->default(0)->nullable();
-                $table->decimal('due_amount', 20, 6)->default(0)->nullable();
+                $table->decimal('tax', 10, 6)->nullable();
+                $table->decimal('total', 10, 6)->default(0)->nullable();
+                $table->decimal('gross_amount', 10, 6)->default(0)->nullable();
+                $table->decimal('net_amount', 10, 6)->default(0)->nullable();
+                $table->decimal('paid_amount', 10, 6)->default(0)->nullable();
+                $table->decimal('due_amount', 10, 6)->default(0)->nullable();
                 $table->tinyInteger('is_paid')->default(0)->nullable();
                 $table->tinyInteger('approval_status')->default(0)->nullable();
                 $table->timestamps();
@@ -100,6 +88,22 @@ class CreatePayrollTable extends Migration
                 $table->foreign('salary_rule_id')->references('id')->on('salary_rules')->onDelete('NO ACTION');
                 $table->foreign('com_id')->references('id')->on('companies')->onDelete('NO ACTION');
                 $table->foreign('branch_id')->references('id')->on('branches')->onDelete('NO ACTION');
+                $table->foreign('employee_id')->references('id')->on('employees')->onDelete('NO ACTION');
+            });
+        }
+
+        if (! Schema::hasTable('salary_increments_history')) {
+            Schema::create('salary_increments_history', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('employee_id')->unsigned()->nullable();
+                $table->bigInteger('salary_rule_id')->unsigned()->nullable();
+                $table->date('applied_date');
+                $table->integer('increment_year');
+                $table->decimal('increment_amount', 10,2);
+                $table->integer('efficient_bar_year');
+                $table->decimal('efficient_bar_amount', 10,2);
+                $table->decimal('basic_salary', 10, 6);
+                $table->foreign('salary_rule_id')->references('id')->on('salary_rules')->onDelete('NO ACTION');
                 $table->foreign('employee_id')->references('id')->on('employees')->onDelete('NO ACTION');
             });
         }
