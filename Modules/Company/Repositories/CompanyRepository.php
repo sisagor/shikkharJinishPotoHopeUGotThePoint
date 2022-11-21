@@ -187,6 +187,7 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
 
         try {
 
+            //general company settings
             if ($request->has('general_settings')) {
 
                 if ($request->get('enable_device')) {
@@ -211,6 +212,7 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
                 ]);
             }
 
+            //wallet settings config.
             if ($request->has('wallet_settings')) {
 
                 $setting->update([
@@ -223,6 +225,17 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
 
                     'has_gratuity' => $request->get('has_gratuity') ?? 0,
                     'gratuity_apply_after' => $request->get('gratuity_apply_after') ?? 0,
+                ]);
+            }
+
+            //payroll settings config;
+            if ($request->has('payroll_settings')) {
+
+                $setting->update([
+                    'has_increment' => $request->get('has_increment') ?? 0,
+                    'has_efficient_bar' => $request->get('has_efficient_bar') ?? 0,
+                    'increment_year' => $request->get('increment_year') ?? 0,
+                    'efficient_bar_year' => $request->get('efficient_bar_year') ?? 0,
                 ]);
             }
 
