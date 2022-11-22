@@ -15,7 +15,10 @@ class SalaryRule extends RootModel {
 
     protected $table = 'salary_rules';
 
-    protected $fillable = ['id', 'com_id', 'designation_id', 'name','details', 'basic_salary', 'status', 'created_by', 'updated_by', 'deleted_at'];
+    protected $fillable = [
+        'id', 'com_id', 'designation_id', 'name','details', 'basic_salary', 'status',
+        'increment_amount', 'efficient_bar_amount', 'created_by', 'updated_by', 'deleted_at'
+    ];
 
     function company(){
         return $this->belongsTo(Company::class, 'com_id', 'id');

@@ -25,7 +25,7 @@
                                    title="{{ trans('help.has_increment')}}"></i>
                             </div>
 
-                            <div class="col-md-12 col-sm-12">
+                            <div class="col-md-12 col-sm-12 mt-2">
                                 <label class="col-form-label label-align" for="increment_year">
                                     {{trans('app.increment_year')}}
                                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
@@ -91,7 +91,7 @@
                            title="{{ trans('help.has_efficient_bar')}}"></i>
                     </div>
 
-                    <div class="col-md-12 col-sm-12">
+                    <div class="col-md-12 col-sm-12 mt-2">
                         <label class="col-form-label label-align" for="efficient_bar_year">
                             {{trans('app.efficient_bar_year')}}
                             <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"

@@ -591,6 +591,8 @@ return [
     'increment_year' => 'Increment Year',
     'efficient_bar_year' => 'Efficient Bar Year',
     'efficient_bar_settings' => 'Efficient Bar Settings',
+    'increment_amount' => 'Increment Amount',
+    'efficient_bar_amount' => 'Efficient Bar Amount',
 
 
 ];

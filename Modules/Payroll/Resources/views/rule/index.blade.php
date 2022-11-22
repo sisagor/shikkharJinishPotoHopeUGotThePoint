@@ -1,5 +1,10 @@
 @extends('layouts.tableTab', ['title' => 'salary_rules'])
 
+
+@section('buttons')
+    {!! add_button('payroll.rule.add', 'new_salary_rule', 0) !!}
+@endsection
+
 @section('active')
     {{--<table class="default-table table table-striped table-bordered no-footer dtr-inline"
            style="width: 100%;" role="grid" aria-describedby="datatable-buttons_info">--}}

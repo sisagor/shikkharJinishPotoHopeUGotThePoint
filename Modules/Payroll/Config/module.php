@@ -78,6 +78,12 @@ return [
                     'show' => 1,
                 ],
                 [
+                    'name' => 'Grade Wise Rules',
+                    'url' => 'payroll/rule/grade',
+                    'action' => 'payroll.rule.grade',
+                    'show' => 1,
+                ],
+                [
                     'name' => 'Edit Salary Rule',
                     'url' => 'payroll/rule/edit',
                     'action' => 'payroll.rule.edit',

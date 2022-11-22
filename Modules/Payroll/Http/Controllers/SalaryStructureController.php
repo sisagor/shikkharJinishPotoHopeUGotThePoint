@@ -38,6 +38,9 @@ class SalaryStructureController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('status', function ($row){
+                    return get_status($row->status);
+                })
                 ->addColumn('action', function ($row) {
                     return edit_button('payroll.structure.edit', $row) . trash_button('payroll.structure.trash', $row);
                 })

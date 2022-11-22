@@ -25,7 +25,8 @@
                                    title="{{ trans('help.has_provident_fund')}}"></i>
                             </div>
 
-                            <div class="col-md-12 col-sm-12">
+
+                            <div class="col-md-12 col-sm-12 mt-2">
                                 <label class="col-form-label label-align" for="employee_pf">
                                     {{trans('app.employee_pf')}} (in percent)
                                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
@@ -37,23 +38,22 @@
                                            name="employee_pf" />
                                 </div>
                             </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <label class="col-form-label label-align" for="company_pf">
+                                    {{trans('app.company_pf')}} (in percent)
+                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                                       title="{{ trans('help.company_pf')}}"></i>
+                                </label>
+                                <div class="item form-group">
+                                    <input class="form-control" type="text" maxlength="2" id="company_pf"
+                                           value="{{config('company_settings.company_pf') ?? 0}}"
+                                           name="company_pf"/>
+                                </div>
+                            </div>
                         </li>
                     </ul>
 
-
-
-                    <div class="col-md-12 col-sm-12">
-                        <label class="col-form-label label-align" for="company_pf">
-                            {{trans('app.company_pf')}} (in percent)
-                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                               title="{{ trans('help.company_pf')}}"></i>
-                        </label>
-                        <div class="item form-group">
-                            <input class="form-control" type="text" maxlength="2" id="company_pf"
-                                   value="{{config('company_settings.company_pf') ?? 0}}"
-                                   name="company_pf"/>
-                        </div>
-                    </div>
                 </div>
             </div>
         </fieldset>
@@ -92,7 +92,7 @@
                            title="{{ trans('help.has_welfare_fund')}}"></i>
                     </div>
 
-                    <div class="col-md-12 col-sm-12">
+                    <div class="col-md-12 col-sm-12 mt-2">
                         <label class="col-form-label label-align" for="welfare_fund_amount">
                             {{trans('app.welfare_fund_amount')}} (in percent)
                             <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
@@ -107,7 +107,7 @@
 
         </fieldset>
 
-        <fieldset>
+        <fieldset class="mt-2">
             <legend>{{ trans('app.gratuity') }}
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                    title="{{ trans('help.gratuity')}}"></i>
@@ -124,7 +124,7 @@
                            title="{{ trans('help.has_gratuity')}}"></i>
                     </div>
 
-                    <div class="col-md-12 col-sm-12">
+                    <div class="col-md-12 col-sm-12 mt-2">
                         <label class="col-form-label label-align" for="gratuity_apply_after">
                             {{trans('app.gratuity_apply_after')}} (in year)
                             <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"

@@ -36,6 +36,7 @@ Route::prefix('payroll')->name('payroll.')->middleware('auth')->group(function (
     Route::get('rule/{rule}/view', [PayrollController::class, 'show'])->name('rule.view')->middleware('ajax');
     Route::get('rule/{rule}/trash', [PayrollController::class, 'destroy'])->name('rule.trash');
     Route::get('rule/{rule}/restore', [PayrollController::class, 'restore'])->name('rule.restore');
+    Route::get('rule/grade', [PayrollController::class, 'gradeWiseRule'])->name('rule.grade');
 
 
     #demo salary generation

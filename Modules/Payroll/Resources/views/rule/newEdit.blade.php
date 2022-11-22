@@ -52,7 +52,7 @@
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="increment_amount">
                     {{trans('app.increment_amount')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.basic_salary')}}"></i>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.increment_amount')}}"></i>
                 </label>
                 <div class="item form-group">
                     <input  class="form-control" type="text" id="increment_amount" name="increment_amount"

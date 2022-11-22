@@ -5,6 +5,7 @@ namespace Modules\Payroll\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
+use Modules\Payroll\Entities\SalaryStructure;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Payroll\Entities\SalaryRule;
 use Illuminate\Contracts\Support\Renderable;
@@ -190,6 +191,24 @@ class PayrollController extends Controller
         if ($this->repository->destroy($rule)) {
 
             return redirect()->back()->with('success', trans('msg.delete_success', ['model' => trans('model.salary_rule')]));
+        }
+
+        return redirect()->back()->with('error', trans('msg.delete_failed', ['model' => trans('model.salary_rule')]));
+    }
+
+    /**
+     * Remove show the rule details when select rule.
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function gradeWiseRule(Request $request)
+    {
+        if (! $request->ajax()) {
+
+            $rules = SalaryRule::active()->pluck('name', 'id');
+            $structures = SalaryStructure::active()->get();
+
+            return view('payroll::rule.showGradeWise', compact('rules', 'structures'));
         }
 
         return redirect()->back()->with('error', trans('msg.delete_failed', ['model' => trans('model.salary_rule')]));

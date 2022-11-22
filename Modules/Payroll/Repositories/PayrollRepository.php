@@ -56,6 +56,8 @@ class PayrollRepository extends EloquentRepository implements PayrollRepositoryI
                 'name' => $request->get('name'),
                 'designation_id' => $request->get('designation_id'),
                 'basic_salary' => $request->get('basic_salary'),
+                'increment_amount' => $request->get('increment_amount'),
+                'efficient_bar_amount' => $request->get('efficient_bar_amount'),
                 'details' => $request->get('details'),
                 'status' => $request->get('status'),
             ]);
@@ -167,6 +169,8 @@ class PayrollRepository extends EloquentRepository implements PayrollRepositoryI
                 'name' => $request->get('name'),
                 'designation_id' => $request->get('designation_id'),
                 'basic_salary' => $request->get('basic_salary'),
+                'increment_amount' => $request->get('increment_amount'),
+                'efficient_bar_amount' => $request->get('efficient_bar_amount'),
                 'details' => $request->get('details'),
                 'status' => $request->get('status'),
             ]);
