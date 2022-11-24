@@ -4,7 +4,7 @@
         /**Auto Execute Part*/
         $(document).ready(function () {
 
-            console.log("working")
+
 
 
         });

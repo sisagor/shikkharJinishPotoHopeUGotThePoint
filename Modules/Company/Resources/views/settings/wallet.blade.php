@@ -33,7 +33,7 @@
                                        title="{{ trans('help.employee_pf')}}"></i>
                                 </label>
                                 <div class="item form-group">
-                                    <input class="form-control" type="text" maxlength="2" id="employee_pf"
+                                    <input class="form-control" type="text" maxlength="3" id="employee_pf"
                                            value="{{config('company_settings.employee_pf') ?? 0}}"
                                            name="employee_pf" />
                                 </div>

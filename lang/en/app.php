@@ -593,6 +593,10 @@ return [
     'efficient_bar_settings' => 'Efficient Bar Settings',
     'increment_amount' => 'Increment Amount',
     'efficient_bar_amount' => 'Efficient Bar Amount',
+    'grade_wise' => 'Grade Wise',
+    'salary_rule' => 'Salary Rule',
+    'increment' => 'Increment',
+    'efficient_bar' => 'Efficient Bar',
 
 
 ];

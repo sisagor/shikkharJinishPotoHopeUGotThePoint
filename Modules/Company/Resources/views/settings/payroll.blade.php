@@ -58,7 +58,6 @@
         </fieldset>
     </div>
 
-
    {{-- <li class="checkbox-todo-custom mt-2">
         <div class="col-md-12 col-12 custom-checkbox2">
             <input type="checkbox" value="1" class="flat"
@@ -70,8 +69,6 @@
                title="{{ trans('help.has_allowances')}}"></i>
         </div>
     </li>--}}
-
-
 
     <div class="col-md-6 col-sm-6">
         <fieldset>
@@ -98,14 +95,11 @@
                                title="{{ trans('help.efficient_bar_year')}}"></i>
                         </label>
                         <div class="item form-group">
-                            <input class="form-control" type="text" id="efficient_bar_year" value="{{config('company_settings.efficient_bar_year') ?? 0}}" name="efficient_bar_year" />
+                            <input class="form-control" maxlength="2" type="text" id="efficient_bar_year" value="{{config('company_settings.efficient_bar_year') ?? 0}}" name="efficient_bar_year" />
                         </div>
                     </div>
                 </li>
-
             </ul>
-
-
 
         </fieldset>
 
