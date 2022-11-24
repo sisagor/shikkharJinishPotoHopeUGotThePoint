@@ -207,11 +207,13 @@ class PayrollController extends Controller
 
             $rules = SalaryRule::active()->pluck('name', 'id');
             $structures = SalaryStructure::active()->get();
+            $rule = [];
 
-            return view('payroll::rule.showGradeWise', compact('rules', 'structures'));
+            set_action_title('view_salary_rules');
+
+            return view('payroll::rule.showGradeWise', compact('rules', 'structures', 'rule'));
         }
 
-        return redirect()->back()->with('error', trans('msg.delete_failed', ['model' => trans('model.salary_rule')]));
     }
 
 }

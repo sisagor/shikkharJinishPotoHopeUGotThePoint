@@ -20,17 +20,16 @@ use \App\Http\Controllers\frontEnd\FrontEndController;
 
 Route::get('clear', function () {
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
-    dd(config_path() . '/*');
-    foreach(glob(config_path() . '/*') as $file){
+    //dd(config_path() . '/*');
+    //Clear cache files;
+    foreach(glob(base_path() . '/bootstrap/cache/*') as $file){
         // check if is a file and not sub-directory
         if(is_file($file)){
             // delete file
             unlink($file);
         }
     }
-
     //\Illuminate\Support\Facades\Artisan::call('optimize');
-
     //clear attendance from machine;
     if (request()->get('ip')){
         try {

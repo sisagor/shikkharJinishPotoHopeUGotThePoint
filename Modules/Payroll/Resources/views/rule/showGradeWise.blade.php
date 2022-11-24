@@ -1,6 +1,9 @@
-@extends('layouts.viewModal', ['size' => 'lg',])
+@extends('layouts.viewModal',  ['title' => 'salary_rule','size' => 'lg',])
 
-@php($rule = [])
+
+@php
+    //dd("here");
+@endphp
 
 @section('viewModal')
 
@@ -88,7 +91,7 @@
                     @foreach($structures->filter(function ($item){ return $item->type == \Modules\Payroll\Entities\SalaryStructure::TYPE_ADD;}) as $add)
                         <div class="col-md-12 col-sm-12">
                             <label class="col-form-label label-align" for="{{ $add->name }}">
-                                {{ $add->salaryStructure->name }} {{ ($add->is_percent) ? '%' : null}}
+                                {{ $add->name }} {{ ($add->is_percent) ? '%' : null}}
                             </label>
                             <div class="item form-group">
                                 <input class="form-control" type="number" step="*" readonly value="{{(float)$add->amount}}"/>
@@ -105,10 +108,10 @@
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                            title="{{ trans('help.salary_structure_deduct')}}"></i>
                     </legend>
-                    @foreach($structures->filter(function ($item){ return $item->salaryStructure->type == \Modules\Payroll\Entities\SalaryStructure::TYPE_DEDUCT;}) as $deduct)
+                    @foreach($structures->filter(function ($item){ return $item->type == \Modules\Payroll\Entities\SalaryStructure::TYPE_DEDUCT;}) as $deduct)
                         <div class="col-md-12 col-sm-12">
-                            <label class="col-form-label label-align" for="{{ $deduct->salaryStructure->name }}">
-                                {{ $deduct->salaryStructure->name }} {{ ($deduct->is_percent) ? '%' : null}}
+                            <label class="col-form-label label-align" for="{{ $deduct->name }}">
+                                {{ $deduct->name }} {{ ($deduct->is_percent) ? '%' : null}}
                             </label>
                             <div class="item form-group">
                                 <input class="form-control" readonly type="number" step="*" value="{{ (float)$deduct->amount }}"/>
@@ -160,7 +163,6 @@
     </div>
 
 @endsection
-
 
 @include('payroll::scripts.grade')
 
