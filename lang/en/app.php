@@ -597,6 +597,7 @@ return [
     'salary_rule' => 'Salary Rule',
     'increment' => 'Increment',
     'efficient_bar' => 'Efficient Bar',
+    'year' => 'Year',
 
 
 ];

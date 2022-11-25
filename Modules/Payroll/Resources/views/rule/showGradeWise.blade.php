@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @php
-    //dd("here");
+    //dd(config('company_settings'));
 @endphp
 
 @section('contents')
@@ -41,45 +41,47 @@
                             </div>
 
                             <div class="col-md-4 col-sm-4">
-
                                 <label class="col-form-label label-align" for="salary_rule">
-                                    {{trans('app.salary_rule')}}
+                                    {{trans('app.type')}}
                                     {{--<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.status')}}"></i>--}}
                                 </label>
-                                <div class="radio">
-                                    <label class="hover">
-                                        <div class="iradio_flat-green checked hover" style="position: relative;">
-                                            <input type="radio" class="flat" checked="" name="iCheck" style="position: absolute; opacity: 0;">
-                                            <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div> {{trans('app.increment')}}
-                                    </label>
-                                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                                    <label class="">
-                                        <div class="iradio_flat-green" style="position: relative;">
-                                            <input type="radio" class="flat" name="iCheck" style="position: absolute; opacity: 0;">
-                                            <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div> {{trans('app.efficient_bar')}}
-                                    </label>
+                                <div class="item form-group">
+                                    <select class="full-width form-control" type="text" id="type" name="type">
+                                        <option value="">{{trans('app.select')}}</option>
+                                        <option value="increment">{{ trans('app.increment') }}</option>
+                                        <option value="efficient_bar">{{ trans('app.efficient_bar') }}</option>
+                                    </select>
                                 </div>
+                            </div>
 
-                              {{--  <div class="col-md-2 col-sm-2">
-                                    <label class="col-form-label label-align" for="salary_rule">
-                                        {{trans('app.increment')}}
-                                        --}}{{--<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.status')}}"></i>--}}{{--
-                                    </label>
-                                    <div class="item form-group">
-                                        <input class="full-width form-control" type="radio" id="increment" name="increment">
-                                    </div>
+                            <div class="col-md-4 col-sm-4" id="increment_year">
+                                <label class="col-form-label label-align" for="year">
+                                    {{trans('app.year')}}
+                                    {{--<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.status')}}"></i>--}}
+                                </label>
+                                <div class="item form-group">
+                                    <select class="full-width form-control" type="text"  name="increment_year">
+                                        <option value="">{{trans('app.select')}}</option>
+                                        @for($i = 1; $i <= config('company_settings.increment_year'); $i++)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                    </select>
                                 </div>
-                                <div class="col-md-2 col-sm-2">
-                                    <label class="col-form-label label-align" for="salary_rule">
-                                        {{trans('app.efficient_bar')}}
-                                        --}}{{--<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.status')}}"></i>--}}{{--
-                                    </label>
-                                    <div class="item form-group">
-                                        <input class="full-width form-control" type="radio" id="efficient_bar" name="efficient_bar">
-                                    </div>
-                                </div>--}}
+                            </div>
+
+                            <div class="col-md-4 col-sm-4 hide" id="efficient_bar_year">
+                                <label class="col-form-label label-align" for="year">
+                                    {{trans('app.year')}}
+                                    {{--<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.status')}}"></i>--}}
+                                </label>
+                                <div class="item form-group">
+                                    <select class="full-width form-control" type="text"  name="efficient_bar_year">
+                                        <option value="">{{trans('app.select')}}</option>
+                                        @for($i = 1; $i <= config('company_settings.efficient_bar_year'); $i++)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
                             </div>
 
                         </div>
