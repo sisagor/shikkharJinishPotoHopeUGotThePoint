@@ -3,34 +3,54 @@
     ;(function ($, window, document) {
         /**Auto Execute Part*/
         $(document).ready(function () {
-
+            var incrementYears = '{{config('company_settings.increment_year')}}';
+            var efficientBarYears = '{{config('company_settings.efficient_bar_year')}}';
             //Set type
-            let type = $('#type')
-            let incrementYear = $('#increment_year');
-            let efficientBarYear = $('#efficient_bar_year');
+            var type = $('#type')
+            var incrementLoop = $('#increment_year');
+
 
             type.on('change', function (){
 
                 if(this.value == "increment")
                 {
-                    incrementYear.removeClass('hide')
-                    incrementYear.addClass('show')
+                    let loop = '';
+                   /* incrementYear.removeClass('hide')
+                    incrementYear.addClass('show')*/
+                    incrementLoop.empty().append('<option selected value="">--select--</option>')
+                    for(let i = 1; i <= incrementYears; i++){
+                        loop +='<option value="'+ i +'"> '+ i +'</option>';
+                    }
+                    incrementLoop.append(loop)
                 }
-                else
-                {
-                    incrementYear.addClass('hide')
-                }
+
                 if(this.value == "efficient_bar")
                 {
-                    efficientBarYear.removeClass('hide')
-                    efficientBarYear.addClass('show')
+                    let loop = '';
+                    incrementLoop.empty().append('<option selected value="">--select--</option>')
+                    for(let i = 1; i <= efficientBarYears; i++){
+                        loop +='<option value="'+ i +'"> '+ i +'</option>';
+                    }
+                    incrementLoop.append(loop)
                 }
-                else
-                {
-                    efficientBarYear.addClass('hide')
-                }
+
             })
             //End set type
+
+
+            $('#increment_year').on('change', () => {
+
+                $.ajax({
+                    'method' : 'get',
+                    'url' : '{{route('payroll.rule.grade')}}?type='+ type.val() +'&year='+ incrementLoop.val()+'&rule_id='+$('#salary_rule').val(),
+                })
+                .success((response) => {
+                    console.log(response)
+                })
+
+            })
+
+
 
 
 

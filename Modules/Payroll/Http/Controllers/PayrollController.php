@@ -209,10 +209,17 @@ class PayrollController extends Controller
             $structures = SalaryStructure::active()->get();
             $rule = [];
 
-            set_action_title('view_salary_rules');
-
             return view('payroll::rule.showGradeWise', compact('rules', 'structures', 'rule'));
         }
+
+        if (! $request->get('type') || ! $request->get('year') || ! $request->get('rule_id')){
+            return response()->json(['status' => 0, 'msg' => 'Please select type and year'], 200);
+        }
+
+        $rule = SalaryRule::where('id', $request->get('rule_id'))->with('salaryRuleStructure')->first();
+        dd($rule);
+
+
 
     }
 

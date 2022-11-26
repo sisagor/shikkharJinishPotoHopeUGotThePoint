@@ -153,5 +153,7 @@ return [
     'efficient_bar_year' => 'How much year the efficient bar continue?!',
     'efficient_bar_amount' => 'This amount will add to the basic salary after increment years complete.',
     'increment_amount' => 'This amount will add to the basic salary in every year as increment',
+    'select_increment_type' => 'Select type increment or efficient bar?',
+    'select_salary_rule' => 'Select salary rule',
 
 ];
