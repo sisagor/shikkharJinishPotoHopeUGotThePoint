@@ -15,6 +15,11 @@ return [
         SalaryStructure::TYPE_OVERTIME,
     ],
 
+    'increment_key' => [
+        'increment' => 'increment',
+        'efficiency_bar' => 'efficiency_bar',
+    ],
+
     'amount' => [
         'increment_amount',
         'efficiency_bar_amount',

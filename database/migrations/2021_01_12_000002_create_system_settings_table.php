@@ -29,7 +29,6 @@ class CreateSystemSettingsTable extends Migration
                 $table->integer('currency_id')->nullable();
                 $table->tinyInteger('show_currency_symbol')->default(0)->nullable();
                 $table->tinyInteger('show_space_after_symbol')->default(0)->nullable();
-                $table->tinyInteger('has_tax_policy')->default(0)->nullable();
                 $table->tinyInteger('system_realtime_notification')->default(0)->nullable();
                 $table->mediumText('mix')->nullable();
                 $table->string('login_image')->nullable();

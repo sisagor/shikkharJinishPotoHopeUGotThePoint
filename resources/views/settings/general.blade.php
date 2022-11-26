@@ -201,27 +201,6 @@
         </fieldset>
 
         <fieldset class="mt-2">
-            <legend>{{ trans('app.taxation') }}
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                   title="{{ trans('help.taxation')}}"></i>
-            </legend>
-            <div class="col-md-12 col-sm-12">
-                <ul class="to_do">
-                    <li class="checkbox-todo-custom mt-3">
-                        <div class="col-md-12 col-12" style="position: relative; margin-top: -4px;">
-                            <input type="checkbox" value="1" class="flat"
-                                   name="has_tax_policy"
-                                   @if(config('system_settings.has_tax_policy')) checked @endif> &nbsp;&nbsp;
-                            <strong style="font-size: large"> {{trans('app.has_tax_policy')}} </strong>
-                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                               title="{{ trans('help.has_tax_policy')}}"></i>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </fieldset>
-
-        <fieldset class="mt-2">
             <legend>{{ trans('app.phone_number') }}
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                    title="{{ trans('help.phone_number')}}"></i>

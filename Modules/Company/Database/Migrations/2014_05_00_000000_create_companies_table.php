@@ -31,10 +31,11 @@ class CreateCompaniesTable extends Migration
         Schema::create('company_settings', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('com_id')->unsigned()->nullable();
-            $table->integer('yearly_leave')->default(10)->nullable();
+            //$table->integer('yearly_leave')->default(10)->nullable();
             $table->string('employee_id_prefix', 10)->nullable();
             $table->integer('employee_id_length')->default(6)->nullable();
             $table->tinyInteger('has_provision_period')->default(0);
+            $table->tinyInteger('has_tax_policy')->default(0)->nullable();
             //$table->tinyInteger('has_provident_fund')->default(0);
             //$table->tinyInteger('has_insurance')->default(0);
             $table->tinyInteger('allow_overtime')->default(0);

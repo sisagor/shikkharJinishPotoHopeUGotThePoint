@@ -26,7 +26,7 @@ class SystemSetting extends RootModel
         //System
         'system_name', 'system_phone', 'system_email', 'sms_events', 'email_notification', 'pagination',
         'report_pagination', 'currency_id', 'timezone_id', 'show_currency_symbol', 'show_space_after_symbol',
-        'has_tax_policy', 'system_realtime_notification', 'mix', 'phone_country_code', 'store_email_log',
+        'system_realtime_notification', 'mix', 'phone_country_code', 'store_email_log',
         'store_sms_log', 'login_image',
         //
     ];
@@ -35,7 +35,7 @@ class SystemSetting extends RootModel
         //system
         'system_name', 'system_phone', 'system_email', 'sms_events', 'email_notification', 'pagination',
         'report_pagination', 'currency_id', 'timezone_id', 'show_currency_symbol', 'show_space_after_symbol',
-        'has_tax_policy', 'system_realtime_notification', 'mix', 'phone_country_code', 'store_email_log',
+        'system_realtime_notification', 'mix', 'phone_country_code', 'store_email_log',
         'store_sms_log', 'login_image',
     ];
 

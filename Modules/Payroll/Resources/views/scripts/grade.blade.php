@@ -9,7 +9,6 @@
             var type = $('#type')
             var incrementLoop = $('#increment_year');
 
-
             type.on('change', function (){
 
                 if(this.value == "increment")
@@ -38,6 +37,7 @@
             //End set type
 
 
+            //ajax for getting calculation
             $('#increment_year').on('change', () => {
 
                 $.ajax({

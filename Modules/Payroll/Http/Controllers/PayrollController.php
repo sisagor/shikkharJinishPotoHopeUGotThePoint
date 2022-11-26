@@ -216,9 +216,35 @@ class PayrollController extends Controller
             return response()->json(['status' => 0, 'msg' => 'Please select type and year'], 200);
         }
 
-        $rule = SalaryRule::where('id', $request->get('rule_id'))->with('salaryRuleStructure')->first();
+        $rule = SalaryRule::where('id', $request->get('rule_id'))->with('salaryRuleStructure')->with('salaryRuleStructure.salaryStructure')->first();
+
+        $basic = $rule->basic_salary;
+
         dd($rule);
 
+        //dd(config('company_settings.has_increment'));
+        //dd($request->all());
+
+        if (config('company_settings.has_increment') && $request->get('type') == config('payroll.increment_key.increment'))
+        {
+            $basic = ($basic + ($rule->increment_amount * $request->get('year')));
+        }
+
+        if (config('company_settings.has_efficient_bar') && $request->get('type') == config('payroll.increment_key.increment'))
+        {   $increment = ($rule->efficient_bar_amount * config('company_settings.increment_year'));
+            $basic = ($basic + $increment + ($rule->efficient_bar_amount * $request->get('year')));
+        }
+
+        $tax = 0;
+
+        if (config('company_settings.has_tax_policy'))
+        {
+            $tax = tax_calculation($basic);
+        }
+
+        $view = view('payroll.rule.partials.ruleDetails', compact('basic', 'rule', 'tax'))->render();
+
+        return response()->json(['status' => 1, 'data' => $view]);
 
 
     }

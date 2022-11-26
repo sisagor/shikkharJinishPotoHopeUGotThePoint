@@ -222,8 +222,8 @@ class SalaryGenerationService
         $taxes = Tax::active()->select('eligible_amount', 'tax')->where('com_id', $employee->com_id)->orderBy('eligible_amount', 'desc')->get();
 
         foreach ($taxes as $tax) {
-            if ($tax->eligible_amount <= $salary) {
-
+            if ($tax->eligible_amount <= $salary)
+            {
                 return ($tax->tax / 100) * $salary;
             }
         }

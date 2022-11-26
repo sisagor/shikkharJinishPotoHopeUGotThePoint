@@ -196,7 +196,8 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
                 }
 
                 $setting->update([
-                    'yearly_leave' => $request->get('yearly_leave'),
+                    'has_tax_policy' => $request->get('has_tax_policy'),
+                    //'yearly_leave' => $request->get('yearly_leave'),
                     'employee_id_prefix' => $request->get('employee_id_prefix'),
                     'employee_id_length' => $request->get('employee_id_length'),
                     'attendance' => $request->get('attendance'),
@@ -219,10 +220,10 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
                     'has_provident_fund' => $request->get('has_provident_fund') ?? 0,
                     'employee_pf' => $request->get('employee_pf') ?? 0,
                     'company_pf' => $request->get('company_pf') ?? 0,
-
+                    //WELFARE
                     'has_welfare_fund' => $request->get('has_welfare_fund') ?? 0,
                     'welfare_fund_amount' => $request->get('welfare_fund_amount') ?? 0,
-
+                    //gratuity
                     'has_gratuity' => $request->get('has_gratuity') ?? 0,
                     'gratuity_apply_after' => $request->get('gratuity_apply_after') ?? 0,
                 ]);

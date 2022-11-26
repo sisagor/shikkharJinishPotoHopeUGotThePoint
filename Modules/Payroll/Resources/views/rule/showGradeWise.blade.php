@@ -69,22 +69,7 @@
 
 
 
-                        <div class="row">
-
-                            {{--Salary Rule Basic Info--}}
-                            <div class="col-md-6 col-sm-6">
-
-                                <div class="col-md-12 col-sm-12">
-                                    <label class="col-form-label label-align" for="name">
-                                        {{trans('app.name')}}
-                                        {{-- <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.salary_rule_name')}}"></i>--}}
-                                    </label>
-                                    <div class="item form-group">
-                                        <input class="form-control" type="text" id="name" name="name" readonly value="@if($rule) {{$rule->name}} @endif"
-                                               placeholder="{{trans('app.name')}}">
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row" id="rule_details">
 
                         </div>
 

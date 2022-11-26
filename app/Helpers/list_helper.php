@@ -9,6 +9,7 @@ use \Modules\Branch\Entities\Branch;
 use \Modules\Company\Entities\Company;
 use \Illuminate\Support\Facades\Cache;
 use \Modules\Employee\Entities\Employee;
+use Modules\Settings\Entities\Tax;
 use \Modules\Timesheet\Entities\Attendance;
 use \Modules\Timesheet\Entities\LeaveApplication;
 use \Illuminate\Notifications\DatabaseNotification;
@@ -522,6 +523,24 @@ if (! function_exists('make_employee_unique_id')) {
         $int = sprintf("%0" . $length . "d", $total + 1);
 
         return config('company_settings.employee_id_prefix') . $int;
+    }
+}
+
+/**get employee unique ID*/
+if (! function_exists('tax_calculation')) {
+    function tax_calculation($salary)
+    {
+        if (! com_id()){
+            return "You have to login from under company access level!";
+        }
+        $taxes = Tax::active()->select('eligible_amount', 'tax')->where('com_id', com_id())->orderBy('eligible_amount', 'desc')->get();
+
+        foreach ($taxes as $tax) {
+            if ($tax->eligible_amount <= $salary)
+            {
+                return ($tax->tax / 100) * $salary;
+            }
+        }
     }
 }
 
