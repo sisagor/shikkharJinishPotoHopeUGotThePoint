@@ -17,7 +17,7 @@
                    /* incrementYear.removeClass('hide')
                     incrementYear.addClass('show')*/
                     incrementLoop.empty().append('<option selected value="">--select--</option>')
-                    for(let i = 1; i <= incrementYears; i++){
+                    for(let i = 0; i <= incrementYears; i++){
                         loop +='<option value="'+ i +'"> '+ i +'</option>';
                     }
                     incrementLoop.append(loop)
@@ -27,7 +27,7 @@
                 {
                     let loop = '';
                     incrementLoop.empty().append('<option selected value="">--select--</option>')
-                    for(let i = 1; i <= efficientBarYears; i++){
+                    for(let i = 0; i <= efficientBarYears; i++){
                         loop +='<option value="'+ i +'"> '+ i +'</option>';
                     }
                     incrementLoop.append(loop)
@@ -44,14 +44,24 @@
                     'method' : 'get',
                     'url' : '{{route('payroll.rule.grade')}}?type='+ type.val() +'&year='+ incrementLoop.val()+'&rule_id='+$('#salary_rule').val(),
                 })
-                .success((response) => {
-                    console.log(response)
+                .success((response) =>
+                {
+                    if(response.status == 1)
+                    {
+                        $('#rule_details').html(response.data)
+                        $('#rule_total').html(response.total)
+                    }
+                    else
+                    {
+                        @include('scripts.notification',
+                        [
+                            'title' => trans('msg.error'),
+                            'msg' => trans('msg.required', ['filed' => "Salary rule, Type and year"]),
+                            'type' => 'warning',
+                        ])
+                    }
                 })
-
             })
-
-
-
 
 
 

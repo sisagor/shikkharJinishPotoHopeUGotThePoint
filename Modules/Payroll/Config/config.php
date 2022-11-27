@@ -17,17 +17,17 @@ return [
 
     'increment_key' => [
         'increment' => 'increment',
-        'efficiency_bar' => 'efficiency_bar',
+        'efficient_bar' => 'efficient_bar',
     ],
 
     'amount' => [
         'increment_amount',
-        'efficiency_bar_amount',
+        'efficient_bar_amount',
     ],
 
      'year' => [
         'increment_year' => 6,
-        'efficiency_bar_year' => 15,
+        'efficient_bar_year' => 15,
     ],
 
 

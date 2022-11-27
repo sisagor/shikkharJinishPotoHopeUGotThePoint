@@ -598,6 +598,9 @@ return [
     'increment' => 'Increment',
     'efficient_bar' => 'Efficient Bar',
     'year' => 'Year',
+    'gross_salary' => 'Gross Salary',
+    'net_salary' => 'Net Salary',
+    'payable_salary' => 'Payable Salary',
 
 
 ];
