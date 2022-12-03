@@ -34,7 +34,8 @@ class CreateCompaniesTable extends Migration
             //$table->integer('yearly_leave')->default(10)->nullable();
             $table->string('employee_id_prefix', 10)->nullable();
             $table->integer('employee_id_length')->default(6)->nullable();
-            $table->tinyInteger('has_provision_period')->default(0);
+            $table->tinyInteger('has_provision_period')->default(0)->nullable();
+            $table->integer('provision_period')->default(0)->nullable();
             $table->tinyInteger('has_tax_policy')->default(0)->nullable();
             //$table->tinyInteger('has_provident_fund')->default(0);
             //$table->tinyInteger('has_insurance')->default(0);
@@ -52,7 +53,7 @@ class CreateCompaniesTable extends Migration
             $table->decimal('employee_pf', 10, 2)->default(0)->nullable();
             $table->decimal('company_pf', 10, 2)->default(0)->nullable();
             $table->tinyInteger('has_welfare_fund')->default(0)->nullable();
-            $table->decimal('has_welfare_amount', 10, 2)->default(0)->nullable();
+            $table->decimal('welfare_fund_amount', 10, 2)->default(0)->nullable();
             $table->tinyInteger('has_gratuity')->default(0)->nullable();
             $table->integer('gratuity_apply_after')->default(0)->nullable();
             //End wallet setting

@@ -5,10 +5,10 @@ namespace Modules\Payroll\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
-use Modules\Payroll\Entities\SalaryStructure;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Payroll\Entities\SalaryRule;
 use Illuminate\Contracts\Support\Renderable;
+use Modules\Payroll\Entities\SalaryStructure;
 use Modules\Payroll\Entities\SalaryRuleStructure;
 use Modules\Payroll\Http\Requests\SalaryRuleCreateRequest;
 use Modules\Payroll\Repositories\PayrollRepositoryInterface;
@@ -212,7 +212,7 @@ class PayrollController extends Controller
             return view('payroll::rule.showGradeWise', compact('rules', 'structures', 'rule'));
         }
 
-        if (! $request->get('type') || ! $request->get('year') || ! $request->get('rule_id')){
+        if (! $request->get('type') || ! $request->get('rule_id')){
             return response()->json(['status' => 0, 'msg' => 'Please select type and year'], 200);
         }
 
@@ -220,9 +220,9 @@ class PayrollController extends Controller
 
         $basic = $rule->basic_salary;
 
-        dd($rule);
-
-        //dd(config('company_settings.has_increment'));
+        //var_dump($rule->basic_salary);
+        //var_dump($rule->increment_amount);
+        //var_dump($request->get('year'));
         //dd($request->all());
 
         if (config('company_settings.has_increment') && $request->get('type') == config('payroll.increment_key.increment'))
@@ -230,9 +230,13 @@ class PayrollController extends Controller
             $basic = ($basic + ($rule->increment_amount * $request->get('year')));
         }
 
-        if (config('company_settings.has_efficient_bar') && $request->get('type') == config('payroll.increment_key.increment'))
-        {   $increment = ($rule->efficient_bar_amount * config('company_settings.increment_year'));
+
+        if (config('company_settings.has_efficient_bar') && $request->get('type') == config('payroll.increment_key.efficient_bar'))
+        {
+            $increment = ($rule->increment_amount * config('company_settings.increment_year'));
+
             $basic = ($basic + $increment + ($rule->efficient_bar_amount * $request->get('year')));
+
         }
 
         $tax = 0;
@@ -242,9 +246,12 @@ class PayrollController extends Controller
             $tax = tax_calculation($basic);
         }
 
-        $view = view('payroll.rule.partials.ruleDetails', compact('basic', 'rule', 'tax'))->render();
+        //dd($rule->basic_salary);
 
-        return response()->json(['status' => 1, 'data' => $view]);
+        $view = view('payroll::rule.partials.ruleDetails', compact('basic', 'rule', 'tax'))->render();
+        $total = view('payroll::rule.partials.ruleTotal', compact('basic', 'rule', 'tax'))->render();
+
+        return response()->json(['status' => 1, 'data' => $view, 'total' => $total]);
 
 
     }

@@ -131,7 +131,7 @@
                                title="{{ trans('help.gratuity_apply_after')}}"></i>
                         </label>
                         <div class="item form-group">
-                            <input class="form-control" type="number" id="gratuity_apply_after" value="{{config('company_settings.gratuity_apply_after') ?? 0}}"
+                            <input class="form-control" maxlength="2" type="text" id="gratuity_apply_after" value="{{config('company_settings.gratuity_apply_after') ?? 0}}"
                                    name="gratuity_apply_after" placeholder="1" />
                         </div>
                     </div>

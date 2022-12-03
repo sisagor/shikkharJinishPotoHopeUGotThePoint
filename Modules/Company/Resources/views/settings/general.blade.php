@@ -224,7 +224,21 @@
                                    data-placement="top"
                                    title="{{ trans('help.provision_period')}}"></i>
                             </div>
+
+                            <div class="col-md-12 col-sm-12 mt-2">
+                                <label class="col-form-label label-align" for="provision_period">
+                                    {{trans('app.provision_period')}} (in month)
+                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                                       title="{{ trans('help.provision_period')}}"></i>
+                                </label>
+                                <div class="item form-group">
+                                    <input class="form-control" type="text" maxlength="2" id="provision_period" value="{{config('company_settings.provision_period') ?? 0}}"
+                                           name="provision_period" placeholder="1" />
+                                </div>
+                            </div>
                         </li>
+
+
 
 
                         {{-- <li class="checkbox-todo-custom mt-3">

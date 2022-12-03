@@ -52,4 +52,7 @@ return [
         'rejected' => ":model rejected.",
         'profile_updated' => ":model information updated.",
     ],
+
+    'error' => 'Error!',
+    'required' => ':filed required!',
 ];

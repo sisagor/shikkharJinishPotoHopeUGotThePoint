@@ -202,6 +202,7 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
                     'employee_id_length' => $request->get('employee_id_length'),
                     'attendance' => $request->get('attendance'),
                     'has_provision_period' => $request->get('has_provision_period') ?? 0,
+                    'provision_period' => $request->get('provision_period') ?? 0,
                     'allow_overtime' => $request->get('allow_overtime') ?? 0,
                     'has_attendance_deduction_policy' => $request->get('has_attendance_deduction_policy') ?? 0,
                     'has_allowances' => $request->get('has_allowances') ?? 0,

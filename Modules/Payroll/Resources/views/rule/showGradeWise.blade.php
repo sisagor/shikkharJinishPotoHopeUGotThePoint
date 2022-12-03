@@ -67,11 +67,17 @@
                             </div>
                         </div>
 
-
+                        <div class="clearfix"></div>
+                        <div class="ln_solid"></div>
 
                         <div class="row" id="rule_details">
 
                         </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="ln_solid" id="rule_total">
 
                 </div>
             </div>
