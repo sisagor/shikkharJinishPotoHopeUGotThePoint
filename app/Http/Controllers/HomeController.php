@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\SystemSetting;
 use App\Services\ZKTService;
 use Illuminate\Http\Request;
 use App\Services\DashboardService;
-use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\Facades\Storage;
 
 
 class HomeController extends Controller
@@ -38,6 +41,7 @@ class HomeController extends Controller
             $zkt->clearAttendance();
             var_dump($zkt->getUser());
         }*/
+
         return is_employee() ? view('partials.dashboard.employee') : view('partials.dashboard.'.$dashboard);
     }
 

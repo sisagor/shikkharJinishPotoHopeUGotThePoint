@@ -20,7 +20,8 @@ class CheckActionPermission
     public function handle($request, Closure $next)
     {
         //Check if logged out of destroy session then clear the cache:
-        if (Auth::user()) {
+        if (Auth::user())
+        {
             //Check permission
             if (! HasPermission::hasPermissionUrl(get_menu_url())) {
                 abort('403');
