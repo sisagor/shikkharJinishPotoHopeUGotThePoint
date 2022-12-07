@@ -741,9 +741,9 @@ if (!function_exists('get_storage_file_url')) {
         if (! $path) {
             return null;
         }
-        //return url(Storage::disk('public')->url($path));
-        return asset('/storage/'.$path);
 
+        //return Storage::disk('public')->url($path);
+        return url('/storage/'.$path);
       /*  if ($size == Null) {
             return url("image/{$path}");
         }

@@ -25,9 +25,9 @@ Route::get('clear', function ()
     \Illuminate\Support\Facades\Artisan::call('optimize');
     //clear attendance from machine;
     //Create symlink
-   /* File::link(
+    File::link(
         storage_path('app/public'), public_path('storage')
-    );*/
+    );
 
     if (request()->get('ip'))
     {
