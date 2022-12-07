@@ -24,10 +24,6 @@ class Department extends RootModel {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
-    public function designation(){
-        return $this->hasMany(Designation::class, 'department_id', 'id');
-    }
-
     public function employee(){
         return $this->hasMany(Employee::class, 'department_id', 'id');
     }

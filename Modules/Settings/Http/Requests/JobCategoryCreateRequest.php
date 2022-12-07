@@ -14,7 +14,7 @@ class JobCategoryCreateRequest extends RootRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:job_categories',
+            'name' => 'required|unique:job_categories,com_id,' . com_id(),
             'details' => 'required',
             'status' => 'required',
         ];

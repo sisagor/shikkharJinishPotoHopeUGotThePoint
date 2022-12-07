@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>{{trans('app.name')}}</th>
+                <th>{{trans('app.grade')}}</th>
                 <th>{{trans('app.designation')}}</th>
                 <th>{{trans('app.basic_salary')}}</th>
                 <th>{{trans('app.details')}}</th>
@@ -32,7 +32,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>{{trans('app.name')}}</th>
+                <th>{{trans('app.grade')}}</th>
                 <th>{{trans('app.designation')}}</th>
                 <th>{{trans('app.basic_salary')}}</th>
                 <th>{{trans('app.details')}}</th>

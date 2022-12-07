@@ -21,7 +21,6 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'department', name: 'department'},
                     {data: 'name', name: 'name'},
                     {data: 'details', name: 'details'},
                     {data: 'status', name: 'status', orderable: false, searchable: false},
@@ -50,7 +49,6 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'department', name: 'department'},
                     {data: 'name', name: 'name'},
                     {data: 'details', name: 'details'},
                     {data: 'status', name: 'status', orderable: false, searchable: false},

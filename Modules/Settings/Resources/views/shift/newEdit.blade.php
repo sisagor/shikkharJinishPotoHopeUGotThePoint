@@ -6,6 +6,20 @@
         <div class="row">
 
             <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="type">
+                    {{trans('app.status')}} <span class="required">*</span>
+                </label>
+                <div class="item form-group">
+                    <select class="form-control" name="type" id="type">
+                        <option value="">{{trans('app.select')}} </option>
+                        @foreach(config('settings.shift_type') as $key => $item)
+                            <option value="{{$key}}" @if($shift) @if($shift->type == $key) selected @endif @endif>{{ $item }} </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="name">
                     {{trans('app.name')}} <span class="required">*</span>
                 </label>

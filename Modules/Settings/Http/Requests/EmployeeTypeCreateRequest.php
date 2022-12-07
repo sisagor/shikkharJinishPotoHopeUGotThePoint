@@ -14,7 +14,7 @@ class EmployeeTypeCreateRequest extends RootRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:employee_types',
+            'name' => 'required|unique:employee_types,com_id,' . com_id(),
             'details' => 'required',
             'allow_company_facility' => 'required',
             'status' => 'required',

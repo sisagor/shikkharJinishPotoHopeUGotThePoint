@@ -155,5 +155,6 @@ return [
     'increment_amount' => 'This amount will add to the basic salary in every year as increment',
     'select_increment_type' => 'Select type increment or efficient bar?',
     'select_salary_rule' => 'Select salary rule',
+    'grade' => 'Salary Grade',
 
 ];

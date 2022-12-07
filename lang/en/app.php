@@ -601,6 +601,7 @@ return [
     'gross_salary' => 'Gross Salary',
     'net_salary' => 'Net Salary',
     'payable_salary' => 'Payable Salary',
+    'grade' => 'Grade',
 
 
 ];

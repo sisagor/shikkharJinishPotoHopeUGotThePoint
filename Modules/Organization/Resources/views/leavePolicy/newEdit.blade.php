@@ -11,7 +11,7 @@
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{trans('help.leave_type')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <select class="form-control select2-dropdown" name="type_id[]" id="type_id" multiple>
+                    <select class="form-control select2-dropdown" name="type_id[]" id="type_id" multiple required>
                         <option value="">{{trans('app.select')}}</option>
 
                         @if($policy)

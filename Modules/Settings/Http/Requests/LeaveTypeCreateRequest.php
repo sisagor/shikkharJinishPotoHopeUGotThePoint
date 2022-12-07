@@ -17,7 +17,7 @@ class LeaveTypeCreateRequest extends RootRequest
             'type' => 'required',
             'details' => 'required',
             'days' => 'required',
-            'name' => 'required|unique:leave_types',
+            'name' => 'required|unique:leave_types,com_id,' . com_id(),
             'status' => 'required',
         ];
 

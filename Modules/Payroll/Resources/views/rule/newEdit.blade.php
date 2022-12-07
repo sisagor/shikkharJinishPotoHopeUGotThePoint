@@ -13,6 +13,27 @@
             <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.salary_rule_info')}}"></i>
         </legend>
 
+      {{--  <div class="col-md-12 col-sm-12">
+            <label class="col-form-label label-align" for="name">
+                {{trans('app.name')}} <span class="required">*</span>
+                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.salary_rule_name')}}"></i>
+            </label>
+            <div class="item form-group">
+                <input  class="form-control" type="text" id="name" name="name" required
+                        value="@if($rule){{$rule->name}}@endif" placeholder="{{trans('app.name')}}">
+            </div>
+        </div>--}}
+        <div class="col-md-12 col-sm-12">
+            <label class="col-form-label label-align" for="grade">
+                {{trans('app.grade')}} <span class="required">*</span>
+                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.grade')}}"></i>
+            </label>
+            <div class="item form-group">
+                <input  class="form-control" type="text" id="grade" name="name" required
+                        value="@if($rule){{$rule->name}}@endif" placeholder="{{trans('app.grade')}}">
+            </div>
+        </div>
+
         <div class="col-md-12 col-sm-12">
             <label class="col-form-label label-align" for="designation_id">
                 {{trans('app.designation')}} <span class="required">*</span>
@@ -26,16 +47,6 @@
                 </select>
             </div>
          </div>
-        <div class="col-md-12 col-sm-12">
-            <label class="col-form-label label-align" for="name">
-                {{trans('app.name')}} <span class="required">*</span>
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.salary_rule_name')}}"></i>
-            </label>
-            <div class="item form-group">
-                <input  class="form-control" type="text" id="name" name="name" required
-                        value="@if($rule){{$rule->name}}@endif" placeholder="{{trans('app.name')}}">
-            </div>
-        </div>
 
         <div class="col-md-12 col-sm-12">
             <label class="col-form-label label-align" for="basic_salary">

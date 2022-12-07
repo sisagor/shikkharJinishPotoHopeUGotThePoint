@@ -61,6 +61,7 @@ class CreateComponentSettingsTable extends Migration
             Schema::create('shifts', function (Blueprint $table) {
                 $table->id();
                 $table->bigInteger('com_id')->unsigned()->nullable();
+                $table->string('type');
                 $table->string('name');
                 $table->time('start_time');
                 $table->time('end_time');

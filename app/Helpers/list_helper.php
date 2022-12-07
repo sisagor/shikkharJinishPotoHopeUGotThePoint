@@ -162,7 +162,7 @@ if (! function_exists('get_designations')) {
 if (! function_exists('get_salary_rule_structure_components')) {
     function get_salary_rule_structure_components($type)
     {
-        return \Modules\Payroll\Entities\SalaryStructure::mine()->active()->where('type', $type)->pluck('name', 'id');
+        return \Modules\Payroll\Entities\SalaryStructure::commonScope()->active()->where('type', $type)->pluck('name', 'id');
     }
 }
 
@@ -514,7 +514,9 @@ if (! function_exists('get_config_value')) {
 if (! function_exists('make_employee_unique_id')) {
     function make_employee_unique_id(): string
     {
-        $index = DB::table('employees')->select('employee_index')->orderBy('id', 'desc')->first();
+        $index = DB::table('employees')->select('employee_index');
+            $index = (com_id() ? $index->where('com_id', com_id()) : $index);
+            $index = $index->orderBy('id', 'desc')->first();
         $offset = (strlen(config('company_settings.employee_id_prefix')) !== 0
             ? strlen(config('company_settings.employee_id_prefix'))
             : 3);

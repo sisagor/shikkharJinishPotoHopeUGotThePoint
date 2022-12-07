@@ -33,7 +33,6 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>{{trans('app.department')}}</th>
                 <th>{{trans('app.name')}}</th>
                 <th>{{trans('app.details')}}</th>
                 <th>{{trans('app.status')}}</th>
@@ -49,7 +48,6 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>{{trans('app.department')}}</th>
                 <th>{{trans('app.name')}}</th>
                 <th>{{trans('app.details')}}</th>
                 <th>{{trans('app.status')}}</th>

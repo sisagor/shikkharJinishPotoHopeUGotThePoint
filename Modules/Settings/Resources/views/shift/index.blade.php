@@ -37,6 +37,7 @@
         <thead>
         <tr>
             <th>#</th>
+            <th>{{trans('app.type')}}</th>
             <th>{{trans('app.name')}}</th>
             <th>{{trans('app.start_time')}}</th>
             <th>{{trans('app.end_time')}}</th>
@@ -56,6 +57,7 @@
         <thead>
         <tr>
             <th>#</th>
+            <th>{{trans('app.type')}}</th>
             <th>{{trans('app.name')}}</th>
             <th>{{trans('app.start_time')}}</th>
             <th>{{trans('app.end_time')}}</th>

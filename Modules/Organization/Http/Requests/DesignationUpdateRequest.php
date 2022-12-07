@@ -16,7 +16,6 @@ class DesignationUpdateRequest extends RootRequest{
         return [
             "name"    => 'required|min:3|unique:designations,name,'.$this->designation->id,
             'details' => "required",
-            'department_id' => "required",
             'status' => 'required',
         ];
     }

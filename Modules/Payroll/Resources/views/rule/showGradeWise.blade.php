@@ -26,12 +26,12 @@
                         <div class="row">
 
                             <div class="col-md-4 col-sm-4">
-                                <label class="col-form-label label-align" for="salary_rule">
-                                    {{trans('app.salary_rule')}} <span class="required">*</span>
-                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.select_salary_rule')}}"></i>
+                                <label class="col-form-label label-align" for="grade">
+                                    {{trans('app.grade')}} <span class="required">*</span>
+                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.grade')}}"></i>
                                 </label>
                                 <div class="item form-group">
-                                    <select class="full-width form-control" type="text" id="salary_rule" name="salary_rule">
+                                    <select class="full-width form-control" type="text" id="grade" name="salary_rule">
                                         <option value="">{{trans('app.select')}}</option>
                                         @foreach($rules as $id => $name)
                                             <option value="{{ $id }}">{{ $name }}</option>

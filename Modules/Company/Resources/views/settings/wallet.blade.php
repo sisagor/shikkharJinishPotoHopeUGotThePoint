@@ -85,7 +85,7 @@
                 <li class="checkbox-todo-custom mt-2">
                     <div class="col-md-12 col-12 custom-checkbox2">
                         <input type="checkbox" value="1" class="flat"
-                               name="has_welfare_fund" @if(config('company_settings.has_welfare')) checked @endif /> &nbsp;
+                               name="has_welfare_fund" @if(config('company_settings.has_welfare_fund')) checked @endif /> &nbsp;
                         <strong class="font18"> {{trans('app.has_welfare_fund')}} </strong>
                         <i class="fa fa-question-circle" data-toggle="tooltip"
                            data-placement="top"

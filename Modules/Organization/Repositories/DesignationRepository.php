@@ -17,7 +17,7 @@ class DesignationRepository extends EloquentRepository implements DesignationRep
 
     public function all()
     {
-        return  $this->model->commonScope()->with('department:id,name');
+        return  $this->model->commonScope();
     }
 
 }

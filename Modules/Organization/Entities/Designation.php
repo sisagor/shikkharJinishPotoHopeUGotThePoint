@@ -16,11 +16,8 @@ class Designation extends RootModel {
 
     protected $table = 'designations';
 
-    protected $fillable = ['id', 'com_id', 'department_id', 'name', 'details', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['id', 'com_id', 'name', 'details', 'status', 'created_by', 'updated_by'];
 
-    public function department(){
-        return $this->belongsTo(Department::class, 'department_id', 'id');
-    }
 
     public function company(){
         return $this->belongsTo(Company::class, 'com_id', 'id');
@@ -37,7 +34,6 @@ class Designation extends RootModel {
     public function employee(){
         return $this->hasMany(Employee::class, 'designation_id', 'id');
     }
-
 
 
 }
