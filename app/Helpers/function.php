@@ -430,7 +430,7 @@ if (! function_exists('has_permission')) {
     /**add new button*/
     function has_permission($action): bool
     {
-        if (! \App\Common\HasPermission::hasPermission($action)) {
+        if (! \App\Common\Permission::hasPermission($action)) {
             return false;
         }
         return true;
@@ -441,7 +441,7 @@ if (! function_exists('has_permission_url')) {
     /**add new button*/
     function has_permission_url($url): bool
     {
-        if (!  \App\Common\HasPermission::hasPermissionUrl($url)) {
+        if (!  \App\Common\Permission::hasPermissionUrl($url)) {
             return false;
         }
         return true;

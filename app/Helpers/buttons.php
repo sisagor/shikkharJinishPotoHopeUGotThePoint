@@ -1,13 +1,13 @@
 <?php
 
-use \App\Common\HasPermission;
+use App\Common\Permission;
 
 
 if (! function_exists('add_button')) {
     /**add new button*/
     function add_button(string $action, string $name, $type = 1)
     {
-        if (! HasPermission::hasPermission($action)) {
+        if (! Permission::hasPermission($action)) {
             return false;
         }
 
@@ -28,7 +28,7 @@ if (! function_exists('list_button')) {
     /**List button*/
     function list_button(string $action, string $name)
     {
-        if (! HasPermission::hasPermission($action)) {
+        if (! Permission::hasPermission($action)) {
             return false;
         }
 
@@ -43,7 +43,7 @@ if (! function_exists('edit_button')) {
     /** Edit new button*/
     function edit_button(string $action, $id, $type = 1)
     {
-        if (! HasPermission::hasPermission($action)) {
+        if (! Permission::hasPermission($action)) {
             return false;
         }
 
@@ -65,7 +65,7 @@ if (! function_exists('view_button')) {
     /** Edit new button*/
     function view_button(string $action, $id, $type = 1)
     {
-        if (! HasPermission::hasPermission($action)) {
+        if (! Permission::hasPermission($action)) {
             return false;
         }
 
@@ -86,7 +86,7 @@ if (! function_exists('delete_button')) {
     /**add new button*/
     function delete_button(string $action, $id)
     {
-        if (! HasPermission::hasPermission($action)) {
+        if (! Permission::hasPermission($action)) {
             return false;
         }
 
@@ -101,7 +101,7 @@ if (! function_exists('delete_button')) {
 if (! function_exists('custom_ajax_button')) {
     function custom_ajax_button(string $action, string $name,  $class = null, $item = null)
     {
-        if(HasPermission::hasPermission($action))
+        if(Permission::hasPermission($action))
         {
             return false;
         }
@@ -115,7 +115,7 @@ if (! function_exists('custom_ajax_button')) {
 if (! function_exists('custom_button')) {
     function custom_button(string $action, string $name,  $class = null, $item = null)
     {
-        if(HasPermission::hasPermission($action))
+        if(Permission::hasPermission($action))
         {
             return false;
         }
@@ -129,7 +129,7 @@ if (! function_exists('restore_button')) {
     /** Edit via action */
     function restore_button(string $action, $id)
     {
-        if (! HasPermission::hasPermission($action)) {
+        if (! Permission::hasPermission($action)) {
             return false;
         }
 
@@ -143,7 +143,7 @@ if (! function_exists('trash_button')) {
     /**add new button*/
     function trash_button(string $action, $id)
     {
-        if (! HasPermission::hasPermission($action)) {
+        if (! Permission::hasPermission($action)) {
             return false;
         }
 

@@ -8,7 +8,7 @@ return [
     'scope' => json_encode([Module::SCOPE_COMMON]),
     'icon' => 'fa fa-envelope-o',
     'order' => 10,
-    'status' => 1,
+    'status' => 0,
     'submodules' => [
         [
             'name' => 'SMS',
