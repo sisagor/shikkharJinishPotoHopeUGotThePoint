@@ -5,7 +5,7 @@
     <div class="form-body">
         <div class="row">
 
-            <div class="col-md-12 col-sm-12">
+{{--            <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="department_id">
                     {{trans('app.department')}} <span class="required">*</span>
                 </label>
@@ -16,7 +16,7 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div>--}}
 
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="name">

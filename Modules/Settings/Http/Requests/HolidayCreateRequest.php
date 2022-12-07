@@ -16,7 +16,7 @@ class HolidayCreateRequest extends RootRequest
     {
         return [
             "occasion" => "required|min:3",
-            'start_date' => "required|unique:holidays",
+            'start_date' => "required",
             'end_date' => "required",
             'status' => 'required',
         ];

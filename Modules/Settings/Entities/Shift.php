@@ -13,7 +13,10 @@ class Shift extends RootModel
 
     protected $table = 'shifts';
 
-    protected $fillable = ['id', 'com_id', 'name', 'start_time', 'end_time', 'working_hour', 'details', 'status'];
+    const SHIFT_DAY = "day";
+    const SHIFT_NIGHT = "night";
+
+    protected $fillable = ['id', 'com_id', 'type', 'name', 'start_time', 'end_time', 'working_hour', 'details', 'status'];
 
     public function company()
     {

@@ -14,7 +14,7 @@ class DepartmentCreateRequest extends RootRequest{
     public function rules()
     {
         return [
-            "name" => "required|unique:departments|min:3",
+            "name" => 'required|min:3|unique:departments,com_id,'.com_id(),
             'details' => "required",
             'status' => 'required',
         ];

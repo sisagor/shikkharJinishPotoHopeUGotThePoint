@@ -15,7 +15,7 @@ class ShiftCreateRequest extends RootRequest
     public function rules()
     {
         return [
-            "name" => "required|unique:shifts|min:3",
+            "name" => 'required|min:3|unique:shifts,com_id,' . com_id(),
             'details' => "required",
             'start_time' => "required",
             'end_time' => "required",

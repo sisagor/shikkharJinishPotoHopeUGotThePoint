@@ -13,5 +13,6 @@
     "Recruitment": true,
     "Notification": true,
     "Wallet": true,
-    "Billing": true
+    "Billing": true,
+    "SMS": false
 }

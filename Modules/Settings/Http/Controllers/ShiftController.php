@@ -44,6 +44,9 @@ class ShiftController extends Controller
                 ->editColumn('status', function ($row) {
                     return get_status($row->status);
                 })
+                ->editColumn('type', function ($row) {
+                    return config('settings.shift_type.'.$row->type);
+                })
                 ->addColumn('action', function ($row) {
                     return edit_button('componentSettings.shift.edit', $row, 'modal') . trash_button('componentSettings.shift.trash', $row);
                 })
@@ -65,6 +68,9 @@ class ShiftController extends Controller
                 })
                 ->editColumn('status', function ($row) {
                     return get_status($row->status);
+                })
+                ->editColumn('type', function ($row) {
+                    return config('settings.shift_type.'.$row->type);
                 })
                 ->addColumn('action', function ($row) {
                     return restore_button('componentSettings.shift.restore', $row) . delete_button('componentSettings.shift.delete', $row);
@@ -103,6 +109,7 @@ class ShiftController extends Controller
         $hour = $diff->h . '.' . $diff->i;
 
         $create = Shift::create([
+            'type' => $request->get('type'),
             'name' => $request->get('name'),
             'details' => $request->get('details'),
             'start_time' => $start,
@@ -155,6 +162,7 @@ class ShiftController extends Controller
         $end = date('H:i:s', strtotime($request->get('end_time')));
 
         $update = $shift->update([
+            'type' => $request->get('type'),
             'name' => $request->get('name'),
             'details' => $request->get('details'),
             'start_time' => $start,

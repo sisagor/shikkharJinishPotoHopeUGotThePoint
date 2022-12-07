@@ -5,6 +5,8 @@ namespace Modules\Organization\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
+use Modules\Organization\Http\Requests\DesignationCreateRequest;
+use Modules\Organization\Http\Requests\DesignationUpdateRequest;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Organization\Entities\Designation;
@@ -37,9 +39,6 @@ class DesignationController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->editColumn('department', function ($row) {
-                    return ($row->department ? $row->department->name : null);
-                })
                 ->editColumn('status', function ($row) {
                     return get_status($row->status);
                 })
@@ -55,9 +54,6 @@ class DesignationController extends Controller
 
             return DataTables::of($trash)
                 ->addIndexColumn()
-                ->editColumn('department', function ($row) {
-                    return ($row->department ? $row->department->name : null);
-                })
                 ->editColumn('status', function ($row) {
                     return get_status($row->status);
                 })
@@ -86,7 +82,7 @@ class DesignationController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(DesignationCreateRequest $request): RedirectResponse
     {
         if ($this->repo->store($request)) {
             sendActivityNotification(trans('msg.noty.created', ['model' => trans('model.designation')]));
@@ -116,7 +112,7 @@ class DesignationController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(Request $request, Designation $designation): RedirectResponse
+    public function update(DesignationUpdateRequest $request, Designation $designation): RedirectResponse
     {
         if ($this->repo->update($request, $designation)) {
 

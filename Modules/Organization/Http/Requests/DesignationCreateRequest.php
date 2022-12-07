@@ -14,8 +14,7 @@ class DesignationCreateRequest extends RootRequest{
     public function rules()
     {
         return [
-            "name" => "required|unique:designations|min:3",
-            'department_id' => "required",
+            "name" => "required|min:3|unique:designations,com_id,".com_id(),
             'details' => "required",
             'status' => 'required',
         ];

@@ -14,7 +14,7 @@ class SalaryStructureCreateRequest extends RootRequest{
     public function rules()
     {
         return [
-            "name" => "required|unique:salary_structures|min:3",
+            "name" => 'required|min:3|unique:salary_structures,com_id,'.com_id(),
             'type' => "required",
             'status' => 'required',
         ];

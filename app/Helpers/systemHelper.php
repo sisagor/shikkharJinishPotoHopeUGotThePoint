@@ -11,6 +11,7 @@ if (! function_exists('setSystemConfig')) {
      */
     function setSystemConfig()
     {
+
         config()->set('system_settings', system_settings());
         config()->set('sms_gateway', sms_gateway());
         // set_time_limit(300); //

@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SystemSettingsController;
-use \App\Http\Controllers\frontEnd\FrontEndController;
-
+use App\Http\Controllers\frontEnd\FrontEndController;
+use Illuminate\Support\Facades\File;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,27 +18,27 @@ use \App\Http\Controllers\frontEnd\FrontEndController;
 */
 
 
-Route::get('clear', function () {
+
+Route::get('clear', function ()
+{
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
-    //dd(config_path() . '/*');
-    //Clear cache files;
-    foreach(glob(base_path() . '/bootstrap/cache/*') as $file){
-        // check if is a file and not sub-directory
-        if(is_file($file)){
-            // delete file
-            unlink($file);
-        }
-    }
-    //\Illuminate\Support\Facades\Artisan::call('optimize');
+    \Illuminate\Support\Facades\Artisan::call('optimize');
     //clear attendance from machine;
-    if (request()->get('ip')){
+    //Create symlink
+   /* File::link(
+        storage_path('app/public'), public_path('storage')
+    );*/
+
+    if (request()->get('ip'))
+    {
         try {
             $zkt = new \App\Services\ZKTService(request()->get('íp'));
             dd($zkt->connect());
             $zkt->clearAttendance();
             return "attendance log clear success!";
         }
-        catch (Exception $exception){
+        catch (Exception $exception)
+        {
             dd($exception);
         }
     }
@@ -59,15 +59,17 @@ Route::get('about-us', [FrontEndController::class, 'about'])->name('about');
 Route::get('contact-us', [FrontEndController::class, 'contact'])->name('contact');
 
 
-Route::get('/', function () {
+Route::get('/', function ()
+{
+
     if (! auth()->user()) {
         return redirect()->route('login');
     }
     return redirect('/dashboard');
 });
 
-Route::middleware('auth')->group(function () {
-
+Route::middleware('auth')->group(function ()
+{
     Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
     //Chart Request
     Route::get('dashboard/ajax/salary', [HomeController::class, 'salaries'])->name('dashboard.salary');

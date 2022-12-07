@@ -32,6 +32,7 @@ class CreateSystemSettingsTable extends Migration
                 $table->tinyInteger('system_realtime_notification')->default(0)->nullable();
                 $table->mediumText('mix')->nullable();
                 $table->string('login_image')->nullable();
+                $table->string('logo')->nullable();
                 $table->tinyInteger('store_email_log')->default(0)->nullable();
                 $table->tinyInteger('store_sms_log')->default(0)->nullable();
                 $table->timestamps();

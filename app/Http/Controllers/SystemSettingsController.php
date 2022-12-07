@@ -69,6 +69,8 @@ class SystemSettingsController extends Controller
             ]);
         }
 
+        //dd($request->file('logo'));
+
         if ($request->has('logo')) {
             $system->updateImage($request->file('logo'), 'logo');
         }

@@ -15,11 +15,10 @@ class LeavePolicyCreateRequest extends RootRequest
     public function rules()
     {
         $typeId = json_encode($this->get('type_id'));
-
         $this->merge(['type_id' => $typeId]);
 
         return [
-            "type_id" => "required|array|min:1",
+            //"type_id" => "required|array|min:1",
             "name" => "required",
             "apply_at" => "required",
             "details" => "required",
