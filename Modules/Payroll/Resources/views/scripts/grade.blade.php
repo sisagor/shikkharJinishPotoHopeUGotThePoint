@@ -42,7 +42,7 @@
 
                 $.ajax({
                     'method' : 'get',
-                    'url' : '{{route('payroll.rule.grade')}}?type='+ type.val() +'&year='+ incrementLoop.val()+'&rule_id='+$('#salary_rule').val(),
+                    'url' : '{{route('payroll.rule.grade')}}?type='+ type.val() +'&year='+ incrementLoop.val()+'&rule_id='+$('#grade').val(),
                 })
                 .success((response) =>
                 {
