@@ -21,6 +21,9 @@ abstract class RootModel extends Model
 
     const DEVICE_ONLINE = 1;
 
+    const DATA_ACTIVE = "active";
+    const DATA_TRASH = "trash";
+
     const APPROVAL_STATUS_PENDING = 0;
     const APPROVAL_STATUS_APPROVED = 1;
     const APPROVAL_STATUS_REJECTED = 2;

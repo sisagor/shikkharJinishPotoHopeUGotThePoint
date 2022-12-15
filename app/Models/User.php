@@ -29,6 +29,7 @@ class User extends Authenticatable implements JWTSubject
     const USER_ADMIN = "admin";
     const USER_USER = "user";
     const USER_EMPLOYEE = "employee";
+    const MANAGER = "manager";
 
     /**
      * The attributes that are mass assignable.
@@ -48,6 +49,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'remember_token',
         'status',
+        'manager',
     ];
 
     public static $fetch = [
@@ -61,6 +63,7 @@ class User extends Authenticatable implements JWTSubject
         'level',
         'email',
         'status',
+        'manager',
     ];
 
     /**

@@ -23,6 +23,7 @@ return [
         'loans' => 'Loans',
         'recruitment' => 'Recruitment',
         'notification' => 'Notification',
+        'billing' => 'Billing',
     ],
 
     'months' =>[
@@ -602,6 +603,20 @@ return [
     'net_salary' => 'Net Salary',
     'payable_salary' => 'Payable Salary',
     'grade' => 'Grade',
+    'projects' => 'Projects',
+    'new_project' => 'New Project',
+    'manager' => 'Manager',
+    'new_bill' => 'New Bill',
+    'office_id' => 'Office ID',
+    'site_id' => 'Site ID',
+    'mobile_bill' => 'Mobile Bill',
+    'other_bill' => 'Other Bill',
+    'allowance_history' => 'Allowance History',
+    'other_bill_history' => 'Other Bill History',
+    'project' => 'Project',
+    'pending_bills' => 'Pending Bills',
+    'bill_history' => 'Bill History',
+    'approved_bills' => 'Approved Bills',
 
 
 ];
