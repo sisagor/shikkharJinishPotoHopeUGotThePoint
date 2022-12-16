@@ -29,7 +29,7 @@ trait HasPermission
         if (! $url){
             return true;
         }
-        //check if need to skip;
+        //check if you need to skip;
         if(self::skipPermission($url))
         {
             return true;

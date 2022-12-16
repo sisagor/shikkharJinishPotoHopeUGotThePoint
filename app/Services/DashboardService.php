@@ -68,12 +68,11 @@ class DashboardService
                 ->selectRaw('SUM(leave_applications.leave_days) as total_count')
                 ->get()->avg('total_count');
 
-
-            array_push($data['levels'], $month->format('M-Y'));
-            array_push($data['present'], number_format($present, 2) ?? 0);
-            array_push($data['absent'], number_format($absent, 2) ?? 0);
-            array_push($data['holiday'], $holiday ?? 0);
-            array_push($data['leave'], $leave ?? 0);
+            $data['levels'][] = $month->format('M-Y');
+            $data['present'][] = $present ? number_format($present, 2) : 0;
+            $data['absent'][] = $absent ? number_format($absent, 2) : 0;
+            $data['holiday'][] = $holiday ?? 0;
+            $data['leave'][] = $leave ?? 0;
         }
 
         return array_values($data);
@@ -116,10 +115,10 @@ class DashboardService
             ->count('leave_applications.employee_id');
 
 
-        array_push($data, ['value' => $employee, 'name' => "employee"]);
-        array_push($data, ['value' => $present, 'name' => "Present"]);
-        array_push($data, ['value' => $leave, 'name' => "Leaves"]);
-        array_push($data, ['value' => $absent, 'name' => "Absent"]);
+        $data[] = ['value' => $employee, 'name' => "employee"];
+        $data[] = ['value' => $present, 'name' => "Present"];
+        $data[] = ['value' => $leave, 'name' => "Leaves"];
+        $data[] = ['value' => $absent, 'name' => "Absent"];
 
         return array_values($data);
 
@@ -156,15 +155,15 @@ class DashboardService
 
             if ($result){
 
-                array_push($data['salary'], round($result->salary, 2));
-                array_push($data['paid'], round($result->paid, 2));
-                array_push($data['due'], round($result->due, 2));
+                $data['salary'][] = round($result->salary, 2);
+                $data['paid'][] = round($result->paid, 2);
+                $data['due'][] = round($result->due, 2);
             }
             else
             {
-                array_push($data['salary'], 0);
-                array_push($data['paid'], 0);
-                array_push($data['due'], 0);
+                $data['salary'][] = 0;
+                $data['paid'][] = 0;
+                $data['due'][] = 0;
             }
         }
 
@@ -187,11 +186,11 @@ class DashboardService
             ->get();
 
         foreach ($holidays as $holiday){
-            array_push($data, [
+            $data[] = [
                 'title' => $holiday->title,
                 'start' => $holiday->start_date,
                 'end' => $holiday->end_date
-            ]);
+            ];
         }
 
         return ($data);
@@ -210,27 +209,21 @@ class DashboardService
 
         foreach ($leavePolicy as $key =>  $policy) {
 
-            array_push(
-                $data,
-                [
-                    'name' => $policy->name,
-                    'itemStyle' => [
-                        'color' => $color[$key]
-                    ],
-                    'children' => [],
+            $data[] = [
+                'name' => $policy->name,
+                'itemStyle' => [
+                    'color' => $color[$key]
                 ],
-            );
+                'children' => [],
+            ];
 
             foreach ($policy->type_id as $hop => $type) {
 
-                array_push($data[$key]['children'],
-                    [
-                        'name' => $type->name,
-                        'value' => $type->days,
-                        'itemStyle' => ['color' => $color[$key] . ($hop + $key)],
-                    ],
-
-                );
+                $data[$key]['children'][] = [
+                    'name' => $type->name,
+                    'value' => $type->days,
+                    'itemStyle' => ['color' => $color[$key] . ($hop + $key)],
+                ];
             }
         }
 

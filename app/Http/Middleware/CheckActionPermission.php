@@ -10,6 +10,7 @@ use App\Exceptions\UnauthorizedException;
 
 class CheckActionPermission
 {
+    use HasPermission;
     /**
      * Handle an incoming request.
      *
@@ -22,8 +23,9 @@ class CheckActionPermission
         //Check if logged out of destroy session then clear the cache:
         if (Auth::user())
         {
+
             //Check permission
-            if (! HasPermission::hasPermissionUrl(get_menu_url())) {
+            if (! self::hasPermissionUrl(get_menu_url())) {
                 abort('403');
             }
         }
