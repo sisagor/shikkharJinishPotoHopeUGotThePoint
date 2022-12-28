@@ -26,8 +26,8 @@
                 <div class="item form-group">
                     <select  class="form-control" type="text" id="manager" name="manager" required>
                         <option value="">{{trans('app.select')}}</option>
-                            <option value="Yes" @if(! empty($profile->user )) @if($profile->user->manager == "Yes") selected @endif @endif>Yes</option>
-                            <option value="No" @if(! empty($profile->user )) @if($profile->user->manager == "No") selected @endif @endif>No</option>
+                            <option value="{{\App\Models\User::MANAGER}}" @if(! empty($profile->user )) @if($profile->user->manager == \App\Models\User::MANAGER) selected @endif @endif>Yes</option>
+                            <option value="null" @if(! empty($profile->user )) @if($profile->user->manager == null) selected @endif @endif>No</option>
                     </select>
                 </div>
             </div>

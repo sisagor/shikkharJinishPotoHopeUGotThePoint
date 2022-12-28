@@ -4,6 +4,7 @@ namespace Modules\Billing\Http\Controllers;
 
 use App\Models\RootModel;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Billing\Entities\Project;
@@ -18,7 +19,7 @@ class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     * @return Renderable | JsonResponse
      */
     public function index(Request $request)
     {
