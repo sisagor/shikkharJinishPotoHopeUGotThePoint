@@ -40,7 +40,7 @@ class BillingRepository extends EloquentRepository implements BillingRepositoryI
         }
         else
         {
-            $data->whereNotNull('approve_one')->where('status', Billing::BILLING_STATUS_APPROVE_MANAGER);
+            //$data->whereNotNull('approve_one')->where('status', Billing::BILLING_STATUS_APPROVE_MANAGER);
         }
         return $data;
     }
@@ -66,7 +66,7 @@ class BillingRepository extends EloquentRepository implements BillingRepositoryI
         }
         else
         {
-            $data->whereNotNull('approve_one')->where('status', Billing::BILLING_STATUS_APPROVE_ADMIN);
+            //$data->whereNotNull('approve_one')->where('status', Billing::BILLING_STATUS_APPROVE_ADMIN);
         }
         return $data;
     }

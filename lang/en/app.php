@@ -617,6 +617,7 @@ return [
     'pending_bills' => 'Pending Bills',
     'bill_history' => 'Bill History',
     'approved_bills' => 'Approved Bills',
+    'approve_by_manager' => 'Approve by Manager',
 
 
 ];

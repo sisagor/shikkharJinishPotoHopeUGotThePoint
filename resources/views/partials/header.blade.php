@@ -12,6 +12,14 @@
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{get_profile_url()}}"> {{trans('app.profile')}} || {{get_role_level(auth()->user()->role->level ?? null) ?? "Super Admin"}}</a>
 
+
+                    @if(is_employee())
+                        <a class="dropdown-item ajax-modal-btn" href="javascript:void(0)">
+                            @if(branch_id())Branch : {{ (get_single_branch(branch_id()))['name'] }} @endif
+                            @if(com_id())Company : {{ (get_single_company(com_id()))->name }} @endif
+                        </a>
+                    @endif
+
                     <a class="dropdown-item ajax-modal-btn" href="javascript:void(0)"
                        data-link="{!! route('userManagements.user.pass', auth()->user()) !!}">
                         {{trans('app.change_password')}}

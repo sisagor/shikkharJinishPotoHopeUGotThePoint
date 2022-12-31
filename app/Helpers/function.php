@@ -1230,6 +1230,27 @@ if (! function_exists('save_image')) {
     }
 }
 
+if (! function_exists('get_billing_status')) {
+    /** return status*/
+    function get_billing_status($approve): ?string
+    {
+        switch ($approve) {
+            case \Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_ADMIN :
+                return 'Approved by Admin';
+                break;
+            case \Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_MANAGER :
+                return 'Approved by Manager';
+                break;
+            case \Modules\Billing\Entities\Billing::BILLING_STATUS_REJECTED :
+                return 'Rejected';
+                break;
+            default :
+                return 'Pending';
+                break;
+        }
+    }
+}
+
 
 
 
