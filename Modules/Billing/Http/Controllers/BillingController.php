@@ -4,6 +4,7 @@ namespace Modules\Billing\Http\Controllers;
 
 use App\Models\User;
 use App\Models\RootModel;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -26,10 +27,11 @@ class BillingController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     * @return Renderable | JsonResponse
      */
     public function pending(Request $request)
     {
+       // dd($this->repo->pendingBills($request)->get());
 
         if (! $request->ajax()){
             return view('billing::pending');
@@ -102,7 +104,7 @@ class BillingController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     * @return Renderable | JsonResponse
      */
     public function approved(Request $request)
     {
@@ -152,7 +154,7 @@ class BillingController extends Controller
         set_action_title('new_bill');
 
         $projects = Project::active()->get();
-        $managers = User::where('manager', User::MANAGER)->where('status', RootModel::STATUS_ACTIVE)->get();
+        $managers = User::whereNotNull('manager')->where('status', RootModel::STATUS_ACTIVE)->pluck('name', 'id');
         $bill = [];
         return view('billing::newEdit', compact('projects', 'managers', 'bill'));
     }
@@ -183,7 +185,7 @@ class BillingController extends Controller
     {
         set_action_title('view');
         $projects = Project::active()->get();
-        $managers = User::where('manager', User::MANAGER)->where('status', RootModel::STATUS_ACTIVE)->get();
+        $managers = User::where('manager', User::USER_MANAGER)->where('status', RootModel::STATUS_ACTIVE)->get();
 
         return view('billing::show', compact('bill', 'projects', 'managers'));
     }
@@ -199,7 +201,7 @@ class BillingController extends Controller
         set_action_title('edit_bill');
 
         $projects = Project::active()->get();
-        $managers = User::where('manager', User::MANAGER)->where('status', RootModel::STATUS_ACTIVE)->get();
+        $managers = User::whereNotNull('manager')->where('status', RootModel::STATUS_ACTIVE)->pluck('name', 'id');
 
         return view('billing::newEdit', compact('bill', 'projects', 'managers'));
     }
@@ -273,5 +275,50 @@ class BillingController extends Controller
 
         return redirect()->back()->with('error', trans('msg.delete_failed', ['model' => trans('model.billing')]));
     }
+
+
+     /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return RedirectResponse | JsonResponse
+     */
+    public function report(Request $request)
+    {
+         //dd($this->repo->report($request)->get());
+
+        if (! $request->ajax()){
+            return view('billing::report');
+        }
+
+        $data = $this->repo->report($request);
+
+
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->editColumn('mobile_bil', function ($row) {
+                return number_format($row->mobile_bill, 2);
+            })
+            ->editColumn('other_bill', function ($row) {
+                return number_format($row->other_bill, 2);
+            })
+            ->editColumn('allowance', function ($row) {
+                return number_format($row->allowance, 2);
+            })
+            ->editColumn('total', function ($row) {
+                return number_format($row->total, 2);
+            })
+            ->addColumn('totalDue', function ($row) {
+                return number_format(($row->employee->bill_sum_loan_amount - $row->total), 2);
+            })
+
+            ->rawColumns(['status', 'action', 'attachment'])
+            ->make(true);
+
+
+
+    }
+
+
+
 
 }

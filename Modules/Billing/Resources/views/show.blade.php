@@ -1,3 +1,4 @@
+
 @extends('layouts.viewModal', ['size' => 'lg', 'title' => 'bill_details'])
 
 @section('viewModal')
@@ -33,6 +34,18 @@
                                     @if($bill)@if($bill->project_id == $project->id) selected @endif @endif>
                                 {{ $project->name }} </option>
                         @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="project">
+                    {{trans('app.project')}} <span class="required">*</span>
+                </label>
+                <div class="item form-group">
+                    <select class="form-control" name="project_id" id="project_id" required disabled>
+                        <option value="">{{trans('app.select')}}</option>
+                        <option @if($bill->employee) selected @endif>{{ $bill->employee->name }} </option>
                     </select>
                 </div>
             </div>
@@ -121,13 +134,13 @@
                                     @if($bill) @if($bill->status ==\Modules\Billing\Entities\Billing::BILLING_STATUS_PENDING) selected @endif @endif>
                                 {{trans('app.pending')}} </option>
 
-                            @if(! is_company_admin() || ! is_branch_admin())
+                            @if(! is_company_admin() || ! is_admin())
                             <option value="{{\Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_MANAGER}}"
                                     @if($bill) @if($bill->status == \Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_MANAGER) selected @endif @endif>
                                 {{trans('app.approve_by_manager')}} </option>
                             @endif
 
-                            @if(is_company_admin() || is_branch_admin())
+                            @if(is_company_admin() || is_admin())
                                 <option value="{{\Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_ADMIN}}"
                                         @if($bill) @if($bill->status == \Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_ADMIN) selected @endif @endif>
                                     {{trans('app.approve_by_admin')}} </option>

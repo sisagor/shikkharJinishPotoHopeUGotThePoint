@@ -76,7 +76,7 @@ class ProjectController extends Controller
         set_action_title('new_project');
 
         $project = [];
-        $managers = User::where('manager', User::MANAGER)->get();
+        $managers = User::whereNotNull('manager')->where('status', RootModel::STATUS_ACTIVE)->pluck('name', 'id');
 
         return view('billing::project.newEdit', compact('project', 'managers'));
     }
@@ -118,7 +118,7 @@ class ProjectController extends Controller
         set_action_title('edit_project');
         set_action('billing.project.update', $project);
 
-        $managers = User::where('manager', User::MANAGER)->get();
+        $managers = User::where('manager', User::USER_MANAGER)->get();
 
         return view('billing::project.newEdit', compact('project', 'managers'));
     }

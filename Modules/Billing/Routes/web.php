@@ -36,5 +36,6 @@ Route::prefix('billing')->name('billing.')->middleware(['auth'])->group(function
     Route::get('bill/{bill}/restore', [BillingController::class, 'restore'])->name('bill.restore');
     Route::get('bill/{bill}/delete', [BillingController::class, 'delete'])->name('bill.delete');
     Route::get('bill/{bill}/view', [BillingController::class, 'show'])->name('bill.view');
+    Route::get('bill/report', [BillingController::class, 'report'])->name('bill.report');
 
 });

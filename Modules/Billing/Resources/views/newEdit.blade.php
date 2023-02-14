@@ -12,10 +12,9 @@
                 <div class="item form-group">
                     <select class="form-control" name="manager_id" id="manager_id">
                         <option value="">{{trans('app.select')}}</option>
-                        @foreach($managers as $manager)
-                            <option value="{{$manager->id}}"
-                                    @if($bill)@if($bill->manager_id == $manager->id) selected @endif @endif>
-                                {{ $manager->name }} </option>
+                        @foreach($managers as $id => $manager)
+                            <option value="{{$id}}" @if($bill)@if($bill->manager_id == $id) selected @endif @endif>
+                                {{ $manager }} </option>
                         @endforeach
                     </select>
                 </div>
@@ -36,6 +35,22 @@
                     </select>
                 </div>
             </div>
+
+            @if(! is_employee_user())
+                <div class="col-md-6 col-sm-6">
+                    <label class="col-form-label label-align" for="employee_id">
+                        {{trans('app.employee')}} <span class="required">*</span>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control select2-ajax checkProvision" data-link="{{route('employee.getEmployee')}}" autofocus id="employee_id"
+                                name="employee_id" required>
+                            @if(! empty($bill->employee))
+                                <option value="{{$bill->employee->id}}" selected> {{$bill->employee->name}} </option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+            @endif
 
             <div class="col-md-6 col-sm-6">
                 <label class="col-form-label label-align" for="title">
@@ -121,13 +136,13 @@
                                     @if($bill) @if($bill->status ==\Modules\Billing\Entities\Billing::BILLING_STATUS_PENDING) selected @endif @endif>
                                 {{trans('app.pending')}} </option>
 
-                            @if(! is_company_admin() || ! is_branch_admin())
+                            @if(! is_company_admin() || ! is_admin())
                             <option value="{{\Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_MANAGER}}"
                                     @if($bill) @if($bill->status == \Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_MANAGER) selected @endif @endif>
                                 {{trans('app.approve_by_manager')}} </option>
                             @endif
 
-                            @if(is_company_admin() || is_branch_admin())
+                            @if(is_company_admin() || is_admin())
                                 <option value="{{\Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_ADMIN}}"
                                         @if($bill) @if($bill->status == \Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_ADMIN) selected @endif @endif>
                                     {{trans('app.approve_by_admin')}} </option>

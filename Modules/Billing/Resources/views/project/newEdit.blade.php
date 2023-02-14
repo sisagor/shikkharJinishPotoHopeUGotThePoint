@@ -12,10 +12,10 @@
                 <div class="item form-group">
                     <select class="form-control" name="manager_id" id="manager_id">
                         <option value="">{{trans('app.select')}}</option>
-                        @foreach($managers as $manager)
-                            <option value="{{$manager->id}}"
-                                    @if($project)@if($project->manager_id == $manager->id) selected @endif @endif>
-                                {{ $manager->name }} </option>
+                        @foreach($managers as $id => $manager)
+                            <option value="{{$id}}"
+                                    @if($project)@if($project->manager_id == $id) selected @endif @endif>
+                                {{ $manager }} </option>
                         @endforeach
                     </select>
                 </div>

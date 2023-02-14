@@ -8,7 +8,7 @@ use App\Common\Documentable;
 use Modules\Branch\Entities\Branch;
 use Modules\Company\Entities\Company;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Modules\Employee\Entities\Employee;
 
 
 class Billing extends RootModel {
@@ -24,13 +24,13 @@ class Billing extends RootModel {
 
 
     protected $fillable = [
-        'id', 'com_id', 'branch_id', 'manager_id', 'project_id', 'office_id', 'site_id', 'total',
+        'id', 'com_id', 'manager_id', 'project_id', 'employee_id', 'office_id', 'site_id', 'total',
         'title', 'mobile_bill', 'allowance', 'allowance_history', 'other_bill', 'other_bill_history',
         'approve_one','approve_two', 'approve_one_date', 'approve_two_date', 'created_by', 'status'
     ];
 
     public static $fetch = [
-        'id', 'com_id', 'branch_id', 'manager_id', 'project_id', 'office_id', 'site_id', 'total',
+        'id', 'com_id', 'manager_id', 'project_id', 'employee_id', 'office_id', 'site_id', 'total',
         'title', 'mobile_bill', 'allowance', 'allowance_history', 'other_bill', 'other_bill_history',
         'approve_one','approve_two', 'approve_one_date', 'approve_two_date', 'created_by', 'status'
     ];
@@ -41,11 +41,6 @@ class Billing extends RootModel {
         return $this->belongsTo(Company::class, 'com_id', 'id');
     }
 
-    public function branch()
-    {
-        return $this->belongsTo(Branch::class, 'branch_id', 'id');
-    }
-
     public function manager()
     {
         return $this->belongsTo(User::class, 'manager_id', 'id');
@@ -54,6 +49,11 @@ class Billing extends RootModel {
     public function project()
     {
         return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id', 'id');
     }
 
 

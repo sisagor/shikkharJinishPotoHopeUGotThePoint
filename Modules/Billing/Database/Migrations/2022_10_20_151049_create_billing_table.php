@@ -15,7 +15,6 @@ class CreateBillingTable extends Migration
             Schema::create('projects', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->bigInteger('com_id')->unsigned()->nullable();
-                $table->bigInteger('branch_id')->unsigned()->nullable();
                 $table->bigInteger('manager_id')->unsigned()->nullable();
                 $table->string('name')->nullable();
                 $table->mediumText('details')->nullable();
@@ -33,9 +32,9 @@ class CreateBillingTable extends Migration
             Schema::create('billings', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->bigInteger('com_id')->unsigned()->nullable();
-                $table->bigInteger('branch_id')->unsigned()->nullable();
                 $table->bigInteger('project_id')->unsigned()->nullable();
                 $table->bigInteger('manager_id')->unsigned()->nullable();
+                $table->bigInteger('employee_id')->unsigned()->nullable();
                 $table->string('title')->nullable();
                 $table->string('office_id')->nullable();
                 $table->string('site_id')->nullable();

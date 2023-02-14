@@ -11,6 +11,7 @@
         <tr>
             <th>#</th>
             <th>{{trans('app.manager')}}</th>
+            <th>{{trans('app.employee')}}</th>
             <th>{{trans('app.project')}}</th>
             <th>{{trans('app.title')}}</th>
             <th>{{trans('app.office_id')}}</th>
@@ -19,8 +20,6 @@
             <th>{{trans('app.allowance')}}</th>
             <th>{{trans('app.other_bill')}}</th>
             <th>{{trans('app.total')}}</th>
-            <th>{{trans('app.bill_history')}}</th>
-            <th>{{trans('app.allowance_history')}}</th>
             <th>{{trans('app.attachment')}}</th>
             <th>{{trans('app.status')}}</th>
             <th>{{trans('app.action')}}</th>

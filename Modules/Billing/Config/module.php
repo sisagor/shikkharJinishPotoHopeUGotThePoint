@@ -123,6 +123,12 @@ return [
                     'action' => 'billing.bill.delete',
                     'show' => 0,
                 ],
+                [
+                    'name' => 'Report',
+                    'url' => 'billing/bill/report',
+                    'action' => 'billing.bill.report',
+                    'show' => 1,
+                ],
             ],
         ],
     ],

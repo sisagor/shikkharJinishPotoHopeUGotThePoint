@@ -28,19 +28,21 @@ class BillingRepository extends EloquentRepository implements BillingRepositoryI
         //Cache::forget('companies_' . Auth::id());
         $data = $this->model->select(Billing::$fetch)
             ->mine()
-            ->with('manager:id,name')->with('project:id,name');
+            ->with('manager:id,name')
+            ->with('project:id,name')
+            ->with('employee:id,name');
 
-        if (Auth::user()->manager == User::MANAGER)
+        if (Auth::user()->manager == User::USER_MANAGER)
         {
-            $data->where('manager_id', Auth::id())->where('status', Billing::BILLING_STATUS_PENDING);
+            $data->where('manager_id', Auth::id())->whereNull('approve_one');
         }
         else if (Auth::user()->employee_id)
         {
-            $data->where('created_by', Auth::id())->where('status', Billing::BILLING_STATUS_PENDING);
+            $data->where('employee_id', Auth::user()->employee_id)->where('status', Billing::BILLING_STATUS_PENDING);
         }
         else
         {
-            //$data->whereNotNull('approve_one')->where('status', Billing::BILLING_STATUS_APPROVE_MANAGER);
+            $data->whereNotNull('approve_one')->whereNull('approve_two');
         }
         return $data;
     }
@@ -51,22 +53,24 @@ class BillingRepository extends EloquentRepository implements BillingRepositoryI
         //Cache::forget('companies_' . Auth::id());
         $data = $this->model->select(Billing::$fetch)
             ->mine()
-            ->with('manager:id,name')->with('project:id,name');
+            ->with('manager:id,name')
+            ->with('project:id,name')
+            ->with('employee:id,name');
 
-        if (Auth::user()->manager == User::MANAGER)
+        if (Auth::user()->manager == User::USER_MANAGER)
         {
-            $data->where('manager_id', Auth::id())->where('status', Billing::BILLING_STATUS_APPROVE_MANAGER);
+            $data->where('manager_id', Auth::id())->whereNotNull('approve_one');
         }
         else if (Auth::user()->employee_id)
         {
-            $data->where('created_by', Auth::id())->where(function ($query){
+            $data->where('employee_id', Auth::user()->employee_id)->where(function ($query){
                 $query->where('status', Billing::BILLING_STATUS_APPROVE_MANAGER)
                 ->orWhere('status', Billing::BILLING_STATUS_APPROVE_ADMIN);
             });
         }
         else
         {
-            //$data->whereNotNull('approve_one')->where('status', Billing::BILLING_STATUS_APPROVE_ADMIN);
+            $data->whereNotNull('approve_one')->whereNotNull('approve_two');
         }
         return $data;
     }
@@ -83,6 +87,7 @@ class BillingRepository extends EloquentRepository implements BillingRepositoryI
             }
 
             $store = $this->model->create([
+                'employee_id' => (is_employee() ? Auth::user()->employee_id : $request->get('employee_id')),
                 'manager_id' => $request->get('manager_id'),
                 'project_id' => $request->get('project_id'),
                 'office_id' => $request->get('office_id'),
@@ -119,7 +124,7 @@ class BillingRepository extends EloquentRepository implements BillingRepositoryI
     {
         try {
 
-            if (is_company_admin() || is_branch_admin()){
+            if (is_company_admin() || is_admin()){
                 $approve = ['approve_two' => Auth::id()];
             }
             else
@@ -127,22 +132,22 @@ class BillingRepository extends EloquentRepository implements BillingRepositoryI
                 $approve = ['approve_one' => Auth::id()];
             }
 
-
             $model->update(
                 array_merge([
-                'manager_id' => $request->get('manager_id'),
-                'project_id' => $request->get('project_id'),
-                'office_id' => $request->get('office_id'),
-                'site_id' => $request->get('site_id'),
-                'title' => $request->get('title'),
-                'mobile_bill' => $request->get('mobile_bill'),
-                'other_bill' => $request->get('other_bill'),
-                'other_bill_history' => $request->get('other_bill_history'),
-                'allowance' => $request->get('allowance'),
-                'allowance_history' => $request->get('allowance_history'),
-                'total' => $request->get('total'),
-                'status' => $request->get('status'),
-                'updated_at' => Carbon::now(),
+                    'employee_id' => (is_employee() ? Auth::user()->employee_id : $request->get('employee_id')),
+                    'manager_id' => $request->get('manager_id'),
+                    'project_id' => $request->get('project_id'),
+                    'office_id' => $request->get('office_id'),
+                    'site_id' => $request->get('site_id'),
+                    'title' => $request->get('title'),
+                    'mobile_bill' => $request->get('mobile_bill'),
+                    'other_bill' => $request->get('other_bill'),
+                    'other_bill_history' => $request->get('other_bill_history'),
+                    'allowance' => $request->get('allowance'),
+                    'allowance_history' => $request->get('allowance_history'),
+                    'total' => $request->get('total'),
+                    'status' => $request->get('status'),
+                    'updated_at' => Carbon::now(),
                 ],$approve)
             );
 
@@ -180,5 +185,31 @@ class BillingRepository extends EloquentRepository implements BillingRepositoryI
         return true;
     }
 
+    //Reports
+    public function report(Request $request)
+    {
+        //Cache::forget('companies_' . Auth::id());
+        $data = $this->model->select(Billing::$fetch)
+            ->mine()
+            ->with('manager:id,name')
+            ->with('project:id,name')
+            ->with(['employee'=> function($item)
+            {
+                $item->select('id', 'name')->withSum('bill', 'loan_amount');
+            }])
+            ->whereNotNull('approve_one')
+            ->whereNotNull('approve_two');
+
+        if ($request->filled('com_id')){
+            $data->where('com_id', $request->get('com_id'));
+        }
+        if ($request->filled('employee_id')){
+            $data->where('employee_id', $request->get('employee_id'));
+        }
+
+        return $data;
+
+
+    }
 
 }
