@@ -48,18 +48,23 @@ class TestController extends Controller
 
         $result = array_filter($logs, function ($item)
         {
-            //dd($item);
+            return ($item);
         });
 
-        dd($result);
+        //dd($result);
 
         foreach ($logs as $key => $item)
         {
             $item = array_reverse($item);
-            foreach ($item as $one){
-                dd($one);
+
+            dd($item['DateTime']);
+            foreach ($item as $one)
+            {
+
+                var_dump($one);
             }
         }
+        exit();
 
         dd($logs);
 
