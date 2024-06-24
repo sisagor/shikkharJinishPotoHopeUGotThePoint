@@ -1,0 +1,20 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/vendor.css": "/css/vendor.css",
+    "/css/custom.css": "/css/custom.css",
+    "/css/calendar.css": "/css/calendar.css",
+    "/css/datatable.css": "/css/datatable.css",
+    "/css/green.png": "/css/green.png",
+    "/css/green@2x.png": "/css/green@2x.png",
+    "/css/blue.png": "/css/blue.png",
+    "/css/blue@2x.png": "/css/blue@2x.png",
+    "/css/flat.png": "/css/flat.png",
+    "/css/flat@2x.png": "/css/flat@2x.png",
+    "/css/pink.png": "/css/pink.png",
+    "/css/pink@2x.png": "/css/pink@2x.png",
+    "/js/vendor.js": "/js/vendor.js",
+    "/js/echarts.js": "/js/echarts.js",
+    "/js/calendar.js": "/js/calendar.js",
+    "/js/custom.js": "/js/custom.js",
+    "/js/datatable.js": "/js/datatable.js"
+}

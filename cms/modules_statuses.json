@@ -1,0 +1,10 @@
+{
+    "Company": false,
+    "User": true,
+    "Activity": true,
+    "Report": false,
+    "Settings": true,
+    "CMS": true,
+    "Notification": false,
+    "SMS": false
+}

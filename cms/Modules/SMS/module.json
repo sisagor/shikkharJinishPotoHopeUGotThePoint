@@ -1,0 +1,13 @@
+{
+    "name": "SMS",
+    "alias": "sms",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Report\\Providers\\SMSServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
