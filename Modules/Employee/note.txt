@@ -1,0 +1,3 @@
+Employee sync from device
+
+command: php artisan inta:sync-emp
