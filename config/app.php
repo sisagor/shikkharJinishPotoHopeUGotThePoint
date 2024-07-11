@@ -260,13 +260,15 @@ return [
         App\Providers\FortifyServiceProvider::class,
         //Helpers Load
         \App\Providers\HelperServiceProvider::class,
+        //Excel
+        \Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
@@ -286,6 +288,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];

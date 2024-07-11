@@ -19,22 +19,33 @@ use Illuminate\Support\Facades\File;
 
 
 
-Route::get('clear', function () {
+Route::get('clear', function (\Illuminate\Http\Request $request)
+{
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
-    \Illuminate\Support\Facades\Artisan::call('optimize');
+    //\Illuminate\Support\Facades\Artisan::call('optimize');
     //clear attendance from machine;
+
+
     //Create symlink
-    /*File::link(
+   /* File::link(
         storage_path('app/public'), public_path('storage')
     );*/
 
-    if (request()->get('ip')) {
+    if ($request->get('ip'))
+    {
         try {
-            $zkt = new \App\Services\ZKTService(request()->get('íp'));
-            dd($zkt->connect());
-            $zkt->clearAttendance();
+            $zkt = new \App\Services\ZKTService($request->get('ip'));
+            //dd($zkt->connect());
+            //$zkt->clearAttendance();
+            $zkt->connect();
+
+            dd($zkt->getUser());
+            dd($zkt->setUser(55, 55, 'Sagor', '12345', 0));
+
             return "attendance log clear success!";
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception)
+        {
             dd($exception);
         }
     }
@@ -46,8 +57,10 @@ Route::get('clear', function () {
 
 ##front-end
 
+Route::get('/', [FrontEndController::class, 'index'])->name('home');
 Route::get('home', [FrontEndController::class, 'index'])->name('home');
-Route::get('jobs', [FrontEndController::class, 'jobs'])->name('jobs');
+Route::get('blogs', [\App\Http\Controllers\frontEnd\BlogController::class, 'index'])->name('blogs');
+Route::get('blog/category', [\App\Http\Controllers\frontEnd\BlogController::class, 'catWiseBlogs'])->name('blog.cat');
 Route::get('jobs/{id}/show', [FrontEndController::class, 'jobShow'])->name('job.show');
 Route::get('jobs/{id}/apply', [FrontEndController::class, 'jobApply'])->name('job.apply');
 Route::post('jobs/{id}/apply', [FrontEndController::class, 'jobApplyStore'])->name('job.apply.store');
@@ -55,15 +68,18 @@ Route::get('about-us', [FrontEndController::class, 'about'])->name('about');
 Route::get('contact-us', [FrontEndController::class, 'contact'])->name('contact');
 
 
-Route::get('/', function () {
+/*Route::get('/', function ()
+{
+    return view('frontEnd.index');
 
-    if (!auth()->user()) {
+    if (! auth()->user()) {
         return redirect()->route('login');
     }
     return redirect('/dashboard');
-});
+});*/
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function ()
+{
     Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
     //Chart Request
     Route::get('dashboard/ajax/salary', [HomeController::class, 'salaries'])->name('dashboard.salary');

@@ -21,7 +21,7 @@
         <!-- page content -->
         <div class="col-md-12">
             <div class="col-middle">
-                <div class="text-center mt-10">
+                <div class="text-center mt-10" style="text-align: center">
 
                     {{-- <h1 class="error-number"> {{$exception->getCode()}} </h1>--}}
                     <h2 class="text-warning"> {{$exception->getMessage()}} </h2>

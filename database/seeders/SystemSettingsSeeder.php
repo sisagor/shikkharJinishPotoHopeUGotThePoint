@@ -35,10 +35,10 @@ class SystemSettingsSeeder extends DatabaseSeeder
                 $targetFile = $this->dir . DIRECTORY_SEPARATOR . $name;
 
                 //logo seeder
-                /* if ($this->disk->put($targetFile, file_get_contents($img)))
-                 {
-                    DB::table('system_settings')->where('key', 'logo')->update(['value' => $targetFile]);
-                 }*/
+               /* if ($this->disk->put($targetFile, file_get_contents($img)))
+                {
+                   DB::table('system_settings')->where('key', 'logo')->update(['value' => $targetFile]);
+                }*/
 
                 //login image:
                 $img2 = $this->demo_dir . "/cover2.jpeg";

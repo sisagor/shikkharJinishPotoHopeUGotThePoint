@@ -1,155 +1,51 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <title>{{ config('system_settings.system_name', 'inta-hrm') }}</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/ico"/>
-    <!-- Bootstrap -->
-    <link href="{{mix('css/vendor.css')}}" rel="stylesheet">
-    <!-- style scope -->
-    @yield("styles")
-    {{--custom css--}}
-    <link href="{{mix('css/custom.css')}}" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
-    <script>
-        window.laravel = {!! json_encode([
-                'csrfToken' => csrf_token()
-            ])
-        !!}
-    </script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('/frontEnd/css/styles.css')}}">
+    <title>Title Will come from Backend</title>
+
+
 </head>
-
-<style>
-
-    ul > li{
-        font-size: large;
-    }
-    .navbar-brand, .navbar-nav>li>a{
-        color: black!important;
-    }
-    .navbar-brand, .navbar-nav>li>a{
-        color: black!important;
-    }
-
-    .navbar {
-        padding: 0.5rem 3rem!important;
-    }
-
-    .active{
-        background: orange;
-    }
-    body{
-        background: none!important;
-    }
-    .main_container {
-        background: #e4e8ed!important;"
-    }
-     .jumbotron {
-         padding: 1rem 2rem!important;
-         background-color: #f3f3f3!important;
-     }
-</style>
-
-
-
 <body>
 
-<div class="container">
-    <div class="main_container">
-        <!-- top navigation  Header-->
-        <div class="nav">
-            <div class="nav_menu">
-                <nav class="nav navbar-nav">
+ @yield('contents')
 
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- subscribe section  -->
+<section style="height: 245px;">
+    @include('frontEnd.sections.section_nine')
+</section>
 
-                        <a class="navbar-brand" href="#" >Navbar w/ text</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+<!-- footer section  -->
+<section class="py-0 footer_bg pt-4" >
+    <!--/.bg-holder-->
+    @include('frontEnd.partials.footer')
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    -->
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+</section>
 
-                        <div class="collapse navbar-collapse" id="navbarText">
+      {{--  <script src="{{asset('/frontEnd/js/jquery-v3.5.1.js')}}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="{{asset('/frontEnd/js/popper-v1.16.1.js')}}" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="{{asset('/frontEnd/js/bootstrap-v4.6.2.js')}}" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    --}}
 
-                            <ul class="navbar-nav mr-auto">
-                              {{--  <li class="nav-item active">
-                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Features</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Pricing</a>
-                                </li>--}}
-                            </ul>
-
-                            <span class="navbar-text">
-
-                              <ul class="navbar-nav mr-auto">
-                                <li class="nav-item @if(request()->is('home')) active @endif">
-                                    <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only"></span></a>
-                                </li>
-                                  <li class="nav-item @if(request()->segment(1) == "jobs") active @endif">
-                                    <a class="nav-link" href="{{route('jobs')}}">Jobs <span class="sr-only"></span></a>
-                                </li>
-                                  <li class="nav-item @if(request()->is('about-us')) active @endif">
-                                    <a class="nav-link" href="{{ route('about') }}">About Us <span class="sr-only"></span></a>
-                                </li>
-                                  <li class="nav-item @if(request()->is('contact-us')) active @endif">
-                                    <a class="nav-link" href="{{route('contact')}}">Contact Us <span class="sr-only"></span></a>
-                                </li>
-
-                            </ul>
-                            </span>
-                        </div>
-                    </nav>
-
-                </nav>
-            </div>
-        </div>
-        <!-- /top navigation End Header -->
-
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <!-- top tiles -->
-            @include('partials.flashMessage')
-
-            @yield('contents')
-        </div>
-        <!-- /page content -->
-
-
-        <!-- footer content -->
-        <footer style="margin-left:0px!important;">
-            <div class="pull-right">
-                <a target="_blank" href="{{config('app.org_url')}}"> {{trans('app.org')}} </a>
-            </div>
-            <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-    </div>
-
-</div>
-
-
-<!-- jQuery all plugins -->
-<script src="{{mix('js/vendor.js')}}"></script>
-
-@yield('scripts')
-<!-- Custom Theme Scripts -->
-<script src="{{mix('js/custom.js')}}"></script>
-
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 
 </body>
 </html>

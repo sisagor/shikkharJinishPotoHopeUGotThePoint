@@ -23,9 +23,8 @@ class CheckActionPermission
         //Check if logged out of destroy session then clear the cache:
         if (Auth::user())
         {
-
             //Check permission
-            if (! self::hasPermissionUrl(get_menu_url())) {
+            if ($request->method() !== "POST" && ! self::hasPermissionUrl(get_menu_url())) {
                 abort('403');
             }
         }

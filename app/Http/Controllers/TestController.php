@@ -48,7 +48,7 @@ class TestController extends Controller
 
         $result = array_filter($logs, function ($item)
         {
-            dd($item);
+            //dd($item);
         });
 
         dd($result);

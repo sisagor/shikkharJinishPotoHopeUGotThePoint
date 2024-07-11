@@ -1,12 +1,12 @@
 <div class="left_col">
     <div class="navbar nav_title">
-        <a href="{{url('dashboard')}}" class="site_title">
-            @if(config('system_settings.logo.path'))
+        <a href="{{url('dashboard')}}" class="site_title @if(request()->is('dashboard')) active @endif">
+           {{-- @if(config('system_settings.logo.path'))
                 <img  class="img-responsive logo_img"
-                     src="{{ get_storage_file_url(config('system_settings.logo.path'), 'logo') }}" alt="logo">
-            @else
+                     src="{{ get_storage_file_url(config('system_settings.logo'), 'logo') }}" alt="logo">
+            @else--}}
                 <i class="fa fa-dashboard"></i>
-            @endif
+           {{-- @endif--}}
             <span>{{trans('app.dashboard')}}</span>
         </a>
     </div>
@@ -17,8 +17,8 @@
         <div class="menu_section">
             <ul class="nav side-menu">
 
-                @if(is_admin_group() || is_company_group() || is_branch_group())
-                    <li class="@if(request()->is('settings') || request()->is('branch/settings')|| request()->is('company/settings')){{ 'current-page' }} @endif">
+                @if(is_admin() || is_company_admin())
+                    <li class=" @if(request()->is('settings') || request()->is('company/settings')){{ 'current-page' }} @endif">
                         <a href="{{get_setting_url()}}"><i class="fa fa-cogs"></i> <strong>{{trans('app.settings')}}</strong></a>
                     </li>
                 @endif

@@ -1,9 +1,0 @@
-creating attendance log from device:
-command: php artisan inta:get-att
-
-
-Create attendance from attendance log:
-command: php artisan inta:create-att
-
-
-

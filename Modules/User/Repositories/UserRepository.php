@@ -64,14 +64,13 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
                 'address' => $request->get('address'),
             ]);
 
+            $level = ($request->get('manager') == User::USER_MANAGER ? User::USER_MANAGER : User::USER_ADMIN);
+
             User::create([
                 'com_id' => com_id(),
-                'branch_id' => branch_id(),
-                'department_id' => $request->get('department_id'),
                 'profile_id' => $profile->id,
                 'role_id' => $request->get('role_id'),
-                'manager' => $request->get('manager'),
-                'level' => User::USER_ADMIN,
+                'level' => $level,
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'status' => $request->get('status'),
@@ -112,8 +111,6 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
 
             $model->user->update([
                 'role_id' => $request->get('role_id'),
-                'department_id' => $request->get('department_id'),
-                'manager' => $request->get('manager'),
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'status' => $request->get('status'),

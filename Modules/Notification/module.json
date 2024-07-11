@@ -1,11 +1,11 @@
 {
-    "name": "Notification",
-    "alias": "notification",
+    "name": "Notifications",
+    "alias": "notifications",
     "description": "",
     "keywords": [],
     "priority": 0,
     "providers": [
-        "Modules\\Notification\\Providers\\NotificationServiceProvider"
+        "Modules\\Recruitment\\Providers\\NotificationServiceProvider"
     ],
     "aliases": {},
     "files": [],

@@ -25,8 +25,7 @@ class RoleDatabaseSeeder extends Seeder
 
         $adminModules = admin_modules();
         $companyModules = company_modules();
-        $branchModules = branch_modules();
-        $employeeModules = employee_modules();
+        //$employeeModules = employee_modules();
 
         DB::beginTransaction();
 
@@ -60,23 +59,22 @@ class RoleDatabaseSeeder extends Seeder
             /*End Admin*/
 
             /*Start Company*/
-            $companyRole = DB::table('roles')->insertGetId([
+           /* $companyRole = DB::table('roles')->insertGetId([
                 'id' => 2,
-                'name' => 'Company Role',
+                'name' => 'Branch Role',
                 'level' => Role::ROLE_COMPANY,
-                'details' => 'Company Role',
+                'details' => 'Branch Role',
                 'status' => RootModel::STATUS_ACTIVE,
-            ]);
+            ]);*/
 
             //update company user role id
-            DB::table('companies')
+           /* DB::table('companies')
                 ->join('users', 'companies.id', 'users.com_id')
                 ->where('companies.id', 1)
-                ->where('users.branch_id', null)
-                ->update(['users.role_id' => $companyRole]);
+                ->update(['users.role_id' => $companyRole]);*/
 
 
-            foreach ($companyModules as $module) {
+         /*   foreach ($companyModules as $module) {
 
                 foreach ($module->submodules as $submodule) {
 
@@ -91,45 +89,12 @@ class RoleDatabaseSeeder extends Seeder
                     }
                 }
 
-            }
+            }*/
             /*End Company*/
 
-            /*Start Branch*/
-            $branchRole = DB::table('roles')->insertGetId([
-                'id' => 3,
-                'com_id' => 1,
-                'name' => 'Branch Role',
-                'level' => Role::ROLE_BRANCH,
-                'details' => 'Branch Role',
-                'status' => RootModel::STATUS_ACTIVE,
-            ]);
-
-            //Update Branch Role Id;
-            DB::table('users')
-                ->where('branch_id', 1)
-                ->update(['role_id' => $branchRole]);
-
-
-            foreach ($branchModules as $module) {
-
-                foreach ($module->submodules as $submodule) {
-
-                    foreach ($submodule->menu as $menu) {
-
-                        DB::table('role_permissions')->insert([
-                            'role_id' => $branchRole,
-                            'module_id' => $module->id ?? null,
-                            'submodule_id' => $submodule->id ?? null,
-                            'menu_id' => $menu->id ?? null,
-                        ]);
-                    }
-                }
-
-            }
-            /*End Branch*/
 
             /*Start emloyee Role*/
-            $employeeRole = DB::table('roles')->insertGetId([
+          /*  $employeeRole = DB::table('roles')->insertGetId([
                 'id' => 4,
                 'com_id' => 1,
                 'name' => 'Employee Role',
@@ -139,12 +104,10 @@ class RoleDatabaseSeeder extends Seeder
             ]);
 
             //Update Branch Role Id;
-            DB::table('users')
-                ->where('employee_id', '!=', null)
-                ->update(['role_id' => $employeeRole]);
+            DB::table('users')->where('employee_id', '!=', null)->update(['role_id' => $employeeRole]);
+            */
 
-
-            foreach ($employeeModules as $module) {
+           /* foreach ($employeeModules as $module) {
 
                 foreach ($module->submodules as $submodule) {
 
@@ -161,7 +124,7 @@ class RoleDatabaseSeeder extends Seeder
                     }
                 }
 
-            }
+            }*/
             /*End employee*/
 
         } catch (\Exception $exception) {

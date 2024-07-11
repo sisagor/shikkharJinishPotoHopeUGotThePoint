@@ -24,12 +24,14 @@ class ZKTService
     {
         $connection = $this->zkt->connect();
 
-        if (!$connection) {
+        if (! $connection){
 
             Log::error("Device not connected");
             if (is_company_admin()) {
                 Log::info("Device ip " . $this->ip);
-            } else {
+            }
+            else
+            {
                 Log::info("Device ip " . $this->ip);
             }
             return false;
@@ -74,6 +76,7 @@ class ZKTService
     {
         $this->zkt->enableDevice();
         return $this->zkt->getUser();
+
     }
 
     #set user
@@ -121,4 +124,7 @@ class ZKTService
     {
         return $this->zkt->restart();
     }
+
+
+
 }

@@ -19,7 +19,6 @@ class DashboardService
 
     protected function getFilter($query, $data = []){
         $query = (is_company_group() ? $query->where($data['com_id'], com_id()) : $query);
-        $query = (is_branch_group() ? $query->where($data['branch_id'], branch_id()) : $query);
         $query = (is_department_admin() ? $query->where($data['department_id'], is_department_admin()) : $query);
         return $query;
     }
@@ -46,7 +45,7 @@ class DashboardService
             $absent =($this->attAvgQuery($month))->where('attendances.status', RootModel::ABSENT)->get()->avg('total_counts');
 
             //Holidays
-            $holiday = (float)(Holiday::commonScope()->where(function ($date) use ($month) {
+            $holiday = (float)(Holiday::commonScope()->select('days')->where(function ($date) use ($month) {
                 $date->whereBetween('start_date', [$month->startOfMonth()->format('Y-m-d'), $month->endOfMonth()->format('Y-m-d')])
                     ->orwhereBetween('end_date',  [$month->startOfMonth()->format('Y-m-d'), $month->endOfMonth()->format('Y-m-d')]);
             })->get()->avg('days'));
@@ -56,7 +55,6 @@ class DashboardService
                 ->join('employees', 'employees.id', 'leave_applications.employee_id');
                 $leave = $this->getFilter($leave, [
                     'com_id' => 'leave_applications.com_id',
-                    'branch_id' => 'leave_applications.branch_id',
                     'department_id' => 'employees.department_id',
                 ]);
                 $leave = $leave->where(function ($date) use ($month) {
@@ -89,10 +87,9 @@ class DashboardService
         $employee = DB::table('employees');
         $employee = $this->getFilter($employee, [
             'com_id' => 'com_id',
-            'branch_id' => 'branch_id',
             'department_id' => 'department_id',
         ]);
-        $employee = $employee->count();
+        $employee = $employee->count('id');
 
         //Present Employee
         $present = ($this->attTodayQuery($today))->where('attendances.status', RootModel::PRESENT)->count('attendances.employee_id');
@@ -108,7 +105,6 @@ class DashboardService
             ->where('leave_applications.end_date', '>=', Carbon::now()->format('Y-m-d'));
             $leave = $this->getFilter($leave, [
                 'com_id' => 'leave_applications.com_id',
-                'branch_id' => 'leave_applications.branch_id',
                 'department_id' => 'employees.department_id',
             ]);
             $leave = $leave->distinct()
@@ -238,7 +234,6 @@ class DashboardService
         $attendance = DB::table('attendances')->join('employees', 'employees.id', 'attendances.employee_id');
         $attendance = $this->getFilter($attendance, [
             'com_id' => 'attendances.com_id',
-            'branch_id' => 'attendances.branch_id',
             'department_id' => 'employees.department_id',
         ]);
         return $attendance->whereBetween('attendances.attendance_date',
@@ -261,7 +256,6 @@ class DashboardService
             ->distinct();
         return $this->getFilter($att, [
             'com_id' => 'attendances.com_id',
-            'branch_id' => 'attendances.branch_id',
             'department_id' => 'employees.department_id',
         ]);
     }

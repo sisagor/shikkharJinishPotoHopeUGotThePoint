@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\RootModel;
 use App\Common\Imageable;
 use App\Common\CascadeSoftDeletes;
+use App\Models\ZktDevice;
 use Modules\Branch\Entities\Branch;
 use Modules\Settings\Entities\Holiday;
 use Modules\Employee\Entities\Employee;
@@ -31,9 +32,9 @@ class Company extends RootModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function branches()
+    public function devices()
     {
-        return $this->hasMany(Branch::class, 'com_id', 'id');
+        return $this->hasMany(ZktDevice::class, 'com_id', 'id');
     }
 
     /**

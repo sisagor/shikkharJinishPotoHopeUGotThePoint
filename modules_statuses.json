@@ -1,18 +1,10 @@
 {
+    "Company": false,
     "User": true,
-    "Company": true,
-    "Branch": true,
     "Activity": true,
-    "Payroll": true,
-    "Organization": true,
-    "Employee": true,
-    "Report": true,
-    "Timesheet": true,
+    "Report": false,
     "Settings": true,
-    "Loan": true,
-    "Recruitment": true,
-    "Notification": true,
-    "Wallet": true,
-    "Billing": true,
+    "CMS": true,
+    "Notification": false,
     "SMS": false
 }

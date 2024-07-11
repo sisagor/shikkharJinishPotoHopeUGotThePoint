@@ -23,11 +23,6 @@ trait RootModelTask
                 $model->com_id = \request()->get('com_id') ?? Auth::user()->com_id;
             }
 
-            if (! is_admin_group() && Schema::hasColumn($table, 'branch_id') && (\request()->get('branch_id') || Auth::user()->branch_id))
-            {
-                $model->branch_id = \request()->get('branch_id') ?? Auth::user()->branch_id;
-            }
-
             if (Schema::hasColumn($table, 'created_by')) {
                 $model->created_by = Auth::id();
             }
@@ -50,7 +45,6 @@ trait RootModelTask
         Cache::forget($table);
         Cache::forget($table . CACHE_COMMON);
         Cache::forget($table . CACHE_COMMON . com_id());
-        Cache::forget($table . CACHE_COMMON . branch_id());
 
         Cache::forget($table . CACHE_LIST);
         Cache::forget($table . CACHE_LIST . Auth::id());

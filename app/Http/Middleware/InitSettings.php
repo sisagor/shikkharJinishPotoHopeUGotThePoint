@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use App\Exceptions\LicenseNotFoundException;
+
 
 class InitSettings
 {
@@ -18,15 +20,22 @@ class InitSettings
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
      * @return mixed
+     * @throws LicenseNotFoundException
      */
     public function handle($request, Closure $next)
     {
+        config()->set('system_settings', system_settings());
+        config()->set('sms_gateway', sms_gateway());
+
+        //dd(system_settings());
+
         if (Auth::user()) {
 
             $module = str_replace('-', '_', request()->segment(1));
             Session::put('module', $module);
 
             setSystemConfig();
+            systemCheck($request);
             // update the visitor table for state
             //if (! $request->ajax()) {
             // updateVisitorTable($request);
@@ -48,6 +57,9 @@ class InitSettings
                     die('<h1>' . trans('installer_messages.license_corrupted') . '</h1>');
                 }
             }*/
+
+            //dd($request->ip());
+
 
             if (! config('system.use_cache')) {
                 if (str_contains($request->getRequestUri(), 'logout')) {

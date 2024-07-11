@@ -33,5 +33,5 @@
 @endsection
 
 @section('reportScript')
-    @include('report::scripts.script')
+    @include('report::scripts.salary')
 @endsection

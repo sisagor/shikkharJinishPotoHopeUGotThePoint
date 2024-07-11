@@ -60,7 +60,6 @@
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'employee_index', name: 'employees.employee_index'},
                     {data: 'name', name: 'employees.name'},
-                    {data: 'device_ip', name: 'device_ip'},
                     {data: 'checkin_time', name: 'checkin_time'},
                     {data: 'checkout_time', name: 'checkout_time'},
                     {data: 'attendance_date', name: 'attendance_date'},

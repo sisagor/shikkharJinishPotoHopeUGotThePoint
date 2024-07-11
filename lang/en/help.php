@@ -1,4 +1,4 @@
-<?php
+\<?php
 
 return [
 
@@ -114,20 +114,20 @@ return [
     'search_user' => 'Search user by email',
     'click_to_select_department' => 'Select department if you want to send sms department wise. or left it all',
     'left_empty_if_all' => 'Left if you want all',
-    'position' => 'Job position or title',
+    'position' => 'Blog position or title',
     'vacancy' => 'How much position available.',
     'experience' => 'Required experience in year',
-    'job_details' => 'Describe in short brief about the Job',
+    'job_details' => 'Describe in short brief about the Blog',
     'requirements' => 'Describe requirements for this position',
     'expire_date' => 'Expire date',
     'job_category' => 'Select the job category',
     'salary_rang' => 'Salary rang, minimum and maximum salary',
-    'job_location' => 'Job location / office location',
+    'job_location' => 'Blog location / office location',
     'candidate_name' => 'Candidate Name who apply for job',
     'interview_date' => 'Interview Date',
     'interview_time' => 'Interview Time',
     'interview_place' => 'Interview Place / location',
-    'job' => 'Job / Job post',
+    'job' => 'Blog / Blog post',
     'candidate' => 'Candidate / Applicant',
     'title' => 'Title / Subject',
     'phone_numbers' => 'Insert phone numbers here with comma separated (01826....56,01953....54)',
@@ -156,5 +156,15 @@ return [
     'select_increment_type' => 'Select type increment or efficient bar?',
     'select_salary_rule' => 'Select salary rule',
     'grade' => 'Salary Grade',
+    'branch' => 'If select branch this data will go under this branch, only branch can see and use branch data.',
+    'policies' => 'Policy will determined how system behave.',
+    'organizer' => 'Who organize the event / training.',
+    'attachment' => 'Any type of document, pdf or doc.',
+    'employee_name' => 'Employee Name',
+    'send_sms' => 'This will send sms to the given number',
+    'send_email' => 'This will send email to the given email',
+    'policy_settings' => 'This policy will increment when generate the salary',
+    'search_manager' => 'search manager by typing min 3 latter',
+    'search_project' => 'search project by typing min 3 latter',
 
 ];

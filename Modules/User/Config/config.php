@@ -5,8 +5,6 @@ return [
 
     'belongs_to' => [
         'admin' => 'Admin',
-        'company' => 'Master Agent',
-        'branch' => 'Agent',
     ],
 
     #define users level here it will implement to whole role management
@@ -21,9 +19,6 @@ return [
     'role_levels' => [
         ['name' => 'Admin', 'value' => Role::ROLE_ADMIN],
         ['name' => 'Admin User', 'value' => Role::ROLE_ADMIN_USER],
-        ['name' => 'Company', 'value' => Role::ROLE_COMPANY],
-        ['name' => 'Branch', 'value' => Role::ROLE_BRANCH],
-        ['name' => 'Employee', 'value' => Role::ROLE_EMPLOYEE],
     ],
 
 

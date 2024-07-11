@@ -6,25 +6,12 @@ class SystemSettingsUpdateRequest extends RootRequest
 {
     public function authorize()
     {
-        return is_admin_group();
+        return is_admin();
     }
 
     public function rules()
     {
-        if(! $this->get('notificationSetting')){
-            return [
-                'system_name' => 'required',
-                'system_phone' => 'required',
-                'system_email' => 'required',
-                'pagination' => 'required',
-            ];
-        }
-        else{
-            return [
-
-            ];
-        }
-
+        return [];
     }
 
 

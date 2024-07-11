@@ -35,7 +35,6 @@
             <th>#</th>
             <th>{{trans('app.employee_index')}}</th>
             <th>{{trans('app.name')}}</th>
-            <th>{{trans('app.machine_ip')}}</th>
             <th>{{trans('app.checkin_time')}}</th>
             <th>{{trans('app.checkout_time')}}</th>
             <th>{{trans('app.attendance_date')}}</th>

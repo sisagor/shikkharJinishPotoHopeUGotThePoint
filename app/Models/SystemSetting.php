@@ -16,15 +16,4 @@ class SystemSetting extends RootModel
 
     protected $fillable = ['key', 'value'];
 
-
-    public function timezone()
-    {
-        return $this->belongsTo(Timezone::class, 'timezone_id', 'id');
-    }
-
-    public function currency()
-    {
-        return $this->belongsTo(Currency::class, 'currency_id', 'id');
-    }
-
 }

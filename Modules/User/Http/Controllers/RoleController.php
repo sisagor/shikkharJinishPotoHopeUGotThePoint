@@ -7,6 +7,7 @@ use App\Models\Module;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\User\Http\Requests\RoleCreateRequest;
@@ -31,6 +32,9 @@ class RoleController extends Controller
 
     public function index(Request $request)
     {
+        //var_dump(Auth::user()->level);
+        //dd( $data = $this->repo->all()->get());
+
         if(! $request->ajax()){
             return view('user::role.index');
         }
@@ -202,10 +206,6 @@ class RoleController extends Controller
     /**get modules according to role*/
     protected function getModules()
     {
-        if (is_branch_admin()) {
-            return branch_modules();
-        }
-
         if (is_company_admin()) {
             return company_modules();
         }

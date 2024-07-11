@@ -24,22 +24,20 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
     public function all()
     {
         //Cache::forget('companies_' . Auth::id());
-        return $this->model->withCount('branches')
-            ->with(['user' => function($user){
-                $user->with('role:id,name')
-                    ->select('com_id','role_id','status');
-            }]);
+        return $this->model->with(['user' => function($user){
+            $user->with('role:id,name')
+                ->select('com_id','role_id','status');
+        }]);
     }
 
     public function trashOnly()
     {
         //Cache::forget('companies_' . Auth::id());
-        return $this->model->onlyTrashed()->withCount('branches')
-            ->with(['user' => function($user){
-                $user->with('role:id,name')
-                    ->withTrashed()
-                    ->select('com_id','role_id','status');
-            }]);
+        return $this->model->onlyTrashed()->with(['user' => function($user){
+            $user->with('role:id,name')
+                ->withTrashed()
+                ->select('com_id','role_id','status');
+        }]);
     }
 
     /*Store Company*/
@@ -110,7 +108,7 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
 
             DB::commit();
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             Log::error("Company update Failed");
             Log::info(get_exception_message($e));
@@ -145,7 +143,7 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
 
             DB::commit();
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
             DB::rollBack();
             Log::error("User create Failed");
@@ -155,6 +153,46 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
         }
 
         return true;
+    }
+
+    /** update company settings*/
+    public function updateSettings(Request $request)
+    {
+        try
+        {
+            $request = $request->all();
+
+            unset($request['_token']);
+            unset($request['submit']);
+
+            foreach ($request as $key => $value) {
+                $settings = CompanySetting::where('key', $key)->where('com_id', com_id())->first();
+
+                if ($settings){
+                    $settings->update(['value' => $value]);
+                }
+                else
+                {
+                    CompanySetting::create([
+                        'com_id' => com_id(),
+                        'key' => $key,
+                        'value' => $value,
+                    ]);
+                }
+
+
+
+            }
+
+            return true;
+        }
+        catch (\Exception $exception)
+        {
+            Log::error("system setting update failed!");
+            Log::info(get_exception_message($exception));
+
+            return false;
+        }
     }
 
 
@@ -178,77 +216,6 @@ class CompanyRepository extends EloquentRepository implements CompanyRepositoryI
 
         return true;
 
-    }
-
-
-    public function updateSettings(Request $request): bool
-    {
-        $setting = CompanySetting::where('com_id', com_id())->first();
-
-        try {
-
-            //general company settings
-            if ($request->has('general_settings')) {
-
-                if ($request->get('enable_device')) {
-                    $service = new ZKTService(get_device_ip());
-                    $service->connect();
-                }
-
-                $setting->update([
-                    'has_tax_policy' => $request->get('has_tax_policy'),
-                    //'yearly_leave' => $request->get('yearly_leave'),
-                    'employee_id_prefix' => $request->get('employee_id_prefix'),
-                    'employee_id_length' => $request->get('employee_id_length'),
-                    'attendance' => $request->get('attendance'),
-                    'has_provision_period' => $request->get('has_provision_period') ?? 0,
-                    'provision_period' => $request->get('provision_period') ?? 0,
-                    'allow_overtime' => $request->get('allow_overtime') ?? 0,
-                    'has_attendance_deduction_policy' => $request->get('has_attendance_deduction_policy') ?? 0,
-                    'has_allowances' => $request->get('has_allowances') ?? 0,
-                    'allow_employee_login' => $request->get('allow_employee_login') ?? 0,
-                    'allow_holiday_work_as_overtime' => $request->get('allow_holiday_work_as_overtime') ?? 0,
-                    'device_ip' => $request->get('device_ip'),
-                    'enable_device' => $request->get('enable_device'),
-                    'default_password' => $request->get('default_password'),
-                ]);
-            }
-
-            //wallet settings config.
-            if ($request->has('wallet_settings')) {
-
-                $setting->update([
-                    'has_provident_fund' => $request->get('has_provident_fund') ?? 0,
-                    'employee_pf' => $request->get('employee_pf') ?? 0,
-                    'company_pf' => $request->get('company_pf') ?? 0,
-                    //WELFARE
-                    'has_welfare_fund' => $request->get('has_welfare_fund') ?? 0,
-                    'welfare_fund_amount' => $request->get('welfare_fund_amount') ?? 0,
-                    //gratuity
-                    'has_gratuity' => $request->get('has_gratuity') ?? 0,
-                    'gratuity_apply_after' => $request->get('gratuity_apply_after') ?? 0,
-                ]);
-            }
-
-            //payroll settings config;
-            if ($request->has('payroll_settings')) {
-
-                $setting->update([
-                    'has_increment' => $request->get('has_increment') ?? 0,
-                    'has_efficient_bar' => $request->get('has_efficient_bar') ?? 0,
-                    'increment_year' => $request->get('increment_year') ?? 0,
-                    'efficient_bar_year' => $request->get('efficient_bar_year') ?? 0,
-                ]);
-            }
-
-        } catch (\Exception $exception) {
-           // dd($exception);
-            Log::error('settings update Failed');
-            Log::info(get_exception_message($exception));
-            return false;
-        }
-
-        return true;
     }
 
 

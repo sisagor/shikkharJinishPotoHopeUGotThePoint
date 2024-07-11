@@ -15,12 +15,12 @@ return [
         //salary
         'Salary Payment',
 
-        //Job application
+        //Blog application
         'submit application',
         'Approved application',
         'Interview Scheduled',
-        'Job Offer',
-        'Confirm Job',
+        'Blog Offer',
+        'Confirm Blog',
 
         //Attendance
         'On Absent',

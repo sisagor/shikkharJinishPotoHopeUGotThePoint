@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Modules\Payroll\Entities\Salary;
 use Modules\Employee\Entities\Employee;
 use App\Repositories\EloquentRepository;
+use Modules\Settings\Entities\Holiday;
+use Modules\Timesheet\Entities\Attendance;
 use Modules\Timesheet\Entities\LeaveApplication;
 use Modules\Payroll\Repositories\PayrollRepositoryInterface;
 use Modules\Timesheet\Repositories\LeaveRepositoryInterface;
@@ -49,20 +51,27 @@ class ReportRepository extends EloquentRepository implements ReportRepositoryInt
      */
     public function attendanceMonthWiseReport(Request $request, $month)
     {
-        $query = Employee::mine()//->where('id', 1)
+
+        $holidays = Holiday::where('status', RootModel::STATUS_ACTIVE)
+            ->where('holiday_year', Carbon::parse($month)->format('Y'))
+            ->where('holiday_month', Carbon::parse($month)->format('m'))
+            ->select('com_id', 'status', 'start_date', 'end_date')->get()->toArray();
+
+
+        $query = Employee::mine()//->select('id', 'employee_index', 'name')//->where('id', 1)
             ->with(['attendances' => function($att) use($month){
                 $att->orderBy('attendance_date', 'asc')
                     ->whereRaw("DATE_FORMAT(attendance_date, '%Y-%m') = ?", [$month])
-                    ->select('employee_id', 'status', 'attendance_date');
+                    ->select('id', 'employee_id', 'status', 'attendance_date');
             }])
-            ->with(['company' => function($com) use($month){
+           /* ->with(['company' => function($com) use($month){
                 $com->with(['holidays' => function($att) use($month){
                     $att->where('status', RootModel::STATUS_ACTIVE)
                         ->where('holiday_year', Carbon::parse($month)->format('Y'))
                         ->where('holiday_month', Carbon::parse($month)->format('m'))
                         ->select('com_id', 'status', 'start_date', 'end_date');
                 }]);
-            }])
+            }])*/
             ->with(['leaveApplications' => function($leave) use($month){
                 $leave->select('employee_id', 'start_date', 'end_date')
                     ->whereRaw("DATE_FORMAT(start_date, '%Y-%m') = ?", [$month])
@@ -80,7 +89,8 @@ class ReportRepository extends EloquentRepository implements ReportRepositoryInt
                     ->where('status', RootModel::ABSENT);
             }]);
 
-        return (is_employee() ? $query->where('id', is_employee()): $query);
+
+        return ['att' => (is_employee() ? $query->where('id', is_employee()): $query), 'holidays' => $holidays];
     }
 
 

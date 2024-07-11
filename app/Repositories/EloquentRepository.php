@@ -24,7 +24,7 @@ abstract class EloquentRepository
         return $this->model->findOrFail($id);
     }
 
-    public function pluck($id = null, $pluck)
+    public function pluck($pluck, $id = null)
     {   if ($id) {
             return $this->model->where('id', $id)->pluck($pluck);
         }

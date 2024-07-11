@@ -81,7 +81,8 @@ class UserDatabaseSeeder extends DatabaseSeeder
                 $profileId = DB::table('profiles')->insertGetId($profile[$key]);
                  DB::table('users')->insert($user);
 
-                if (File::isDirectory($this->demo_dir)) {
+                if (File::isDirectory($this->demo_dir))
+                {
                     $img = $this->demo_dir . "/user.jpg";
                     if (! file_exists($img)) continue;
 
@@ -105,7 +106,7 @@ class UserDatabaseSeeder extends DatabaseSeeder
                 }
             }
 
-            DB::table('users')->where('level', 'branch_admin')->update(['com_id' => 1]);
+            //DB::table('users')->where('level', 'branch_admin')->update(['com_id' => 1]);
 
             DB::commit();
 

@@ -41,6 +41,7 @@ return [
     'user_inactive' => 'You don\'t has the permission to login, contact admin',
     'sms_gateway_not_found' => 'Sms gateway not found! setup sms setting first.',
     'provision_period_warning' => 'Employee provision period not over yet.',
+    'dependency_detected_on_bill' => ' This item has been used in billing. delete bill item first.',
 
     'noty' => [
         'updated' => ":model information updated.",

@@ -13,9 +13,6 @@
                         if ($('#company-filter').length) {
                             d.company_id = $('#company-filter').val();
                         }
-                        if ($('#branch-filter').length) {
-                            d.branch_id = $('#branch-filter').val();
-                        }
                         if ($('#employee-filter').length) {
                             d.employee_id = $('#employee-filter').val();
                         }
@@ -53,12 +50,6 @@
                 notificationTable.ajax.reload();
             });
 
-            $('#branch-filter').on('change', function () {
-                notificationTable.ajax.reload();
-            });
-            /* $('#department-filter').on('change', function () {
-                 attendanceTable.ajax.reload();
-             });*/
             $('#month-filter').on('change', function () {
                 notificationTable.ajax.reload();
             });

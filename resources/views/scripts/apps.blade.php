@@ -182,10 +182,6 @@
             d.com_id = $('#company-filter').val();
         }
 
-        if ($('#branch-filter').length) {
-            d.branch_id = $('#branch-filter').val();
-        }
-
         if ($('#department-filter').length) {
             d.department_id = $('#department-filter').val();
         }

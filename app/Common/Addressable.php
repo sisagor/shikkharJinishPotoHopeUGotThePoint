@@ -4,6 +4,7 @@ namespace App\Common;
 
 
 use App\Models\Address;
+use App\Models\Country;
 
 /**
  * Attach this Trait to a User (or other model) for easier read/writes on Addresses
@@ -21,6 +22,16 @@ trait Addressable
     public function hasAddress()
     {
         return (bool)$this->addresses()->count();
+    }
+
+    /**
+     * Check if model has an address.
+     *
+     * @return bool
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
     /**

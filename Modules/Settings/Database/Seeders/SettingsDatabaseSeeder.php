@@ -60,10 +60,7 @@ class SettingsDatabaseSeeder extends Seeder
 
             ##demo
             if (config('app.demo')) {
-                $this->call(DemoLeaveTypeDatabaseSeeder::class);
-                $this->call(DemoTaxDatabaseSeeder::class);
-                $this->call(DemoHolidaysDatabaseSeeder::class);
-                $this->call(DemoWorkingShiftDatabaseSeeder::class);
+                $this->call(DemoBlogCategoryDatabaseSeeder::class);
             }
 
             DB::commit();

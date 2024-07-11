@@ -18,12 +18,12 @@ class CreateZktecoDevicesTable extends Migration
             Schema::create('zkteco_devices', function(Blueprint $table) {
                 $table->id();
                 $table->integer('com_id');
-                $table->integer('branch_id');
                 $table->ipAddress('ip');
                 $table->string('port', 10)->default(4370);
                 //$table->string('model_name');
                 $table->tinyInteger('status')->default(0);
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
     }

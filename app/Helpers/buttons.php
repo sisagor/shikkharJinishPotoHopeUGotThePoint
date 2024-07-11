@@ -43,11 +43,21 @@ if (! function_exists('edit_button')) {
     /** Edit new button*/
     function edit_button(string $action, $id, $type = 1)
     {
-        if (! Permission::hasPermission($action)) {
+        if (! Permission::hasPermission($action))
+        {
             return false;
         }
 
-        if (! $type) {
+        if (\Illuminate\Support\Facades\Auth::user()->com_id && isset($id->com_id))
+        {
+            if (\Illuminate\Support\Facades\Auth::user()->com_id !== $id->com_id)
+            {
+              return false;
+            }
+        }
+
+        if (! $type)
+        {
             return '<a id="'.strtolower(str_replace('.', '_', $action)).'" class="btn btn-secondary " href="' . route($action, $id) . '"
             title="'.trans('app.edit').'">
                 <i class="fa fa-pencil-square-o button_icon"></i>
@@ -65,11 +75,13 @@ if (! function_exists('view_button')) {
     /** Edit new button*/
     function view_button(string $action, $id, $type = 1)
     {
-        if (! Permission::hasPermission($action)) {
+        if (! Permission::hasPermission($action))
+        {
             return false;
         }
 
-        if (! $type) {
+        if (! $type)
+        {
             return '<a class="btn btn-default custom-button" href="' . route($action, $id) . '" title="'.trans('app.view').'">
                     <i class="fa fa-eye button_icon"></i>
                 </a>';
@@ -86,8 +98,17 @@ if (! function_exists('delete_button')) {
     /**add new button*/
     function delete_button(string $action, $id)
     {
-        if (! Permission::hasPermission($action)) {
+        if (! Permission::hasPermission($action))
+        {
             return false;
+        }
+
+        if ( isset($id->com_id))
+        {
+            if (\Illuminate\Support\Facades\Auth::user()->com_id !== $id->com_id)
+            {
+                return false;
+            }
         }
 
         return '<a class="btn btn-danger" onclick="return confirm(\'are you sure?\')" href="' . route($action, $id) . '"
@@ -143,8 +164,17 @@ if (! function_exists('trash_button')) {
     /**add new button*/
     function trash_button(string $action, $id)
     {
-        if (! Permission::hasPermission($action)) {
-            return false;
+        if (! Permission::hasPermission($action))
+        {
+            return '';
+        }
+
+        if (isset($id->com_id))
+        {
+            if (\Illuminate\Support\Facades\Auth::user()->com_id !== $id->com_id)
+            {
+                return '';
+            }
         }
 
         return '<a class="btn btn-warning" onclick="return confirm(\'are you sure?\')"

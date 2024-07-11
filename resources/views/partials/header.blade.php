@@ -7,16 +7,14 @@
             <li class="nav-item dropdown open pl-30">
                 <a href="javascript:(0);" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown"
                    aria-expanded="false">
-                    <img src="{!! get_storage_file_url(get_profile_picture_url(), 'tiny_thumb') !!}" alt=""> {!! auth()->user()->name !!}
+                    <img src="{!! get_storage_file_url(get_profile_picture_url(), 'tiny_thumb') !!}" alt=""> @if(auth()->user()){!! auth()->user()->name !!}@endif
                 </a>
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{get_profile_url()}}"> {{trans('app.profile')}} || {{get_role_level(auth()->user()->role->level ?? null) ?? "Super Admin"}}</a>
 
-
-                    @if(is_employee())
+                    @if(is_employee() && com_id() && get_single_company(com_id()))
                         <a class="dropdown-item ajax-modal-btn" href="javascript:void(0)">
-                            @if(branch_id())Branch : {{ (get_single_branch(branch_id()))['name'] }} @endif
-                            @if(com_id())Company : {{ (get_single_company(com_id()))->name }} @endif
+                             {{ (get_single_company(com_id()))->name }}
                         </a>
                     @endif
 
@@ -38,7 +36,7 @@
                             {{trans('app.clear_all_cache')}}
                         </a>
                     @endif
-                    <a class="dropdown-item" target="_blank" href="{{config('app.documentation')}}">{{trans('app.help')}}</a>
+                    <a class="dropdown-item" target="_blank" href="{{config('app.documentation')}}">{{trans('app.help') ?? "Help"}}</a>
                     <a class="dropdown-item" href="{{url('logout')}}"><i class="fa fa-sign-out pull-right"></i> {{trans('app.logout')}}</a>
                 </div>
             </li>

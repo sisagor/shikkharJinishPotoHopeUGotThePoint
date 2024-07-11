@@ -1,5 +1,5 @@
 
-@extends('layouts.form', ['title' => 'edit_role'])
+@extends('layouts.form', ['title' => 'reset_password'])
 
 @section('form')
 

@@ -1,9 +1,14 @@
+<style>
+    legend {
+        margin-bottom: 0rem !important;
+    }
+</style>
+
 {{--Form content--}}
 <form method="post" enctype="multipart/form-data" action="{{ route(session('action'))}}">
     @csrf
+    <input type="hidden" name="general" value="general"/>
     <div class="clearfix"></div>
-    <inpu type="hidden" name="type" value="general">
-
     <div class="col-md-6 col-sm-6">
         <fieldset>
             <legend>{{ trans('app.general_settings') }}
@@ -50,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 col-sm-12">
+               {{-- <div class="col-md-12 col-sm-12">
                     <label class="col-form-label label-align" for="logo">
                         {{trans('app.logo')}}
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
@@ -58,13 +63,13 @@
                     </label>
                     <div class="item form-group">
                         <img class="img-responsive logo_img"
-                             src="@if(!empty(config('system_settings.logo.path')))
-                             {{ get_storage_file_url(config('system_settings.logo.path'), 'small') }}
+                             src="@if(!empty(config('system_settings.logo')))
+                             {{ get_storage_file_url(config('system_settings.logo'), 'small') }}
                              @endif"
                              alt="logo">
                         <input type="file" id="logo" name="logo">
                     </div>
-                </div>
+                </div>--}}
 
                 <div class="col-md-12 col-sm-12">
                     <label class="col-form-label label-align" for="logo">
@@ -84,6 +89,64 @@
 
             </div>
         </fieldset>
+
+        <fieldset>
+            <legend>{{ trans('app.currency_settings') }}
+                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                   title="{{ trans('help.currency_settings')}}"></i>
+            </legend>
+            <div class="">
+
+                <div class="col-md-12 col-sm-12">
+                    <label class="col-form-label label-align" for="default_currency">
+                        {{trans('app.default_currency')}}
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                           title="{{ trans('help.default_currency')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control select2-dropdown" type="text" id="default_currency" name="currency_id"
+                                required>
+                            <option value="">{{trans('app.select')}}</option>
+                            @foreach(currencies() as $key => $val)
+                                <option value="{{ $key }}"
+                                        @if(config('system_settings.currency_id') == $key) selected @endif>
+                                    {{ $val  }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <ul class="to_do">
+                        <li class="checkbox-todo-custom mt-2">
+                            <div class="col-md-12 col-12" style="position: relative; margin-top: -4px;">
+                                <input type="checkbox" value="1" class="flat"
+                                       name="show_currency_symbol"
+                                       @if(config('system_settings.show_currency_symbol')) checked @endif> &nbsp; &nbsp;
+                                <strong style="font-size: large"> {{trans('app.show_currency_symbol')}} </strong>
+                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                                   title="{{ trans('help.show_currency_symbol')}}"></i>
+                            </div>
+                        </li>
+                        <li class="checkbox-todo-custom mt-3">
+                            <div class="col-md-12 col-12" style="position: relative; margin-top: -4px;">
+                                <input type="checkbox" value="1" class="flat"
+                                       name="show_space_after_symbol"
+                                       @if(config('system_settings.show_space_after_symbol')) checked @endif> &nbsp; &nbsp;
+                                <strong style="font-size: large"> {{trans('app.show_space_after_symbol')}} </strong>
+                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                                   title="{{ trans('help.show_space_after_symbol')}}"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+
+    <div class="col-md-6 col-sm-6">
+
 
         <fieldset class="mt-2">
             <legend>{{ trans('app.other_settings') }}
@@ -136,92 +199,97 @@
                     </div>
                 </div>
 
-
-            </div>
-
-
-        </fieldset>
-    </div>
-
-
-    <div class="col-md-6 col-sm-6">
-        <fieldset>
-            <legend>{{ trans('app.currency_settings') }}
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                   title="{{ trans('help.currency_settings')}}"></i>
-            </legend>
-            <div class="">
-
                 <div class="col-md-12 col-sm-12">
-                    <label class="col-form-label label-align" for="default_currency">
-                        {{trans('app.default_currency')}}
+                    <label class="col-form-label label-align" for="system_name">
+                        {{trans('app.phone_country_code')}} <span class="required">*</span>
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                           title="{{ trans('help.default_currency')}}"></i>
+                           title="{{ trans('help.phone_country_code')}}"></i>
                     </label>
                     <div class="item form-group">
-                        <select class="form-control select2-dropdown" type="text" id="default_currency" name="currency_id"
-                                required>
-                            <option value="">{{trans('app.select')}}</option>
-                            @foreach(currencies() as $key => $val)
-                                <option value="{{ $key }}"
-                                        @if(config('system_settings.currency_id') == $key) selected @endif>
-                                    {{ $val  }}</option>
-                            @endforeach
-                        </select>
+                        <input class="form-control" type="text" id="system_name" name="phone_country_code"
+                               required value="{{config('system_settings.phone_country_code')}}">
                     </div>
                 </div>
 
                 <div class="col-md-12 col-sm-12">
+                    <label class="col-form-label label-align" for="employee_id_length">
+                        {{trans('app.default_password')}} (max 16) <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                           title="{{ trans('help.default_password')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input class="form-control" type="text" maxlength="16" id="default_password"
+                               value="{{config('system_settings.default_password')}}"
+                               name="default_password"/>
+                    </div>
+                </div>
+
+            </div>
+
+        </fieldset>
+
+
+        {{--<fieldset>
+            <legend>{{ trans('app.employee_settings') }}
+                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                   title="{{ trans('help.employee_settings')}}"></i>
+            </legend>
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="employee_id_prefix">
+                    {{trans('app.employee_id_prefix')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                       title="{{ trans('help.employee_id_prefix')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input class="form-control" type="text" maxlength="3" id="employee_id_prefix"
+                           value="{{config('system_settings.employee_id_prefix')}}"
+                           name="employee_id_prefix"/>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="employee_id_length">
+                    {{trans('app.employee_id_length')}} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                       title="{{ trans('help.employee_id_length')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input class="form-control" type="number" maxlength="2" id="employee_id_length"
+                           value="{{config('system_settings.employee_id_length')}}"
+                           name="employee_id_length"/>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="">
                     <ul class="to_do">
-
-                        <li class="checkbox-todo-custom mt-2">
-                            <div class="col-md-12 col-12" style="position: relative; margin-top: -4px;">
-                                <input type="checkbox" value="1" class="flat"
-                                       name="show_currency_symbol"
-                                       @if(config('system_settings.show_currency_symbol')) checked @endif> &nbsp; &nbsp;
-                                <strong style="font-size: large"> {{trans('app.show_currency_symbol')}} </strong>
-                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                   title="{{ trans('help.show_currency_symbol')}}"></i>
-                            </div>
-                        </li>
-
                         <li class="checkbox-todo-custom mt-3">
-                            <div class="col-md-12 col-12" style="position: relative; margin-top: -4px;">
+                            <div class="col-md-12 col-12 custom-checkbox2">
                                 <input type="checkbox" value="1" class="flat"
-                                       name="show_space_after_symbol"
-                                       @if(config('system_settings.show_space_after_symbol')) checked @endif> &nbsp; &nbsp;
-                                <strong style="font-size: large"> {{trans('app.show_space_after_symbol')}} </strong>
-                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                   title="{{ trans('help.show_space_after_symbol')}}"></i>
+                                       name="allow_employee_login"
+                                       @if(config('system_settings.allow_employee_login')) checked @endif/> &nbsp;
+                                <strong class="font18"> {{trans('app.allow_employee_login')}} </strong>
+                                <i class="fa fa-question-circle" data-toggle="tooltip"
+                                   data-placement="top"
+                                   title="{{ trans('help.allow_employee_login')}}"></i>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
-        </fieldset>
-
-        <fieldset class="mt-2">
-            <legend>{{ trans('app.phone_number') }}
-                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                   title="{{ trans('help.phone_number')}}"></i>
-            </legend>
             <div class="col-md-12 col-sm-12">
                 <ul class="to_do">
-
-                    <div class="col-md-12 col-sm-12">
-                        <label class="col-form-label label-align" for="system_name">
-                            {{trans('app.phone_country_code')}} <span class="required">*</span>
-                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                               title="{{ trans('help.phone_country_code')}}"></i>
-                        </label>
-                        <div class="item form-group">
-                            <input class="form-control" type="text" id="system_name" name="phone_country_code"
-                                   required value="{{config('system_settings.phone_country_code')}}">
+                    <li class="checkbox-todo-custom mt-2">
+                        <div class="col-md-12 col-12 custom-checkbox2">
+                            <input type="checkbox" value="1" class="flat"
+                                   name="allow_bulk_upload"
+                                   @if(config('system_settings.allow_bulk_upload')) checked @endif /> &nbsp;
+                            <strong class="font18"> {{trans('app.allow_bulk_upload')}} </strong>
+                            <i class="fa fa-question-circle" data-toggle="tooltip"
+                               data-placement="top" title="{{ trans('help.allow_bulk_upload')}}"></i>
                         </div>
-                    </div>
+                    </li>
                 </ul>
             </div>
-        </fieldset>
+        </fieldset>--}}
 
     </div>
 

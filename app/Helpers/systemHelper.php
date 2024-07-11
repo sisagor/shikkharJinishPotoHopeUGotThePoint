@@ -5,43 +5,14 @@ use Illuminate\Support\Facades\DB;
 use App\Notifications\ActivityNotification;
 
 
-if (! function_exists('setSystemConfig')) {
-    /**
-     * Set system settings into the config
-     */
-    function setSystemConfig()
-    {
-
-        config()->set('system_settings', system_settings());
-        config()->set('sms_gateway', sms_gateway());
-        // set_time_limit(300); //
-        //setSystemLocale();
-        setSystemCurrency();
-        setSystemTimezone();
-
-        config()->set('system_settings.notifiable', set_notifiable_admin());
-
-        if (com_id()) {
-            config()->set('company_settings', company_settings());
-            config()->set('company_settings.company', get_single_company(com_id()));
-        }
-
-        if (branch_id()) {
-            /*Branch settings*/
-            config()->set('branch_settings', branch_settings());
-            config()->set('branch_settings.branch', get_single_branch(branch_id()));
-        }
-    }
-}
-
-
 if (! function_exists('sendActivityNotification')) {
     /**
      * send activity notification
      */
     function sendActivityNotification($activity, $optional = null)
     {
-        if (config('system_settings.notifiable')) {
+        if (config('system_settings.notifiable'))
+        {
             config('system_settings.notifiable')->notify(new ActivityNotification(config('system_settings.notifiable.id'), $activity, $optional));
         }
     }
@@ -70,9 +41,9 @@ if (! function_exists('setSystemLocale')) {
         // Set the default_language
         app()->setLocale(config('system_settings.default_language'));
 
-        $active_locales = \ListHelper::availableLocales();
+        //$active_locales = ::availableLocales();
 
-        config()->set('active_locales', $active_locales);
+        //config()->set('active_locales', $active_locales);
     }
 }
 
@@ -83,10 +54,11 @@ if (! function_exists('setSystemTimezone')) {
     function setSystemTimezone()
     {
         $system_timezone = system_timezone();
+        if ($system_timezone) {
+            \Illuminate\Support\Facades\Config::set('app.timezone', $system_timezone);
 
-        \Illuminate\Support\Facades\Config::set('app.timezone', $system_timezone->utc);
-
-        date_default_timezone_set($system_timezone->utc);
+            date_default_timezone_set($system_timezone);
+        }
     }
 }
 
@@ -110,17 +82,19 @@ if (! function_exists('setSystemCurrency')) {
     function setSystemCurrency()
     {
         $currency = getSystemCurrency();
-        config([
-            'system_settings.currency' => [
-                'name' => $currency->name,
-                'symbol' => $currency->symbol,
-                'iso_code' => $currency->iso_code,
-                'symbol_first' => $currency->symbol_first,
-                'decimal_mark' => $currency->decimal_mark,
-                'thousands_separator' => $currency->thousands_separator,
-                'subunit' => $currency->subunit,
-            ]
-        ]);
+        if ($currency) {
+            config([
+                'system_settings.currency' => [
+                    'name' => $currency->name,
+                    'symbol' => $currency->symbol,
+                    'iso_code' => $currency->iso_code,
+                    'symbol_first' => $currency->symbol_first,
+                    'decimal_mark' => $currency->decimal_mark,
+                    'thousands_separator' => $currency->thousands_separator,
+                    'subunit' => $currency->subunit,
+                ]
+            ]);
+        }
     }
 }
 
@@ -131,7 +105,10 @@ if (! function_exists('getSystemCurrency')) {
     function getSystemCurrency()
     {
         return \Illuminate\Support\Facades\Cache::rememberForever('currencies_single', function () {
-            return DB::table('currencies')->where('id', config('system_settings.currency_id'))->first();
+            return DB::table('currencies')
+                ->select(['name', 'symbol', 'iso_code', 'symbol_first', 'decimal_mark', 'thousands_separator', 'subunit'])
+                ->where('id', config('system_settings.currency_id'))
+                ->first();
         });
     }
 }

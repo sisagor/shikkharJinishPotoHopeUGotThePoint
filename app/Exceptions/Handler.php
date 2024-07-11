@@ -48,5 +48,9 @@ class Handler extends ExceptionHandler
         $this->renderable(function (UserInactiveException $exception, $request) {
             return response()->view('errors.exception', compact('exception'));
         });
+
+        $this->renderable(function (LicenseNotFoundException $exception, $request) {
+            return response()->view('errors.license', compact('exception'));
+        });
     }
 }

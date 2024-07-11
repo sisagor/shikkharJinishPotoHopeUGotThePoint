@@ -67,8 +67,8 @@ class CompanyDatabaseSeeder extends DatabaseSeeder
             }
             //End Module Menu Seed
             $company = DB::table('companies')->insertGetId([
-                'name' => "Demo Company",
-                'email' => "company@demo.com",
+                'name' => "Demo Branch",
+                'email' => "branch@demo.com",
                 'phone' => "01826319556",
                 'details' => "This is testing master agent",
                 'address' => "Dhaka, Bangladesh",
@@ -78,26 +78,21 @@ class CompanyDatabaseSeeder extends DatabaseSeeder
             DB::table('users')->insert([
                 'id' => 3,
                 'com_id' => $company,
-                'name' => "Demo Company",
+                'name' => "Demo branch",
                 'level' => User::USER_COMPANY_ADMIN,
-                'email' => "company@demo.com",
+                'email' => "branch@demo.com",
                 'password' => Hash::make('123456'),
                 'status' => RootModel::STATUS_ACTIVE,
             ]);
 
-            DB::table('company_settings')->insert([
-                'com_id' => $company,
-                'has_provision_period' => 0,
-                'employee_id_prefix' => "DC",
-                'allow_overtime' => 0,
-                'attendance' => CompanySetting::ATTENDANCE_MANUAL,
-                'has_attendance_deduction_policy' => 0,
-                'allow_employee_login' => 1,
-            ]);
-
-            DB::table('branches')->where('id', 1)->update(['com_id' => $company]);
-            DB::table('branch_settings')->where('id', 1)->update(['com_id' => $company]);
-
+            /*  foreach (config('company.settings') as $key => $value)
+              {
+                  DB::table('company_settings')->insert([
+                      'com_id' => $company,
+                      'key' => $key,
+                      'value' => $value
+                  ]);
+              }*/
 
             if (File::isDirectory($this->demo_dir)) {
                 $img = $this->demo_dir . "/user.jpg";

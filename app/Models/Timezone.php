@@ -10,4 +10,6 @@ class Timezone extends RootModel
      * @var string
      */
     protected $table = 'timezones';
+
+
 }

@@ -15,15 +15,13 @@ class CreateActivityTable extends Migration
             Schema::create('activity_log', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->bigInteger('com_id')->unsigned()->nullable();
-                $table->bigInteger('branch_id')->unsigned()->nullable();
                 $table->bigInteger('user_id')->unsigned()->nullable();
                 $table->string('table')->nullable();
                 $table->integer('row_id')->nullable();
                 $table->integer('action_id')->nullable();
                 $table->text('title');
                 $table->timestamps();
-                $table->foreign('com_id')->references('id')->on('companies');
-                $table->foreign('branch_id')->references('id')->on('branches');
+               // $table->foreign('com_id')->references('id')->on('companies');
                 $table->foreign('user_id')->references('id')->on('users');
             });
         }

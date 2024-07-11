@@ -55,51 +55,20 @@ abstract class RootModel extends Model
      */
     public function scopeMine($query)
     {
-        switch (Auth::user()->level) {
-
-            case User::USER_ADMIN_ADMIN:
-            case User::USER_SUPER_ADMIN :
-                    $query = (request()->filled('com_id') ?  $query->where('com_id', request()->get('com_id')) : $query);
-                    return  (request()->filled('branch_id') && Schema::hasColumn($this->getTable(), 'branch_id')
-                        ?  $query->where('branch_id', request()->get('branch_id'))
-                        : $query);
-                break;
-
-            case User::USER_COMPANY_ADMIN :
-
-                return (request()->filled('branch_id')
-                        ? $query->where('branch_id', request()->get('branch_id'))
-                        : (! is_branch_group() && Schema::hasColumn($this->getTable(), 'branch_id')
-                            ? $query->where('com_id', com_id())->whereNull('branch_id')
-                            : $query
-                        )
-                );
-                break;
-
-            case User::USER_BRANCH_ADMIN :
-                return (Schema::hasColumn($this->getTable(), 'branch_id')
-                    ? $query->where('branch_id', branch_id())
-                    : $query
-                );
-                break;
-
-            case User::USER_ADMIN :
-                return (branch_id() && Schema::hasColumn($this->getTable(), 'branch_id')
-                    ? $query->where('branch_id', Auth::user()->branch_id)
-                    : (com_id() ? $query->where('com_id', Auth::user()->com_id)
-                    : $query)
-                );
-                break;
-
-            case User::USER_EMPLOYEE :
-                return (Schema::hasColumn($this->getTable(), 'employee_id')
-                    ? $query->where('employee_id', Auth::user()->employee_id)
-                    : $query);
-                break;
-
-            default :
-                return $query;
-        }
+        return match (Auth::user()->level) {
+            User::USER_ADMIN_ADMIN, User::USER_SUPER_ADMIN => (request()->filled('com_id') ? $query->where('com_id', request()->get('com_id')) : $query),
+            User::USER_COMPANY_ADMIN => $query->where(function ($q) {
+                $q->where('com_id', com_id());
+            }),
+            User::USER_ADMIN => (com_id() ? $query->where('com_id', Auth::user()->com_id) : $query),
+            User::USER_EMPLOYEE => (Schema::hasColumn($this->getTable(), 'employee_id')
+                ? $query->where('employee_id', Auth::user()->employee_id)
+                : $query),
+            User::USER_MANAGER => (Schema::hasColumn($this->getTable(), 'manager_id')
+                ?  $query->where('manager_id', Auth::id())
+                : $query),
+            default => $query,
+        };
     }
 
     /**
@@ -107,25 +76,28 @@ abstract class RootModel extends Model
      */
     public function scopeCompanyScope($query)
     {
-        return (is_company_admin() ? $query->where('com_id', com_id()) : $query);
+        return (is_company_admin()
+            ? $query->where(function ($q){
+                $q->where('com_id', com_id())->orWhere('com_id', null);
+            })
+            : (request()->filled('com_id')
+            ? $query->where('com_id', request()->get('com_id'))
+            : $query));
     }
 
 
-    public function scopeBranchScope($query)
-    {
-        return (is_branch_admin() ? $query->where('branch_id', branch_id())
-            :  (request()->filled('branch_id') ? $query->where('branch_id', request()->get('branch_id'))
-                : $query)
-        );
-    }
 
     /**
      * return data if company id found this is common for company and branch
      */
     public function scopeCommonScope($query)
     {
-        return (com_id() ?  $query->where('com_id', com_id())
-            : (request()->filled('com_id') ? $query->where('com_id', request()->get('com_id'))
+        return (com_id()
+            ?  $query->where(function ($q){
+                $q->where('com_id', com_id())->orWhere('com_id', null);
+            })
+            : (request()->filled('com_id')
+                ? $query->where('com_id', request()->get('com_id'))
                 : $query)
             );
     }

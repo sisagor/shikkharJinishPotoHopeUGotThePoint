@@ -1271,7 +1271,7 @@
 
 .active a span.fa {
     text-align: right !important;
-    margin-right: 4px;
+   /* margin-right: 4px;*/
 }
 
 .nav-sm .menu_section {
@@ -3053,7 +3053,7 @@ h4.graph_title {
 }
 
 .main_menu .fa {
-    width: 26px;
+    width: 24px;
     opacity: .99;
     display: inline-block;
     font-family: FontAwesome;
@@ -6121,4 +6121,43 @@ ul.notifications {
 
 .calendar-exibit .calendar-table {
     padding: 0 0 4px 0;
+}
+
+.nav-tabs>li>a:focus, .nav-tabs>li>a:hover{
+    background-color: #bdbbbb!important;
+}
+
+.nav .child_menu>li>a:focus, .nav.child_menu>li>a:hover{
+    background-color: #425567!important;
+}
+
+.nav.side-menu>li>a:hover{
+    background-color: #425567!important;
+}
+
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
+    color: #e7e7e7!important;
+}
+
+.nav.side-menu>li.active, .nav.side-menu>li.current-page{
+    border-right: 5px solid #1abb9c!important;
+    /*border-bottom: 3px solid #1abb9c!important;*/
+}
+
+.nav.child_menu>li>a, .nav.side-menu>li>a{
+    font-size: initial;
+}
+
+.nav.side-menu>li>a {
+    margin-bottom: 0px!important;
+    /* color: chocolate!important; */
+    border-bottom: solid 3px #666463;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    padding-top: 3px!important;
+}
+
+.select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {
+    min-height: 34px!important;
 }

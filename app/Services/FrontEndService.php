@@ -5,8 +5,8 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Modules\Recruitment\Entities\Job;
-use Modules\Recruitment\Entities\JobApplication;
+use Modules\CMS\Entities\Blog;
+use Modules\CMS\Entities\JobApplication;
 
 
 class FrontEndService
@@ -14,12 +14,12 @@ class FrontEndService
 
     public function jobs(Request $request)
     {
-        return Job::where('status', Job::STATUS_OPEN)->paginate(config('app.pagination'));
+        return Blog::where('status', Blog::STATUS_OPEN)->paginate(config('app.pagination'));
     }
 
     public function job(Request $request, $id)
     {
-        return Job::where('status', Job::STATUS_OPEN)->where('id', $id)->first();
+        return Blog::where('status', Blog::STATUS_OPEN)->where('id', $id)->first();
     }
 
     public function storeApplication(Request $request, $id): bool

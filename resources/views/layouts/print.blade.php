@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/ico"/>
     <!-- Bootstrap -->
-    <link href="{{mix('css/vendor.css')}}" rel="stylesheet">
+    <link href="{{mix('css/vendor.css')}}" rel="stylesheet" type="text/css">
     <!-- style scope -->
     @yield("styles")
     {{--custom css--}}
-    <link href="{{mix('css/custom.css')}}" rel="stylesheet">
+    <link href="{{mix('css/custom.css')}}" rel="stylesheet" type="text/css">
 
 </head>
 

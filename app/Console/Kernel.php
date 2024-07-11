@@ -7,8 +7,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Stringable;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Modules\Notification\Entities\ScheduleEmailSms;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 
 class Kernel extends ConsoleKernel
@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         //Get attendance from machine and create attendance Log:
-        $schedule->command('inta:get-att')->everyMinute()
+        $schedule->command('inta:get-att')->everyThreeMinutes()
             ->onSuccess(function (Stringable $output)
             {
                 Log::error("Get Attendance from device Success!");
@@ -45,7 +45,7 @@ class Kernel extends ConsoleKernel
             });
 
         //Create Attendance from attendance Log table:
-        $schedule->command('inta:create-att')->everyMinute()
+        $schedule->command('inta:create-att')->everyFiveMinutes()
             ->onSuccess(function (Stringable $output)
             {
                 Log::error("Create Attendance from Log Success!");
@@ -53,6 +53,19 @@ class Kernel extends ConsoleKernel
             })
             ->onFailure(function (Stringable $output) {
                 Log::error("Create Attendance from Log Error!");
+                Log::info($output);
+            });
+
+
+        ##run schedule job;
+        $schedule->command('inta:schedule-job')->everyThirtyMinutes()
+            ->onSuccess(function (Stringable $output)
+            {
+                Log::error("Schedule job running Success!");
+                Log::info($output);
+            })
+            ->onFailure(function (Stringable $output) {
+                Log::error("Schedule job running error");
                 Log::info($output);
             });
 

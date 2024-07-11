@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/login/style.css')}}">
 </head>
 <body>
+
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
@@ -36,7 +37,7 @@
             <div class="col-md-12 col-lg-10 col-sm-12 col-12">
                 <div class="wrap d-md-flex">
                     <div class="img">
-                        <img src="{{ get_storage_file_url((config('system_settings.login_image'))) }}" alt="Login page image">
+                        <img style="width:-webkit-fill-available" src=" {{ get_storage_file_url((config('system_settings.login_image'))) }}" alt="Login page image">
                     </div>
                     <div class="login-wrap p-4 p-md-5">
                         <div class="d-flex">
@@ -59,14 +60,9 @@
                                     <h6 class="box-title">Demo Login::</h6>
                                 </div> <!-- /.box-header -->
                                 <div class="box-body font12">
-                                    <div class="col-md-6 col-sm-6 pull-left">
-                                        <p><strong>ADMIN::</strong>Email: <strong>admin@demo.com</strong> | Password: <strong>123456</strong> </p>
-                                        <p><strong>COMPANY::</strong>Email: <strong>company@demo.com</strong> | Password: <strong>123456</strong> </p>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 pull-right">
-                                        <p><strong>BRANCH::</strong> Email: <strong>branch@demo.com</strong> | Password: <strong>123456</strong> </p>
-                                        <p><strong>EMPLOYEE::</strong> Email: <strong>employee0@demo.com</strong> | Password: <strong>123456</strong> </p>
-                                    </div>
+                                    <p><strong>ADMIN::</strong>Email: <strong>admin@demo.com</strong> | Password: <strong>123456</strong> </p>
+                                    <p><strong>COMPANY::</strong>Email: <strong>company@demo.com</strong> | Password: <strong>123456</strong> </p>
+                                    <p><strong>EMPLOYEE::</strong> Email: <strong>employee0@demo.com</strong> | Password: <strong>123456</strong> </p>
                                 </div>
                             </div>
                         </div>

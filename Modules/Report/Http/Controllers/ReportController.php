@@ -64,7 +64,7 @@ class ReportController extends Controller
         }
 
 
-        $data =  $this->repository->attendanceMonthWiseReport($request, $month);
+        $data = $this->repository->attendanceMonthWiseReport($request, $month);
 
 
         $table = DataTables::of($data)
@@ -153,8 +153,6 @@ class ReportController extends Controller
                 if (in_array($date, \session('leaves'))){
                     $status = config('report.attendance_status.leave');
                 }
-
-
 
                 //dd($row->attendances[$i]);
                 //var_dump($status);

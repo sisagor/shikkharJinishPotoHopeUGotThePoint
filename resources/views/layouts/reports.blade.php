@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link href="{{mix('css/datatable.css')}}" rel="stylesheet">
+    <link href="{{mix('css/datatable.css')}}" rel="stylesheet" type="text/css" media="wait" onload="if(media!='all')media='all'">
 @endsection
 
 @section('contents')
@@ -18,46 +18,17 @@
                 <div class="col-md-1">
                     <strong class="font25">{{trans('app.filter')}}</strong>
                 </div>
-                <div class="col-md-11">
+                <div class="col-md-11 col-sm-11 col-12">
 
-                    @if($filter == 1)
-                        @if(is_admin_group())
-                            <div class="col-md-5 col-sm-5 col-12">
-                                <div class="col-md-6 col-sm-6 col-12">
-                                    <select class="form-control" name="company" id="company-filter">
-                                        <option value="">{{trans('app.select_company')}}</option>
-                                        @foreach(get_companies() as $id => $name)
-                                            <option value="{{ $id }}">{{ $name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="col-md-6 col-sm-6 col-12">
-                                    <select class="form-control" name="branch" id="branch-filter">
-                                        <option value="">{{trans('app.select_branch')}}</option>
-                                        @foreach(get_branches() as $id => $name)
-                                            <option value="{{ $id }}">{{ $name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        @endif
-
-                        @if(is_company_group() || is_department_admin())
-                            <div class="col-md-3 col-sm-3 col-12">
-                                {{-- <label class="col-md-5 col-form-label label-align" for="employee_index">
-                                     {{trans('app.branch')}}
-                                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                                        title="{{ trans('help.select_branch')}}"></i>
-                                 </label>--}}
-                                <select class="form-control" name="branch" id="branch-filter">
-                                    <option value="">{{trans('app.select_branch')}}</option>
-                                    @foreach(get_branches() as $id => $name)
-                                        <option value="{{ $id }}">{{ $name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        @endif
+                    @if(is_admin_group())
+                        <div class="col-md-3 col-sm-3 col-12">
+                            <select class="form-control" name="company" id="company-filter">
+                                <option value="">{{trans('app.select_branch')}}</option>
+                                @foreach(get_companies() as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     @endif
 
                     @yield('filter')
@@ -71,7 +42,6 @@
 
         @yield('reports')
     </div>
-
 
 
     {{-- End Table section--}}

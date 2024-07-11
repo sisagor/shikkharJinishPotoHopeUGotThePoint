@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\frontEnd;
 
-use Modules\Recruitment\Entities\Cms;
-use App\Http\Requests\JobApplicationRequest;
-use App\Services\FrontEndService;
+
 use Illuminate\Http\Request;
+use Modules\CMS\Entities\Blog;
+use App\Services\FrontEndService;
 use App\Http\Controllers\Controller;
-use Modules\Recruitment\Entities\Job;
-use Modules\Settings\Entities\JobCategory;
+use Modules\CMS\Entities\BlogDetails;
+use App\Http\Requests\JobApplicationRequest;
+use Modules\Settings\Entities\BlogCategory;
+
 
 class FrontEndController extends Controller
 {
@@ -31,8 +33,10 @@ class FrontEndController extends Controller
     public function index(Request $request)
     {
 
-        $home = Cms::where('type', Cms::TYPE_HOME)->select('content')->first();
-        return view('frontEnd.index', compact('home'));
+        $categories = BlogCategory::active()->pluck('name', 'id');
+        //$home = BlogDetails::where('type', BlogDetails::TYPE_HOME)->select('content')->first();
+
+        return view('frontEnd.index', compact('categories'));
     }
 
     /**
@@ -42,8 +46,8 @@ class FrontEndController extends Controller
      */
     public function about(Request $request)
     {
-        $about = Cms::where('type', Cms::TYPE_ABOUT)->select('content')->first();
-        return view('frontEnd.about', compact('about'));
+        //$about = BlogDetails::where('type', BlogDetails::TYPE_ABOUT)->select('content')->first();
+        //return view('frontEnd.about', compact('about'));
     }
 
 
@@ -54,7 +58,7 @@ class FrontEndController extends Controller
      */
     public function contact(Request $request)
     {
-        $contact = Cms::where('type', Cms::TYPE_CONTACT)->select('content')->first();
+        $contact = BlogDetails::where('type', BlogDetails::TYPE_CONTACT)->select('content')->first();
         return view('frontEnd.contact', compact('contact'));
     }
 

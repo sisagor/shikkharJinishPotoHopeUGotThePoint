@@ -45,9 +45,6 @@ class UserController extends Controller
 
             return DataTables::of($this->user->all())
                 ->addIndexColumn()
-                ->editColumn('department', function ($row) {
-                    return (! empty($row->user) && ! empty($row->user->department) ? $row->user->department->name : null);
-                })
                 ->editColumn('role', function ($row) {
                     return (! empty($row->user) && ! empty($row->user->role) ? $row->user->role->name : null);
                 })
@@ -69,9 +66,6 @@ class UserController extends Controller
 
             return DataTables::of($this->user->trashOnly())
                 ->addIndexColumn()
-                ->editColumn('department', function ($row) {
-                    return (! empty($row->user) && ! empty($row->user->department) ? $row->user->department->name : null);
-                })
                 ->editColumn('role', function ($row) {
                     return (! empty($row->user) && ! empty($row->user->role) ? $row->user->role->name : null);
                 })
@@ -210,6 +204,11 @@ class UserController extends Controller
      */
     public function trash($profile): RedirectResponse
     {
+        if (check_module_status('Billing') && check_bill_emp_user_exist("manager_id", $profile))
+        {
+            return redirect()->back()->with('warning', trans('msg.dependency_detected_on_bill', ['model' => trans('model.user')]));
+        }
+
         if ($this->user->trash($profile)) {
 
             sendActivityNotification(trans('msg.noty.soft_deleted', ['model' => trans('model.user')]));
@@ -247,6 +246,7 @@ class UserController extends Controller
      */
     public function destroy($profile): RedirectResponse
     {
+
         if ($this->user->destroy($profile)) {
 
             sendActivityNotification(trans('msg.noty.deleted', ['model' => trans('model.user')]));
@@ -258,14 +258,6 @@ class UserController extends Controller
     }
 
 
-    /*Reset password*/
-    public function resetPassword(Request $request)
-    {
-        set_action('userManagements.user.updatePassword');
-        set_action_title('reset_password');
-        return view('user::user.resetPass');
-    }
-
     /*search and get user data*/
    public function getUser(Request $request)
     {
@@ -274,14 +266,12 @@ class UserController extends Controller
         if (strlen($search) > 3){
 
             $users = User::where('level', '!=', User::USER_SUPER_ADMIN)
-                ->where('level', '!=', User::USER_ADMIN_ADMIN)
-                ->where('level', '!=', User::USER_COMPANY_ADMIN)
-                ->where('level', '!=', User::USER_BRANCH_ADMIN)
-                ->where('status', RootModel::STATUS_ACTIVE)
+                ->where('level', '!=', User::USER_ADMIN_ADMIN);
+                $users = (com_id() ? $users->where('level', '!=', User::USER_COMPANY_ADMIN) : $users);
+                $users = $users->where('status', RootModel::STATUS_ACTIVE)
                 ->where('email', 'LIKE', $search.'%')
-                ->select('id', DB::raw('name as text'))
+                ->select('id', DB::raw('CONCAT(name, " | ", email) as text'))
                 ->get();
-
 
             if ($users) {
                 return response()->json($users);
@@ -293,6 +283,16 @@ class UserController extends Controller
 
 
 
+    /*Reset password*/
+    public function resetPassword(Request $request)
+    {
+
+        set_action('userManagements.user.resetPass');
+        set_action_title('reset_password');
+        return view('user::user.resetPass');
+    }
+
+
     /**
      * @param UserPasswordUpdateRequest $request
      * @param User $user
@@ -300,6 +300,7 @@ class UserController extends Controller
      */
     public function updateResetPassword(ResetPasswordRequest $request): RedirectResponse
     {
+
         $update = User::where('id', $request->get('user_id'))->update([
             'password' => bcrypt($request->get('password'))
         ]);

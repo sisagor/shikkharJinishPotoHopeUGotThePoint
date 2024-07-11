@@ -28,7 +28,17 @@ class Profile extends RootModel
     protected $fillable = [
         'id',
         'com_id',
-        'branch_id',
+        'name',
+        'phone',
+        'email',
+        'dob',
+        'gender',
+        'address',
+    ];
+
+    public static $fetch = [
+        'id',
+        'com_id',
         'name',
         'phone',
         'email',

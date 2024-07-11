@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Common\HasPermission;
 use App\Common\CascadeSoftDeletes;
 use Modules\User\Entities\Profile;
-use Modules\Branch\Entities\Branch;
 use Modules\Company\Entities\Company;
 use Modules\Employee\Entities\Employee;
 use Illuminate\Notifications\Notifiable;
@@ -23,13 +22,12 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable, SoftDeletes, CascadeSoftDeletes, HasPermission;
 
     const USER_SUPER_ADMIN = "super_admin";
-    const USER_COMPANY_ADMIN = "company_admin";
-    const USER_BRANCH_ADMIN = "branch_admin";
+    const USER_COMPANY_ADMIN = "branch_admin";
     const USER_ADMIN_ADMIN = "admin_admin";
     const USER_ADMIN = "admin";
     const USER_USER = "user";
     const USER_EMPLOYEE = "employee";
-    const MANAGER = "manager";
+    const USER_MANAGER = "manager";
 
     /**
      * The attributes that are mass assignable.
@@ -39,11 +37,8 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'name',
         'com_id',
-        'branch_id',
-        'department_id',
         'role_id',
         'profile_id',
-        'employee_id',
         'level',
         'email',
         'password',
@@ -55,11 +50,8 @@ class User extends Authenticatable implements JWTSubject
     public static $fetch = [
         'name',
         'com_id',
-        'branch_id',
-        'department_id',
         'role_id',
         'profile_id',
-        'employee_id',
         'level',
         'email',
         'status',
@@ -105,7 +97,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function profile()
     {
-        return $this->belongsTo(Profile::class, 'profile_id', 'id');
+        return $this->belongsTo(Profile::class, 'profile_id', 'id')->select(Profile::$fetch);
     }
 
     public function isSuperAdmin()
@@ -118,6 +110,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->level == $this::USER_ADMIN_ADMIN;
     }
 
+    public function isManager()
+    {
+        return $this->level == $this::USER_MANAGER;
+    }
+
     public function isAdminUser()
     {
         return $this->level == $this::USER_ADMIN;
@@ -126,11 +123,6 @@ class User extends Authenticatable implements JWTSubject
     public function company()
     {
         return $this->belongsTo(Company::class, 'com_id', 'id');
-    }
-
-    public function branch()
-    {
-        return $this->belongsTo(Branch::class, 'branch_id', 'id');
     }
 
     public function role()
@@ -151,6 +143,14 @@ class User extends Authenticatable implements JWTSubject
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'id');
+    }
+
+    public function scopeManager($query){
+        return $query->where('manager', self::USER_MANAGER);
+    }
+
+    public function scopeActive($query){
+         return $query->where('status', RootModel::STATUS_ACTIVE);
     }
 
 

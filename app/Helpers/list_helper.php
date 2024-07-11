@@ -5,7 +5,6 @@ use \App\Models\User;
 use \App\Models\Module;
 use \Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use \Modules\Branch\Entities\Branch;
 use \Modules\Company\Entities\Company;
 use \Illuminate\Support\Facades\Cache;
 use \Modules\Employee\Entities\Employee;
@@ -47,37 +46,6 @@ if (! function_exists('get_single_company')) {
 }
 
 
-if (! function_exists('get_branches')) {
-    /**
-     * get companies or branches plucked value only
-     */
-    function get_branches(int $id = null)
-    {
-        if ($id) {
-            return Branch::active()->where('id', $id)->pluck('name', 'id');
-        }
-        if (is_company_group()) {
-            return Cache::rememberForever(app(Branch::class)->getTable() . CACHE_LIST . com_id(), function () use ($id) {
-                return Branch::active()->where('com_id', com_id())->pluck('name', 'id');
-            });
-        }
-
-        return (is_admin_group() ? Branch::mine()->active()->pluck('name', 'id') : []);
-    }
-}
-
-if (! function_exists('get_single_branch')) {
-    /**
-     * get companies or branches plucked value only
-     */
-    function get_single_branch(int $id)
-    {
-        return Cache::rememberForever(app(Branch::class)->getTable() . CACHE_SINGLE . user_id(), function () use ($id) {
-            return Branch::active()->where('id', $id)->select('id', 'name', 'email', 'phone')->first()->toArray();
-        });
-    }
-}
-
 if (! function_exists('get_roles')) {
     /**
      * get roles plucked value only
@@ -113,18 +81,8 @@ if (! function_exists('company_modules')) {
     }
 }
 
-/**get branch scope modules*/
-if (! function_exists('branch_modules')) {
-    function branch_modules()
-    {
-        return Module::active()->where(function ($scope) {
-            return $scope->whereJsonContains('scope', [Module::SCOPE_BRANCH])
-                ->orWhereJsonContains('scope', [Module::SCOPE_COMMON]);
-        })->get();
-    }
-}
 
-/**get branch scope modules*/
+/**get employees scope modules*/
 if (! function_exists('employee_modules')) {
     function employee_modules()
     {
@@ -182,7 +140,7 @@ if (! function_exists('sms_gateway')) {
     function sms_gateway()
     {
         return Cache::rememberForever(app(\App\Models\SmsGateway::class)->getTable() . CACHE_COMMON, function () {
-            $data = \App\Models\SmsGateway::active()->first();
+            $data = \App\Models\SmsGateway::active()->select(['id', 'driver', 'details', 'status'])->first();
             if ($data){
                 return $data->toArray();
             }
@@ -195,7 +153,7 @@ if (! function_exists('sms_gateway')) {
 if (! function_exists('get_single_sms_gateway')) {
     function get_single_sms_gateway($driver)
     {
-        return \App\Models\SmsGateway::where('driver', $driver)->first();
+        return \App\Models\SmsGateway::where('driver', $driver)->select(\App\Models\SmsGateway::$fetch)->first();
     }
 }
 
@@ -204,23 +162,11 @@ if (! function_exists('company_settings')) {
     function company_settings()
     {
         return Cache::rememberForever(app(\Modules\Company\Entities\CompanySetting::class)->getTable() . CACHE_COMMON . com_id(), function () {
-            return \Modules\Company\Entities\CompanySetting::where('com_id', com_id())->select(\Modules\Company\Entities\CompanySetting::$fetch)
-                ->first()->toArray();
+            return \Modules\Company\Entities\CompanySetting::where('com_id', com_id())->pluck('value', 'key')->toArray();
         });
     }
 }
 
-/** Branch settings*/
-if (! function_exists('branch_settings')) {
-    function branch_settings()
-    {
-       // Cache::forget(app(\Modules\Branch\Entities\BranchSetting::class)->getTable() . CACHE_COMMON . branch_id());
-        return Cache::rememberForever(app(\Modules\Branch\Entities\BranchSetting::class)->getTable() . CACHE_COMMON . branch_id(), function () {
-            return \Modules\Branch\Entities\BranchSetting::where('branch_id', branch_id())
-                ->select(\Modules\Branch\Entities\BranchSetting::$fetch)->first()->toArray();
-        });
-    }
-}
 
 /** get_employee_types*/
 if (! function_exists('get_employee_types')) {
@@ -259,14 +205,14 @@ if (! function_exists('system_timezone')) {
     function system_timezone()
     {
         return Cache::rememberForever(app(\App\Models\Timezone::class)->getTable() . CACHE_SINGLE, function () {
-
             if (config('system_settings.timezone_id')) {
-                return \DB::table('timezones')->where('id', config('system_settings.timezone_id'))->first();
+                return \DB::table('timezones')->where('id', config('system_settings.timezone_id'))->pluck('utc')->first();
             }
             return Null;
         });
     }
 }
+
 
 
 /** get_currencies*/
@@ -302,22 +248,13 @@ if (! function_exists('get_count_employee')) {
     }
 }
 
-/**get total branch count*/
-if (! function_exists('get_count_branch')) {
-    function get_count_branch()
-    {
-        return Cache::rememberForever(app(Branch::class)->getTable() . CACHE_DASHBOARD . user_id(), function () {
-            return Branch::active()->companyScope()->count();
-        });
-    }
-}
 
-/**get total branch count*/
+/**get total user count*/
 if (! function_exists('get_count_users')) {
     function get_count_users()
     {
         return Cache::rememberForever(app(User::class)->getTable() . CACHE_DASHBOARD . user_id(), function () {
-            return User::active()->branchScope()->where('level', User::USER_ADMIN)->count();
+            return User::active()->where('level', User::USER_ADMIN)->count();
         });
     }
 }
@@ -391,20 +328,6 @@ if (! function_exists('set_notifiable_admin')) {
             });
         }
 
-        if (is_branch_admin()) {
-            //return company info
-            return Cache::rememberForever(app(User::class)->getTable() . CACHE_SINGLE . user_id(), function () {
-                return User::where('level', User::USER_COMPANY_ADMIN)->where('com_id', com_id())->first();
-            });
-        }
-
-        if (is_employee()) {
-            //return branch_admin info
-            return Cache::rememberForever(app(User::class)->getTable() . CACHE_SINGLE . user_id(), function () {
-                return User::where('level', User::USER_BRANCH_ADMIN)
-                    ->where('com_id', com_id())->where('branch_id', branch_id())->first();
-            });
-        }
     }
 }
 
@@ -498,7 +421,7 @@ if (! function_exists('get_holiday_sum_by_month')) {
 if (! function_exists('get_job_categories')) {
     function get_job_categories()
     {
-        return \Modules\Settings\Entities\JobCategory::active()->with('jobs:id,category_id,position')->get();
+        return \Modules\Settings\Entities\BlogCategory::active()->with('jobs:id,category_id,position')->get();
     }
 }
 
@@ -506,7 +429,7 @@ if (! function_exists('get_job_categories')) {
 if (! function_exists('get_config_value')) {
     function get_config_value($key)
     {
-        return DB::table('system_settings')->select($key)->whereNotNull($key)->count();
+        return (DB::table('system_settings')->select('value')->where('key', $key)->first())?->value;
     }
 }
 
@@ -516,16 +439,27 @@ if (! function_exists('make_employee_unique_id')) {
     function make_employee_unique_id(): string
     {
         $index = DB::table('employees')->select('employee_index');
-            $index = (com_id() ? $index->where('com_id', com_id()) : $index);
+            //$index = (com_id() ? $index->where('com_id', com_id()) : $index);
             $index = $index->orderBy('id', 'desc')->first();
-        $offset = (strlen(config('company_settings.employee_id_prefix')) !== 0
-            ? strlen(config('company_settings.employee_id_prefix'))
+        $offset = (strlen(config('system_settings.employee_id_prefix')) !== 0
+            ? strlen(config('system_settings.employee_id_prefix'))
             : 3);
-        $total =(! empty($index) ? (substr($index->employee_index, $offset)) : 0);
-        $length = (config('company_settings.employee_id_length') - strlen(config('company_settings.employee_id_prefix')));
-        $int = sprintf("%0" . $length . "d", $total + 1);
 
-        return config('company_settings.employee_id_prefix') . $int;
+        if (preg_match( "/^[^a-zA-Z]+$/", $index->employee_index)){
+            $total = (int)$index->employee_index;
+        }
+        else
+        {
+            $total =(int)(! empty($index) ? (substr($index->employee_index, $offset)) : 0);
+        }
+
+        $length = (config('system_settings.employee_id_length') - strlen(config('system_settings.employee_id_prefix')));
+        $total = $total + 2;
+        $int = sprintf("%0" . $length . "d", $total);
+
+
+
+        return config('system_settings.employee_id_prefix') . $int;
     }
 }
 
@@ -546,6 +480,21 @@ if (! function_exists('tax_calculation')) {
         }
     }
 }
+
+/**get employee unique ID*/
+if (! function_exists('get_penalty')) {
+    function get_penalty($month, $empId = null)
+    {
+        if ($empId)
+        {
+            return \Modules\Employee\Entities\Penalty::where('employee_id', $empId)->where('month', $month)->get();
+        }
+        return \Modules\Employee\Entities\Penalty::where('month', $month)->get();
+    }
+}
+
+
+
 
 
 

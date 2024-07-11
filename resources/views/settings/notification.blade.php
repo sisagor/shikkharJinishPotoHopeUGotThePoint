@@ -2,7 +2,7 @@
 <form method="post" enctype="multipart/form-data" action="{{ route(session('action'))}}">
     @csrf
     <div class="clearfix"></div>
-    <inpu type="hidden" name="type" value="general">
+    <input type="hidden" name="notification" value="notification">
 
     <div class="col-md-6 col-sm-6">
        {{-- <fieldset>

@@ -74,7 +74,7 @@ trait Imageable
      */
     public function profile()
     {
-        return $this->morphOne(Image::class, 'imageable')->where('type', 'profile');
+        return $this->morphOne(Image::class, 'imageable')->where('type', 'profile')->select('path');
     }
 
     /**

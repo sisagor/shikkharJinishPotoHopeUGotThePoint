@@ -20,23 +20,11 @@
     <div class="row d-inline-block">
         <div class="tile_count">
 
-            @if(is_branch_admin())
-
-                <div class="col-lg-2 col-md-3 col-4  tile_stats_count">
-                    <span class="count_top"><i class="fa fa-user"></i> {{trans('app.total_users')}}</span>
-                    <div class="count green">{{get_count_branch()}}</div>
-                    <a class="count_bottom" href="{{route('userManagements.users')}}">{{trans('app.users')}}</a>
-                </div>
-
-            @else
-
-                <div class="col-lg-2 col-md-3 col-4  tile_stats_count">
-                    <span class="count_top"><i class="fa fa-bank"></i> {{trans('app.total_branch')}}</span>
-                    <div class="count green">{{get_count_branch()}}</div>
-                    <a class="count_bottom" href="{{route('branch.branches')}}">{{trans('app.branches')}}</a>
-                </div>
-
-            @endif
+           {{-- <div class="col-lg-2 col-md-3 col-4  tile_stats_count">
+                <span class="count_top"><i class="fa fa-bank"></i> {{trans('app.total_branch')}}</span>
+                <div class="count green">{{}}</div>
+                <a class="count_bottom" href="{{route('branch.branches')}}">{{trans('app.branches')}}</a>
+            </div>--}}
 
             <div class="col-lg-2 col-md-3 col-4  tile_stats_count">
                 <span class="count_top"><i class="fa fa-users"></i> {{trans('app.total_employee')}}</span>

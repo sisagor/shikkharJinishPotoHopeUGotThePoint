@@ -11,7 +11,7 @@ class Activity extends RootModel {
 
 
     protected $fillable = [
-        'id', 'com_id', 'branch_id', 'user_id', 'table', 'row_id', 'action_id', 'title'
+        'id', 'com_id', 'user_id', 'table', 'row_id', 'action_id', 'title'
     ];
 
 

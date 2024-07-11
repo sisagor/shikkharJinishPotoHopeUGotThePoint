@@ -3,12 +3,13 @@
 
 use App\Models\User;
 use App\Models\RootModel;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
-use Modules\Branch\Entities\BranchSetting;
 use Modules\Company\Entities\CompanySetting;
 
 
@@ -62,6 +63,15 @@ if (! function_exists('is_admin')) {
     }
 }
 
+if (! function_exists('is_manager')) {
+    /** return company id*/
+    function is_manager()
+    {
+        return Auth::user()->isManager();
+
+    }
+}
+
 
 if (! function_exists('is_company_admin')) {
     /** return company id*/
@@ -75,23 +85,7 @@ if (! function_exists('is_company_group')) {
     /** return company id*/
     function is_company_group()
     {
-        return (Auth::user() && Auth::user()->com_id && (Auth::user()->level == User::USER_COMPANY_ADMIN || User::USER_ADMIN) && ! Auth::user()->branch_id);
-    }
-}
-
-if (! function_exists('is_branch_admin')) {
-    /** return company id*/
-    function is_branch_admin(): bool
-    {
-        return Auth::user()->branch_id && Auth::user()->level == User::USER_BRANCH_ADMIN;
-    }
-}
-
-if (! function_exists('is_branch_group')) {
-    /** return company id*/
-    function is_branch_group(): bool
-    {
-        return Auth::user()->branch_id && (Auth::user()->level == User::USER_BRANCH_ADMIN || User::USER_ADMIN);
+        return (Auth::user() && Auth::user()->com_id && (Auth::user()->level == User::USER_COMPANY_ADMIN || User::USER_ADMIN));
     }
 }
 
@@ -120,14 +114,6 @@ if (! function_exists('is_employee_user')) {
     }
 }
 
-if (! function_exists('branch_id')) {
-    /** return branch_id */
-    function branch_id()
-    {
-        return Auth::user()->branch_id ?? null;
-    }
-}
-
 
 if (! function_exists('user_id')) {
     /** return Auth::user()_id */
@@ -150,17 +136,11 @@ if (! function_exists('get_status')) {
     /** return status*/
     function get_status($status): ?string
     {
-        switch ($status) {
-            case RootModel::STATUS_ACTIVE :
-                return 'Active';
-                break;
-            case RootModel::STATUS_INACTIVE :
-                return 'Inactive';
-                break;
-
-            default :
-                return null;
-        }
+        return match ($status) {
+            RootModel::STATUS_ACTIVE => 'Active',
+            RootModel::STATUS_INACTIVE => 'Inactive',
+            default => null,
+        };
     }
 }
 
@@ -168,20 +148,11 @@ if (! function_exists('get_approval_status')) {
     /** return status*/
     function get_approval_status($approve): ?string
     {
-        switch ($approve) {
-            case RootModel::APPROVAL_STATUS_PENDING :
-                return 'Pending';
-                break;
-            case RootModel::APPROVAL_STATUS_APPROVED :
-                return 'Approved';
-                break;
-            case RootModel::APPROVAL_STATUS_REJECTED :
-                return 'Rejected';
-                break;
-            default :
-                return 'Pending';
-                break;
-        }
+        return match ($approve) {
+            RootModel::APPROVAL_STATUS_APPROVED => 'Approved',
+            RootModel::APPROVAL_STATUS_REJECTED => 'Rejected',
+            default => 'Pending',
+        };
     }
 }
 
@@ -189,26 +160,13 @@ if (! function_exists('get_role_level')) {
     /** return status*/
     function get_role_level($level)
     {
-        switch ($level) {
-            case App\Models\Role::ROLE_ADMIN :
-                return 'Admin';
-                break;
-            case App\Models\Role::ROLE_COMPANY :
-                return 'Company';
-                break;
-            case App\Models\Role::ROLE_BRANCH :
-                return 'Branch';
-                break;
-            case App\Models\Role::ROLE_ADMIN_USER :
-                return 'Admin User';
-                break;
-            case App\Models\Role::ROLE_EMPLOYEE :
-                return 'Employee';
-                break;
-
-            default :
-                return null;
-        }
+        return match ($level) {
+            App\Models\Role::ROLE_ADMIN => 'Admin',
+            App\Models\Role::ROLE_COMPANY => 'Company',
+            App\Models\Role::ROLE_ADMIN_USER => 'Admin User',
+            App\Models\Role::ROLE_EMPLOYEE => 'Employee',
+            default => null,
+        };
     }
 }
 
@@ -280,14 +238,9 @@ if (! function_exists('get_profile_url')) {
                 return route('employee.employee.view', Auth::user()->employee_id);
             });
         }
-        if (is_branch_admin()) {
-            return \Illuminate\Support\Facades\Cache::rememberForever('branches' . CACHE_USER . user_id(), function () {
-                return route('branch.branch.profile', Auth::user()->branch);
-            });
-        }
         if (is_company_admin()) {
             return \Illuminate\Support\Facades\Cache::rememberForever('companies' . CACHE_USER . user_id(), function () {
-                return route('company.company.profile', Auth::user()->company);
+                return route('branch.branch.profile', Auth::user()->company);
             });
 
         }
@@ -306,11 +259,6 @@ if (! function_exists('get_profile_picture_url')) {
         if (is_employee()) {
             return \Illuminate\Support\Facades\Cache::rememberForever('images_single_' . Auth::id(), function () {
                 return optional(Auth::user()->employee->profile)->path;
-            });
-        }
-        if (is_branch_admin()) {
-            return \Illuminate\Support\Facades\Cache::rememberForever('images_single_' . Auth::id(), function () {
-                return optional(Auth::user()->branch->profile)->path;
             });
         }
         if (is_company_admin()) {
@@ -353,16 +301,9 @@ if (! function_exists('get_total_count')) {
 if (! function_exists('common_search')) {
     function common_search($query, $request = null)
     {
-       /* if (is_company_admin() && ! $request->filled('branch_id')){
-            $query->whereNull('branch_id');
-        }*/
         if ($request->filled('com_id')) {
             return $query->where('com_id', $request->get('com_id'));
         }
-        if ($request->filled('branch_id')) {
-            return $query->where('branch_id', $request->get('branch_id'));
-        }
-
         return $query;
     }
 }
@@ -376,13 +317,9 @@ if (! function_exists('get_setting_url')) {
      */
     function get_setting_url()
     {
-        if (branch_id()) {
+        if (com_id()) {
             return route('branch.branch.settings');
         }
-        if (com_id()) {
-            return route('company.company.settings');
-        }
-
         return route('settings');
     }
 }
@@ -508,7 +445,7 @@ if (! function_exists('get_device_ip')) {
     /**add new button*/
     function get_device_ip()
     {
-        return is_company_admin() ? config('company_settings.device_ip') : config('branch_settings.device_ip');
+        return is_company_admin() ? config('company_settings.device_ip') : null;
     }
 }
 
@@ -523,23 +460,12 @@ if (! function_exists('check_device_active')) {
                 config('company_settings.enable_device')
                 && config('company_settings.attendance') == CompanySetting::ATTENDANCE_IP
                 && config('company_settings.device_ip')
-            ) {
+            )
+            {
                 return true;
             }
             return false;
         }
-        if ($type == "branch") {
-            if
-            (
-                config('branch_settings.enable_device')
-                && config('branch_settings.attendance') == BranchSetting::ATTENDANCE_IP
-                && config('branch_settings.device_ip')
-            ) {
-                return true;
-            }
-            return false;
-        }
-
         return false;
     }
 }
@@ -562,7 +488,7 @@ if (!function_exists('get_org_title')) {
      */
     function get_org_title()
     {
-        return config('branch_settings.branch.name') ?: config('company_settings.company.name');
+        return  config('system_settings.system_name');
     }
 }
 
@@ -578,7 +504,10 @@ if (!function_exists('get_system_currency')) {
 if (!function_exists('get_currency_symbol')) {
     function get_currency_symbol()
     {
-        return config('system_settings.currency.symbol', '$');
+        if (config('system_settings.show_currency_symbol'))
+        {
+            return config('system_settings.currency.symbol', '$');
+        }
     }
 }
 
@@ -615,9 +544,9 @@ if (!function_exists('get_sender_name')) {
     /**
      * Return organization title or the application title
      */
-    function get_sender_name($shop = Null)
+    function get_sender_name()
     {
-        return config('branch_settings.branch.name') ?: config('company_settings.company.name');
+        return  config('company_settings.company.name');
     }
 }
 
@@ -741,13 +670,8 @@ if (!function_exists('get_storage_file_url')) {
         if (! $path) {
             return null;
         }
-
-        //return Storage::disk('public')->url($path);
-        return url('/storage/'.$path);
-      /*  if ($size == Null) {
-            return url("image/{$path}");
-        }
-        return url("image/{$path}?p={$size}");*/
+        return Storage::disk(config('filesystems.default'))->url($path);
+        //return asset('/storage/'.$path);
     }
 }
 
@@ -1144,25 +1068,32 @@ if (! function_exists('get_email_status')) {
     }
 }
 
-if (! function_exists('employee_search_filed')) {
-    /**Employee  search filed*/
-    function employee_search_filed($col)
+/*if (! function_exists('employee_search_filed')) {
+    ##Employee  search filed
+    function employee_search_filed($col): string
     {
         return ('<div class="col-md-'.$col.'">
-                 <select class="full-width form-control select2-ajax w-100" data-text="'.trans('help.search_employee').'"
-                         data-link="'.route('employee.getEmployee').'" name="employee_id" id="employee-filter">
-                     <option value="">'.trans('app.select_employee').'</option>
-                 </select>
-             </div>
-             ');
+                     <select class="full-width form-control select2-ajax w-100" data-text="'.trans('help.search_employee').'"
+                             data-link="'.route('employee.getEmployee').'" name="employee_id" id="employee-filter">
+                         <option value="">'.trans('app.select_employee').'</option>
+                     </select>
+                </div>');
+    }
+}*/
+
+if (! function_exists('employee_search_filed')) {
+    ##Employee  search filed
+    function employee_search_filed($col)
+    {
+        return view('partials.employeeFilter', compact('col'));
     }
 }
 
 if (! function_exists('month_search_filed')) {
     /**Month search filed*/
-    function month_search_filed($col)
+    function month_search_filed($col, $month = 12)
     {
-        $period = Illuminate\Support\Carbon::now()->subMonths(12)->monthsUntil(now());
+        $period = Illuminate\Support\Carbon::now()->subMonths($month)->monthsUntil(now());
         $options = '';
         foreach($period as $date):
             $selected = (request()->get('month') == $date->format('Y-m') ? "selected" : '');
@@ -1183,16 +1114,11 @@ if (! function_exists('leave_policy_apply_at')) {
     /**Month search filed*/
     function leave_policy_apply_at($apply_at)
     {
-        switch ($apply_at){
-            case \Modules\Organization\Entities\LeavePolicy::APPLY_AFTER_JOINING
-            : return "After Joining";
-            break;
-            case \Modules\Organization\Entities\LeavePolicy::APPLY_AFTER_PROVISION
-            : return "After Provision";
-            break;
-
-            default : return null;
-        }
+        return match ($apply_at) {
+            \Modules\Organization\Entities\LeavePolicy::APPLY_AFTER_JOINING => "After Joining",
+            \Modules\Organization\Entities\LeavePolicy::APPLY_AFTER_PROVISION => "After Provision",
+            default => null,
+        };
     }
 }
 
@@ -1230,26 +1156,81 @@ if (! function_exists('save_image')) {
     }
 }
 
-if (! function_exists('get_billing_status')) {
-    /** return status*/
-    function get_billing_status($approve): ?string
+if (! function_exists('company_form'))
+{
+    /**Month search filed*/
+    function company_form($col = 12, $comId = 0, bool $readOnly = false, bool $required = false)
     {
-        switch ($approve) {
-            case \Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_ADMIN :
-                return 'Approved by Admin';
-                break;
-            case \Modules\Billing\Entities\Billing::BILLING_STATUS_APPROVE_MANAGER :
-                return 'Approved by Manager';
-                break;
-            case \Modules\Billing\Entities\Billing::BILLING_STATUS_REJECTED :
-                return 'Rejected';
-                break;
-            default :
-                return 'Pending';
-                break;
+        if (is_admin_group())
+        {
+            return view('partials.company', compact('col', 'comId', 'readOnly', 'required'));
         }
     }
 }
+
+
+
+if (! function_exists('get_short_word_status'))
+{
+    /**get billing status */
+    function get_short_word_status($status): string
+    {
+        return match ($status) {
+            0 => "No",
+            1 => "Yes",
+        };
+    }
+}
+
+if (! function_exists('get_action_level'))
+{
+    /**get billing status */
+    function get_action_level($level): string | null
+    {
+        return match ($level)
+        {
+            \Modules\Settings\Entities\ActionType::LEVEL_INFO => "<span class='alert alert-info'>Info</span>",
+            \Modules\Settings\Entities\ActionType::LEVEL_WARNING => "<span class='alert alert-warning'>Warning</span>",
+            \Modules\Settings\Entities\ActionType::LEVEL_DANGER => "<span class='alert alert-danger'>Danger</span>",
+            \Modules\Settings\Entities\ActionType::LEVEL_SUCCESS => "<span class='alert alert-success'>Success</span>",
+            default => null,
+        };
+    }
+}
+
+if (! function_exists('check_module_status'))
+{
+    /**get billing status */
+    function check_module_status($moduleName): bool
+    {
+        $modules = json_decode(\Illuminate\Support\Facades\File::get(base_path('modules_statuses.json')), true);
+
+        if (! empty($modules[$moduleName]))
+        {
+            return $modules[$moduleName];
+        }
+
+        return false;
+    }
+}
+
+/*if (! function_exists('get_status'))
+{
+    //get billing status
+    function get_status($col = 12, $status = null)
+    {
+       return view('partials.status', compact('col', 'status'));
+    }
+}*/
+
+
+
+
+
+
+
+
+
 
 
 

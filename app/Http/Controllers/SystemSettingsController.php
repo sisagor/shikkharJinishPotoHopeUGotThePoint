@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SmsGateway;
 use App\Models\SystemSetting;
+use App\Services\ZKTService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -176,8 +177,7 @@ class SystemSettingsController extends Controller
 
     public function cacheClear()
     {
-        try
-        {
+        try {
 
             Artisan::call('config:clear');
             Artisan::call('route:clear');
@@ -188,8 +188,7 @@ class SystemSettingsController extends Controller
 
             $message = trans('msg.cache_cleared');
 
-        } catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             $message = get_exception_message($exception);
         }
 
@@ -198,8 +197,7 @@ class SystemSettingsController extends Controller
 
     public function optimize()
     {
-        try
-        {
+        try {
 
             Artisan::call('optimize:clear');
             //Artisan::call('optimize');
