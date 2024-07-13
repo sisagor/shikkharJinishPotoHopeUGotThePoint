@@ -29,11 +29,13 @@ class InitSettings
 
         //dd(system_settings());
 
-        if (Auth::user()) {
+        if (Auth::user())
+        {
 
             $module = str_replace('-', '_', request()->segment(1));
             Session::put('module', $module);
 
+            setSystemConfig();
             setSystemConfig();
             systemCheck($request);
             // update the visitor table for state

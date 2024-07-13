@@ -4,26 +4,17 @@ namespace Modules\Settings\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Modules\CMS\Entities\Blog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
-use Modules\CMS\Entities\BlogDetails;
-use Modules\Settings\Http\Requests\BlogCategoryCreateRequest;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Settings\Entities\BlogCategory;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\CMS\Http\Requests\BlogCreateRequest;
 use Modules\CMS\Repositories\BlogRepositoryInterface;
-
+use Modules\Settings\Http\Requests\BlogCategoryCreateRequest;
 
 class BlogCategoryController extends Controller
 {
-    protected $repo;
-
-    public function __construct(BlogRepositoryInterface $repository)
-    {
-        $this->repo = $repository;
-    }
 
     /**
      * Display a listing of the resource.
@@ -37,57 +28,38 @@ class BlogCategoryController extends Controller
             return view('settings::blogCategory.index');
         }
 
-        $data = $this->repo->index($request);
+        $data = BlogCategory::query();
 
         if ($request->get('type') == "active")
         {
 
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->editColumn('details', function ($row){
-                    return substr(json_decode($row->details), 0, 500);
+                ->editColumn('status', function ($row)
+                {
+                    return get_status($row->status);
                 })
-                ->editColumn('interview_time', function ($row){
-                    return \Carbon\Carbon::parse( $row->interview_time)->format('H:i:s A');
+                ->addColumn('action', function ($row)
+                {
+                    return  edit_button('componentSettings.blogCategory.edit', $row, "modal") . trash_button('componentSettings.blogCategory.trash',  $row);
                 })
-                ->editColumn('interviewers', function ($row){
-                    $interviewers = '<ul>';
-                    foreach ($row->interviewers as $interviewer){
-                        $interviewers .='<li>'. $interviewer->name .'</li>';
-                    }
-                    $interviewers .= '</ul>';
-                    return $interviewers;
-                })
-                ->addColumn('action', function ($row) {
-                    return view_button('cms.blog.view', $row). edit_button('cms.blog.edit', $row, "modal") . trash_button('cms.blog.trash', $row);
-                })
-                ->rawColumns(['status', 'action', 'details', 'interviewers'])
+                ->rawColumns(['status', 'action'])
                 ->make(true);
         }
 
         if ($request->get('type') == "trash")
         {
-
             return DataTables::of($data->onlyTrashed())
                 ->addIndexColumn()
-                ->editColumn('interview_time', function ($row){
-                    return \Carbon\Carbon::parse( $row->interview_time)->format('H:i:s A');
+                ->editColumn('status', function ($row)
+                {
+                    return get_status($row->status);
                 })
-                ->editColumn('details', function ($row){
-                    return substr(json_decode($row->details), 0, 500);
+                ->addColumn('action', function ($row)
+                {
+                    return  edit_button('componentSettings.blogCategory.edit', $row, "modal") . delete_button('componentSettings.blogCategory.delete',  $row);
                 })
-                ->editColumn('interviewers', function ($row){
-                    $interviewers = '<ul>';
-                    foreach ($row->interviewers as $interviewer){
-                        $interviewers .='<li>'. $interviewer->name .'</li>';
-                    }
-                    $interviewers .= '</ul>';
-                    return $interviewers;
-                })
-                ->addColumn('action', function ($row) {
-                    return restore_button('cms.blog.restore', $row) . delete_button('cms.blog.delete', $row);
-                })
-                ->rawColumns(['status', 'action', 'details', 'interviewers'])
+                ->rawColumns(['status', 'action'])
                 ->make(true);
         }
     }
@@ -167,9 +139,10 @@ class BlogCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function trash(BlogCategory $category)
+    public function trash(BlogCategory $blogCategory)
     {
-        if ($category->delete()) {
+
+        if ($blogCategory->delete()) {
 
             sendActivityNotification(trans('msg.noty.soft_deleted', ['model' => trans('model.blog_category')]));
 
@@ -186,7 +159,8 @@ class BlogCategoryController extends Controller
      */
     public function restore(int $id)
     {
-        if ($this->repo->restore($id)) {
+        if (BlogCategory::withTrashed()->find($id)->restore())
+        {
 
             sendActivityNotification(trans('msg.noty.restored', ['model' => trans('model.blog_category')]));
 
@@ -203,7 +177,7 @@ class BlogCategoryController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->repo->destroyTrash($id)) {
+        if (BlogCategory::withTrashed()->find($id)->forceDelete()) {
 
             sendActivityNotification(trans('msg.noty.deleted', ['model' => trans('model.blog_category')]));
 

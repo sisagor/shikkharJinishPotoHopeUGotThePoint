@@ -34,8 +34,10 @@ if (! function_exists('systemCheck')) {
      $mac = exec('getmac');
      $mac = strtok($mac, ' ');
 
+    // dd($mac);
+
      if ($mac){
-         if($mac !== "54-E1-AD-47-0E-58"){
+         if($mac !== "60-45-CB-69-CB-06"){
              throw new \App\Exceptions\LicenseNotFoundException('Invalid License!');
          }
      }
