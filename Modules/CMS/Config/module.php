@@ -78,7 +78,7 @@ return [
                     'show' => 0,
                 ],
                 [
-                    'name' => 'CMS',
+                    'name' => 'Books',
                     'url' => 'cms/books',
                     'action' => 'cms.books',
                     'show' => 1,
@@ -109,8 +109,8 @@ return [
                 ],
                 [
                     'name' => 'Delete',
-                    'url' => 'cms/cms/delete',
-                    'action' => 'cms.cms.delete',
+                    'url' => 'cms/book/delete',
+                    'action' => 'cms.book.delete',
                     'show' => 0,
                 ],
             ],

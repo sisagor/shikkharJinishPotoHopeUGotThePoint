@@ -9,8 +9,6 @@ use Illuminate\Routing\Controller;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Settings\Entities\BlogCategory;
 use Illuminate\Contracts\Support\Renderable;
-use Modules\CMS\Http\Requests\BlogCreateRequest;
-use Modules\CMS\Repositories\BlogRepositoryInterface;
 use Modules\Settings\Http\Requests\BlogCategoryCreateRequest;
 
 class BlogCategoryController extends Controller
@@ -80,9 +78,9 @@ class BlogCategoryController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(BlogCreateRequest $request)
+    public function store(BlogCategoryCreateRequest $request)
     {
-        if ($this->repo->store($request)) {
+        if (BlogCategory::create($request->validated())) {
 
             sendActivityNotification(trans('msg.noty.created', ['model' => trans('model.blog_category')]));
 
@@ -97,9 +95,9 @@ class BlogCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show(JobInterview $interview)
+    public function show(BlogCategory $blogCategory)
     {
-        return view('settings::blogCategory.show', compact('interview'));
+       // return view('settings::blogCategory.show', compact('interview'));
     }
 
     /**
@@ -107,13 +105,12 @@ class BlogCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(BlogCategory $category)
+    public function edit(BlogCategory $blogCategory)
     {
-        set_action_title('edit_job');
-        set_action('cms.blog.update', $category);
-        $category = $this->repo->getJobs();
+        set_action_title('edit_blog');
+        set_action('componentSettings.blogCategory.update', $blogCategory);
 
-        return view('settings::blogCategory.edit', compact('category'));
+        return view('settings::blogCategory.edit', compact('blogCategory'));
     }
 
     /**
@@ -122,9 +119,10 @@ class BlogCategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(BlogCategoryCreateRequest $request, BlogCategory $category)
+    public function update(BlogCategoryCreateRequest $request, BlogCategory $blogCategory)
     {
-        if ($this->repo->update($request, $category)) {
+        if ($blogCategory->update($request->validated()))
+        {
 
             sendActivityNotification(trans('msg.noty.updated', ['model' => trans('model.blog_category')]));
 

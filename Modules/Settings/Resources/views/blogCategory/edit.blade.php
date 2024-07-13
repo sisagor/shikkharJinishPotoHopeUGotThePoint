@@ -4,11 +4,10 @@
 
     <div class="form-body">
         <div class="row">
-
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="name">
                     {{trans('app.name')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.employment_type_name')}}">
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.name')}}">
                     </i>
                 </label>
                 <div class="item form-group">
@@ -16,7 +15,6 @@
                            placeholder="{{trans('app.name')}}" required/>
                 </div>
             </div>
-
 
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="details">
@@ -28,7 +26,6 @@
                     <textarea class="form-control" id="details" name="details" required>@if($blogCategory){{$blogCategory->details}}@endif</textarea>
                 </div>
             </div>
-
 
             {{--Status--}}
             <div class="col-md-12 col-sm-12">
