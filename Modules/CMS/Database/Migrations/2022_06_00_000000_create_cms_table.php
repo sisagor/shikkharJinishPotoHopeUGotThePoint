@@ -20,7 +20,8 @@ class CreateCmsTable extends Migration
                 $table->bigInteger('blog_category_id')->unsigned()->nullable();
                 $table->string('title');
                 $table->tinyInteger('status')->default(0)->nullable();
-                $table->integer('order');
+                $table->tinyInteger('order');
+                $table->integer('created_by');
                 $table->softDeletes();
                 $table->timestamps();
                 //$table->foreign('com_id')->references('id')->on('companies')->onDelete('SET NULL');
@@ -44,7 +45,7 @@ class CreateCmsTable extends Migration
 
 
 
-        if (! Schema::hasTable('cms')) {
+       /* if (! Schema::hasTable('cms')) {
             Schema::create('cms', function (Blueprint $table) {
                 $table->id();
                 $table->string('type')->nullable();
@@ -52,7 +53,7 @@ class CreateCmsTable extends Migration
                 $table->tinyInteger('status')->default(0)->nullable();
                 $table->timestamps();
             });
-        }
+        }*/
 
     }
 
@@ -65,6 +66,6 @@ class CreateCmsTable extends Migration
     {
         Schema::dropIfExists('blogs');
         Schema::dropIfExists('blog_details');
-        Schema::dropIfExists('cms');
+        //Schema::dropIfExists('cms');
     }
 }

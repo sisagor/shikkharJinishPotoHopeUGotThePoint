@@ -57,25 +57,41 @@
 
 
 
-            <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="image">
-                    {{trans('app.image')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.image')}}"></i>
-                </label>
-                <div class="item form-group">
-                    <input type="file" class="form-control" id="image" name="image[]" required placeholder="{{trans('app.image')}}">
+            <div class="row">
+                <div class="col-md-2 col-sm-2">
+                    <label class="col-form-label label-align" for="image">
+                        {{trans('app.image')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.image')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input type="file"  class="form-control" id="uploadImage" name="image[]" required placeholder="{{trans('app.image')}}">
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="details">
-                    {{trans('app.details')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.details')}}"></i>
-                </label>
-                <div class="item form-group">
-                    <input class="form-control" id="details" name="details[]" required placeholder="{{trans('app.details')}}">
+                <div class="col-md-8 col-sm-8">
+                    <label class="col-form-label label-align" for="details">
+                        {{trans('app.details')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.details')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input class="form-control" id="details" name="details[]" required placeholder="{{trans('app.details')}}">
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-sm-2">
+                    <label class="col-form-label label-align" for="details">
+                        {{trans('app.order')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.order')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" name="order" required>
+                            <option value="">{{trans('app.select')}}</option>
+                            @foreach($categories as $id => $name)
+                                <option value="{{$id}}">{{$name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -84,7 +100,9 @@
 
 @endsection
 
-@include('cms::scripts.formScript')
+@section('formScripts')
+    @include('cms::scripts.formScript')
+@endsection
 
 
 

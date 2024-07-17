@@ -28,9 +28,6 @@
 
             $('.card').css('width', '100%');
 
-
-            //End search for product
-
         });
 
 
