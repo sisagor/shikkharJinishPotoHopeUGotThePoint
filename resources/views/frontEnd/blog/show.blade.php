@@ -12,6 +12,7 @@
 @php
 
   //dd(request()->segment(1));
+  
 
 @endphp
 
