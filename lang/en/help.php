@@ -166,5 +166,7 @@ return [
     'policy_settings' => 'This policy will increment when generate the salary',
     'search_manager' => 'search manager by typing min 3 latter',
     'search_project' => 'search project by typing min 3 latter',
+    'order' => 'Give Order',
+    'image' => 'Choose Image',
 
 ];

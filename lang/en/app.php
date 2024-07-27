@@ -117,7 +117,7 @@ return [
     'level' => 'Level',
     'user_level' => 'User Level',
     'user_company' => 'Edit Company',
-    'select' => '--select--',
+    'select' => '--Select--',
     'belongs_to' => 'Belongs to',
     'new_branch' => 'New Branch',
     'commission_percent' => 'Commission Percent',
@@ -711,6 +711,7 @@ return [
     'new_blog_category' => 'New Blog Category',
     'edit_blog_category' => 'Edit Blog Category',
     'blog_categories' => 'Blog Categories',
+    'order' => 'Order',
 
 
 ];

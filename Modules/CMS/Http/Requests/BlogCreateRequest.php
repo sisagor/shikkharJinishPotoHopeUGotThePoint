@@ -15,7 +15,7 @@ class BlogCreateRequest extends RootRequest
     public function rules()
     {
 
-        if ($this->interview){
+        if ($this->title){
             $required = ['status' => 'required'];
         }
         else{
@@ -23,18 +23,21 @@ class BlogCreateRequest extends RootRequest
         }
 
         return array_merge([
-             'job_id' => 'required',
-             'job_application_id' => 'required',
-             'interview_date' => 'required',
-             'interview_time' => 'required',
-             'address' => 'required',
-             'interviewers' => 'required|array|min:1',
-             'details' => 'required',
+            'category_id' => 'required|integer',
+            'title' => 'required|string|max:255',
+            'status' => 'required|integer',
+            'orders' => 'required|array',
+            'orders.*' => 'integer',
+            'details' => 'required|array',
+            'details.*' => 'nullable|string',
+            'images' => 'array',
+            'images.*' => 'file|mimes:jpeg,jpg,png|max:2048',
+
         ], $required);
     }
 
 
-    public function message(bool $absolute = true)
+    public function message()
     {
         return [];
     }
