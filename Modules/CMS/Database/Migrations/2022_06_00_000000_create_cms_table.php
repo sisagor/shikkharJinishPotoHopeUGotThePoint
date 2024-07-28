@@ -55,6 +55,7 @@ class CreateCmsTable extends Migration
                 $table->integer('created_by')->nullable();
                 $table->tinyInteger('status')->default(0)->nullable();
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
 

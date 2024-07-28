@@ -25,4 +25,5 @@ return [
     'device' => 'Device',
     'action_type' => 'Action Type',
     'action' => 'Action',
+    'book' => 'Book',
 ];
