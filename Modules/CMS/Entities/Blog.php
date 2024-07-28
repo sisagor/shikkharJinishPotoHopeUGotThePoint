@@ -6,7 +6,7 @@ use App\Models\RootModel;
 use App\Common\Imageable;
 use App\Common\CascadeSoftDeletes;
 use Modules\Settings\Entities\BlogCategory;
-use App\Modules\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 

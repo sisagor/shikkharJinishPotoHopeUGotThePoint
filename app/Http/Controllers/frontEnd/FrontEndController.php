@@ -34,9 +34,32 @@ class FrontEndController extends Controller
     {
 
         $categories = BlogCategory::active()->pluck('name', 'id');
+        $blogs = $this->getBlogDetailsWithFirstimage();
         //$home = BlogDetails::where('type', BlogDetails::TYPE_HOME)->select('content')->first();
 
-        return view('frontEnd.index', compact('categories'));
+        return view('frontEnd.index', compact('categories','blogs'));
+    }
+
+    public function getBlogDetailsWithFirstimage()
+    {
+        return Blog::with(['user:id,name', 'details', 'details.images'])
+                ->get()
+                ->map(function($blog){
+                    $firstImage = $blog->details->flatMap(function($detail){
+                        return $detail->images;
+                    })->first();
+
+                    return [
+                        'title' => $blog->title,
+                        'created_by' => $blog->user->name,
+                        'created_at' => $blog->created_at,
+                        'details' => $blog->details->map(function($detail){
+                            return $detail->details;
+                        })->first(),
+                        'first_image' =>  $firstImage ?  $firstImage->path : null
+                    ];
+                });
+
     }
 
     /**
