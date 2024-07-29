@@ -97,7 +97,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function profile()
     {
-        return $this->belongsTo(Profile::class, 'profile_id', 'id')->select(Profile::$fetch);
+        return $this->belongsTo(Profile::class, 'profile_id', 'id')->with('image');
     }
 
     public function isSuperAdmin()

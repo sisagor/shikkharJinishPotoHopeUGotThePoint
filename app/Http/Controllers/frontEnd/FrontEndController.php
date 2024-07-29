@@ -5,12 +5,13 @@ namespace App\Http\Controllers\frontEnd;
 
 use Illuminate\Http\Request;
 use Modules\CMS\Entities\Blog;
+use Modules\CMS\Entities\Book;
 use App\Services\FrontEndService;
 use App\Http\Controllers\Controller;
 use Modules\CMS\Entities\BlogDetails;
 use App\Http\Requests\JobApplicationRequest;
 use Modules\Settings\Entities\BlogCategory;
-
+use App\Models\User;
 
 class FrontEndController extends Controller
 {
@@ -34,9 +35,86 @@ class FrontEndController extends Controller
     {
 
         $categories = BlogCategory::active()->pluck('name', 'id');
+        $popularBlogs = $this->getPopularBlogDetailsWithFirstimage();
+        $latestBlogs = $this->getLatestBlogDetailsWithFirstimage();
+        $topCategories = $this->topCategoriesByViewCount();
+        $latestBooks = $this->getLatestBook();
+
+        $authors = User::with(['profile.image']) 
+                ->where('role_id', 2)
+                ->limit(3)
+                ->get();
         //$home = BlogDetails::where('type', BlogDetails::TYPE_HOME)->select('content')->first();
 
-        return view('frontEnd.index', compact('categories'));
+        return view('frontEnd.index', compact('categories','popularBlogs', 'latestBlogs', 'authors','topCategories', 'latestBooks'));
+    }
+
+    public function getPopularBlogDetailsWithFirstimage()
+    {
+        return Blog::with(['user:id,name', 'details', 'details.images'])
+                ->orderBy('view_count', 'desc')
+                ->limit(3) 
+                ->get()
+                ->map(function($blog){
+                    $firstImage = $blog->details->flatMap(function($detail){
+                        return $detail->images;
+                    })->first();
+
+                    return [
+                        'title' => $blog->title,
+                        'created_by' => $blog->user->name,
+                        'created_at' => $blog->created_at,
+                        'details' => $blog->details->map(function($detail){
+                            return $detail->details;
+                        })->first(),
+                        'first_image' =>  $firstImage ?  $firstImage->path : null
+                    ];
+                });
+
+    }
+
+    public function getLatestBlogDetailsWithFirstimage()
+    {
+        return Blog::with(['user:id,name', 'details', 'details.images'])
+                ->orderBy('created_at', 'desc')
+                ->limit(3) 
+                ->get()
+                ->map(function($blog){
+                    $firstImage = $blog->details->flatMap(function($detail){
+                        return $detail->images;
+                    })->first();
+
+                    return [
+                        'title' => $blog->title,
+                        'created_by' => $blog->user->name,
+                        'created_at' => $blog->created_at,
+                        'details' => $blog->details->map(function($detail){
+                            return $detail->details;
+                        })->first(),
+                        'first_image' =>  $firstImage ?  $firstImage->path : null
+                    ];
+                });
+
+    }
+
+    public function topCategoriesByViewCount()
+    {
+        $topCategories = Blog::select('blog_categories.name')
+            ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+            ->groupBy('blog_categories.id', 'blog_categories.name')
+            ->orderByRaw('SUM(blogs.view_count) DESC')
+            ->limit(3)
+            ->pluck('blog_categories.name');
+
+        return $topCategories;
+    }
+
+    public function getLatestBook()
+    {
+        return Book::orderBy('created_at', 'desc')
+                ->limit(3) 
+                ->get();
+
     }
 
     /**

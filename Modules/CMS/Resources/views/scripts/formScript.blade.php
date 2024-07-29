@@ -30,6 +30,23 @@
 
         });
 
+        $(document).ready(function() {
+            $('#add-field').click(function() {
+                var newField = $('#dynamic-fields .dynamic-block:first').clone();
+                newField.find('input, select, textarea').val('');
+                newField.find('.remove-field').show();
+                newField.find('#add-field').hide();
+                $('#dynamic-fields').append(newField);
+            });
+
+            $(document).on('click', '.remove-field', function() {
+                $(this).closest('.dynamic-block').remove();
+            });
+
+            // Hide remove button for the first set of fields
+            $('#dynamic-fields .remove-field').hide();
+        });
+
 
     }(window.jQuery, window, document));
 

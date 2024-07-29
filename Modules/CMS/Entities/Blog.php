@@ -6,6 +6,7 @@ use App\Models\RootModel;
 use App\Common\Imageable;
 use App\Common\CascadeSoftDeletes;
 use Modules\Settings\Entities\BlogCategory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -29,6 +30,11 @@ class Blog extends RootModel
     public function details()
     {
         return $this->hasMany(BlogDetails::class, 'blog_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
 }

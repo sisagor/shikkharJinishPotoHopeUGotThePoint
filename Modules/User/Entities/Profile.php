@@ -7,7 +7,7 @@ use App\Models\RootModel;
 use App\Common\Imageable;
 use App\Common\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\Image;
 
 class Profile extends RootModel
 {
@@ -50,6 +50,11 @@ class Profile extends RootModel
     public function user()
     {
         return $this->hasOne(User::class, 'profile_id', 'id');
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'id', 'imageable_id')->where('type', 'profile');
     }
 
 

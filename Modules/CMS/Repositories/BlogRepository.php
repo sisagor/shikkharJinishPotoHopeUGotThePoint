@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Modules\CMS\Entities\BlogDetails;
 use App\Repositories\EloquentRepository;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\Image;
 
 
 
@@ -18,17 +19,18 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
 {
     public $model;
 
-    public function __construct(Blog $branch)
+    public function __construct(Blog $blog)
     {
-        $this->model = $branch;
+        $this->model = $blog;
     }
 
-    /*Get all branches*/
+    /*Get all blog*/
     public function index(Request $request)
     {
         $query =  $this->model
-            ->with('application:id,name')
-            ->with('application.job:id,position');
+            ->with('blog_category:id,name')
+            ->with('details:id,blog_id,details,order,status')
+            ->select('id','blog_category_id', 'title', 'status', 'created_at');
         return (new Filter($request, $query))
             ->statusFilter(['status' => 'status'])
             ->execute();
@@ -36,25 +38,61 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
     }
 
 
-    /*Store Branch*/
+    /*Store Blog*/
     public function store(Request $request): bool
     {
         try {
-
-            $this->model->create([
-                'job_id' => $request->get('job_id'),
-                'job_application_id' => $request->get('job_application_id'),
-                'interview_date' => $request->get('interview_date'),
-                'interview_time' => $request->get('interview_time'),
-                'address' => $request->get('address'),
-                'interviewers' => json_encode($request->get('interviewers')),
-                'details' => json_encode($request->get('details')),
-                'status' => JobInterview::STATUS_SCHEDULED,
+            // Create blog entry
+            $blog = $this->model->create([
+                'com_id' => '',
+                'blog_category_id' => $request->get('category_id'),
+                'title' => $request->get('title'),
+                'status' => $request->get('status'),
+                'order' => '1',
+                'created_by' => Auth::user()->id
             ]);
 
-        } catch (\Exception $e) {
+            // Extract details, orders, and images from the request
+            $details = $request->get('details');
+            $orders = $request->get('orders');
+            $images = $request->file('images', []);
 
-            Log::error("Interview create failed");
+        
+
+            // Store details and associate images
+            foreach ($details as $index => $detail) {
+                $order = $orders[$index];
+
+                // Create BlogDetail
+                $blogDetail = BlogDetails::create([
+                    'blog_id' => $blog->id,
+                    'details' => $detail,
+                    'order' => $order,
+                    'status' => $request->get('status'),
+                ]);
+
+                // Store associated image if it exists
+                if (isset($images[$index])) {
+                    $file = $images[$index];
+                    $path = $file->store('images', 'public');
+
+                    $image = new Image([
+                        'path' => $path,
+                        'name' => $file->getClientOriginalName(),
+                        'extension' => $file->getClientOriginalExtension(),
+                        'size' => $file->getSize(),
+                        'order' => $order,
+                        'type' => 'blog',
+                        'imageable_id' => $blogDetail->id,
+                        'imageable_type' => BlogDetail::class,
+                    ]);
+
+                    $blogDetail->images()->save($image);
+                }
+            }
+
+        } catch (\Exception $e) {
+            Log::error("Blog create failed");
             Log::info(get_exception_message($e));
 
             return false;
@@ -64,7 +102,7 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
     }
 
 
-    /*Update Branch*/
+    /*Update Blog*/
     public function update(Request $request, $model): bool
     {
         try {
