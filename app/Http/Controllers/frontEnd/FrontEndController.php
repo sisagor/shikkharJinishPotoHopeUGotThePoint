@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Modules\CMS\Entities\BlogDetails;
 use App\Http\Requests\JobApplicationRequest;
 use Modules\Settings\Entities\BlogCategory;
-
+use App\Models\User;
 
 class FrontEndController extends Controller
 {
@@ -35,9 +35,13 @@ class FrontEndController extends Controller
 
         $categories = BlogCategory::active()->pluck('name', 'id');
         $blogs = $this->getBlogDetailsWithFirstimage();
+
+        $authors = User::with(['profile.image']) 
+                ->where('role_id', 2)
+                ->get();
         //$home = BlogDetails::where('type', BlogDetails::TYPE_HOME)->select('content')->first();
 
-        return view('frontEnd.index', compact('categories','blogs'));
+        return view('frontEnd.index', compact('categories','blogs','authors'));
     }
 
     public function getBlogDetailsWithFirstimage()

@@ -7,10 +7,14 @@
         </p>
     </div>
     <div class="col-md-3">
-        <button class="btn btn-primary">
-            Coloring Book
-            <img src="{{asset('/frontEnd/img/Arrow.png')}}" alt="" />
+        <button type="button" class="btn btn-primary rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span id="search_concept">All</span><span><img src="{{asset('/frontEnd/img/Arrow.png')}}"></span>
         </button>
+        <div class="dropdown-menu scrollable-dropdown">
+            @foreach($categories as $key => $item)
+                <a class="dropdown-item" href="#" data>{{$item}}</a>
+            @endforeach
+        </div>
     </div>
 </div>
 <div class="row">
@@ -29,7 +33,7 @@
                 </div>
                 <div class="download_button">
                     <button>
-                        Details
+                        Read More
                         <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
                     </button>
                 </div>
