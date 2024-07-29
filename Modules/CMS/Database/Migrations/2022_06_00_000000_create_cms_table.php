@@ -45,15 +45,18 @@ class CreateCmsTable extends Migration
 
 
 
-       /* if (! Schema::hasTable('cms')) {
-            Schema::create('cms', function (Blueprint $table) {
+        if (! Schema::hasTable('books')) {
+            Schema::create('books', function (Blueprint $table) {
                 $table->id();
-                $table->string('type')->nullable();
-                $table->json('content')->nullable();
+                $table->string('image')->nullable();
+                $table->string('url')->nullable();
+                $table->integer('order')->nullable();
+                $table->integer('view')->nullable();
+                $table->integer('created_by')->nullable();
                 $table->tinyInteger('status')->default(0)->nullable();
                 $table->timestamps();
             });
-        }*/
+        }
 
     }
 
@@ -66,6 +69,6 @@ class CreateCmsTable extends Migration
     {
         Schema::dropIfExists('blogs');
         Schema::dropIfExists('blog_details');
-        //Schema::dropIfExists('cms');
+        Schema::dropIfExists('books');
     }
 }
