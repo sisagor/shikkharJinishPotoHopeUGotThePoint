@@ -59,6 +59,11 @@ trait Imageable
         return $this->morphOne(Image::class, 'imageable')->where('type', 'logo');
     }
 
+    public function book()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('type', 'book');
+    }
+
 
     //Employee Image
     public function employeeImage()

@@ -711,6 +711,10 @@ return [
     'new_blog_category' => 'New Blog Category',
     'edit_blog_category' => 'Edit Blog Category',
     'blog_categories' => 'Blog Categories',
+    'books' => 'Books',
+    'order' => 'Order',
+    'new_book' => 'New Book',
+    'edit_book' => 'Edit Book',
     'order' => 'Order',
 
 
