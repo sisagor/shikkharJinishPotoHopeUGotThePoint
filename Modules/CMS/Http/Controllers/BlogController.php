@@ -13,7 +13,7 @@ use Modules\Settings\Entities\BlogCategory;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\CMS\Http\Requests\BlogCreateRequest;
 use Modules\CMS\Repositories\BlogRepositoryInterface;
-
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -38,29 +38,35 @@ class BlogController extends Controller
 
         $data = $this->repo->index($request);
 
+        //dd($data);
+
         if ($request->get('type') == "active")
         {
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                // ->editColumn('details', function ($row){
+                //     return substr(json_decode($row->details), 0, 500);
+                // })
+                ->editColumn('status', function ($row)
+                {
+                    return get_status($row->status);
+                })
+                ->editColumn('created_at', function ($row){
+                    return \Carbon\Carbon::parse( $row->created_at)->format('H:i:s A');
+                })
                 ->editColumn('details', function ($row){
-                    return substr(json_decode($row->details), 0, 500);
-                })
-                ->editColumn('interview_time', function ($row){
-                    return \Carbon\Carbon::parse( $row->interview_time)->format('H:i:s A');
-                })
-                ->editColumn('interviewers', function ($row){
-                    $interviewers = '<ul>';
-                    foreach ($row->interviewers as $interviewer){
-                        $interviewers .='<li>'. $interviewer->name .'</li>';
+                    $details = '<ul>';
+                    foreach ($row->details as $detail){
+                        $details .='<li>'. $detail->details .'</li>';
                     }
-                    $interviewers .= '</ul>';
-                    return $interviewers;
+                    $details .= '</ul>';
+                    return $details;
                 })
                 ->addColumn('action', function ($row) {
                     return view_button('cms.blog.view', $row). edit_button('cms.blog.edit', $row, "modal") . trash_button('cms.blog.trash', $row);
                 })
-                ->rawColumns(['status', 'action', 'details', 'interviewers'])
+                ->rawColumns(['status', 'action', 'details'])
                 ->make(true);
         }
 
@@ -69,24 +75,28 @@ class BlogController extends Controller
 
             return DataTables::of($data->onlyTrashed())
                 ->addIndexColumn()
-                ->editColumn('interview_time', function ($row){
+                ->editColumn('created_at', function ($row){
                     return \Carbon\Carbon::parse( $row->interview_time)->format('H:i:s A');
                 })
-                ->editColumn('details', function ($row){
-                    return substr(json_decode($row->details), 0, 500);
+                // ->editColumn('details', function ($row){
+                //     return substr(json_decode($row->details), 0, 500);
+                // })
+                ->editColumn('status', function ($row)
+                {
+                    return get_status($row->status);
                 })
-                ->editColumn('interviewers', function ($row){
-                    $interviewers = '<ul>';
-                    foreach ($row->interviewers as $interviewer){
-                        $interviewers .='<li>'. $interviewer->name .'</li>';
+                ->editColumn('details', function ($row){
+                    $details = '<ul>';
+                    foreach ($row->details as $detail){
+                        $details .='<li>'. $detail->details .'</li>';
                     }
-                    $interviewers .= '</ul>';
-                    return $interviewers;
+                    $details .= '</ul>';
+                    return $details;
                 })
                 ->addColumn('action', function ($row) {
                     return restore_button('cms.blog.restore', $row) . delete_button('cms.blog.delete', $row);
                 })
-                ->rawColumns(['status', 'action', 'details', 'interviewers'])
+                ->rawColumns(['status', 'action', 'details'])
                 ->make(true);
         }
     }
