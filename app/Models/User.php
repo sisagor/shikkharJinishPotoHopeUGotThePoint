@@ -24,6 +24,7 @@ class User extends Authenticatable implements JWTSubject
     const USER_SUPER_ADMIN = "super_admin";
     const USER_COMPANY_ADMIN = "branch_admin";
     const USER_ADMIN_ADMIN = "admin_admin";
+    const USER_AUTHOR = "author";
     const USER_ADMIN = "admin";
     const USER_USER = "user";
     const USER_EMPLOYEE = "employee";

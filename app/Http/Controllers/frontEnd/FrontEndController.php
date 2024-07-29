@@ -41,9 +41,11 @@ class FrontEndController extends Controller
         $latestBooks = $this->getLatestBook();
 
         $authors = User::with(['profile.image']) 
-                ->where('role_id', 2)
+                ->where('level',  \App\Models\User::USER_AUTHOR)
                 ->limit(3)
                 ->get();
+
+        //dd($authors);
         //$home = BlogDetails::where('type', BlogDetails::TYPE_HOME)->select('content')->first();
 
         return view('frontEnd.index', compact('categories','popularBlogs', 'latestBlogs', 'authors','topCategories', 'latestBooks'));
@@ -52,7 +54,7 @@ class FrontEndController extends Controller
     public function getPopularBlogDetailsWithFirstimage()
     {
         return Blog::with(['user:id,name', 'details', 'details.images'])
-                ->orderBy('view_count', 'desc')
+                ->orderBy('view', 'desc')
                 ->limit(3) 
                 ->get()
                 ->map(function($blog){
@@ -102,7 +104,7 @@ class FrontEndController extends Controller
         $topCategories = Blog::select('blog_categories.name')
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
             ->groupBy('blog_categories.id', 'blog_categories.name')
-            ->orderByRaw('SUM(blogs.view_count) DESC')
+            ->orderByRaw('SUM(blogs.view) DESC')
             ->limit(3)
             ->pluck('blog_categories.name');
 

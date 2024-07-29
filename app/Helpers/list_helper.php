@@ -75,7 +75,18 @@ if (! function_exists('company_modules')) {
     function company_modules()
     {
         return Module::active()->where(function ($scope) {
-            return $scope->whereJsonContains('scope', [Module::SCOPE_COMPANY])
+            return $scope->whereJsonContains('scope', [Module::SCOPE_AUTHOR])
+                ->orWhereJsonContains('scope', [Module::SCOPE_COMMON]);
+        })->get();
+    }
+}
+
+/**get author scope modules*/
+if (! function_exists('author_modules')) {
+    function author_modules()
+    {
+        return Module::active()->where(function ($scope) {
+            return $scope->whereJsonContains('scope', [Module::SCOPE_AUTHOR])
                 ->orWhereJsonContains('scope', [Module::SCOPE_COMMON]);
         })->get();
     }

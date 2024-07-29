@@ -8,6 +8,7 @@ use Modules\CMS\Entities\Blog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Modules\CMS\Entities\BlogDetails;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Settings\Entities\BlogCategory;
 use Illuminate\Contracts\Support\Renderable;
@@ -117,15 +118,15 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function store(BlogCreateRequest $request)
+    public function store(BlogCreateRequest $request) : RedirectResponse
     {
         if ($this->repo->store($request)) {
 
             sendActivityNotification(trans('msg.noty.created', ['model' => trans('model.blog')]));
 
-            return redirect()->back()->with('success', trans('msg.create_success', ['model' => trans('model.blog')]));
+            return redirect()->route('cms.blogs')->with('success', trans('msg.create_success', ['model' => trans('model.blog')]));
         }
 
         return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.blog')]))->withInput();

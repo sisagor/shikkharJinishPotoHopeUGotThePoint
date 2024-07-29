@@ -48,6 +48,15 @@ class UserDatabaseSeeder extends DatabaseSeeder
                     'dob' => '1993-01-01',
                     'address' => 'Dhaka, Bangladesh',
                 ],
+                [
+                    'id' => 3,
+                    'name' => 'Author',
+                    'phone' => '01826319556',
+                    'email' => 'author@demo.com',
+                    'gender' => 'Male',
+                    'dob' => '1993-01-01',
+                    'address' => 'Dhaka, Bangladesh',
+                ],
             ];
 
             $users = [
@@ -72,6 +81,18 @@ class UserDatabaseSeeder extends DatabaseSeeder
                     'password' => bcrypt('123456'),
                     'status' => 1,
                     'level' => User::USER_ADMIN_ADMIN,
+                    'created_at' => Carbon::Now(),
+                    'updated_at' => Carbon::Now(),
+                ],
+                [
+                    'id' => 3,
+                    'profile_id' => 3,
+                    'role_id' => 2,
+                    'name' => 'Author',
+                    'email' => 'author@demo.com',
+                    'password' => bcrypt('123456'),
+                    'status' => 1,
+                    'level' => User::USER_AUTHOR,
                     'created_at' => Carbon::Now(),
                     'updated_at' => Carbon::Now(),
                 ]

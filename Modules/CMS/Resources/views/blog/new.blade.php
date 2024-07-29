@@ -1,5 +1,9 @@
 @extends('layouts.form', ['title' => 'new_blog'])
 
+@section('buttons')
+    {!! list_button('cms.blogs', 'blogs', 0) !!}
+@endsection
+
 @section('form')
 
     <div class="form-body">
