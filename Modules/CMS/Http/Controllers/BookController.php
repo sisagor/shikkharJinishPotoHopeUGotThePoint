@@ -3,13 +3,16 @@
 namespace Modules\CMS\Http\Controllers;
 
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Modules\CMS\Entities\Book;
+use Modules\CMS\Http\Requests\BookCreateRequest;
+use Modules\CMS\Http\Requests\BookUpdateRequest;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\CMS\Http\Requests\JobCreateRequest;
-
 
 
 class BookController extends Controller
@@ -25,22 +28,23 @@ class BookController extends Controller
             return view('cms::book.index');
         }
 
-        $data = $this->repo->jobs($request);
+        $data = Book::query();
 
         if ($request->get('type') == "active"){
 
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->editColumn('details', function ($row){
-                    return substr(json_decode($row->details ), 0, 500);
-                })
-                ->editColumn('requirements', function ($row){
-                    return substr(json_decode($row->requirements), 0, 500);
+                ->editColumn('image', function ($row){
+                    $image = '<img  style="height=100px; width:100px" src="'.get_storage_file_url(optional($row->book)->path).'" alt="'.optional($row->book)->name.'">';
+                    return $image;
                 })
                 ->addColumn('action', function ($row) {
-                    return view_button('cms.jobPosting.view', $row). edit_button('cms.jobPosting.edit', $row) . trash_button('cms.jobPosting.trash', $row);
+                    return edit_button('cms.book.edit', $row) . trash_button('cms.book.trash', $row);
                 })
-                ->rawColumns(['action', 'details', 'requirements'])
+                ->addColumn('status', function ($row) {
+                    return get_status($row->status);
+                })
+                ->rawColumns(['action', 'image', 'status'])
                 ->make(true);
         }
 
@@ -48,16 +52,16 @@ class BookController extends Controller
 
             return DataTables::of($data->onlyTrashed())
                 ->addIndexColumn()
-                ->editColumn('details', function ($row){
-                    return substr(json_decode($row->details ), 0, 500);
-                })
-                ->editColumn('requirements', function ($row){
-                    return substr(json_decode($row->requirements), 0, 500);
+                ->editColumn('image', function ($row){
+                    return get_storage_file_url(optional($row->book)->path);
                 })
                 ->addColumn('action', function ($row) {
-                    return restore_button('cms.jobPosting.restore', $row) . delete_button('cms.jobPosting.delete',$row);
+                    return restore_button('cms.book.restore', $row) . delete_button('cms.book.delete',$row);
                 })
-                ->rawColumns(['action', 'details', 'requirements'])
+                ->addColumn('status', function ($row) {
+                    return get_status($row->status);
+                })
+                ->rawColumns(['action', 'image', 'status'])
                 ->make(true);
         }
     }
@@ -70,20 +74,28 @@ class BookController extends Controller
     {
         set_action_title('new_book');
         set_action('cms.book.store');
-        $job = [];
-        $jobCategory = $this->repo->jobCategories();
-        return view('cms::book.newEdit', compact('job', 'jobCategory'));
+        return view('cms::book.new');
     }
 
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function store(JobCreateRequest $request)
+    public function store(BookCreateRequest $request): RedirectResponse
     {
-        if ($this->repo->store($request)) {
+        $unsetImage = $request->validated();
+        unset($unsetImage['image']);
 
+        $book = Book::create($unsetImage);
+
+        if ($request->hasFile('image'))
+        {
+            $book = $book->saveImage($request->file('image'), 'book');
+        }
+
+        if ($book)
+        {
             sendActivityNotification(trans('msg.noty.created', ['model' => trans('model.book')]));
 
             return redirect()->back()->with('success', trans('msg.create_success', ['model' => trans('model.book')]));
@@ -109,22 +121,28 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        set_action_title('edit_job');
+        set_action_title('edit_book');
         set_action('cms.book.update', $book);
-
-
-        return view('cms::book.newEdit', compact('book'));
+        return view('cms::book.edit', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function update(JobCreateRequest $request, Book $book)
+    public function update(BookUpdateRequest $request, Book $book): RedirectResponse
     {
-        if ($this->repo->update($request, $book)) {
+        $unsetImage = $request->validated();
+        unset($unsetImage['image']);
+
+        $book->update($unsetImage);
+
+        if ($request->hasFile('image')){
+            $book = $book->updateImage($request->file('image'), 'book');
+        }
+        if ($book) {
 
             sendActivityNotification(trans('msg.noty.updated', ['model' => trans('model.book')]));
 
@@ -137,11 +155,12 @@ class BookController extends Controller
     /**
      * soft delete the specified resource from storage.
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function trash(Blog $job)
+    public function trash(Book $book) : RedirectResponse
     {
-        if ($job->delete()) {
+        if ($book->delete())
+        {
 
             sendActivityNotification(trans('msg.noty.soft_deleted', ['model' => trans('model.book')]));
 
@@ -154,12 +173,13 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function restore($loan)
+    public function restore($book) : RedirectResponse
     {
-        if ($this->repo->restore($loan)) {
-
+        $book = Book::onlyTrashed()->find($book)->restore();
+        if ($book)
+        {
             sendActivityNotification(trans('msg.noty.restored', ['model' => trans('model.book')]));
 
             return redirect()->back()->with('success', trans('msg.restore_success', ['model' => trans('model.book')]));
@@ -171,11 +191,11 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param int $id
-     * @return Renderable
+     * @return RedirectResponse
      */
-    public function destroy(Blog $job)
+    public function destroy(Book $book) : RedirectResponse
     {
-        if ($job->forceDelete()) {
+        if ($book->forceDelete()) {
 
             sendActivityNotification(trans('msg.noty.deleted', ['model' => trans('model.book')]));
 

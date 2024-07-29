@@ -31,16 +31,18 @@ Route::prefix('cms')->name('cms.')->middleware(['auth'])->group(function ()
     });
 
 
-    Route::controller(Modules\CMS\Http\Controllers\CMSController::class)->group(function ()
+    Route::controller(Modules\CMS\Http\Controllers\BookController::class)->group(function ()
     {
         //CMS/Content Management
-        Route::get('cms', 'index')->name('cms');
-        Route::get('cms/add',  'create')->name('cms.add');
-        Route::post('cms/store',  'store')->name('cms.store');
-        Route::get('cms/{cms}/edit',  'edit')->name('cms.edit');
-        Route::post('cms/{cms}/update',  'update')->name('cms.update');
-        Route::get('cms/{cms}/view',  'show')->name('cms.view');
-        Route::get('cms/{cms}/delete',  'delete')->name('cms.delete');
+        Route::get('books/', 'index')->name('books');
+        Route::get('book/add',  'create')->name('book.add');
+        Route::post('book/store',  'store')->name('book.store');
+        Route::get('book/{book}/edit',  'edit')->name('book.edit');
+        Route::post('book/{book}/update',  'update')->name('book.update');
+        Route::get('book/{book}/view',  'show')->name('book.view');
+        Route::get('book/{book}/trash',  'trash')->name('book.trash');
+        Route::get('book/{book}/restore',  'restore')->name('book.restore');
+        Route::get('book/{book}/delete',  'delete')->name('book.delete');
     });
 
 
