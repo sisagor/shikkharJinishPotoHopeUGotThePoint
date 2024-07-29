@@ -24,7 +24,7 @@ class BlogDetails extends RootModel
 
     public function images()
     {
-        return $this->hasMany(Image::class, 'imageable_id', 'id');
+        return $this->hasMany(Image::class, 'imageable_id', 'id')->where('type', 'blog');
     }
 
 }

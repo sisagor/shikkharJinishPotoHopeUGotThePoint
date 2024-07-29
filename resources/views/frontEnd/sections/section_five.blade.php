@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="row">
-        @foreach ($blogs as $blog)
+        @foreach ($latestBlogs as $blog)
             <div class="col-md-4">
                 <div class="card_design">
                     <img src="{{asset('storage/'.$blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >

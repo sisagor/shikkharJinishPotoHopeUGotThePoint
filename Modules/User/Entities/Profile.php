@@ -54,7 +54,7 @@ class Profile extends RootModel
 
     public function image()
     {
-        return $this->belongsTo(Image::class, 'id', 'imageable_id');
+        return $this->belongsTo(Image::class, 'id', 'imageable_id')->where('type', 'profile');
     }
 
 

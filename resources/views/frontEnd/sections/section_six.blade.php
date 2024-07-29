@@ -10,21 +10,19 @@
         </div>
     </div>
     <div class="row flex-nowrap">
-        <div class="col-md-3 col-sm-3 new_book_index">
-            <img class="bg_new_index_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}" alt="" style="max-width:95%;height:auto;"/>
-            <img class="bg_new_index_up" src="{{asset('/frontEnd/img/24376429.png')}}"  alt="" />
-        </div>
-        <div class="col-md-3 col-sm-3 new_book_index">
+        @foreach($latestBooks as $book)
+        <div class="col-md-3 col-sm-3 new_book_index mx-4">
             <img class="bg_new_index_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}"  alt="" style="max-width:95%;height:auto;"/>
-            <img class="bg_new_index_up" src="{{asset('/frontEnd/img/24376429.png')}}" alt="" />
+            <img class="bg_new_index_up" src="{{ asset('storage/' . ($book['image'] ?? '/frontEnd/img/24376429.png')) }}" alt="" />
         </div>
-        <div class="col-md-3 col-sm-3 new_book_index">
+        @endforeach
+        {{-- <div class="col-md-3 col-sm-3 new_book_index mx-4">
             <img class="bg_new_index_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}" alt="" style="max-width:95%;height:auto;"/>
             <img class="bg_new_index_up" src="{{asset('/frontEnd/img/24376429.png')}}" alt="" />
         </div>
-        <div class="col-md-3 col-sm-3 new_book_index">
+        <div class="col-md-3 col-sm-3 new_book_index mx-4">
             <img class="bg_new_index_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}" alt="" style="max-width:95%;height:auto;"/>
             <img class="bg_new_index_up" src="{{asset('/frontEnd/img/24376429.png')}}" alt="" />
-        </div>
+        </div> --}}
     </div>
 </div>

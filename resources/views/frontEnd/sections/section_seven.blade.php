@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="row">
-        @foreach($categories as $key => $category)
+        @foreach($topCategories as $key => $category)
             <div class="col-md-4">
                 <div class="card_design">
                     <img src="{{asset('/frontEnd/img/BookImage.png')}}" alt="Avatar" width ="300px" height = "384px" >

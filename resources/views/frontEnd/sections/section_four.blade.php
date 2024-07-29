@@ -8,7 +8,7 @@
         <div class="group_author_card">
             @foreach ($authors as $author)
                 <div class="author-card" style="max-width: 350px;">
-                    <img src="{{asset('storage/'.$author->profile->image->path)}}" alt="Author Image">
+                    <img src="{{ asset('storage/' . ($author->profile->image->path ?? 'default/path/to/default-image.jpg')) }}" alt="Author Image">
                     <div class="social_card p-0">
                         <div class="author-name mt-1">{{$author->profile->name}}</div>
                         <div class="author-info mt-1">Blog Writer</div>
