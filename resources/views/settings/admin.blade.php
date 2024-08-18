@@ -87,13 +87,13 @@
                         <div class="tab-pane fade" id="walletSettings" role="tabpanel"
                              aria-labelledby="smsSettings-tab">
                             {{--general settings--}}
-                            @include('settings.wallet')
+                           {{-- @include('settings.wallet')--}}
                         </div>
 
                         <div class="tab-pane fade" id="payrollSettings" role="tabpanel"
                              aria-labelledby="smsSettings-tab">
                             {{--general settings--}}
-                            @include('settings.payroll')
+                           {{-- @include('settings.payroll')--}}
                         </div>
 
                     </div>
