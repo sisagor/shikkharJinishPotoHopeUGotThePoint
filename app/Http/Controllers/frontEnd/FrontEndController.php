@@ -6,16 +6,20 @@ namespace App\Http\Controllers\frontEnd;
 use Illuminate\Http\Request;
 use Modules\CMS\Entities\Blog;
 use Modules\CMS\Entities\Book;
+use App\Models\SeoPage;
 use App\Services\FrontEndService;
 use App\Http\Controllers\Controller;
 use Modules\CMS\Entities\BlogDetails;
 use App\Http\Requests\JobApplicationRequest;
 use Modules\Settings\Entities\BlogCategory;
 use App\Models\User;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
+use Artesaos\SEOTools\Facades\SEOMeta;
 
 class FrontEndController extends Controller
 {
     private $service;
+    use SEOToolsTrait;
     /**
      * Create a new controller instance.
      *
@@ -33,6 +37,20 @@ class FrontEndController extends Controller
      */
     public function index(Request $request)
     {
+
+        $seo = SeoPage::where('status', '1')->first();
+
+        $this->seo()->setTitle($seo->title);
+        $this->seo()->setDescription($seo->description);
+        $this->seo()->setCanonical($seo->canonical);
+        SEOMeta::addKeyword(explode(',', $seo->keywords));
+        SEOMeta::addMeta('article:section', $seo->section, 'property');
+        $this->seo()->opengraph()->setUrl($seo->og_url);
+        $this->seo()->opengraph()->addProperty('type', $seo->og_type);
+        $this->seo()->opengraph()->addProperty('locale', $seo->og_locale);
+        //$this->seo()->twitter()->setSite('@mekbiplob');
+        $this->seo()->jsonLd()->setType($seo->og_type);
+      
         $categories = BlogCategory::active()->pluck('name', 'id');
         $popularBlogs = $this->getPopularBlogDetailsWithFirstimage();
         $latestBlogs = $this->getLatestBlogDetailsWithFirstimage();

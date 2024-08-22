@@ -716,6 +716,17 @@ return [
     'new_book' => 'New Book',
     'edit_book' => 'Edit Book',
     'order' => 'Order',
+    'update_seo' => 'Update SEO Content',
+    'slug' => 'Slug',
+    'keywords' => 'Keywords',
+    'section' => 'Section',
+    'canonical' => 'Canonical',
+    'og_locale' => 'Og Locale',
+    'og_url' => 'Og URL',
+    'og_type' => 'Og Type',
+    'author_name' => 'Author',
+    
+
 
 
 ];

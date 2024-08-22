@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SmsGateway;
 use App\Models\SystemSetting;
+use App\Models\SeoPage;
 use App\Services\ZKTService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +35,9 @@ class SystemSettingsController extends Controller
         set_action('settings.update');
         $settings = config('system_settings');
 
-        return view('settings.admin', compact('settings'));
+        $seo = SeoPage::where('status', '1')->first();
+        
+        return view('settings.admin', compact('settings','seo'));
     }
 
     /**Settings update*/
@@ -166,6 +169,80 @@ class SystemSettingsController extends Controller
             dd($exception);
 
             Log::error("sms gateway create error");
+            Log::info(get_exception_message($exception));
+
+            return redirect()->back()->with('error', trans('msg.update_failed', ['model' => trans('model.system_setting')]));
+        }
+
+        return redirect()->back()->with('success', trans('msg.update_success', ['model' => trans('model.system_setting')]));
+    }
+
+    /**store seo info*/
+    public function seoStore(Request $request)
+    {
+        try {
+
+            DB::beginTransaction();
+
+            $seo = $request->get('seo');
+            $slug = $request->get('slug');
+            $title = $request->get('title');
+            $author = $request->get('author');
+            $keywords = $request->get('keywords');
+            $section = $request->get('section');
+            $canonical = $request->get('canonical');
+            $og_locale = $request->get('og_locale');
+            $og_url = $request->get('og_url');
+            $og_type = $request->get('og_type');
+            $description = $request->get('description');
+            $submit = $request->get('submit');
+
+            if ($submit)
+            {
+                $old = SeoPage::where('id', $seo)->first();
+
+                if (!empty($old))
+                {
+                    $old->update([
+                        'slug' => $slug,
+                        'title' => $title,
+                        'description' => $description,
+                        'keywords' => $keywords,
+                        'author' => $author,
+                        'section' => $section,
+                        'canonical' => $canonical,
+                        'og_locale' => $og_locale,
+                        'og_url' => $og_url,
+                        'og_type' => $og_type
+                    ]);
+                }
+                else
+                {
+                    SeoPage::create([
+                        'slug' => $slug,
+                        'title' => $title,
+                        'description' => $description,
+                        'keywords' => $keywords,
+                        'author' => $author,
+                        'section' => $section,
+                        'canonical' => $canonical,
+                        'og_locale' => $og_locale,
+                        'og_url' => $og_url,
+                        'og_type' => $og_type,
+                        'type' => 'home',
+                        'status' => '1'
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+        }catch (\Exception $exception){
+
+            DB::rollBack();
+            dd($exception);
+
+            Log::error("seo create error");
             Log::info(get_exception_message($exception));
 
             return redirect()->back()->with('error', trans('msg.update_failed', ['model' => trans('model.system_setting')]));
