@@ -19,6 +19,7 @@ class Module extends RootModel
 
     const SCOPE_ADMIN = "admin";
     const SCOPE_COMPANY = "company";
+    const SCOPE_AUTHOR = "author";
     const SCOPE_BRANCH = "branch";
     const SCOPE_COMMON = "common";
     const SCOPE_EMPLOYEE = "employee";

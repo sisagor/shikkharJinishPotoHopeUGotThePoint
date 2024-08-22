@@ -21,6 +21,7 @@ class CreateCmsTable extends Migration
                 $table->string('title');
                 $table->tinyInteger('status')->default(0)->nullable();
                 $table->tinyInteger('order');
+                $table->integer('view');
                 $table->integer('created_by');
                 $table->softDeletes();
                 $table->timestamps();

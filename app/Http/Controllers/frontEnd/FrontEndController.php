@@ -50,8 +50,7 @@ class FrontEndController extends Controller
         $this->seo()->opengraph()->addProperty('locale', $seo->og_locale);
         //$this->seo()->twitter()->setSite('@mekbiplob');
         $this->seo()->jsonLd()->setType($seo->og_type);
-
-
+      
         $categories = BlogCategory::active()->pluck('name', 'id');
         $popularBlogs = $this->getPopularBlogDetailsWithFirstimage();
         $latestBlogs = $this->getLatestBlogDetailsWithFirstimage();
@@ -59,9 +58,10 @@ class FrontEndController extends Controller
         $latestBooks = $this->getLatestBook();
 
         $authors = User::with(['profile.image']) 
-                ->where('role_id', 2)
+                ->where('level',  \App\Models\User::USER_AUTHOR)
                 ->limit(3)
                 ->get();
+
         //$home = BlogDetails::where('type', BlogDetails::TYPE_HOME)->select('content')->first();
 
         return view('frontEnd.index', compact('categories','popularBlogs', 'latestBlogs', 'authors','topCategories', 'latestBooks'));
@@ -69,8 +69,8 @@ class FrontEndController extends Controller
 
     public function getPopularBlogDetailsWithFirstimage()
     {
-        return Blog::with(['user:id,name', 'details', 'details.images'])
-                ->orderBy('view_count', 'desc')
+        return Blog::with(['user', 'user.profile.image', 'details', 'details.images'])
+                ->orderBy('view', 'desc')
                 ->limit(3) 
                 ->get()
                 ->map(function($blog){
@@ -85,7 +85,8 @@ class FrontEndController extends Controller
                         'details' => $blog->details->map(function($detail){
                             return $detail->details;
                         })->first(),
-                        'first_image' =>  $firstImage ?  $firstImage->path : null
+                        'first_image' =>  $firstImage ?  $firstImage->path : null,
+                        'image' => optional($blog->user->profile->image)->path,
                     ];
                 });
 
@@ -93,7 +94,7 @@ class FrontEndController extends Controller
 
     public function getLatestBlogDetailsWithFirstimage()
     {
-        return Blog::with(['user:id,name', 'details', 'details.images'])
+        return Blog::with(['user', 'user.profile.image', 'details', 'details.images'])
                 ->orderBy('created_at', 'desc')
                 ->limit(3) 
                 ->get()
@@ -109,7 +110,8 @@ class FrontEndController extends Controller
                         'details' => $blog->details->map(function($detail){
                             return $detail->details;
                         })->first(),
-                        'first_image' =>  $firstImage ?  $firstImage->path : null
+                        'first_image' =>  $firstImage ?  $firstImage->path : null,
+                        'image' => optional($blog->user->profile->image)->path,
                     ];
                 });
 
@@ -120,7 +122,7 @@ class FrontEndController extends Controller
         $topCategories = Blog::select('blog_categories.name')
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
             ->groupBy('blog_categories.id', 'blog_categories.name')
-            ->orderByRaw('SUM(blogs.view_count) DESC')
+            ->orderByRaw('SUM(blogs.view) DESC')
             ->limit(3)
             ->pluck('blog_categories.name');
 
