@@ -96,6 +96,7 @@ Route::middleware('auth')->group(function ()
     Route::post('settings/update', [SystemSettingsController::class, 'settingsUpdate'])->name('settings.update');
     //Sms Gateway update:
     Route::post('settings/smsGateway', [SystemSettingsController::class, 'smsGatewayUpdate'])->name('settings.smsGateway');
+    Route::post('settings/seoStore', [SystemSettingsController::class, 'seoStore'])->name('settings.seoStore');
     //Optimize
     Route::get('settings/cache/clear', [SystemSettingsController::class, 'cacheClear'])->name('settings.cache.clear');
     Route::get('settings/optimize', [SystemSettingsController::class, 'optimize'])->name('settings.optimize');

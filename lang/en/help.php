@@ -168,5 +168,16 @@ return [
     'search_project' => 'search project by typing min 3 latter',
     'order' => 'Give Order',
     'image' => 'Choose Image',
+    'update_seo' => 'Update SEO Content',
+    'slug' => 'Slug',
+    'author' => 'Author',
+    'keywords' => 'Keywords',
+    'section' => 'Section',
+    'canonical' => 'Canonical',
+    'og_locale' => 'Og Locale',
+    'og_url' => 'Og URL',
+    'og_type' => 'Og Type',
+    'description' => 'Description',
+
 
 ];
