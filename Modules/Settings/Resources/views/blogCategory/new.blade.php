@@ -27,6 +27,16 @@
                     <textarea class="form-control" id="details" name="details" required></textarea>
                 </div>
             </div>
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="image">
+                    {{ trans('app.image') }} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                    title="{{ trans('help.image') }}"></i>
+                </label>
+                <div class="item form-group">
+                    <input type="file" class="form-control" name="images" required placeholder="{{ trans('app.image') }}">
+                </div>
+            </div>
 
 
             {{--Status--}}

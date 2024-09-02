@@ -9,14 +9,14 @@
             </p>
         </div>
     </div>
-    <div class="row">
+    <div class="row"> 
         @foreach($topCategories as $key => $category)
             <div class="col-md-4">
                 <div class="card_design">
-                    <img src="{{asset('/frontEnd/img/BookImage.png')}}" alt="Avatar" width ="300px" height = "384px" >
+                    <img src="{{ asset('storage/' . ($category->image->path ?? 'frontEnd/img/BookImage.png')) }}" alt="Avatar" width ="300px" height = "384px" >
                     <div class="text-center mt-2">
                         <div class="card_title">
-                            <h4>{{$category}}</h4>
+                            <h4>{{$category->name}}</h4>
                         </div>
                         <div class="download_button">
                             <button>

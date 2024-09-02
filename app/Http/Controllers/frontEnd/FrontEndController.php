@@ -117,12 +117,21 @@ class FrontEndController extends Controller
 
     public function topCategoriesByViewCount()
     {
-        $topCategories = Blog::select('blog_categories.name')
-            ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+        // $topCategories = Blog::select('blog_categories.name')
+        //     ->with(['blog_categories.image'])
+        //     ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+        //     ->groupBy('blog_categories.id', 'blog_categories.name')
+        //     ->orderByRaw('SUM(blogs.view_count) DESC')
+        //     ->limit(3)
+        //     ->pluck('blog_categories.name');
+
+        $topCategories = BlogCategory::select('blog_categories.name', 'blog_categories.id')
+            ->with('image')
+            ->join('blogs', 'blog_categories.id', '=', 'blogs.blog_category_id')
             ->groupBy('blog_categories.id', 'blog_categories.name')
             ->orderByRaw('SUM(blogs.view_count) DESC')
             ->limit(3)
-            ->pluck('blog_categories.name');
+            ->get();
 
         return $topCategories;
     }

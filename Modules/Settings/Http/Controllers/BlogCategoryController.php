@@ -80,7 +80,14 @@ class BlogCategoryController extends Controller
      */
     public function store(BlogCategoryCreateRequest $request)
     {
-        if (BlogCategory::create($request->validated())) {
+      
+        $category = BlogCategory::create($request->validated());
+
+        if ($request->hasFile('images'))
+        {
+            $category = $category->saveImage($request->file('images'), 'blog_category');
+        }
+        if ($category) {
 
             sendActivityNotification(trans('msg.noty.created', ['model' => trans('model.blog_category')]));
 
