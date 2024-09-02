@@ -3,12 +3,14 @@ namespace Modules\Settings\Entities;
 
 use App\Models\RootModel;
 use Modules\CMS\Entities\Blog;
+use App\Common\Imageable;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class BlogCategory extends RootModel
 {
-    use SoftDeletes;
+    use Imageable, SoftDeletes;
 
     protected $table = "blog_categories";
 
@@ -17,6 +19,11 @@ class BlogCategory extends RootModel
     public function blogs()
     {
         return $this->hasMany(Blog::class, 'category_id', 'id');
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'id', 'imageable_id')->where('type', 'blog_category');
     }
 
 
