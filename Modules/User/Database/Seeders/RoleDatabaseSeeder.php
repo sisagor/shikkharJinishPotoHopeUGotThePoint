@@ -24,7 +24,7 @@ class RoleDatabaseSeeder extends Seeder
         Model::unguard();
 
         $adminModules = admin_modules();
-        $companyModules = company_modules();
+        $authorModules = author_modules();
         //$employeeModules = employee_modules();
 
         DB::beginTransaction();
@@ -40,12 +40,20 @@ class RoleDatabaseSeeder extends Seeder
                 'status' => RootModel::STATUS_ACTIVE,
             ]);
 
-            foreach ($adminModules as $module) {
+            $authorRole = DB::table('roles')->insertGetId([
+                'id' => 2,
+                'name' => 'Author',
+                'level' => Role::ROLE_ADMIN_USER,
+                'details' => 'Author role',
+                'status' => RootModel::STATUS_ACTIVE,
+            ]);
 
-                foreach ($module->submodules as $submodule) {
-
-                    foreach ($submodule->menu as $menu) {
-
+            foreach ($adminModules as $module)
+            {
+                foreach ($module->submodules as $submodule)
+                {
+                    foreach ($submodule->menu as $menu)
+                    {
                         DB::table('role_permissions')->insert([
                             'role_id' => $adminRole,
                             'module_id' => $module->id ?? null,
@@ -54,7 +62,23 @@ class RoleDatabaseSeeder extends Seeder
                         ]);
                     }
                 }
+            }
 
+            //Author modules
+            foreach ($authorModules as $module)
+            {
+                foreach ($module->submodules as $submodule)
+                {
+                    foreach ($submodule->menu as $menu)
+                    {
+                        DB::table('role_permissions')->insert([
+                            'role_id' => $authorRole,
+                            'module_id' => $module->id ?? null,
+                            'submodule_id' => $submodule->id ?? null,
+                            'menu_id' => $menu->id ?? null,
+                        ]);
+                    }
+                }
             }
             /*End Admin*/
 

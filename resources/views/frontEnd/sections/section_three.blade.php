@@ -23,7 +23,7 @@
             <div class="card_design">
                 <img src="{{asset('storage/'.$blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >
                 <div class="author_date">
-                    <img src="{{asset('/frontEnd/img/user.png')}}" width="16px" height="16px" alt="Avatar"/>
+                    <img src="{{asset('storage/'.$blog['image'])}}" width="16px" height="16px" alt="Avatar"/>
                     <p class="author_name">{{$blog['created_by']}}</p>
                     <img src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
                     <p class="author_name">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>

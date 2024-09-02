@@ -19,7 +19,7 @@ class Blog extends RootModel
     //protected $cascadeDeletes = ['job_applications', 'job_interview'];
 
     protected $fillable = [
-        'id', 'com_id', 'blog_category_id', 'title', 'order', 'status', 'created_by'
+        'id', 'com_id', 'blog_category_id', 'title', 'order', 'status', 'created_by', 'view'
     ];
 
     public function blog_category()
@@ -27,12 +27,16 @@ class Blog extends RootModel
         return $this->belongsTo(BlogCategory::class, 'blog_category_id', 'id');
     }
 
-    public function details()
+    public function details(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(BlogDetails::class, 'blog_id', 'id');
     }
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+    public function author(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
