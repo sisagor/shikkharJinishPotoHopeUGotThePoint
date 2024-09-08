@@ -18,7 +18,7 @@ class BlogCategory extends RootModel
 
     public function blogs()
     {
-        return $this->hasMany(Blog::class, 'category_id', 'id');
+        return $this->hasMany(Blog::class, 'blog_category_id', 'id');
     }
 
     public function image()

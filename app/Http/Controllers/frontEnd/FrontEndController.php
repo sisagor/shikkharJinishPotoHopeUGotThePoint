@@ -170,6 +170,39 @@ class FrontEndController extends Controller
     }
 
 
+    public function catWiseBlogs(Request $request)
+    {
+        $data = BlogCategory::with(['blogs' => function($query) {
+            $query->with(['user', 'user.profile.image', 'details', 'details.images'])
+                  ->orderBy('created_at', 'desc');
+        }])->get();
+    
+        $categories = $data->map(function($category) {
+            return [
+                'category_name' => $category->name,
+                'id' => $category->id,
+                'blogs' => $category->blogs->map(function($blog) {
+                    $firstImage = $blog->details->flatMap(function($detail) {
+                        return $detail->images;
+                    })->first();
+    
+                    return [
+                        'title' => $blog->title,
+                        'created_by' => $blog->user->name,
+                        'created_at' => $blog->created_at,
+                        'details' => $blog->details->map(function($detail) {
+                            return $detail->details;
+                        })->first(),
+                        'first_image' => $firstImage ? $firstImage->path : null,
+                        'image' => optional($blog->user->profile->image)->path,
+                    ];
+                })
+            ];
+        });
+        return view('frontEnd.blog.cat_wise_blogs', compact('categories'));
+    }
+
+
     /**
      * Show the application dashboard.
      *

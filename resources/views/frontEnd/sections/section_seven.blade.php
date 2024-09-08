@@ -19,10 +19,10 @@
                             <h4>{{$category->name}}</h4>
                         </div>
                         <div class="download_button">
-                            <button>
+                            <a href="/blog/category">
                                 See Blog
                                 <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -31,3 +31,20 @@
      
     </div>
 </div>
+<style>
+    .download_button a {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        color: #F01E76;
+        text-align: center;
+        font-family: Rubik;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+    }
+    .download_button a:hover {
+       text-decoration: none;
+    }
+</style>
