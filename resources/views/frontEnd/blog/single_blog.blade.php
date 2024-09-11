@@ -197,8 +197,6 @@
             </div>
         </div>
     </div>
-
-
 <style>
   .container2 {
     display: flex;
