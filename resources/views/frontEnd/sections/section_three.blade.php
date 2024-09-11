@@ -32,10 +32,10 @@
                     <h4>{{$blog['title']}}</h4>
                 </div>
                 <div class="download_button">
-                    <button>
+                    <a href="/blog/{{$blog['id']}}">
                         Read More
                         <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
