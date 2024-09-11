@@ -80,6 +80,7 @@ class FrontEndController extends Controller
 
                     return [
                         'title' => $blog->title,
+                        'id' => $blog->id,
                         'created_by' => $blog->user->name,
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail){
@@ -105,6 +106,7 @@ class FrontEndController extends Controller
 
                     return [
                         'title' => $blog->title,
+                        'id' => $blog->id,
                         'created_by' => $blog->user->name,
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail){
@@ -174,8 +176,8 @@ class FrontEndController extends Controller
     {
         $data = BlogCategory::with(['blogs' => function($query) {
             $query->with(['user', 'user.profile.image', 'details', 'details.images'])
-                  ->orderBy('created_at', 'desc');
-        }])->get();
+                  ->orderBy('view', 'desc');
+        }])->limit(10)->get();
     
         $categories = $data->map(function($category) {
             return [
@@ -188,6 +190,7 @@ class FrontEndController extends Controller
     
                     return [
                         'title' => $blog->title,
+                        'id' => $blog->id,
                         'created_by' => $blog->user->name,
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail) {
@@ -200,6 +203,20 @@ class FrontEndController extends Controller
             ];
         });
         return view('frontEnd.blog.cat_wise_blogs', compact('categories'));
+    }
+
+    
+    public function blogDetails(Request $request, $id)
+    {
+        $blog = Blog::with(['user', 'user.profile.image', 'details', 'details.image'])
+                    ->where('id', $id)
+                    ->first();
+
+        $popularBlogs = $this->getPopularBlogDetailsWithFirstimage();
+
+        $latestBlogs = $this->getLatestBlogDetailsWithFirstimage();
+
+        return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs'));
     }
 
 

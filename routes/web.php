@@ -62,6 +62,7 @@ Route::get('home', [FrontEndController::class, 'index'])->name('home');
 Route::get('blogs', [\App\Http\Controllers\frontEnd\BlogController::class, 'index'])->name('blogs');
 //Route::get('blog/category', [\App\Http\Controllers\frontEnd\BlogController::class, 'catWiseBlogs'])->name('blog.cat');
 Route::get('blog/category', [FrontEndController::class, 'catWiseBlogs'])->name('blog.cat');
+Route::get('blog/{id}', [FrontEndController::class, 'blogDetails'])->name('blog');
 Route::get('jobs/{id}/show', [FrontEndController::class, 'jobShow'])->name('job.show');
 Route::get('jobs/{id}/apply', [FrontEndController::class, 'jobApply'])->name('job.apply');
 Route::post('jobs/{id}/apply', [FrontEndController::class, 'jobApplyStore'])->name('job.apply.store');
