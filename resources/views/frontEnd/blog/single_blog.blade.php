@@ -200,11 +200,11 @@
 
 
 <style>
-    .container2 {
-        display: flex;
-        flex-direction: row;
-        padding: 20px;
-    }
+  .container2 {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+  }
   .content {
       flex: 3;
       padding: 20px;
