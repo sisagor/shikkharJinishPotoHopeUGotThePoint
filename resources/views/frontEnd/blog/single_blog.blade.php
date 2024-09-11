@@ -1,22 +1,21 @@
 @extends('frontEnd.layouts.app')
 
 @section('contents')
-
     <div class="container">
         <section>
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
-
-        <section>
-          <div class="content">
+    </div>
+    <div class="container container2">
+        <div class="content">
             <h1>{{$blog->title}}</h1>
             <div class="author_container">
                 <div class="left_column">
                     @if ($blog->user->profile->image)
-                      <img src="{{asset('storage/'.$blog->user->profile->image->path )}}" alt="author image" class="author_image">
+                    <img src="{{asset('storage/'.$blog->user->profile->image->path )}}" alt="author image" class="author_image">
                     @else 
-                      <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author_image">
+                    <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author_image">
                     @endif
                     <div class="author_details">
                         <p class="author_name">{{$blog->user->name}}</p>
@@ -40,12 +39,12 @@
                 </div>
             </div>
             <div class="single_post_details">
-              @foreach ($blog->details as $detail)
+            @foreach ($blog->details as $detail)
                 @if ($detail->image)
                     <img src="{{asset('storage/'.$detail->image->path)}}" alt="single post image" class="single_img w-100">
                 @endif
                 <p>{{$detail->details}}</p>
-              @endforeach
+            @endforeach
                 {{-- <img src="{{asset('/frontEnd/img/Book Image-post.png')}}" alt="book image">
                 <h4>Why Coloring is Great for Kids:</h4>
                 <ol>
@@ -135,8 +134,6 @@
                 </form>
             </div>
         </div>
-      </section>
-      <section>
         <div class="sidebar">
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search here">
@@ -199,11 +196,13 @@
                 </div>
             </div>
         </div>
-      </section>
     </div>
-
-
 <style>
+  .container2 {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+  }
   .content {
       flex: 3;
       padding: 20px;
