@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\frontEnd;
 
 
+use App\Http\Controllers\Api\Auth\AuthenticationController;
+use App\Models\RootModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Modules\CMS\Entities\Blog;
 use Modules\CMS\Entities\Book;
 use App\Models\SeoPage;
@@ -27,7 +30,7 @@ class FrontEndController extends Controller
      */
     public function __construct(FrontEndService $service)
     {
-       $this->service = $service;
+        $this->service = $service;
     }
 
     /**
@@ -38,7 +41,7 @@ class FrontEndController extends Controller
     public function index(Request $request)
     {
 
-        $seo = SeoPage::where('status', '1')->first();
+        $seo = SeoPage::where('status', RootModel::STATUS_ACTIVE)->first();
 
         $this->seo()->setTitle($seo->title);
         $this->seo()->setDescription($seo->description);

@@ -56,10 +56,9 @@ Route::get('clear', function (\Illuminate\Http\Request $request)
 
 
 ##front-end
-
 Route::get('/', [FrontEndController::class, 'index'])->name('home');
 Route::get('home', [FrontEndController::class, 'index'])->name('home');
-Route::get('blogs', [\App\Http\Controllers\frontEnd\BlogController::class, 'index'])->name('blogs');
+//Route::get('blogs', [\App\Http\Controllers\frontEnd\BlogController::class, 'index'])->name('blogs');
 //Route::get('blog/category', [\App\Http\Controllers\frontEnd\BlogController::class, 'catWiseBlogs'])->name('blog.cat');
 Route::get('blog/category', [FrontEndController::class, 'catWiseBlogs'])->name('blog.cat');
 Route::get('blog/{id}', [FrontEndController::class, 'blogDetails'])->name('blog');
@@ -74,11 +73,13 @@ Route::get('contact-us', [FrontEndController::class, 'contact'])->name('contact'
 {
     return view('frontEnd.index');
 
-    if (! auth()->user()) {
+    if (! auth()->user())
+    {
         return redirect()->route('login');
     }
     return redirect('/dashboard');
 });*/
+
 
 Route::middleware('auth')->group(function ()
 {

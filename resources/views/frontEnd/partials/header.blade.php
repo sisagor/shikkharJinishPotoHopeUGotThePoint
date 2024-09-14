@@ -23,7 +23,7 @@
                 <a class="nav-link" href="#">Seasonal</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('blogs')}}">Blogs</a>
+                <a class="nav-link" href="{{route('blog.cat')}}">Blogs</a>
             </li>
         </ul>
         <div class="nav_right">
