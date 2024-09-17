@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Modules\CMS\Entities\Blog;
 use Modules\CMS\Entities\Book;
+use Modules\CMS\Entities\Comment;
 use App\Models\SeoPage;
 use App\Services\FrontEndService;
 use App\Http\Controllers\Controller;
@@ -219,7 +220,28 @@ class FrontEndController extends Controller
 
         $latestBlogs = $this->getLatestBlogDetailsWithFirstimage();
 
-        return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs'));
+        $popularBook = Book::orderBy('view', 'desc')->first();
+        $comments = Comment::with('replays')->where('parent_id',0)->orderBy('created_at', 'desc')->get();
+
+        return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','popularBook','comments'));
+    }
+
+    public function comment(Request $request)
+    {
+        $parent_id = '';
+        if($request->get('parent_id')){
+            $parent_id = $request->get('parent_id');
+        }
+        $comment = Comment::create([
+                'blog_id' => $request->get('blog_id'),
+                'user_id' => $request->get('user_id'),
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'comment' => $request->get('message'),
+                'parent_id' => $parent_id,
+            ]);
+
+        return redirect()->back();
     }
 
 

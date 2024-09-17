@@ -39,13 +39,31 @@ if (! function_exists('is_department_admin')) {
     }
 }
 
+// if (! function_exists('is_admin_group')) {
+//     /** return company id*/
+//     function is_admin_group()
+//     {
+//         return Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isAdminUser();
+//     }
+// }
+
 if (! function_exists('is_admin_group')) {
-    /** return company id*/
+
+    /** return true if user is in admin group */
+
     function is_admin_group()
     {
-        return Auth::user()->isSuperAdmin() || Auth::user()->isAdmin() || Auth::user()->isAdminUser();
+        $user = Auth::user();
+        
+        if ($user) {
+            return $user->isSuperAdmin() || $user->isAdmin() || $user->isAdminUser();
+        }
+
+        return false; // or handle it as needed
     }
+
 }
+
 
 if (! function_exists('is_admin_user')) {
     /** return admin usee id*/

@@ -108,7 +108,70 @@
                 </div>
             </div>
 
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="about">
+                    {{trans('app.about')}}
+                </label>
+                <div class="item form-group">
+                    {{-- <input id="about" class="form-control" type="text" name="about"
+                           value="@if(!empty($profile)){{$profile->about}}@endif"
+                           placeholder="{{trans('app.about')}}"> --}}
+                    <textarea class="form-control" name="about" placeholder="{{ trans('app.about') }}">@if(!empty($profile)){{$profile->about}}@endif</textarea>
+                </div>
+            </div>
 
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="occupation">
+                    {{trans('app.occupation')}}
+                </label>
+                <div class="item form-group">
+                    <input id="occupation" class="form-control" type="text" name="occupation"
+                           value="@if(!empty($profile)){{$profile->occupation}}@endif"
+                           placeholder="{{trans('app.address')}}">
+                </div>
+            </div>
+           
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="facebook">
+                    {{trans('app.facebook')}}
+                </label>
+                <div class="item form-group">
+                    <input id="facebook" class="form-control" type="text" name="facebook"
+                           value="@if(!empty($profile)){{$profile->facebook}}@endif"
+                           placeholder="{{trans('app.facebook')}}">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="twitter">
+                    {{trans('app.twitter')}}
+                </label>
+                <div class="item form-group">
+                    <input id="twitter" class="form-control" type="text" name="twitter"
+                           value="@if(!empty($profile)){{$profile->twitter}}@endif"
+                           placeholder="{{trans('app.twitter')}}">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="instagram">
+                    {{trans('app.instagram')}}
+                </label>
+                <div class="item form-group">
+                    <input id="instagram" class="form-control" type="text" name="instagram"
+                           value="@if(!empty($profile)){{$profile->instagram}}@endif"
+                           placeholder="{{trans('app.instagram')}}">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="linkedin">
+                    {{trans('app.linkedin')}}
+                </label>
+                <div class="item form-group">
+                    <input id="linkedin" class="form-control" type="text" name="linkedin"
+                           value="@if(!empty($profile)){{$profile->linkedin}}@endif"
+                           placeholder="{{trans('app.linkedin')}}">
+                </div>
+            </div>
+        
             @if(empty($profile))
 
                 <div class="col-md-6 col-sm-6">

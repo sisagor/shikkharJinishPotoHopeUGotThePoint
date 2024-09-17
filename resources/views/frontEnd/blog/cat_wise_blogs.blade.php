@@ -11,8 +11,8 @@
             <div class="breadcrumb_design">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb_item"><a href="#">Home</a></li>
-                  <li class="breadcrumb_item"><a href="#">Blog</a></li>
+                  <li class="breadcrumb_item"><a href="/">Home</a></li>
+                  <li class="breadcrumb_item"><a href="/blog/category">Blog</a></li>
                   <li class="breadcrumb_item active" aria-current="page">Current Page</li>
                 </ol>
               </nav>
@@ -35,7 +35,7 @@
           <section>
           <div class="tab_design">
               @foreach($categories as $category)
-                  <button class="rounded_button" onclick="openTab(event, '{{ 'category_' . $category['id'] }}')">{{ $category['category_name'] }}</button>
+                  <button class="rounded_button" id="button_{{ 'category_' . $category['id'] }}" onclick="openTab(event, '{{ 'category_' . $category['id'] }}')">{{ $category['category_name'] }}</button>
               @endforeach
           </div>
       
@@ -57,10 +57,10 @@
                                         <h4>{{$blog['title']}}</h4>
                                     </div>
                                     <div class="download_button">
-                                        <button>
+                                      <a href="/blog/{{$blog['id']}}">
                                             Details
                                             <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
-                                        </button>
+                                      </a>
                                     </div>
                                 </div>
                               </div>
@@ -78,26 +78,77 @@
     </div>
 
      <!-- tab links and tab content js  -->
+
   <script>
     function openTab(evt, tabName) {
       var tabcontent = document.getElementsByClassName("tabcontent");
-    for (var i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
+      for (var i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+      }
 
-    var tablinks = document.getElementsByClassName("rounded_button");
-    for (var i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.classList.add("active");
-    evt.currentTarget.focus();
-    }
+      var tablinks = document.getElementsByClassName("rounded_button");
+      for (var i = 0; i < tablinks.length; i++) {
+          tablinks[i].classList.remove("active");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.classList.add("active");
+      evt.currentTarget.focus();
+  }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelector('.rounded_button').click();
-    });
+  document.addEventListener("DOMContentLoaded", function () {
+      var categoryId = "{{ $_GET['id'] ?? '' }}"; 
+      if (categoryId) {
+          document.getElementById('button_category_' + categoryId).click();
+      } else {
+          document.querySelector('.rounded_button').click();
+      }
+  });
+
   </script>
+
+  <style>
+    .tab_design {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .rounded_button {
+        background-color: #f542c6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .rounded_button:hover {
+        background-color: #d039a8;
+        transform: translateY(-3px);
+    }
+
+    .rounded_button.active {
+        background-color: #d039a8;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .rounded_button:focus {
+        outline: none;
+    }
+
+    .tabcontent {
+        display: none;
+    }
+
+    .tabcontent.active {
+        display: block;
+    }
+
+</style>
+
+
 
 
 @endsection

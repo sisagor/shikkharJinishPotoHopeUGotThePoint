@@ -62,6 +62,12 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
                 'dob' => $request->get('dob'),
                 'gender' => $request->get('gender'),
                 'address' => $request->get('address'),
+                'occupation' => $request->get('occupation'),
+                'about' => $request->get('about'),
+                'facebook' => $request->get('facebook'),
+                'twitter' => $request->get('twitter'),
+                'instagram' => $request->get('instagram'),
+                'linkedin' => $request->get('linkedin'),
             ]);
 
             $level = ($request->get('manager') == User::USER_MANAGER ? User::USER_MANAGER : User::USER_ADMIN);
@@ -106,6 +112,12 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
                 'gender' => $request->get('gender'),
                 'address' => $request->get('address'),
                 'email' => $request->get('email'),
+                'occupation' => $request->get('occupation'),
+                'about' => $request->get('about'),
+                'facebook' => $request->get('facebook'),
+                'twitter' => $request->get('twitter'),
+                'instagram' => $request->get('instagram'),
+                'linkedin' => $request->get('linkedin'),
             ]);
 
 

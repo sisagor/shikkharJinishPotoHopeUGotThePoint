@@ -19,7 +19,7 @@
                             <h4>{{$category->name}}</h4>
                         </div>
                         <div class="download_button">
-                            <a href="/blog/category">
+                            <a href="/blog/category?id={{$category['id']}}">
                                 See Blog
                                 <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
                             </a>

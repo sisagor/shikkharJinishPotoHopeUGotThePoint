@@ -45,9 +45,9 @@
                 @endif
                 <p>{{$detail->details}}</p>
             @endforeach
-                {{-- <img src="{{asset('/frontEnd/img/Book Image-post.png')}}" alt="book image">
-                <h4>Why Coloring is Great for Kids:</h4>
-                <ol>
+                <img src="{{asset('storage/'.$popularBook->image)}}" alt="book image">
+                {{-- <h4>Why Coloring is Great for Kids:</h4> --}}
+                {{-- <ol>
                     <li><strong>Animals:</strong> Coloring pages featuring their favorite animals, from majestic lions to playful puppies, can spark children's curiosity about the natural world.</li>
                     <li><strong>Nature:</strong> Lush landscapes, vibrant flowers, and majestic trees can be a gateway to appreciating the beauty of nature.</li>
                     <li><strong>Underwater Adventures:</strong> Dive into a world of colorful fish, playful dolphins, and whimsical sea creatures.</li>
@@ -55,50 +55,114 @@
                     <li><strong>Holidays & Seasons:</strong> Celebrate special occasions with themed coloring pages featuring pumpkins for Halloween, snowflakes for winter, or fireworks for the Fourth of July.</li>
                     <li><strong>Mazes & Activities:</strong> Combine coloring with problem-solving skills with coloring pages featuring mazes, puzzles, and hidden object games.</li>
                     <li><strong>Storytelling Adventures:</strong> Coloring pages that depict scenes from children's favorite stories can bring those stories to life and encourage reading comprehension.</li>
-                </ul> --}}
+                </ol> --}}
             </div>
-            <button class="download-button">
+            <a href="{{$popularBook->url}}" class="download-button mt-3 ">
                 <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="download icon" class="download_icon">
                 Download this Book
-            </button>
+            </a>
             <div class="writer">
                 <h2>Writer</h2>
             </div>
             <div class="author-card">
                 <div class="author-info">
-                    <img src="{{asset('/frontEnd/img/WritterRectangle169.png')}}" alt="Author Image" class="author-image">
+                    @if ($blog->user->profile->image)
+                    <img src="{{asset('storage/'.$blog->user->profile->image->path )}}" alt="author image" class="author-image">
+                    @else 
+                    <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author-image">
+                    @endif
                     <div class="author-details">
-                        <h2 class="author-name">Rasel Mondol</h2>
-                        <h3 class="author-title">UI/UX Designer</h3>
-                        <p class="author-description">Monotonectally procrastinate transparent architectures before robust opportunities. Progressively parallel task 24/365 mindshare and multimedia based e-markets.</p>
+                        <h2 class="author-name">{{$blog->user->name}}</h2>
+                        <h3 class="author-title">{{$blog->user->profile->occupation}}</h3>
+                        <p class="author-description">{{$blog->user->profile->about}}</p>
                         <div class="social-media">
-                            <a href="#"><img src="{{asset('/frontEnd/img/Vector-facebook.png')}}" alt="facebook"></a>
-                            <a href="#"><img src="{{asset('/frontEnd/img/Vector-twitter.png')}}" alt="Twitter"></a>
-                            <a href="#"><img src="{{asset('/frontEnd/img/Vectorinstagram.png')}}" alt="Instagram"></a>
-                            <a href="#"><img src="{{asset('/frontEnd/img/Vector-linkedin.png')}}" alt="LinkedIn"></a>
+                            <a href="{{$blog->user->profile->facebook}}" target="_blank"><img src="{{asset('/frontEnd/img/Vector-facebook.png')}}" alt="facebook"></a>
+                            <a href="{{$blog->user->profile->twitter}}" target="_blank"><img src="{{asset('/frontEnd/img/Vector-twitter.png')}}" alt="Twitter"></a>
+                            <a href="{{$blog->user->profile->instagram}}" target="_blank"><img src="{{asset('/frontEnd/img/Vectorinstagram.png')}}" alt="Instagram"></a>
+                            <a href="{{$blog->user->profile->linkedin}}" target="_blank"><img src="{{asset('/frontEnd/img/Vector-linkedin.png')}}" alt="LinkedIn"></a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="comment-section">
-                <h2>2 Comments:</h2>
+                <h2>{{count($comments)}} Comments:</h2>
+                @foreach($comments as $comment)
                 <div class="comment-card">
                     <img src="{{asset('/frontEnd/img/Rectangle 169-comment.png')}}" alt="Author Image" class="author-comment">
                     <div class="comment-content">
                         <div class="comment-header">
                             <div class="author-details">
-                                <h3 class="comment-name">Rasel Mondol</h3>
-                                <p class="comment-title">UI/UX Designer</p>
+                                <h3 class="comment-name">{{$comment->name}}</h3>
+                                <p class="comment-title">{{$comment->email}}</p>
                             </div>
-                            <a href="#" class="reply-button">
+
+                            <!-- Button to trigger modal -->
+                            <button type="button" class="reply-button" data-toggle="modal" data-parent-id="{{$comment->id}}" data-target="#replyModal">
                                 <span>&#8634;</span> Reply
-                            </a>
+                            </button>
+                            
+                            <!-- Modal Structure -->
+                            <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="replyModalLabel">Reply to Comment</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <!-- Form for Reply -->
+                                    <form action="/comment" method="post" class="comment-form">
+                                        @csrf
+                                        <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
+                                        <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
+                                        <input type="hidden" id="parent_id" name="parent_id" value="">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <label for="name">Name</label>
+                                                <input type="text" id="name" name="name" placeholder="Your name" required>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" id="email" name="email" placeholder="Your email" required>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="message">Message</label>
+                                            <textarea id="message" name="message" placeholder="Write your message" required></textarea>
+                                        </div>
+                                        <button type="submit" class="submit-button">Submit Comment</button>
+                                    </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+
                         </div>
-                        <p class="comment-text">Competently provide access to fully researched methods of empowerment without sticky models. Credibly morph front-end niche markets.</p>
+                        <p class="comment-text">{{$comment->comment}}</p>
                     </div>
                 </div>
+                @if(count($comment['replays']) > 0)
+                    @foreach($comment['replays'] as $rcomment)
+                    <div class="comment-card child">
+                        <img src="{{asset('/frontEnd/img/Rectangle 169-comment.png')}}" alt="Author Image" class="author-comment">
+                        <div class="comment-content">
+                            <div class="comment-header">
+                                <div class="author-details">
+                                    <h3 class="comment-name">{{$rcomment->name}}</h3>
+                                    <p class="comment-title">{{$rcomment->email}}</p>
+                                </div>
+                            </div>
+                            <p class="comment-text">{{$rcomment->comment}}</p>
+                        </div>
+                    </div>
+                    @endforeach
+                @endif
+                @endforeach
         
-                <div class="comment-card">
+                {{-- <div class="comment-card">
                     <img src="{{asset('/frontEnd/img/Rectangle 169-comment.png')}}" alt="Author Image" class="author-comment">
                     <div class="comment-content">
                         <div class="comment-header">
@@ -112,10 +176,13 @@
                         </div>
                         <p class="comment-text">Competently provide access to fully researched methods of empowerment without sticky models. Credibly morph front-end niche markets.</p>
                     </div>
-                </div>
+                </div> --}}
             </div><div class="comment-form-container">
                 <h2>Leave your Comment</h2>
-                <form action="#" method="post" class="comment-form">
+                <form action="/comment" method="post" class="comment-form">
+                    @csrf
+                    <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
                     <div class="form-group">
                         <div class="input-group">
                             <label for="name">Name</label>
@@ -395,6 +462,10 @@
       display: flex;
       align-items: flex-start;
       margin-bottom: 20px;
+  }
+  .comment-card.child {
+        margin-left: 10%;
+        margin-top: -15px;
   }
 
   .author-comment {
@@ -692,5 +763,20 @@
       align-items: center;
   }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var replyButtons = document.querySelectorAll('button.reply-button');
+    replyButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var parentId = button.getAttribute('data-parent-id');
+            document.getElementById('parent_id').value = parentId; 
+            var replyModal = new bootstrap.Modal(document.getElementById('replyModal'));
+            replyModal.show();
+        });
+    });
+    
+});
+
+</script>
 
 @endsection

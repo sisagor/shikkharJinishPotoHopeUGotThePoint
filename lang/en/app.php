@@ -724,7 +724,13 @@ return [
     'og_locale' => 'Og Locale',
     'og_url' => 'Og URL',
     'og_type' => 'Og Type',
-    'author_name' => 'Author',
+    'about' => 'About',
+    'occupation' => 'Occupation',
+    'facebook' => 'Facebook',
+    'twitter' => 'Twitter',
+    'instagram' => 'Instagram',
+    'linkedin' => 'Linkedin',
+
     
 
 

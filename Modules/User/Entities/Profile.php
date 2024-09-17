@@ -34,6 +34,12 @@ class Profile extends RootModel
         'dob',
         'gender',
         'address',
+        'occupation',
+        'about',
+        'facebook',
+        'twitter',
+        'instagram',
+        'linkedin',
     ];
 
     public static $fetch = [
@@ -45,6 +51,12 @@ class Profile extends RootModel
         'dob',
         'gender',
         'address',
+        'occupation',
+        'about',
+        'facebook',
+        'twitter',
+        'instagram',
+        'linkedin',
     ];
 
     public function user()

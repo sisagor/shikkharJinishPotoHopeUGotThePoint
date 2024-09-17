@@ -552,3 +552,59 @@ padding: 30px;
 .footer_bg {
   background-color: #0B0332;
 }
+.download_button a {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #F01E76;
+  text-align: center;
+  font-family: Rubik;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+}
+.breadcrumb_design {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.breadcrumb {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  display: flex;
+  list-style: none;
+}
+
+.breadcrumb_item {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.breadcrumb_item a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb_item a:hover {
+  color: #0056b3;
+}
+
+.breadcrumb_item + .breadcrumb_item::before {
+  content: "/";
+  padding: 0 8px;
+  color: #6c757d;
+}
+
+.breadcrumb_item.active {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: default;
+}
+
+.breadcrumb_item.active::before {
+  color: #6c757d;
+}
