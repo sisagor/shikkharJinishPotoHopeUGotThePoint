@@ -251,15 +251,17 @@
                 <h2>Tags</h2>
                 <div class="underline"></div> <!-- Added underline -->
                 <div class="tags">
-                    <a href="#" class="tag">Kids</a>
-                    <a href="#" class="tag">Education</a>
+                    @foreach($tags as $tag)
+                    <a href="#" class="tag">{{$tag}}</a>
+                    @endforeach
+                    {{-- <a href="#" class="tag">Education</a>
                     <a href="#" class="tag">Day Care</a>
                     <a href="#" class="tag">Kindergarten</a>
                     <a href="#" class="tag">Nursery</a>
                     <a href="#" class="tag">Reading</a>
                     <a href="#" class="tag">Arts Class</a>
                     <a href="#" class="tag">Nursery</a>
-                    <a href="#" class="tag">Reading</a>
+                    <a href="#" class="tag">Reading</a>--}}
                 </div>
             </div>
         </div>
