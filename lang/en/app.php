@@ -730,6 +730,7 @@ return [
     'twitter' => 'Twitter',
     'instagram' => 'Instagram',
     'linkedin' => 'Linkedin',
+    'tags' => 'Tags',
 
     
 

@@ -27,6 +27,7 @@ class SeoPage extends RootModel
         'og_locale',
         'og_url',
         'og_type',
+        'page_id',
         'type',
         'status'
     ];

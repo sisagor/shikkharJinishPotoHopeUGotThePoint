@@ -19,7 +19,7 @@
 
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="image">
-                    {{trans('app.image')}} <span class="required">*</span>
+                    {{trans('app.image')}} (Size should be 107x151) <span class="required">*</span>
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                        title="{{ trans('help.image')}}"></i>
                 </label>

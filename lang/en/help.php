@@ -178,6 +178,7 @@ return [
     'og_url' => 'Og URL',
     'og_type' => 'Og Type',
     'description' => 'Description',
+    'tags' => 'Enter tag names, using commas as separators.',
 
 
 ];

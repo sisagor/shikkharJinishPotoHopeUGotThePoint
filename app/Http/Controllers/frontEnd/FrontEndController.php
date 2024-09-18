@@ -212,6 +212,20 @@ class FrontEndController extends Controller
     
     public function blogDetails(Request $request, $id)
     {
+
+        $seo = SeoPage::where([
+                ['status', '=', RootModel::STATUS_ACTIVE],
+                ['page_id', '=', $id],
+                ['type', '=', 'blog']
+            ])->first();
+
+        $tags = array();
+
+        if($seo){
+            SEOMeta::addKeyword(explode(',', $seo->keywords));
+            $tags = explode(',', $seo->keywords);
+        }
+
         $blog = Blog::with(['user', 'user.profile.image', 'details', 'details.image'])
                     ->where('id', $id)
                     ->first();
@@ -223,7 +237,7 @@ class FrontEndController extends Controller
         $popularBook = Book::orderBy('view', 'desc')->first();
         $comments = Comment::with('replays')->where('parent_id',0)->orderBy('created_at', 'desc')->get();
 
-        return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','popularBook','comments'));
+        return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','popularBook','comments','tags'));
     }
 
     public function comment(Request $request)

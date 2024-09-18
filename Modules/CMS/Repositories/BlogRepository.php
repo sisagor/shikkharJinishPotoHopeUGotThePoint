@@ -12,6 +12,7 @@ use Modules\CMS\Entities\BlogDetails;
 use App\Repositories\EloquentRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Image;
+use App\Models\SeoPage;
 
 
 
@@ -56,6 +57,14 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
             $details = $request->get('details');
             $orders = $request->get('orders');
             $images = $request->file('images', []);
+
+
+            $seoPage = SeoPage::create([
+                'page_id' => $blog->id,
+                'keywords' => $request->get('tags'),
+                'type' => 'blog',
+                'status' => 1,
+            ]);
 
         
 
