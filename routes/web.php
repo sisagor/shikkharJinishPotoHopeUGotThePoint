@@ -1,11 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SystemSettingsController;
 use App\Http\Controllers\frontEnd\FrontEndController;
-use Illuminate\Support\Facades\File;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +18,6 @@ use Illuminate\Support\Facades\File;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 
 Route::get('clear', function (\Illuminate\Http\Request $request)

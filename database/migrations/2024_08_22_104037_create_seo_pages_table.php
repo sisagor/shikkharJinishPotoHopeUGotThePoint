@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('seo_pages', function (Blueprint $table) {
+        Schema::create('seo_pages', function (Blueprint $table)
+        {
             $table->id();
             $table->string('slug')->nullable();
             $table->string('title')->nullable();

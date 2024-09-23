@@ -3,17 +3,16 @@
 namespace Modules\CMS\Repositories;
 
 use App\Common\Filter;
+use App\Models\Image;
+use App\Models\SeoPage;
 use Illuminate\Http\Request;
 use Modules\CMS\Entities\Blog;
 use Illuminate\Queue\Jobs\JobName;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Modules\CMS\Entities\BlogDetails;
 use App\Repositories\EloquentRepository;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Image;
-use App\Models\SeoPage;
-
 
 
 class BlogRepository extends EloquentRepository implements BlogRepositoryInterface
@@ -49,7 +48,7 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                 'blog_category_id' => $request->get('category_id'),
                 'title' => $request->get('title'),
                 'status' => $request->get('status'),
-                'order' => '1',
+                'order' => 1,
                 'created_by' => Auth::user()->id
             ]);
 
@@ -93,7 +92,7 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                         'order' => $order,
                         'type' => 'blog',
                         'imageable_id' => $blogDetail->id,
-                        'imageable_type' => BlogDetail::class,
+                        'imageable_type' => BlogDetails::class,
                     ]);
 
                     $blogDetail->images()->save($image);
@@ -103,6 +102,7 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
         } catch (\Exception $e) {
             Log::error("Blog create failed");
             Log::info(get_exception_message($e));
+            dd($e);
 
             return false;
         }
