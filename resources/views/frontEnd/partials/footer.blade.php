@@ -16,9 +16,9 @@
         <div class="col-12 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
             <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Quick links</h5>
             <ul class="list-unstyled text-white mb-md-4 mb-lg-0">
-                <li class="lh-lg"><a class="text-white" href="#!">About</a></li>
-                <li class="lh-lg"><a class="footer-link text-white" href="#!">Contact US</a></li>
-                <li class="lh-lg"><a class="footer-link text-white" href="#!">Blog</a></li>
+                <li class="lh-lg"><a class="text-white" href="/about-us">About</a></li>
+                <li class="lh-lg"><a class="footer-link text-white" href="/contact-us">Contact US</a></li>
+                <li class="lh-lg"><a class="footer-link text-white" href="/blog/category">Blog</a></li>
             </ul>
         </div>
         <div class="col-12 col-sm-4 col-lg-3 mb-3 order-2 order-sm-2">

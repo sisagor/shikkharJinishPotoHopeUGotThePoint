@@ -160,7 +160,8 @@ class FrontEndController extends Controller
     public function about(Request $request)
     {
         //$about = BlogDetails::where('type', BlogDetails::TYPE_ABOUT)->select('content')->first();
-        //return view('frontEnd.about', compact('about'));
+        $about = [];
+        return view('frontEnd.about', compact('about'));
     }
 
 
@@ -171,7 +172,8 @@ class FrontEndController extends Controller
      */
     public function contact(Request $request)
     {
-        $contact = BlogDetails::where('type', BlogDetails::TYPE_CONTACT)->select('content')->first();
+        set_action('settings.update');
+        $contact = config('system_settings');
         return view('frontEnd.contact', compact('contact'));
     }
 
