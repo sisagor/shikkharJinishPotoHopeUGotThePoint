@@ -68,6 +68,7 @@ Route::post('jobs/{id}/apply', [FrontEndController::class, 'jobApplyStore'])->na
 Route::get('about-us', [FrontEndController::class, 'about'])->name('about');
 Route::get('contact-us', [FrontEndController::class, 'contact'])->name('contact');
 Route::post('comment', [FrontEndController::class, 'comment'])->name('comment');
+Route::post('contact-store', [FrontEndController::class, 'storeContact'])->name('storeContact');
 
 
 /*Route::get('/', function ()

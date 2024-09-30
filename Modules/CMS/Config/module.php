@@ -115,6 +115,22 @@ return [
                 ],
             ],
         ],
+        [
+            'name' => 'Contact-Us',
+            'show' => 0,
+            'order' => 13,
+            'scope' => json_encode([Module::SCOPE_COMPANY]),
+            'status' => 1,
+            'menu' => [
+                [
+                    'name' => 'Contact-Us',
+                    'url' => 'cms/contact-us',
+                    'action' => 'cms.contact-us',
+                    'show' => 1,
+                ],
+            
+            ],
+        ],
     ],
 
 ];

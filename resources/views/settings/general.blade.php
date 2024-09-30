@@ -54,6 +54,30 @@
                                value="{{ config('system_settings.system_email') }}">
                     </div>
                 </div>
+                <div class="col-md-12 col-sm-12">
+                    <label class="col-form-label label-align" for="system_address">
+                        {{trans('app.system_address')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                           title="{{ trans('help.system_address')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input class="form-control" type="text" id="system_address"
+                               name="system_address" required
+                               value="{{ config('system_settings.system_address') }}">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <label class="col-form-label label-align" for="system_google_map">
+                        {{trans('app.system_google_map')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                           title="{{ trans('help.system_google_map')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input class="form-control" type="text" id="system_google_map"
+                               name="system_google_map" required
+                               value="{{ config('system_settings.system_google_map') }}">
+                    </div>
+                </div>
 
                {{-- <div class="col-md-12 col-sm-12">
                     <label class="col-form-label label-align" for="logo">
