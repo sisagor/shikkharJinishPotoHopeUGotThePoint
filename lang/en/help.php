@@ -179,6 +179,8 @@ return [
     'og_type' => 'Og Type',
     'description' => 'Description',
     'tags' => 'Enter tag names, using commas as separators.',
+    'system_address' => 'This will show as system address',
+    'system_google_map' => 'This will show as system google map location',
 
 
 ];

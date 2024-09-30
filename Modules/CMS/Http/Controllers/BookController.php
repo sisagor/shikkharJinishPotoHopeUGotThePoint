@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Modules\CMS\Entities\Book;
+use Modules\CMS\Entities\Contact;
 use Modules\CMS\Http\Requests\BookCreateRequest;
 use Modules\CMS\Http\Requests\BookUpdateRequest;
 use Yajra\DataTables\Facades\DataTables;
@@ -203,6 +204,28 @@ class BookController extends Controller
         }
 
         return redirect()->back()->with('error', trans('msg.delete_failed', ['model' => trans('model.book')]))->withInput();
+    }
+
+
+    public function contactUs(Request $request)
+    {
+       
+        // $data = Contact::get();
+
+        // return view('cms::book.contact',compact('data'));
+
+        if (! $request->ajax()){
+            return view('cms::book.contact');
+        }
+
+        $data = Contact::query();
+
+        if ($request->get('type') == "active"){
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
     }
 
     /**

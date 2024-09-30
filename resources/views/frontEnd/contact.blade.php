@@ -29,12 +29,12 @@
                     <img src="/frontEnd/img/Icon-mail.png" alt="Phone Icon"> <!-- Replace with your phone icon -->
                 </div>
                 <h3>Our Location</h3>
-                <p>Vatara, Gulshan, Dhaka - 1212</p>
+                <p>{{$contact['system_address']}}</p>
             </div>
         </div>
         <div class="map-container">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.5864262108764!2d90.39945221498116!3d23.794871084569254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7a8abffb77f%3A0x58df588cdb6d4c9f!2sVatara%2C%20Gulshan%2C%20Dhaka%20-%201212!5e0!3m2!1sen!2sbd!4v1693672189200!5m2!1sen!2sbd" 
+                src="{{$contact['system_google_map']}}" 
                 width="600" 
                 height="450" 
                 style="border:0;" 
@@ -51,7 +51,8 @@
                     <h2>Feel Free To Contact!</h2>
                 </div>
 
-                <form>
+                <form action="/contact-store" method="post" class="comment-form">
+                    @csrf
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Your name">
 
@@ -70,7 +71,7 @@
                                         <!-- Add more country codes as needed -->
                                     </select>
                                 </div>
-                                <input type="text" id="phone" name="phone" value="171251002">
+                                <input type="text" id="phone" name="phone" value="1756888319">
                             </div>
                         </div>
                     </div>

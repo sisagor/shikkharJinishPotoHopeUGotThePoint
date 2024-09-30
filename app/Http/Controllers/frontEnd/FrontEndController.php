@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Modules\CMS\Entities\Blog;
 use Modules\CMS\Entities\Book;
 use Modules\CMS\Entities\Comment;
+use Modules\CMS\Entities\Contact;
 use App\Models\SeoPage;
 use App\Services\FrontEndService;
 use App\Http\Controllers\Controller;
@@ -255,6 +256,18 @@ class FrontEndController extends Controller
                 'email' => $request->get('email'),
                 'comment' => $request->get('message'),
                 'parent_id' => $parent_id,
+            ]);
+
+        return redirect()->back();
+    }
+
+    public function storeContact(Request $request)
+    {
+        $contact = Contact::create([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'mobile' => $request->get('phone'),
+                'message' => $request->get('message')
             ]);
 
         return redirect()->back();
