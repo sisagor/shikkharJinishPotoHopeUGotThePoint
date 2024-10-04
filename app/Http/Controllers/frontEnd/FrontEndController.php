@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Modules\CMS\Entities\Blog;
 use Modules\CMS\Entities\Book;
 use Modules\CMS\Entities\Comment;
+use Modules\CMS\Entities\Contact;
 use App\Models\SeoPage;
 use App\Services\FrontEndService;
 use App\Http\Controllers\Controller;
@@ -85,13 +86,13 @@ class FrontEndController extends Controller
                     return [
                         'title' => $blog->title,
                         'id' => $blog->id,
-                        'created_by' => $blog->user->name,
+                        'created_by' => (!empty($blog->user) ? $blog->user->name : null),
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail){
                             return $detail->details;
                         })->first(),
                         'first_image' =>  $firstImage ?  $firstImage->path : null,
-                        'image' => optional($blog->user->profile->image)->path,
+                        'image' => (!empty($blog->user) ? optional($blog->user->profile->image)->path : null),
                     ];
                 });
 
@@ -111,13 +112,13 @@ class FrontEndController extends Controller
                     return [
                         'title' => $blog->title,
                         'id' => $blog->id,
-                        'created_by' => $blog->user->name,
+                        'created_by' => (!empty($blog->user) ? $blog->user->name : null ),
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail){
                             return $detail->details;
                         })->first(),
                         'first_image' =>  $firstImage ?  $firstImage->path : null,
-                        'image' => optional($blog->user->profile->image)->path,
+                        'image' => (!empty($blog->user) ? optional($blog->user->profile->image)->path : null),
                     ];
                 });
 
@@ -160,7 +161,8 @@ class FrontEndController extends Controller
     public function about(Request $request)
     {
         //$about = BlogDetails::where('type', BlogDetails::TYPE_ABOUT)->select('content')->first();
-        //return view('frontEnd.about', compact('about'));
+        $about = [];
+        return view('frontEnd.about', compact('about'));
     }
 
 
@@ -171,7 +173,8 @@ class FrontEndController extends Controller
      */
     public function contact(Request $request)
     {
-        $contact = BlogDetails::where('type', BlogDetails::TYPE_CONTACT)->select('content')->first();
+        set_action('settings.update');
+        $contact = config('system_settings');
         return view('frontEnd.contact', compact('contact'));
     }
 
@@ -195,13 +198,13 @@ class FrontEndController extends Controller
                     return [
                         'title' => $blog->title,
                         'id' => $blog->id,
-                        'created_by' => $blog->user->name,
+                        'created_by' => (!empty($blog->user) ? $blog->user->name : null ),
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail) {
                             return $detail->details;
                         })->first(),
                         'first_image' => $firstImage ? $firstImage->path : null,
-                        'image' => optional($blog->user->profile->image)->path,
+                        'image' => (!empty($blog->user) ? optional($blog->user->profile->image)->path : null),
                     ];
                 })
             ];
@@ -253,6 +256,18 @@ class FrontEndController extends Controller
                 'email' => $request->get('email'),
                 'comment' => $request->get('message'),
                 'parent_id' => $parent_id,
+            ]);
+
+        return redirect()->back();
+    }
+
+    public function storeContact(Request $request)
+    {
+        $contact = Contact::create([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'mobile' => $request->get('phone'),
+                'message' => $request->get('message')
             ]);
 
         return redirect()->back();

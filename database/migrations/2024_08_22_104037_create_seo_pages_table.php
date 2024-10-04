@@ -13,23 +13,28 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('seo_pages', function (Blueprint $table)
+        if (! Schema::hasTable('seo_pages'))
         {
-            $table->id();
-            $table->string('slug')->nullable();
-            $table->string('title')->nullable();
-            $table->text('description')->nullable();
-            $table->text('keywords')->nullable();
-            $table->string('author')->nullable();
-            $table->string('section')->nullable();
-            $table->string('canonical')->nullable();
-            $table->string('og_locale')->nullable();
-            $table->string('og_url')->nullable();
-            $table->string('og_type')->nullable();
-            $table->string('type')->nullable();
-            $table->tinyInteger('status')->default(0)->nullable();
-            $table->timestamps();
-        });
+            Schema::create('seo_pages', function (Blueprint $table)
+            {
+
+                $table->id();
+                $table->integer('page_id');
+                $table->string('slug')->nullable();
+                $table->string('title')->nullable();
+                $table->text('description')->nullable();
+                $table->text('keywords')->nullable();
+                $table->string('author')->nullable();
+                $table->string('section')->nullable();
+                $table->string('canonical')->nullable();
+                $table->string('og_locale')->nullable();
+                $table->string('og_url')->nullable();
+                $table->string('og_type')->nullable();
+                $table->string('type')->nullable();
+                $table->tinyInteger('status')->default(0)->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

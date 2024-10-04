@@ -61,6 +61,8 @@ return [
             'pagination' => "20",
             'report_pagination' => "100",
             'currency_id' => 5,
+            'system_address' => 'Jagannathpur, Vatara, Gulshan, Dhaka - 1212',
+            'system_google_map' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.5864262108764!2d90.39945221498116!3d23.794871084569254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7a8abffb77f%3A0x58df588cdb6d4c9f!2sVatara%2C%20Gulshan%2C%20Dhaka%20-%201212!5e0!3m2!1sen!2sbd!4v1693672189200!5m2!1sen!2sbd',
             'timezone_id' => 5,
             'show_currency_symbol' => 1,
             'show_space_after_symbol' => null,

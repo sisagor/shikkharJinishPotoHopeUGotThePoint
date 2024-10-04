@@ -42,6 +42,11 @@ class DatabaseSeeder extends Seeder
         //$this->call(StatesSeeder::class);
         $this->call(CurrenciesSeeder::class);
         $this->call(TimezonesSeeder::class);
+        $this->call(SeoToolsSeeder::class);
+        $this->call(CommentsTableSeeder::class);
+
+
+
         if (config('app.demo')){
             $this->call(DemoSmsGatewaySeeder::class);
         }

@@ -2,11 +2,10 @@
 
 namespace Modules\Settings\Database\Seeders;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\Model;
-
 
 
 class SettingsDatabaseSeeder extends Seeder
@@ -60,8 +59,9 @@ class SettingsDatabaseSeeder extends Seeder
             }
 
             ##demo
-            if (config('app.demo')) {
-                $this->call(DemoBlogCategoryDatabaseSeeder::class);
+            if (config('app.demo'))
+            {
+                //
             }
 
             DB::commit();

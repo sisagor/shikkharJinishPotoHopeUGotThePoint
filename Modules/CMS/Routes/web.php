@@ -43,6 +43,7 @@ Route::prefix('cms')->name('cms.')->middleware(['auth'])->group(function ()
         Route::get('book/{book}/trash',  'trash')->name('book.trash');
         Route::get('book/{book}/restore',  'restore')->name('book.restore');
         Route::get('book/{book}/delete',  'delete')->name('book.delete');
+        Route::get('contact-us/', 'contactUs')->name('contact');
     });
 
 

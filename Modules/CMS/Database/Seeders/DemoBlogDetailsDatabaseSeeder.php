@@ -43,13 +43,13 @@ class DemoBlogDetailsDatabaseSeeder extends Seeder
             $details = BlogDetails::all();
             foreach ($details as $key =>  $detail)
             {
-                $detail->saveImage('cover'.$key+1, 'blog');
+                //$detail->saveImage('cover'.$key+1, 'blog');
             }
 
 
         } catch (\Exception $exception) {
 
-            Log::error("job create Error!");
+            Log::error("Blog Details create Error!");
             Log::info(get_exception_message($exception));
         }
     }

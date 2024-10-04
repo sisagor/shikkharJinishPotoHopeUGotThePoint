@@ -65,8 +65,10 @@ class CMSDatabaseSeeder extends Seeder
 
              if(config('app.demo'))
              {
+                 $this->call(DemoBlogCategoryDatabaseSeeder::class);
                  $this->call(DemoBlogDatabaseSeeder::class);
                  $this->call(DemoBlogDetailsDatabaseSeeder::class);
+                 $this->call(DemoBooksDatabaseSeeder::class);
              }
 
         } catch (\Exception $exception)

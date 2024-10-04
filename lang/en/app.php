@@ -731,6 +731,10 @@ return [
     'instagram' => 'Instagram',
     'linkedin' => 'Linkedin',
     'tags' => 'Tags',
+    'system_address' => 'System Address',
+    'system_google_map' => 'System Google Map',
+    'message' => 'Message',
+    'contact-us' => 'Contact Us',
 
     
 

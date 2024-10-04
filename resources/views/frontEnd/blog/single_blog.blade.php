@@ -7,12 +7,13 @@
             @include('frontEnd.partials.header')
         </section>
     </div>
+
     <div class="container container2">
         <div class="content">
             <h1>{{$blog->title}}</h1>
             <div class="author_container">
                 <div class="left_column">
-                    @if ($blog->user->profile->image)
+                    @if (!empty($blog->user->profile))
                     <img src="{{asset('storage/'.$blog->user->profile->image->path )}}" alt="author image" class="author_image">
                     @else 
                     <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author_image">
@@ -66,7 +67,7 @@
             </div>
             <div class="author-card">
                 <div class="author-info">
-                    @if ($blog->user->profile->image)
+                    @if (!empty($blog->user->profile))
                     <img src="{{asset('storage/'.$blog->user->profile->image->path )}}" alt="author image" class="author-image">
                     @else 
                     <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author-image">
@@ -266,6 +267,9 @@
             </div>
         </div>
     </div>
+
+
+
 <style>
   .container2 {
     display: flex;

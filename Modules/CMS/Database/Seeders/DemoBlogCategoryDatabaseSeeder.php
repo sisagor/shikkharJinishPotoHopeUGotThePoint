@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Settings\Database\Seeders;
+namespace Modules\CMS\Database\Seeders;
 
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\Model;
 
 
 class DemoBlogCategoryDatabaseSeeder extends Seeder

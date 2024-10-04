@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Settings\Entities\BlogCategory;
 
 
-class DemoBlogDatabaseSeeder extends Seeder
+class DemoBooksDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -29,17 +29,20 @@ class DemoBlogDatabaseSeeder extends Seeder
 
             $category = BlogCategory::all();
 
-            foreach($category as $key => $cat){
 
-                DB::table('blogs')->insert([
-                    'blog_category_id' => $cat->id,
-                    'title' => $faker->title,
-                    'order' => $key,
-                    'created_by' => 1,
-                    'status' =>1
+            for($i = 1; $i < 11; $i++)
+            {
+
+                DB::table('books')->insert([
+                    'url' => $faker->url,
+                    'image' => $faker->image(public_path().'/images/demo/'),
+                    'order' => $i,
+                    'status' =>1,
+                    'view' =>$i,
+                    'created_by' =>2,
                 ]);
-
             }
+
 
         } catch (\Exception $exception) {
 
