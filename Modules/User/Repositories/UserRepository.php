@@ -24,9 +24,8 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
     {
         return $this->model->mine()
             ->with(['user' => function($item){
-                $item->with('department:id,name')
-                    ->with('role:id,name')
-                    ->select('id','role_id','department_id','profile_id','level','status', 'manager');
+                $item->with('role:id,name')
+                    ->select('id','role_id','profile_id','level','status');
             }])
             ->whereHas('user', function ($query){
                 $query->where('level', '!=', User::USER_SUPER_ADMIN)->where('level', '!=', User::USER_ADMIN_ADMIN);
@@ -39,9 +38,8 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         return $this->model->onlyTrashed()->mine()
             ->with(['user' => function($item){
                 $item->withTrashed()
-                ->with('department:id,name')
                 ->with('role:id,name')
-                ->select('id','role_id','department_id','profile_id','level','status', 'manager');
+                ->select('id','role_id','profile_id','level','status');
             }])
             ->whereHas('user', function ($query){
                 $query->where('level', '!=', User::USER_SUPER_ADMIN)->where('level', '!=', User::USER_ADMIN_ADMIN);

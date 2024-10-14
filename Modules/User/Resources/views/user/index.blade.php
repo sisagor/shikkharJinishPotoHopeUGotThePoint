@@ -10,8 +10,6 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>{{trans('app.department')}}</th>
-            <th>{{trans('app.manager')}}</th>
             <th>{{trans('app.name')}}</th>
             <th>{{trans('app.phone')}}</th>
             <th>{{trans('app.email')}}</th>
@@ -30,8 +28,6 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>{{trans('app.department')}}</th>
-            <th>{{trans('app.manager')}}</th>
             <th>{{trans('app.name')}}</th>
             <th>{{trans('app.phone')}}</th>
             <th>{{trans('app.email')}}</th>
