@@ -13,7 +13,11 @@
         @foreach($topCategories as $key => $category)
             <div class="col-md-4">
                 <div class="card_design">
-                    <img src="{{ asset('storage/' . ($category->image->path ?? 'frontEnd/img/BookImage.png')) }}" alt="Avatar" width ="300px" height = "384px" >
+                    @if($category->image)
+                        <img src="{{ get_storage_file_url($category->image->path) }}" alt="Avatar" width ="300px" height = "384px" >
+                    @else
+                        <img src="{{ asset('frontEnd/img/BookImage.png') }}" alt="Avatar" width ="300px" height = "384px" >
+                    @endif
                     <div class="text-center mt-2">
                         <div class="card_title">
                             <h4>{{$category->name}}</h4>

@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\DashboardService;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\DB;
-use Modules\Payroll\Entities\Salary;
-use TADPHP\TAD;
-use TADPHP\TADFactory;
+//use TADPHP\TAD;
+//use TADPHP\TADFactory;
 
-require(base_path('vendor/tad/autoload.php'));
+//require(base_path('vendor/tad/autoload.php'));
 
 
 class TestController extends Controller
@@ -35,6 +35,10 @@ class TestController extends Controller
     {
         //$delete = Salary::query()->delete();
 
+
+        //dd(Artisan::call('storage:link'));
+
+        exit();
         $comands = TAD::commands_available();
         $tad = (new TADFactory(['ip'=>'192.168.10.34', 'com_key'=>0]))->get_instance();
 

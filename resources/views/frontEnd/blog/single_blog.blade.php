@@ -14,7 +14,7 @@
             <div class="author_container">
                 <div class="left_column">
                     @if (!empty($blog->user->profile))
-                    <img src="{{asset('storage/'.$blog->user->profile->image->path )}}" alt="author image" class="author_image">
+                    <img src="{{get_storage_file_url($blog->user->profile->image->path )}}" alt="author image" class="author_image">
                     @else 
                     <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author_image">
                     @endif
@@ -42,11 +42,11 @@
             <div class="single_post_details">
             @foreach ($blog->details as $detail)
                 @if ($detail->image)
-                    <img src="{{asset('storage/'.$detail->image->path)}}" alt="single post image" class="single_img w-100">
+                    <img src="{{get_storage_file_url($detail->image->path)}}" alt="single post image" class="single_img w-100">
                 @endif
                 <p>{{$detail->details}}</p>
             @endforeach
-                <img src="{{asset('storage/'.$popularBook->image)}}" alt="book image">
+                <img src="{{get_storage_file_url($popularBook->image)}}" alt="book image">
                 {{-- <h4>Why Coloring is Great for Kids:</h4> --}}
                 {{-- <ol>
                     <li><strong>Animals:</strong> Coloring pages featuring their favorite animals, from majestic lions to playful puppies, can spark children's curiosity about the natural world.</li>
@@ -68,7 +68,7 @@
             <div class="author-card">
                 <div class="author-info">
                     @if (!empty($blog->user->profile))
-                    <img src="{{asset('storage/'.$blog->user->profile->image->path )}}" alt="author image" class="author-image">
+                    <img src="{{get_storage_file_url($blog->user->profile->image->path)}}" alt="author image" class="author-image">
                     @else 
                     <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author-image">
                     @endif
@@ -212,7 +212,7 @@
                 <div class="underline"></div> <!-- Added underline -->
                 @foreach ($latestBlogs as $blog)
                 <div class="article">
-                    <img src="{{asset('storage/'.$blog['first_image'] )}}" alt="Article 1">
+                    <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
                     <div class="article-info">
                         <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
                         <h3><a href="/blog/{{$blog['id']}}">{{$blog['title']}}</a></h3>
@@ -233,7 +233,7 @@
                 <div class="underline"></div> <!-- Added underline -->
                 @foreach ($popularBlogs as $blog)
                 <div class="article">
-                    <img src="{{asset('storage/'.$blog['first_image'] )}}" alt="Article 1">
+                    <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
                     <div class="article-info">
                         <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
                         <h3><a href="/blog/{{$blog['id']}}"> {{$blog['title']}} </a></h3>

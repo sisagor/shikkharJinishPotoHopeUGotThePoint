@@ -16,7 +16,7 @@
         @foreach($latestBooks as $book)
             <div class="col-md-3 col-sm-3 new_book_index mx-4">
             <img class="bg_new_index_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}"  alt="" style="max-width:95%;height:auto;"/>
-            <img class="bg_new_index_up" src="{{ asset('storage/' . (optional($book->book)->path ?? '/frontEnd/img/24376429.png')) }}" alt="" />
+            <img class="bg_new_index_up" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="" />
         </div>
         @endforeach
         {{-- <div class="col-md-3 col-sm-3 new_book_index mx-4">
