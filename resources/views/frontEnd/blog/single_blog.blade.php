@@ -44,9 +44,8 @@
                 @if ($detail->image)
                     <img src="{{get_storage_file_url($detail->image->path)}}" alt="single post image" class="single_img w-100">
                 @endif
-                <p>{{$detail->details}}</p>
+                <p class="mt-1">{{$detail->details}}</p>
             @endforeach
-                <img src="{{get_storage_file_url($popularBook->image)}}" alt="book image">
                 {{-- <h4>Why Coloring is Great for Kids:</h4> --}}
                 {{-- <ol>
                     <li><strong>Animals:</strong> Coloring pages featuring their favorite animals, from majestic lions to playful puppies, can spark children's curiosity about the natural world.</li>
@@ -57,11 +56,24 @@
                     <li><strong>Mazes & Activities:</strong> Combine coloring with problem-solving skills with coloring pages featuring mazes, puzzles, and hidden object games.</li>
                     <li><strong>Storytelling Adventures:</strong> Coloring pages that depict scenes from children's favorite stories can bring those stories to life and encourage reading comprehension.</li>
                 </ol> --}}
+
+
+                @if($popularBook->image)
+                    @php
+                        //dd($popularBook->image);
+                    @endphp
+
+                    <img src="{{get_storage_file_url(optional($popularBook->image)->path)}}" alt="book image" style="display:block;margin: auto;">
+                    <a target="_blank" href="{{$popularBook->url}}" class="download-button mt-3">
+                        <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="download icon" class="download_icon">
+                        Download this Book
+                    </a>
+                @endif
             </div>
-            <a href="{{$popularBook->url}}" class="download-button mt-3 ">
-                <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="download icon" class="download_icon">
-                Download this Book
-            </a>
+
+
+
+
             <div class="writer">
                 <h2>Writer</h2>
             </div>

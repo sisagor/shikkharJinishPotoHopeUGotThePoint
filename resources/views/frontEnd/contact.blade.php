@@ -12,21 +12,21 @@
         <div class="contact-container">
             <div class="contact-card">
                 <div class="icon-container">
-                    <img src="/frontEnd/img/Icon-call.png" alt="Phone Icon"> <!-- Replace with your phone icon -->
+                    <img src="{{asset('frontEnd/img/Icon-call.png')}}" alt="Phone Icon"> <!-- Replace with your phone icon -->
                 </div>
                 <h3>Call us At</h3>
                 <p>{{$contact['system_phone']}}</p>
             </div>
             <div class="contact-card">
                 <div class="icon-container">
-                    <img src="/frontEnd/img/Icon-mail.png" alt="Phone Icon"> <!-- Replace with your phone icon -->
+                    <img src="{{asset('frontEnd/img/Icon-mail.png')}}" alt="Phone Icon"> <!-- Replace with your phone icon -->
                 </div>
                 <h3>Email us At</h3>
                 <p>{{$contact['system_email']}}</p>
             </div>
             <div class="contact-card">
                 <div class="icon-container">
-                    <img src="/frontEnd/img/Icon-mail.png" alt="Phone Icon"> <!-- Replace with your phone icon -->
+                    <img src="{{asset('frontEnd/img/Icon-mail.png')}}" alt="Phone Icon"> <!-- Replace with your phone icon -->
                 </div>
                 <h3>Our Location</h3>
                 <p>{{$contact['system_address']}}</p>
@@ -65,7 +65,7 @@
                             <label for="phone">Phone</label>
                             <div class="phone-input">
                                 <div class="country-code">
-                                    <img src="/frontEnd/img/BD-Flag-icon.png" alt="Bangladesh Flag"> <!-- Replace with your flag image source -->
+                                    <img src="{{asset('frontEnd/img/BD-Flag-icon.png')}}" alt="Bangladesh Flag"> <!-- Replace with your flag image source -->
                                     <select>
                                         <option value="+880">+880</option>
                                         <!-- Add more country codes as needed -->
@@ -85,7 +85,7 @@
 
             <!-- Contact Illustration -->
             <div class="contact-illustration">
-                <img src="/frontEnd/img/Contact 1.png" alt="Contact Illustration"> <!-- Replace with actual image -->
+                <img src="{{asset('frontEnd/img/Contact 1.png')}}" alt="Contact Illustration"> <!-- Replace with actual image -->
             </div>
         </div>
     </div>

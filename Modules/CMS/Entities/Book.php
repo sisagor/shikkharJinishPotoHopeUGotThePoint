@@ -17,7 +17,11 @@ class Book extends RootModel
     //protected $cascadeDeletes = ['job_applications', 'job_interview'];
 
     protected $fillable = [
-        'id', 'image', 'url', 'status', 'view', 'order', 'created_by'
+        'id', 'url', 'status', 'view', 'order', 'created_by'
+    ];
+
+    public static $select = [
+        'id', 'url', 'status', 'view', 'order', 'created_by'
     ];
 
 }
