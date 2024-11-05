@@ -7,6 +7,16 @@
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
+        <section>
+            <div class="breadcrumb_design">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb_item"><a href="/">Home</a></li>
+                  <li class="breadcrumb_item active" aria-current="page">Contact US</li>
+                </ol>
+              </nav>
+            </div>
+          </section>
     </div>
     <div class="container">
         <div class="contact-container">
@@ -19,14 +29,14 @@
             </div>
             <div class="contact-card">
                 <div class="icon-container">
-                    <img src="{{asset('frontEnd/img/Icon-mail.png')}}" alt="Phone Icon"> <!-- Replace with your phone icon -->
+                    <img src="{{asset('frontEnd/img/Icon-mail.png')}}" alt="Mail Icon"> <!-- Replace with your phone icon -->
                 </div>
                 <h3>Email us At</h3>
                 <p>{{$contact['system_email']}}</p>
             </div>
             <div class="contact-card">
                 <div class="icon-container">
-                    <img src="{{asset('frontEnd/img/Icon-mail.png')}}" alt="Phone Icon"> <!-- Replace with your phone icon -->
+                    <img src="{{asset('frontEnd/img/location-03.png')}}" alt="Location Icon" style="width: 24px; height:24px"> <!-- Replace with your phone icon -->
                 </div>
                 <h3>Our Location</h3>
                 <p>{{$contact['system_address']}}</p>

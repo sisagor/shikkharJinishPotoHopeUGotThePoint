@@ -8,6 +8,16 @@
         <div class="form-body">
 
             <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="name">
+                    {{trans('app.name')}} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.name')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input id="name" class="form-control" type="text" name="name" value="{{$book->name}}" placeholder="{{trans('app.name')}}">
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="url">
                     {{trans('app.url')}} <span class="required">*</span>
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.url')}}"></i>

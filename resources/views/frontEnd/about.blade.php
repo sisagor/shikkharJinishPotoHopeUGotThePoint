@@ -6,6 +6,16 @@
             {{--menu section--}}
             @include('frontEnd.header', ['title' => "About us"])
         </section>
+        <section>
+            <div class="breadcrumb_design">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb_item"><a href="/">Home</a></li>
+                  <li class="breadcrumb_item active" aria-current="page">About US</li>
+                </ol>
+              </nav>
+            </div>
+          </section>
     </div>
     <div class="container">
         <section class="about-us">

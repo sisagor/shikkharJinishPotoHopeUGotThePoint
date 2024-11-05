@@ -6,6 +6,17 @@
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
+        <section>
+            <div class="breadcrumb_design">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb_item"><a href="/">Home</a></li>
+                  <li class="breadcrumb_item"><a href="/blog/category">Blog</a></li>
+                  <li class="breadcrumb_item active" aria-current="page">{{$blog->title}}</li>
+                </ol>
+              </nav>
+            </div>
+          </section>
     </div>
 
     <div class="container container2">
@@ -197,17 +208,17 @@
                     <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
                     <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
                     <div class="form-group">
-                        <div class="input-group">
-                            <label for="name">Name</label>
+                        <div class="input-group" style="align-items: flex-start;">
+                            <label for="name" style="padding-left: 15px;">Name</label>
                             <input type="text" id="name" name="name" placeholder="Your name" required>
                         </div>
-                        <div class="input-group">
-                            <label for="email">Email</label>
+                        <div class="input-group" style="align-items: flex-start;">
+                            <label for="email" style="padding-left: 15px;">Email</label>
                             <input type="email" id="email" name="email" placeholder="Your email" required>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <label for="message">Message</label>
+                    <div class="input-group" style="align-items: flex-start;">
+                        <label for="message" style="padding-left: 15px;">Message</label>
                         <textarea id="message" name="message" placeholder="Write your message" required></textarea>
                     </div>
                     <button type="submit" class="submit-button">Submit Comment</button>

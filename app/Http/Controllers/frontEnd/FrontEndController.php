@@ -148,7 +148,7 @@ class FrontEndController extends Controller
     public function getLatestBook()
     {
         return Book::orderBy('created_at', 'desc')
-                ->limit(3) 
+                ->limit(4) 
                 ->get();
 
     }
@@ -188,7 +188,9 @@ class FrontEndController extends Controller
     
         $categories = $data->map(function($category) {
             return [
+                'category_title' => $category->title,
                 'category_name' => $category->name,
+                'category_details' => $category->details,
                 'id' => $category->id,
                 'blogs' => $category->blogs->map(function($blog) {
                     $firstImage = $blog->details->flatMap(function($detail) {
