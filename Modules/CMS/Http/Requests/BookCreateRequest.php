@@ -15,6 +15,7 @@ class BookCreateRequest extends RootRequest
     public function rules()
     {
         return [
+            'name' => 'required',
             'url' => 'required',
             'status' => 'required',
             'order' => 'required',

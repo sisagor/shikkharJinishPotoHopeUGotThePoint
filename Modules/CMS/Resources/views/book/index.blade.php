@@ -15,6 +15,7 @@
         <tr>
             <th>#</th>
             <th>{{trans('app.image')}}</th>
+            <th>{{trans('app.name')}}</th>
             <th>{{trans('app.url')}}</th>
             <th>{{trans('app.order')}}</th>
             <th>{{trans('app.view')}}</th>
@@ -32,6 +33,7 @@
         <tr>
             <th>#</th>
             <th>{{trans('app.image')}}</th>
+            <th>{{trans('app.name')}}</th>
             <th>{{trans('app.url')}}</th>
             <th>{{trans('app.order')}}</th>
             <th>{{trans('app.view')}}</th>
