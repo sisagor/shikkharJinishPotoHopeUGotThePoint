@@ -11,6 +11,7 @@ use Modules\CMS\Entities\BlogDetails;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Settings\Entities\BlogCategory;
+use Modules\CMS\Entities\Book;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\CMS\Http\Requests\BlogCreateRequest;
 use Modules\CMS\Repositories\BlogRepositoryInterface;
@@ -112,7 +113,8 @@ class BlogController extends Controller
         set_action('cms.blog.store');
         $blog = [];
         $categories = BlogCategory::active()->pluck('name', 'id');
-        return view('cms::blog.new', compact('blog', 'categories'));
+        $books = Book::where('status',1)->get();
+        return view('cms::blog.new', compact('blog', 'categories', 'books'));
     }
 
     /**

@@ -20,6 +20,7 @@ use Modules\Settings\Entities\BlogCategory;
 use App\Models\User;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Modules\CMS\Entities\BlogBook;
 
 class FrontEndController extends Controller
 {
@@ -229,6 +230,9 @@ class FrontEndController extends Controller
         if($seo){
             SEOMeta::addKeyword(explode(',', $seo->keywords));
             $tags = explode(',', $seo->keywords);
+
+            $this->seo()->setTitle($seo->title);
+            $this->seo()->setDescription($seo->description);
         }
 
         $blog = Blog::with(['user', 'user.profile.image', 'details', 'details.image'])
@@ -239,10 +243,11 @@ class FrontEndController extends Controller
 
         $latestBlogs = $this->getLatestBlogDetailsWithFirstimage();
 
-        $popularBook = Book::with('image')->select(Book::$select)->orderBy('view', 'desc')->first();
-        $comments = Comment::with('replays')->where('parent_id',0)->orderBy('created_at', 'desc')->get();
+        //$popularBook = Book::with('image')->select(Book::$select)->orderBy('view', 'desc')->first();
+        $blogBooks = BlogBook::with('book.image')->where('blog_id', $id)->get();
+        $comments = Comment::with('replays')->where('blog_id',$id)->where('parent_id',0)->orderBy('created_at', 'desc')->get();
 
-        return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','popularBook','comments','tags'));
+        return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','blogBooks','comments','tags'));
     }
 
     public function comment(Request $request)
