@@ -15,6 +15,7 @@
     {{--custom css--}}
     <link href="{{mix('css/custom.css')}}" rel="stylesheet" type="text/css" media="wait" onload="if(media!='all')media='all'">
 
+    
     <script>
         window.laravel = {!! json_encode([
                 'csrfToken' => csrf_token()

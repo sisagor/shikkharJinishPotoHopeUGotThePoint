@@ -53,9 +53,9 @@
             <div class="single_post_details">
             @foreach ($blog->details as $detail)
                 @if ($detail->image)
-                    <img src="{{get_storage_file_url($detail->image->path)}}" alt="single post image" class="single_img w-100">
+                    <img src="{{get_storage_file_url($detail->image->path)}}" alt="{{$detail->image->image_alter}}" class="single_img w-100">
                 @endif
-                <p class="mt-1">{{$detail->details}}</p>
+                <p class="mt-1">{!! html_entity_decode($detail->details) !!}</p>
             @endforeach
                 {{-- <h4>Why Coloring is Great for Kids:</h4> --}}
                 {{-- <ol>
@@ -69,16 +69,19 @@
                 </ol> --}}
 
 
-                @if($popularBook->image)
-                    @php
-                        //dd($popularBook->image);
-                    @endphp
-
-                    <img src="{{get_storage_file_url(optional($popularBook->image)->path)}}" alt="book image" style="display:block;margin: auto;">
-                    <a target="_blank" href="{{$popularBook->url}}" class="download-button mt-3">
-                        <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="download icon" class="download_icon">
-                        Download this Book
-                    </a>
+                @if($blogBooks)
+                   <div class="row">
+                        @foreach($blogBooks as $blogBook)
+                            <div class="col-md-4">
+                                <img src="{{get_storage_file_url(optional($blogBook->book->image)->path)}}" alt="book image" style="display:block;margin: auto;">
+                                <a target="_blank" href="{{$blogBook->book->url}}" class="download-button mt-3">
+                                    <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="download icon" class="download_icon">
+                                    Download this Book
+                                </a>
+                            </div>
+                        @endforeach
+                   </div>
+                   
                 @endif
             </div>
 

@@ -181,6 +181,8 @@ return [
     'tags' => 'Enter tag names, using commas as separators.',
     'system_address' => 'This will show as system address',
     'system_google_map' => 'This will show as system google map location',
+    'meta_description' => 'SEO Meta Description (max 160 characters)',
+    'image_alter' => 'Image Alter',
 
 
 ];

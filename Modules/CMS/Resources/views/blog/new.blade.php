@@ -71,6 +71,59 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="title">
+                    {{trans('app.meta_description')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.meta_description')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input class="form-control" id="meta_description" name="meta_description" required placeholder="Meta Description (max 160 characters)">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="title">
+                    {{trans('app.books')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.books')}}"></i>
+                </label>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item form-group">
+                            <select class="form-control" name="books[]" id="book_1">
+                                <option value="">{{trans('app.select')}}</option>
+                                @foreach($books as $key => $book)
+                                    <option value="{{ $book->id }}">{{ $book->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item form-group">
+                            <select class="form-control" name="books[]" id="book_3">
+                                <option value="">{{trans('app.select')}}</option>
+                                @foreach($books as $key => $book)
+                                    <option value="{{$book->id }}" >{{  $book->name  }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item form-group">
+                            <select class="form-control" name="books[]" id="book_3">
+                                 <option value="">{{trans('app.select')}}</option>
+                                @foreach($books as $key => $book)
+                                    <option value="{{ $book->id }}">{{  $book->name  }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="dynamic-fields">
             <div class="dynamic-block mt-3">
                 <div class="dynamic-block-header">
@@ -92,6 +145,16 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3">
+                    <label class="col-form-label label-align" for="image_alter">
+                        {{ trans('app.image_alter') }} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.image_alter') }}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input type="text" class="form-control" name="images_alter[]" required placeholder="{{ trans('app.image_alter') }}">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
                     <label class="col-form-label label-align" for="details">
                         {{ trans('app.order') }} <span class="required">*</span>
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.order') }}"></i>
@@ -105,13 +168,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-9 col-sm-9">
+                <div class="col-md-12 col-sm-12">
                     <label class="col-form-label label-align" for="details">
                         {{ trans('app.details') }} <span class="required">*</span>
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.details') }}"></i>
                     </label>
                     <div class="item form-group">
-                        <textarea class="form-control" name="details[]" placeholder="{{ trans('app.details') }}"></textarea>
+                        <textarea class="form-control editor" name="details[]" placeholder="{{ trans('app.details') }}"></textarea>
                     </div>
                 </div>
             </div>
@@ -146,7 +209,25 @@
     .dynamic-block-header button {
         margin-left: 10px;
     }
-</style>
 
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    function initializeCKEditor(selector) {
+            // Ensure CKEditor is not already initialized on this textarea
+            if (!CKEDITOR.instances[selector.id]) {
+                CKEDITOR.replace(selector);
+            }
+    }
+
+    // Initialize CKEditor on all existing textareas when the document is ready
+    $(document).ready(function() {
+        // Initialize CKEditor for all existing textareas
+        $('.editor').each(function() {
+            initializeCKEditor(this);
+        });
+    });
+</script>
 
 

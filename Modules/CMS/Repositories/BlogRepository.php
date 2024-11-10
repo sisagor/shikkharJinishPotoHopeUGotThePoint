@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Modules\CMS\Entities\BlogDetails;
 use App\Repositories\EloquentRepository;
-
+use Modules\CMS\Entities\BlogBook;
 
 class BlogRepository extends EloquentRepository implements BlogRepositoryInterface
 {
@@ -53,23 +53,35 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
             ]);
 
             // Extract details, orders, and images from the request
+            $books = $request->get('books');
             $details = $request->get('details');
             $orders = $request->get('orders');
+            $images_alter = $request->get('images_alter');
             $images = $request->file('images', []);
 
 
             $seoPage = SeoPage::create([
                 'page_id' => $blog->id,
                 'keywords' => $request->get('tags'),
+                'description' => $request->get('meta_description'),
+                'title' => $request->get('title'),
                 'type' => 'blog',
                 'status' => 1,
             ]);
+
+            foreach ($books as $index => $book) {
+                $blogBook = BlogBook::create([
+                    'blog_id' => $blog->id,
+                    'book_id' => $book,
+                ]);
+            }
 
         
 
             // Store details and associate images
             foreach ($details as $index => $detail) {
                 $order = $orders[$index];
+                $image_alter = $images_alter[$index];
 
                 // Create BlogDetail
                 $blogDetail = BlogDetails::create([
@@ -90,6 +102,7 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                         'extension' => $file->getClientOriginalExtension(),
                         'size' => $file->getSize(),
                         'order' => $order,
+                        'image_alter' => $image_alter,
                         'type' => 'blog',
                         'imageable_id' => $blogDetail->id,
                         'imageable_type' => BlogDetails::class,
