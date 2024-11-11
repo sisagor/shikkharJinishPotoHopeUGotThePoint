@@ -12,30 +12,27 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb_item"><a href="/">Home</a></li>
-                  <li class="breadcrumb_item"><a href="/blog/category">Blog</a></li>
-                  <li class="breadcrumb_item active" aria-current="page">Current Page</li>
+                  <li class="breadcrumb_item active" aria-current="page"><a href="/blog/category">Blog</a></li>
                 </ol>
               </nav>
             </div>
           </section>
           <section>
-            <div class="row">
-              <div class="col-md-6">
-                <h1>Spark the Fun: Your One-Stop Shop for Engaging Kids' Activities!</h1>
-              </div>
-              <div class="col-md-6">
-                <p>Our worksheet generator helps you make puzzles and printables that are educational, personal, and fun!
-                  Perfect for classrooms, these make-your-own word searches, crosswords, scrambles, and matching lists are an
-                  excellent tool for reviewing key subjects and skills. Each printable created through our reading and math
-                  worksheet generator is fully customizable, with a selection of colorful borders and a title that is unique
-                  to you.</p>
-              </div>
-            </div>
+            @foreach($categories as $category)
+                <div class="row descontent" id="{{ 'category_des_' . $category['id'] }}">
+                    <div class="col-md-6">
+                        <h1>{{ $category['category_title'] }}</h1>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $category['category_details'] }}</p>
+                    </div>
+                </div>
+            @endforeach
           </section>
           <section>
           <div class="tab_design">
               @foreach($categories as $category)
-                  <button class="rounded_button" id="button_{{ 'category_' . $category['id'] }}" onclick="openTab(event, '{{ 'category_' . $category['id'] }}')">{{ $category['category_name'] }}</button>
+                  <button class="rounded_button" id="button_{{ 'category_' . $category['id'] }}" onclick="openTab(event, '{{$category['id'] }}')">{{ $category['category_name'] }}</button>
               @endforeach
           </div>
       
@@ -82,15 +79,23 @@
   <script>
     function openTab(evt, tabName) {
       var tabcontent = document.getElementsByClassName("tabcontent");
+      var descontent = document.getElementsByClassName("descontent");
+
       for (var i = 0; i < tabcontent.length; i++) {
           tabcontent[i].style.display = "none";
+      }
+
+      for (var i = 0; i < descontent.length; i++) {
+        descontent[i].style.display = "none";
       }
 
       var tablinks = document.getElementsByClassName("rounded_button");
       for (var i = 0; i < tablinks.length; i++) {
           tablinks[i].classList.remove("active");
       }
-      document.getElementById(tabName).style.display = "block";
+
+      document.getElementById('category_' + tabName).style.display = "block";
+      document.getElementById('category_des_' + tabName).style.display = "flex";
       evt.currentTarget.classList.add("active");
       evt.currentTarget.focus();
   }

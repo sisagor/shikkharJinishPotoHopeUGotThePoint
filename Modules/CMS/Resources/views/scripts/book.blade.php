@@ -22,6 +22,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'image', name: 'image'},
+                    {data: 'name', name: 'name'},
                     {data: 'url', name: 'url'},
                     {data: 'order', name: 'order'},
                     {data: 'view', name: 'view'},
@@ -52,6 +53,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'image', name: 'image'},
+                    {data: 'name', name: 'name'},
                     {data: 'url', name: 'url'},
                     {data: 'order', name: 'order'},
                     {data: 'view', name: 'view'},

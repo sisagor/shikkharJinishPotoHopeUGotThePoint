@@ -14,7 +14,7 @@ class BlogCategory extends RootModel
 
     protected $table = "blog_categories";
 
-    protected $fillable = ['id', 'name', 'details', 'status'];
+    protected $fillable = ['id', 'title', 'name', 'details', 'status'];
 
     public function blogs()
     {

@@ -568,6 +568,8 @@ padding: 30px;
   background-color: #f8f9fa;
   padding: 10px 15px;
   border-radius: 5px;
+  display: inline-block;
+  border-radius: 25px;
 }
 
 .breadcrumb {
@@ -594,7 +596,7 @@ padding: 30px;
 }
 
 .breadcrumb_item + .breadcrumb_item::before {
-  content: "/";
+  content: ">";
   padding: 0 8px;
   color: #6c757d;
 }

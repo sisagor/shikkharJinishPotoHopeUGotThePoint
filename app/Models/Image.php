@@ -23,6 +23,7 @@ class Image extends RootModel
                     'extension',
                     'size',
                     'order',
+                    'image_alter',
                     'imageable_id',
                     'imageable_type',
                 ];

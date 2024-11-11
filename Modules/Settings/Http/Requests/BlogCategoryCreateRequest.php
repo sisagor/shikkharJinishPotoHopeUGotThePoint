@@ -15,6 +15,7 @@ class BlogCategoryCreateRequest extends RootRequest
     public function rules()
     {
         return [
+             'title' => 'required',
              'name' => 'required',
              'details' => 'required',
              'status' => 'required',

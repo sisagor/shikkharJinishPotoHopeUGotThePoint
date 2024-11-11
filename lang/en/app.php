@@ -735,6 +735,8 @@ return [
     'system_google_map' => 'System Google Map',
     'message' => 'Message',
     'contact-us' => 'Contact Us',
+    'meta_description' => 'Meta Description',
+    'image_alter' => 'Image Alter',
 
     
 
