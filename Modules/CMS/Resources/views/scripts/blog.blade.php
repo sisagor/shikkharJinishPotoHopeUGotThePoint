@@ -21,7 +21,7 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'blog_category.name', name: 'blog_category.name'},
+                    {data: 'blogCatName', name: 'blogCatName'},
                     {data: 'title', name: 'title'},
                     {data: 'details', name: 'details'},
                     {data: 'status', name: 'status', orderable: false, searchable: false},
@@ -50,7 +50,7 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'blog_category.name', name: 'blog_category.name'},
+                    {data: 'blogCatName', name: 'blogCatName'},
                     {data: 'title', name: 'title'},
                     {data: 'details', name: 'details'},
                     {data: 'status', name: 'status', orderable: false, searchable: false},

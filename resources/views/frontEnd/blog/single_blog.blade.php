@@ -86,7 +86,7 @@
                 @endif
             </div>
 
-            @if($popularBook)
+            @if(!empty($popularBook))
                 <img src="{{get_storage_file_url($popularBook->image)}}" alt="book image">
                 <a href="{{$popularBook->url}}" class="download-button mt-3 ">
                     <img src="{{get_storage_file_url($popularBook->image)}}" alt="download icon" class="download_icon">

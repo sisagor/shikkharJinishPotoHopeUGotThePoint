@@ -54,6 +54,10 @@ class BlogController extends Controller
                 {
                     return get_status($row->status);
                 })
+                ->addColumn('blogCatName', function ($row)
+                {
+                    return ($row->blog_category ? $row->blog_category->name : null);
+                })
                 ->editColumn('created_at', function ($row){
                     return \Carbon\Carbon::parse( $row->created_at)->format('H:i:s A');
                 })
@@ -79,6 +83,10 @@ class BlogController extends Controller
                 ->addIndexColumn()
                 ->editColumn('created_at', function ($row){
                     return \Carbon\Carbon::parse( $row->interview_time)->format('H:i:s A');
+                })
+                ->addColumn('blogCatName', function ($row)
+                {
+                    return ($row->blog_category ? $row->blog_category->name : null);
                 })
                 // ->editColumn('details', function ($row){
                 //     return substr(json_decode($row->details), 0, 500);
