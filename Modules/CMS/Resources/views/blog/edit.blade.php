@@ -1,136 +1,267 @@
-@extends('layouts.modal', ['title' => 'new_job', 'size' => 'lg'])
+@extends('layouts.modal', ['title' => 'edit_blog', 'size' => 'xl'])
 
 @section('modal')
 
-    <div class="form-body">
-        <div class="row">
-
-            <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="parent_id">
-                    {{trans('app.job')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.job')}}"></i>
-                </label>
-                <div class="item form-group">
-                    <select class="form-control" data-link="{{route('recruitment.application.ajax')}}"
-                            data-child-id="job_application_id" id="parent_id" name="job_id" required>
-                        <option value="">{{trans('app.select')}}</option>
-                        @foreach($jobs as $id => $name)
-                            <option value="{{ $id }}" @if(! empty($interview))@if($interview->job_id == $id) selected @endif @endif>{{ $name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="job_application_id">
-                    {{trans('app.candidate')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.candidate')}}"></i>
-                </label>
-                <div class="item form-group">
-                    <select class="form-control" id="job_application_id" name="job_application_id" required>
-                        @if(! empty($interview->application))
-                            <option value="{{$interview->application->id}}" selected>{{$interview->application->name}}</option>
-                        @endif
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="interview_date">
-                    {{trans('app.interview_date')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.interview_date')}}"></i>
-                </label>
-                <div class="item form-group">
-                    <input id="interview_date" class="form-control datePicker" type="text" name="interview_date"
-                           value="@if($interview){{$interview->interview_date}}@endif" placeholder="{{trans('app.interview_date')}}">
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="interview_time">
-                    {{trans('app.interview_time')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.interview_time')}}"></i>
-                </label>
-                <div class="item form-group">
-                    <input id="interview_time" class="form-control timePicker" type="text" name="interview_time"
-                           value="@if($interview){{$interview->interview_time}}@endif" placeholder="{{trans('app.interview_time')}}">
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="interview_place">
-                    {{trans('app.interview_place')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.interview_place')}}"></i>
-                </label>
-                <div class="item form-group">
-                    <input id="interview_place" class="form-control" type="text" name="address"
-                           value="@if($interview){{$interview->address}}@endif" placeholder="{{trans('app.interview_place')}}">
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-                <label class="col-form-label label-align" for="employee_id">
-                    {{trans('app.interviewers')}} <span class="required">*</span>
-                </label>
-                <div class="item form-group">
-                    <select class="form-control select2-ajax" multiple data-link="{{route('employee.getEmployee')}}" autofocus id="employee_id"
-                            name="interviewers[]" required>
-                        <option value="">{{trans('app.select')}}</option>
-                        @if(! empty($interview->interviewers))
-                            @foreach($interview->interviewers as $interviewer)
-                                <option value="{{$interviewer->id}}" selected>{{$interviewer->name}}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
-            </div>
-
-
-            @if($interview)
-                {{--Status--}}
-                <div class="col-md-6 col-sm-6">
-                    <label class="col-form-label label-align" for="status">
-                        {{trans('app.status')}} <span class="required">*</span>
+    <div class="showNotification"></div>
+        <div class="form-body">
+            @if(auth()->user()->role_id == '1')
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <label class="col-form-label label-align" for="author_name">
+                        {{trans('app.author_name')}} 
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                           title="{{ trans('help.status')}}"></i>
+                           title="{{ trans('help.author_name')}}"></i>
                     </label>
                     <div class="item form-group">
-                        <select class="form-control" name="status" id="status">
+                        <select class="form-control" name="author_id">
                             <option value="">{{trans('app.select')}}</option>
-                            @foreach(config('recruitment.interview_status') as $status)
-                                <option value="{{$status['key']}}"
-                                    @if($interview)
-                                        @if($status['key'] == $interview->status) selected @endif
-                                    @endif> {{$status['value']}}
-                                </option>
+                            @foreach($authors as $id => $author)
+                                <option value="{{ $author->id }}" @if(! empty($blog))@if($blog->created_by == $author->id) selected @endif @endif>{{ $author->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
+            </div>
             @endif
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <label class="col-form-label label-align" for="parent_id">
+                        {{trans('app.category')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                        title="{{ trans('help.category')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" name="category_id" required>
+                            <option value="">{{trans('app.select')}}</option>
+                            @foreach($categories as $id => $name)
+                                <option value="{{ $id }}" @if(! empty($blog))@if($blog->blog_category_id == $id) selected @endif @endif>{{ $name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 
-            <div class="col-md-12 col-sm-12">
-                <label class="col-form-label label-align" for="details">
-                    {{trans('app.details')}} <span class="required">*</span>
+                <div class="col-md-4 col-sm-4">
+                    <label class="col-form-label label-align" for="title">
+                        {{trans('app.title')}} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.title')}}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input class="form-control" id="title" name="title" value="{{$blog->title}}" required placeholder="{{trans('app.title')}}">
+                    </div>
+                </div>
+    
+                {{--Status--}}
+                <div class="col-md-4 col-sm-4">
+                    <label class="col-form-label label-align" for="status">
+                        {{trans('app.status')}} <span class="required">*</span>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" name="status" id="status">
+                            @foreach(config('status.status') as $key => $item)
+                                <option value="{{$key}}" @if(! empty($blog))@if($blog->status == $key) selected @endif @endif>{{$item}} </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            {{--Status--}}
+            {{-- <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="status">
+                    {{trans('app.status')}} <span class="required">*</span>
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
-                       title="{{ trans('help.job_details')}}"></i>
+                       title="{{ trans('help.status')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <textarea id="details" class="form-control summernote" name="details" placeholder="{{trans('app.details')}}">@if($interview){!! json_decode($interview->details) !!}@endif</textarea>
+                    <select class="form-control" name="status" id="status">
+                        <option value="">{{trans('app.select')}}</option>
+                        @foreach(config('status.status') as $key => $item)
+                            <option value="{{$key}}" @if($book->status == $key) selected @endif> {{$item}}</option>
+                        @endforeach
+                    </select>
                 </div>
-            </div>
+            </div> --}}
+
 
         </div>
+        <div class="row">
+            <div class="col-md-8 col-sm-8">
+                <label class="col-form-label label-align" for="title">
+                    {{trans('app.tags')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.tags')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input class="form-control" id="tags" name="tags" value="{{$blog->seo->keywords}}" required placeholder="tag1,tag2,tag3,...">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="title">
+                    {{trans('app.meta_description')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.meta_description')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input class="form-control" id="meta_description" name="meta_description" value="{{$blog->seo->description}}" required placeholder="Meta Description (max 160 characters)">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="title">
+                    {{trans('app.books')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.books')}}"></i>
+                </label>
+                <div class="row">
+                    @php $book_1 = ''; $book_2 = ''; $book_3 = ''; $i=1; @endphp
+
+                    @foreach($blog->books as $book)
+                        @php ${'book_' . $i} = $book->book_id;  $i++;@endphp
+                    @endforeach
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item form-group">
+                            <select class="form-control" name="books[]" id="book_1">
+                                <option value="">{{trans('app.select')}}</option>
+                                @foreach($books as $key => $book)
+                                    <option value="{{ $book->id }}" @if(! empty($book_1))@if($book_1 == $key) selected @endif @endif>{{ $book->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item form-group">
+                            <select class="form-control" name="books[]" id="book_3">
+                                <option value="">{{trans('app.select')}}</option>
+                                @foreach($books as $key => $book)
+                                    <option value="{{$book->id }}" @if(! empty($book_2))@if($book_2 == $key) selected @endif @endif>{{  $book->name  }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item form-group">
+                            <select class="form-control" name="books[]" id="book_3">
+                                 <option value="">{{trans('app.select')}}</option>
+                                @foreach($books as $key => $book)
+                                    <option value="{{ $book->id }}" @if(! empty($book_3))@if($book_3 == $key) selected @endif @endif>{{  $book->name  }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="dynamic-fields">
+            @foreach($blog->details as $detail)
+            <div class="dynamic-block mt-3">
+                <div class="dynamic-block-header">
+                    Blog Details 
+                    {{-- <div class="text-end">
+                        <button type="button" class="btn btn-primary btn-sm float-right mr-2" id="add-field">Add More</button>
+                        <button type="button" class="btn btn-danger btn-sm float-right remove-field">Remove</button>
+                    </div> --}}
+                </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <label class="col-form-label label-align" for="image">
+                        {{ trans('app.image') }} (Size should be 770x500) <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.image') }}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input type="file" class="form-control" name="images[]" value="{{$detail->image->path}}" placeholder="{{ trans('app.image') }}">
+                    </div>
+                    <div> <img style="width: 100px; height: 100px;" src="{{get_storage_file_url(optional($detail->image)->path)}}" alt="Blog Image"></div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="col-form-label label-align" for="image_alter">
+                        {{ trans('app.image_alter') }} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                           title="{{ trans('help.image_alter') }}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input type="text" class="form-control" name="images_alter[]" value="{{$detail->image->image_alter}}" required placeholder="{{ trans('app.image_alter') }}">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="col-form-label label-align" for="details">
+                        {{ trans('app.order') }} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.order') }}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" name="orders[]" required>
+                            <option value="">{{ trans('app.select') }}</option>
+                            @for($i = 1; $i <= 15; $i++)
+                                <option value="{{ $i }}" @if(! empty($detail))@if($detail->order == $i) selected @endif @endif>{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <label class="col-form-label label-align" for="details">
+                        {{ trans('app.details') }} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.details') }}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <textarea class="form-control editor" name="details[]" placeholder="{{ trans('app.details') }}">{{ $detail->details}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+
+      </div>
+
+
+
     </div>
 
 @endsection
 
-@include('recruitment::scripts.formScript')
+@section('formScripts')
+    @include('cms::scripts.formScript')
+@endsection
 
+<style>
+    .dynamic-block {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .dynamic-block-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+    .dynamic-block-header button {
+        margin-left: 10px;
+    }
 
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    function initializeCKEditor(selector) {
+            // Ensure CKEditor is not already initialized on this textarea
+            if (!CKEDITOR.instances[selector.id]) {
+                CKEDITOR.replace(selector);
+            }
+    }
 
+    // Initialize CKEditor on all existing textareas when the document is ready
+    $(document).ready(function() {
+        // Initialize CKEditor for all existing textareas
+        $('.editor').each(function() {
+            initializeCKEditor(this);
+        });
+    });
+</script>

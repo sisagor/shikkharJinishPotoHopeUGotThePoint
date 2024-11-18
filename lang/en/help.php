@@ -183,6 +183,7 @@ return [
     'system_google_map' => 'This will show as system google map location',
     'meta_description' => 'SEO Meta Description (max 160 characters)',
     'image_alter' => 'Image Alter',
+    'author_name' => 'Author Name',
 
 
 ];

@@ -26,4 +26,5 @@ return [
     'action_type' => 'Action Type',
     'action' => 'Action',
     'book' => 'Book',
+    'book' => 'Blog',
 ];

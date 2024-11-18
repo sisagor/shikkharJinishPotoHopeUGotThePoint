@@ -2,7 +2,7 @@
 
 namespace Modules\Settings\Http\Controllers;
 
-
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
@@ -114,10 +114,11 @@ class BlogCategoryController extends Controller
      */
     public function edit(BlogCategory $blogCategory)
     {
+        $cat_img = Image::where('imageable_id', $blogCategory->id)->where('type', 'blog_category')->first();
         set_action_title('edit_blog');
         set_action('componentSettings.blogCategory.update', $blogCategory);
 
-        return view('settings::blogCategory.edit', compact('blogCategory'));
+        return view('settings::blogCategory.edit', compact('blogCategory','cat_img'));
     }
 
     /**
@@ -128,8 +129,17 @@ class BlogCategoryController extends Controller
      */
     public function update(BlogCategoryCreateRequest $request, BlogCategory $blogCategory)
     {
-        if ($blogCategory->update($request->validated()))
-        {
+
+        $unsetImage = $request->validated();
+        unset($unsetImage['images']);
+
+        $blogCategory->update($unsetImage);
+
+        if ($request->hasFile('images')){
+            $blogCategoryImg = $blogCategory->updateImage($request->file('images'), 'blog_category');
+            Image::where('id',$blogCategoryImg->id)->update(['imageable_id' =>  $blogCategory->id]);
+        }
+        if ($blogCategory) {
 
             sendActivityNotification(trans('msg.noty.updated', ['model' => trans('model.blog_category')]));
 
