@@ -2,7 +2,7 @@
 
 namespace Modules\CMS\Http\Controllers;
 
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Modules\CMS\Entities\Blog;
 use Illuminate\Http\JsonResponse;
@@ -16,6 +16,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Modules\CMS\Http\Requests\BlogCreateRequest;
 use Modules\CMS\Repositories\BlogRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
+use Modules\CMS\Http\Requests\BlogUpdateRequest;
 
 class BlogController extends Controller
 {
@@ -114,7 +115,8 @@ class BlogController extends Controller
         $blog = [];
         $categories = BlogCategory::active()->pluck('name', 'id');
         $books = Book::where('status',1)->get();
-        return view('cms::blog.new', compact('blog', 'categories', 'books'));
+        $authors = User::where('status',1)->where('role_id', 2)->get();
+        return view('cms::blog.new', compact('blog', 'categories', 'books', 'authors'));
     }
 
     /**
@@ -149,13 +151,16 @@ class BlogController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(JobInterview $interview)
+    public function edit($id)
     {
-        set_action_title('edit_job');
-        set_action('cms.blog.update', $interview);
-        $jobs = $this->repo->getJobs();
+        $blog = Blog::with('details.image','seo','books')->where('id',$id)->first();
+        $categories = BlogCategory::active()->pluck('name', 'id');
+        $books = Book::where('status',1)->get();
+        $authors = User::where('status',1)->where('role_id', 2)->get();
+        set_action_title('edit_blog');
+        set_action('cms.blog.update', $blog);
 
-        return view('cms::blog.newEdit', compact('jobs', 'interview'));
+        return view('cms::blog.edit', compact('blog','categories','books','authors'));
     }
 
     /**
@@ -164,16 +169,17 @@ class BlogController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(InterviewCreateRequest $request, JobInterview $interview)
+    public function update(BlogUpdateRequest $request, $id): RedirectResponse
     {
-        if ($this->repo->update($request, $interview)) {
+     
+        if ($this->repo->update($request, $id)) {
 
-            sendActivityNotification(trans('msg.noty.updated', ['model' => trans('model.blog')]));
+            sendActivityNotification(trans('msg.noty.updated', ['model' => trans('model.blogs')]));
 
-            return redirect()->back()->with('success', trans('msg.update_success', ['model' => trans('model.blog')]));
+            return redirect()->back()->with('success', trans('msg.update_success', ['model' => trans('model.blogs')]));
         }
 
-        return redirect()->back()->with('error', trans('msg.update_failed', ['model' => trans('model.blog')]))->withInput();
+        return redirect()->back()->with('error', trans('msg.update_failed', ['model' => trans('model.blogs')]))->withInput();
     }
 
     /**

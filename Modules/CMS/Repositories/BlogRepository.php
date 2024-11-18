@@ -42,6 +42,11 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
     public function store(Request $request): bool
     {
         try {
+            $created_by = Auth::user()->id;
+            if ($request->filled('author_id')) {
+                $created_by = $request->get('author_id');
+            }
+            
             // Create blog entry
             $blog = $this->model->create([
                 'com_id' => '',
@@ -49,7 +54,7 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                 'title' => $request->get('title'),
                 'status' => $request->get('status'),
                 'order' => 1,
-                'created_by' => Auth::user()->id
+                'created_by' => $created_by
             ]);
 
             // Extract details, orders, and images from the request
@@ -125,20 +130,96 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
 
 
     /*Update Blog*/
-    public function update(Request $request, $model): bool
+    public function update(Request $request, $id): bool
     {
         try {
 
-            $model->update([
-                'job_id' => $request->get('job_id'),
-                'job_application_id' => $request->get('job_application_id'),
-                'interview_date' => $request->get('interview_date'),
-                'interview_time' => $request->get('interview_time'),
-                'address' => $request->get('address'),
-                'interviewers' => json_encode($request->get('interviewers')),
-                'details' => json_encode($request->get('details')),
+           // Retrieve the blog entry to update
+            $blog = $this->model->findOrFail($id);
+            
+            // Determine the creator or author
+            $created_by = Auth::user()->id;
+            if ($request->filled('author_id')) {
+                $created_by = $request->get('author_id');
+            }
+
+            // Update blog entry
+            $blog->update([
+                'com_id' => '',
+                'blog_category_id' => $request->get('category_id'),
+                'title' => $request->get('title'),
                 'status' => $request->get('status'),
+                'order' => 1,
+                'created_by' => $created_by,
             ]);
+
+            // Update or create SEO data
+            $seoPage = SeoPage::updateOrCreate(
+                ['page_id' => $blog->id, 'type' => 'blog'],
+                [
+                    'keywords' => $request->get('tags'),
+                    'description' => $request->get('meta_description'),
+                    'title' => $request->get('title'),
+                    'status' => 1,
+                ]
+            );
+
+            // Sync books
+            $books = $request->get('books', []);
+            BlogBook::where('blog_id', $blog->id)->delete(); // Delete existing relations
+            foreach ($books as $book_id) {
+                BlogBook::create([
+                    'blog_id' => $blog->id,
+                    'book_id' => $book_id,
+                ]);
+            }
+
+            // Extract details and images from the request
+            $details = $request->get('details', []);
+            $orders = $request->get('orders', []);
+            $images_alter = $request->get('images_alter', []);
+            $images = $request->file('images', []);
+
+            // Update blog details
+            foreach ($details as $index => $detail) {
+                $order = $orders[$index];
+                $image_alter = $images_alter[$index];
+
+                // Find or create new BlogDetail
+                $blogDetail = BlogDetails::updateOrCreate(
+                    ['blog_id' => $blog->id, 'order' => $order],
+                    [
+                        'details' => $detail,
+                        'status' => $request->get('status'),
+                    ]
+                );
+
+                // Update or store associated image if exists
+                if (isset($images[$index])) {
+                    $file = $images[$index];
+                    $path = $file->store('images', 'public');
+
+                    // Check if image exists and delete old image if updating
+                    if ($blogDetail->images()->exists()) {
+                        $blogDetail->images()->delete();
+                    }
+
+                    // Save new image
+                    $image = new Image([
+                        'path' => $path,
+                        'name' => $file->getClientOriginalName(),
+                        'extension' => $file->getClientOriginalExtension(),
+                        'size' => $file->getSize(),
+                        'order' => $order,
+                        'image_alter' => $image_alter,
+                        'type' => 'blog',
+                        'imageable_id' => $blogDetail->id,
+                        'imageable_type' => BlogDetails::class,
+                    ]);
+
+                    $blogDetail->images()->save($image);
+                }
+            }
 
         } catch (\Exception $e) {
 

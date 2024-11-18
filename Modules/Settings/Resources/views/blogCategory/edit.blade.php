@@ -38,6 +38,17 @@
                     <textarea class="form-control" id="details" name="details" required>@if($blogCategory){{$blogCategory->details}}@endif</textarea>
                 </div>
             </div>
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="image">
+                    {{ trans('app.image') }} (Size should be 107x151) <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                    title="{{ trans('help.image') }}"></i>
+                </label>
+                <div class="item form-group">
+                    <input type="file" class="form-control" name="images" placeholder="{{ trans('app.image') }}">
+                </div>
+                <div> <img style="width: 100px; height: 100px;" src="{{get_storage_file_url(optional($cat_img)->path)}}" alt="Category Image"></div>
+            </div>
 
             {{--Status--}}
             <div class="col-md-12 col-sm-12">

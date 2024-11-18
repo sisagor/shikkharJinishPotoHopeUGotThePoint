@@ -737,6 +737,8 @@ return [
     'contact-us' => 'Contact Us',
     'meta_description' => 'Meta Description',
     'image_alter' => 'Image Alter',
+    'author_name' => 'Author Name',
+
 
     
 

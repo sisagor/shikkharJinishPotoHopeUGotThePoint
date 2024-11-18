@@ -7,6 +7,25 @@
 @section('form')
 
     <div class="form-body">
+        @if(auth()->user()->role_id == '1')
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <label class="col-form-label label-align" for="author_name">
+                    {{trans('app.author_name')}} 
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.author_name')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <select class="form-control" name="author_id">
+                        <option value="">{{trans('app.select')}}</option>
+                        @foreach($authors as $id => $author)
+                            <option value="{{ $author->id }}">{{ $author->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="row">
 
             <div class="col-md-4 col-sm-4">
@@ -15,15 +34,6 @@
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                        title="{{ trans('help.category')}}"></i>
                 </label>
-                {{--<div class="item form-group">
-                    <select class="form-control" data-link="{{route('recruitment.application.ajax')}}"
-                            data-child-id="job_application_id" id="parent_id" name="job_id" required>
-                        <option value="">{{trans('app.select')}}</option>
-                        @foreach($jobs as $id => $name)
-                            <option value="{{ $id }}" @if(! empty($blog))@if($blog->job_id == $id) selected @endif @endif>{{ $name }}</option>
-                        @endforeach
-                    </select>
-                </div>  --}}
                 <div class="item form-group">
                     <select class="form-control" name="category_id" required>
                         <option value="">{{trans('app.select')}}</option>
