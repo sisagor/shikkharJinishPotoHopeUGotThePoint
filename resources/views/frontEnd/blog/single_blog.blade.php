@@ -74,11 +74,13 @@
                    <div class="row">
                         @foreach($blogBooks as $blogBook)
                             <div class="col-md-4">
-                                <img src="{{get_storage_file_url(optional($blogBook->book->image)->path)}}" alt="book image" style="display:block;margin: auto;">
-                                <a target="_blank" href="{{$blogBook->book->url}}" class="download-button mt-3">
-                                    <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="download icon" class="download_icon">
-                                    Download this Book
-                                </a>
+                                @if($blogBook->book)
+                                    <img src="{{get_storage_file_url(optional($blogBook->book->image)->path)}}" alt="book image" style="display:block;margin: auto;">
+                                    <a target="_blank" href="{{$blogBook->book->url}}" class="download-button mt-3">
+                                        <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="download icon" class="download_icon">
+                                        Download this Book
+                                    </a>
+                                @endif
                             </div>
                         @endforeach
                    </div>
