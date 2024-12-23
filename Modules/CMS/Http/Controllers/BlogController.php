@@ -16,6 +16,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Modules\CMS\Http\Requests\BlogCreateRequest;
 use Modules\CMS\Repositories\BlogRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
+use Modules\CMS\Entities\Comment;
 use Modules\CMS\Http\Requests\BlogUpdateRequest;
 
 class BlogController extends Controller
@@ -244,4 +245,28 @@ class BlogController extends Controller
     /**
      * End section job posting
      */
+
+     
+    public function comments(Request $request)
+    {
+
+        dd('hi');
+       
+        // $data = Contact::get();
+
+        // return view('cms::book.contact',compact('data'));
+
+        if (! $request->ajax()){
+            return view('cms::blog.comments');
+        }
+
+        $data = Comment::query();
+
+        if ($request->get('type') == "active"){
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+    }
 }
