@@ -528,16 +528,22 @@ padding: 30px;
   text-align: center;
   color: #fff;
 }
-.subscribe_bg img {
+.subscribe_container img {
+    position: absolute;
+    right: 43px;
+    bottom: 0;
+    transform: translateY(2%);
+    height: 45px;
+    cursor: pointer;
 
 }
 #email-input {
-  width: 300px; /* adjust the width as needed */
-  height: 40px; /* adjust the height as needed */
-  padding: 10px; /* add some padding for better usability */
-  font-size: 16px; /* adjust the font size as needed */
-  border: 1px solid #ccc; /* add a border */
-  border-radius: 5px; /* add a rounded corner */
+  width: 344px;
+  height: 44px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
 }
 
 #email-input::placeholder {

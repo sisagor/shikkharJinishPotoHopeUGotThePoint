@@ -26,8 +26,8 @@ Route::prefix('user-managements')->name('userManagements.')->middleware(['auth']
 
 
     //reset password from admin panel
-    Route::get('user/password-reset', [UserController::class, 'resetPassword'])->name('user.resetPass');
-    Route::post('user/password-reset', [UserController::class, 'updateResetPassword'])->name('user.resetPass');
+    //Route::get('user/password-reset', [UserController::class, 'resetPassword'])->name('user.resetPass');
+    //Route::post('user/password-reset', [UserController::class, 'updateResetPassword'])->name('user.resetPass');
     Route::post('user/get-user/ajax', [UserController::class, 'getUser'])->name('user.getUser');
     //Route::post('user/update-password', [UserController::class, 'updateResetPassword'])->name('user.updatePassword');
     Route::get('user/{profile}/profile', [UserController::class, 'profile'])->name('user.profile');

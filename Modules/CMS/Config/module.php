@@ -131,6 +131,22 @@ return [
             
             ],
         ],
+        [
+            'name' => 'Comments',
+            'show' => 0,
+            'order' => 13,
+            'scope' => json_encode([Module::SCOPE_COMPANY]),
+            'status' => 1,
+            'menu' => [
+                [
+                    'name' => 'Comments',
+                    'url' => 'cms/comments',
+                    'action' => 'cms.comments',
+                    'show' => 1,
+                ],
+            
+            ],
+        ],
     ],
 
 ];

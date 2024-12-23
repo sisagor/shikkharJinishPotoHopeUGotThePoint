@@ -7,17 +7,25 @@
         </p>
     </div>
     <div class="col-md-3">
-        <button type="button" class="btn btn-primary rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{-- <button type="button" class="btn btn-primary rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span id="search_concept">All</span><span><img src="{{asset('/frontEnd/img/Arrow.png')}}"></span>
         </button>
         <div class="dropdown-menu scrollable-dropdown">
             @foreach($categories as $key => $item)
                 <a class="dropdown-item" href="#" data>{{$item}}</a>
             @endforeach
+        </div> --}}
+        <div class="item form-group">
+            <select class="btn btn-primary rounded" name="category" id="category">
+                <option value="">All</option>
+                @foreach($categories as $key => $item)
+                    <option value="{{$key}}"> {{$item}}</option>
+                @endforeach
+            </select>
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row popular_blog">
     @foreach ($popularBlogs as $blog)
         <div class="col-md-4">
             <div class="card_design">
@@ -40,64 +48,37 @@
             </div>
         </div>
     @endforeach
-    {{-- <div class="col-md-4">
-        <div class="card_design">
-            <img src="{{asset('/frontEnd/img/BookImage.png')}}" alt="Avatar" width ="300px" height = "384px" >
-            <div class="author_date">
-                <img src="{{asset('/frontEnd/img/user.png')}}" width="16px" height="16px" alt="Avatar"/>
-                <p class="author_name">Rasel Mondol</p>
-                <img src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
-                <p class="author_name">09 Feb, 2024</p>
-            </div>
-            <div class="card_title">
-                <h4>Unwind and Learn: Top Coloring Pages for Kids</h4>
-            </div>
-            <div class="download_button">
-                <button>
-                    Download
-                    <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card_design">
-            <img src="{{asset('/frontEnd/img/Book_Images.png')}}" alt="Avatar" width ="300px" height = "384px" >
-            <div class="author_date">
-                <img src="{{asset('/frontEnd/img/user.png')}}" width="16px" height="16px" alt="Avatar"/>
-                <p class="author_name">Rasel Mondol</p>
-                <img src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
-                <p class="author_name">09 Feb, 2024</p>
-            </div>
-            <div class="card_title">
-                <h4>Unwind and Learn: Top Coloring Pages for Kids</h4>
-            </div>
-            <div class="download_button">
-                <button>
-                    Download
-                    <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card_design">
-            <img src="{{asset('/frontEnd/img/Book_Image.png')}}" alt="Avatar" width ="300px" height = "384px" >
-            <div class="author_date">
-                <img src="{{asset('/frontEnd/img/user.png')}}" width="16px" height="16px" alt="Avatar"/>
-                <p class="author_name">Rasel Mondol</p>
-                <img src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
-                <p class="author_name">09 Feb, 2024</p>
-            </div>
-            <div class="card_title">
-                <h4>Unwind and Learn: Top Coloring Pages for Kids</h4>
-            </div>
-            <div class="download_button">
-                <button>
-                    Download
-                    <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
-                </button>
-            </div>
-        </div>
-    </div> --}}
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    ;(function ($, window, document) {
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#category').on('change', function() {
+                var categoryId = $(this).val();
+                $.ajax({
+                    url: '/filter-blogs', 
+                    type: 'GET',
+                    data: {
+                        category_id: categoryId
+                    },
+                    success: function(response) {
+                        // Update the blog list
+                        $('.popular_blog').html(response);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            });
+
+        });
+      
+    }(window.jQuery, window, document));
+
+</script>

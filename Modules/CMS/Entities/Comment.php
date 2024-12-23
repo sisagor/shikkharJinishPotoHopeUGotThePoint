@@ -14,7 +14,7 @@ class Comment extends RootModel
     protected $table = 'comments';
 
     protected $fillable = [
-        'id', 'blog_id', 'user_id', 'name', 'email', 'comment', 'parent_id'
+        'id', 'blog_id', 'user_id', 'name', 'email', 'comment', 'parent_id', 'status'
     ];
 
 
