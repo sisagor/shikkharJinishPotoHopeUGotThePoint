@@ -11,7 +11,6 @@
 |
 */
 use Illuminate\Support\Facades\Route;
-
 Route::prefix('cms')->name('cms.')->middleware(['auth'])->group(function ()
 {
    
@@ -27,7 +26,9 @@ Route::prefix('cms')->name('cms.')->middleware(['auth'])->group(function ()
         Route::get('blog/{blog}/delete',  'destroy')->name('blog.delete');
         Route::get('blog/{blog}/restore',  'restore')->name('blog.restore');
         Route::get('blog/{blog}/view',  'show')->name('blog.view');
-        Route::get('comments/', 'comments')->name('comments');
+        Route::get('comments', 'comments')->name('comments');
+        Route::get('comments/{comment}/approve',  'approveComment')->name('comments.approve');
+        Route::get('comments/{comment}/delete',  'deleteComment')->name('comments.delete');
     });
 
 
