@@ -738,6 +738,12 @@ return [
     'meta_description' => 'Meta Description',
     'image_alter' => 'Image Alter',
     'author_name' => 'Author Name',
+    'blog' => 'Blog',
+    'comments' => 'Comments',
+    'comment' => 'Comment',
+    'parent_comment' => 'Parent Comment',
+    'approve' => 'Approve',
+    'subscriber' => 'Subscriber',
 
 
     

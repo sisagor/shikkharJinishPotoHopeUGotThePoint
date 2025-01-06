@@ -20,7 +20,17 @@ class Comment extends RootModel
 
     public function replays()
     {
-        return $this->hasMany(Comment::class, 'parent_id', 'id');
+        return $this->hasMany(Comment::class, 'parent_id', 'id')->where('status',1);
     } 
+
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class, 'blog_id', 'id');
+    }
+
+    public function parent_comment()
+    {
+        return $this->belongsTo(Comment::class, 'parent_id', 'id');
+    }
 
 }

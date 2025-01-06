@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Modules\User\Entities\Profile;
 use App\Http\Controllers\Controller;
+use App\Models\EmailSubscription;
 use Illuminate\Http\RedirectResponse;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\User\Http\Requests\UserCreateRequest;
@@ -310,6 +311,37 @@ class UserController extends Controller
         }
 
         return redirect()->back()->with('error', trans('msg.update_failed', ['model' => trans('model.user')]));
+    }
+
+    public function subscribe(Request $request)
+    {
+        if(! $request->ajax()){
+            return view('user::user.subscribe');
+        }
+
+        $data = EmailSubscription::get();
+
+        if ($request->get('type') == "active"){
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    return delete_button('userManagements.subscribe.delete', $row);
+                })
+                ->make(true);
+        }
+
+    }
+
+    public function subscribeDelete($id)
+    {
+        $delete = EmailSubscription::where('id', $id)->delete();
+
+        if($delete){
+            return redirect()->back()->with('success', trans('msg.delete_success', ['model' => trans('app.subscriber')]));
+        }
+       
+        return redirect()->back()->with('success', trans('msg.delete_failed', ['model' => trans('app.subscriber')]));
     }
 
 

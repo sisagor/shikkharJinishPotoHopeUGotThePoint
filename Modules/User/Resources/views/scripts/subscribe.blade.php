@@ -7,7 +7,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{!! route('cms.comments').'?type=active'!!}',
+                    url: '{!! route('userManagements.subscribe').'?type=active'!!}',
                     type: 'GET',
                     data: function (d) {
                         filterData(d);
@@ -21,12 +21,7 @@
                 pageLength: {{config('system_settings.pagination')}},
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
-                    {data: 'blog.title', name: 'blog'},
-                    {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
-                    {data: 'parent_comment.comment', name: 'parent_comment'},
-                    {data: 'comment', name: 'comment'},
-                    {data: 'status', name: 'status', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
                 buttons: [
@@ -35,15 +30,40 @@
             });
 
             let trash = $('.trash-table').DataTable({
-               
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{!! route('userManagements.subscribe').'?type=trash'!!}',
+                    type: 'GET',
+                    data: function (d) {
+                        filterData(d);
+                    }
+                },
+                type: 'GET',
+                //dom: 'Bfrtip',
+                dom: '<"top"<"col-md-4"B><"col-md-4"l><"col-md-4"f>>rtip',
+                bLengthChange: true,
+                lengthMenu: paginationLengthMenu(),
+                pageLength: {{config('system_settings.pagination')}},
+                columns: [
+                    {data: 'index', name: 'index', orderable: false, searchable: false},
+                    {data: 'email', name: 'email'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ],
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
             });
 
             $('#company-filter').on('change', function () {
                 active.ajax.reload();
                 trash.ajax.reload();
             });
+            $('#branch-filter').on('change', function () {
+                active.ajax.reload();
+                trash.ajax.reload();
+            });
         });
-
 
     }(window.jQuery, window, document));
 

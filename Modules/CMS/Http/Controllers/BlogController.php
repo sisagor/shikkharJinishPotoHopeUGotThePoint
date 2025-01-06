@@ -191,6 +191,64 @@ class BlogController extends Controller
         return redirect()->back()->with('error', trans('msg.update_failed', ['model' => trans('model.blogs')]))->withInput();
     }
 
+    public function comments(Request $request)
+    {
+
+       
+        // $data = Contact::get();
+
+        // return view('cms::book.contact',compact('data'));
+
+        if (! $request->ajax()){
+            return view('cms::blog.comments');
+        }
+
+        $data = Comment::with('blog','parent_comment')->get();
+
+        if ($request->get('type') == "active"){
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn('status', function ($row)
+                {
+                    return get_status($row->status);
+                })
+                ->addColumn('action', function ($row) {
+                    if($row->status == 1){
+                        return delete_button('cms.comments.delete', $row);
+                    }else{
+                        return approve_button('cms.comments.approve', $row) . delete_button('cms.comments.delete', $row);
+                    }
+                   
+                })
+                ->make(true);
+        }
+    }
+
+    public function approveComment($id)
+    {
+       
+        $update = Comment::where('id',$id)->update(['status'=>1]);
+
+        if($update){
+            return redirect()->back()->with('success', trans('msg.approve_success', ['model' => trans('app.comment')]));
+        }
+
+        return redirect()->back()->with('success', trans('msg.approve_failed', ['model' => trans('app.comment')]));
+       
+    }
+
+    public function deleteComment($id)
+    {
+        $delete = Comment::where('id', $id)->delete();
+
+        if($delete){
+            return redirect()->back()->with('success', trans('msg.delete_success', ['model' => trans('app.comment')]));
+        }
+       
+        return redirect()->back()->with('success', trans('msg.delete_failed', ['model' => trans('app.comment')]));
+    }
+
     /**
      * soft delete the specified resource from storage.
      * @param int $id
@@ -247,26 +305,5 @@ class BlogController extends Controller
      */
 
      
-    public function comments(Request $request)
-    {
-
-        dd('hi');
-       
-        // $data = Contact::get();
-
-        // return view('cms::book.contact',compact('data'));
-
-        if (! $request->ajax()){
-            return view('cms::blog.comments');
-        }
-
-        $data = Comment::query();
-
-        if ($request->get('type') == "active"){
-
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->make(true);
-        }
-    }
+  
 }
