@@ -193,10 +193,7 @@ class BlogController extends Controller
 
     public function comments(Request $request)
     {
-
-       
         // $data = Contact::get();
-
         // return view('cms::book.contact',compact('data'));
 
         if (! $request->ajax()){
@@ -212,6 +209,10 @@ class BlogController extends Controller
                 ->editColumn('status', function ($row)
                 {
                     return get_status($row->status);
+                })
+                ->addColumn('parent_comment', function ($row)
+                {
+                    return (isset($row->parent_comment) ? $row->parent_comment->comment : null);
                 })
                 ->addColumn('action', function ($row) {
                     if($row->status == 1){

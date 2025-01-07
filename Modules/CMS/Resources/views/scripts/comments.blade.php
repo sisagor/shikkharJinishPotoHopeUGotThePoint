@@ -24,7 +24,7 @@
                     {data: 'blog.title', name: 'blog'},
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
-                    {data: 'parent_comment.comment', name: 'parent_comment'},
+                    {data: 'parent_comment', name: 'parent_comment'},
                     {data: 'comment', name: 'comment'},
                     {data: 'status', name: 'status', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
