@@ -39,13 +39,13 @@ if (! function_exists('systemCheck')) {
      if ($mac){
          //if($mac !== "N/A"){
          if($mac !== "60-45-CB-69-CB-06"){
-             throw new \App\Exceptions\LicenseNotFoundException('Invalid License!');
+             //throw new \App\Exceptions\LicenseNotFoundException('Invalid License!');
          }
      }
      else
      {
          if ($request->ip() !== "103.146.92.10"){
-             throw new  \App\Exceptions\LicenseNotFoundException('Invalid License!');
+             //throw new  \App\Exceptions\LicenseNotFoundException('Invalid License!');
          }
      }
      //End check
