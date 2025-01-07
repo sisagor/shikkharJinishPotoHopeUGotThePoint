@@ -47,5 +47,9 @@ Route::prefix('user-managements')->name('userManagements.')->middleware(['auth']
     Route::get('role/{id}/trash', [RoleController::class, 'trash'])->name('role.trash');
     Route::get('role/{id}/restore', [RoleController::class, 'restore'])->name('role.restore');
 
+    /** Start Subscribe  */
+    Route::get('subscribe', [UserController::class, 'subscribe'])->name('subscribe');
+    Route::get('subscribe/{subscribe}/delete', [UserController::class, 'subscribeDelete'])->name('subscribe.delete');
+
 
 });

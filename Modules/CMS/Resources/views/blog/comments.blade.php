@@ -13,6 +13,8 @@
             <th>{{trans('app.email')}}</th>
             <th>{{trans('app.parent_comment')}}</th>
             <th>{{trans('app.comment')}}</th>
+            <th>{{trans('app.status')}}</th>
+            <th>{{trans('app.action')}}</th>
         </tr>
         </thead>
         <tbody>
