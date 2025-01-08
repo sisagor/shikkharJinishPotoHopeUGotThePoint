@@ -6,6 +6,32 @@
 
 @section('form')
 
+    <style>
+        .dynamic-block {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .dynamic-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .dynamic-block-header button {
+            margin-left: 10px;
+        }
+
+        .cke_chrome {
+            width: -moz-available!important;
+            width: -webkit-fill-available!important;
+        }
+    </style>
+
+
     <div class="form-body">
         @if(auth()->user()->role_id == '1')
         <div class="row">
@@ -192,30 +218,11 @@
       </div>
         {{-- <button type="button" class="btn btn-primary" id="add-field">Add More</button> --}}
 
-        
     </div>
 
 @endsection
 
-<style>
-    .dynamic-block {
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-    .dynamic-block-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 10px;
-    }
-    .dynamic-block-header button {
-        margin-left: 10px;
-    }
-</style>
+
 
 @section('formScripts')
     @include('cms::scripts.formScript')
