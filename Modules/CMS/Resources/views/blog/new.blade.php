@@ -184,7 +184,7 @@
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.details') }}"></i>
                     </label>
                     <div class="item form-group">
-                        <textarea class="form-control editor" name="details[]" placeholder="{{ trans('app.details') }}"></textarea>
+                        <textarea class="form-control editor" id="initialEditor" name="details[]" placeholder="{{ trans('app.details') }}"></textarea>
                     </div>
                 </div>
             </div>
@@ -195,10 +195,6 @@
         
     </div>
 
-@endsection
-
-@section('formScripts')
-    @include('cms::scripts.formScript')
 @endsection
 
 <style>
@@ -219,25 +215,10 @@
     .dynamic-block-header button {
         margin-left: 10px;
     }
-
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-<script>
-    function initializeCKEditor(selector) {
-            // Ensure CKEditor is not already initialized on this textarea
-            if (!CKEDITOR.instances[selector.id]) {
-                CKEDITOR.replace(selector);
-            }
-    }
 
-    // Initialize CKEditor on all existing textareas when the document is ready
-    $(document).ready(function() {
-        // Initialize CKEditor for all existing textareas
-        $('.editor').each(function() {
-            initializeCKEditor(this);
-        });
-    });
-</script>
+@section('formScripts')
+    @include('cms::scripts.formScript')
+@endsection
 
 

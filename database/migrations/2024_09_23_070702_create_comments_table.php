@@ -22,6 +22,7 @@ return new class extends Migration
                 $table->string('email')->nullable();
                 $table->text('comment')->nullable();
                 $table->integer('parent_id')->default(0)->nullable();
+                $table->integer('status')->default(0)->nullable();
                 $table->timestamps();
             });
         }

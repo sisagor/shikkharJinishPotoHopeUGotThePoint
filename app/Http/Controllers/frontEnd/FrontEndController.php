@@ -16,6 +16,7 @@ use App\Services\FrontEndService;
 use App\Http\Controllers\Controller;
 use Modules\CMS\Entities\BlogDetails;
 use App\Http\Requests\JobApplicationRequest;
+use App\Models\EmailSubscription;
 use Modules\Settings\Entities\BlogCategory;
 use App\Models\User;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
@@ -245,7 +246,7 @@ class FrontEndController extends Controller
 
         //$popularBook = Book::with('image')->select(Book::$select)->orderBy('view', 'desc')->first();
         $blogBooks = BlogBook::with('book.image')->where('blog_id', $id)->get();
-        $comments = Comment::with('replays')->where('blog_id',$id)->where('parent_id',0)->orderBy('created_at', 'desc')->get();
+        $comments = Comment::with('replays')->where('blog_id',$id)->where('parent_id',0)->where('status',1)->orderBy('created_at', 'desc')->get();
 
         return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','blogBooks','comments','tags'));
     }
@@ -263,6 +264,7 @@ class FrontEndController extends Controller
                 'email' => $request->get('email'),
                 'comment' => $request->get('message'),
                 'parent_id' => $parent_id,
+                'status' => 0,
             ]);
 
         return redirect()->back();
@@ -331,6 +333,54 @@ class FrontEndController extends Controller
         }
 
         return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.job_application')]))->withInput();
+    }
+
+    public function storeEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|unique:email_subscriptions'
+        ]);
+
+        EmailSubscription::create([
+            'email' => $request->email
+        ]);
+
+        return redirect()->back()->with('success', 'Email stored successfully.');
+        
+    }
+
+    public function filterBlogs(Request $request)
+    {
+        $categoryId = $request->input('category_id');
+
+        if ($categoryId) {
+            $popularBlogs = Blog::where('blog_category_id', $categoryId)->with(['user', 'user.profile.image', 'details', 'details.images'])
+                ->orderBy('view', 'desc')
+                ->limit(3) 
+                ->get()
+                ->map(function($blog){
+                    $firstImage = $blog->details->flatMap(function($detail){
+                        return $detail->images;
+                    })->first();
+
+                    return [
+                        'title' => $blog->title,
+                        'id' => $blog->id,
+                        'created_by' => (!empty($blog->user) ? $blog->user->name : null),
+                        'created_at' => $blog->created_at,
+                        'details' => $blog->details->map(function($detail){
+                            return $detail->details;
+                        })->first(),
+                        'first_image' =>  $firstImage ?  $firstImage->path : null,
+                        'image' => (!empty($blog->user) ? optional($blog->user->profile->image)->path : null),
+                    ];
+                });
+        } else {
+            $popularBlogs = $this->getPopularBlogDetailsWithFirstimage();
+        }
+
+        return view('frontEnd.blog.blog_filter', compact('popularBlogs'));
+        
     }
 
 

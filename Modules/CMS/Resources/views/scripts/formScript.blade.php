@@ -1,4 +1,3 @@
-
 <script>
  /*   ClassicEditor
         .create( document.querySelector( '#editor' ) )
@@ -10,10 +9,13 @@
         } );*/
 </script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
 <script type="text/javascript">
     ;(function ($, window, document) {
 
-        $(document).ready(function () {
+        /*$(document).ready(function () {
             //Summer Note
             $(".summernote").summernote({
                 height: 130,
@@ -28,10 +30,16 @@
 
             $('.card').css('width', '100%');
 
-        });
+        });*/
 
         $(document).ready(function() {
-            $('#add-field').click(function() {
+
+            $('#initialEditor').each(function() {
+                initializeCKEditor(this);
+            });
+
+            $('#add-field').click(function()
+            {
                 // var newField = $('#dynamic-fields .dynamic-block:first').clone();
                 // newField.find('input, select, textarea').val('');
                 // newField.find('.remove-field').show();
@@ -68,6 +76,14 @@
             $('#dynamic-fields .remove-field').hide();
         });
 
+
+
+        function initializeCKEditor(selector) {
+            // Ensure CKEditor is not already initialized on this textarea
+            if (!CKEDITOR.instances[selector.id]) {
+                CKEDITOR.replace(selector);
+            }
+        }
 
     }(window.jQuery, window, document));
 

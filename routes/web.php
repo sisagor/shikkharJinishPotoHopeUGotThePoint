@@ -58,7 +58,7 @@ Route::get('clear', function (\Illuminate\Http\Request $request)
 
 ##front-end
 Route::get('/', [FrontEndController::class, 'index'])->name('home');
-Route::get('home', [FrontEndController::class, 'index'])->name('home');
+//Route::get('home', [FrontEndController::class, 'index'])->name('home');
 //Route::get('blogs', [\App\Http\Controllers\frontEnd\BlogController::class, 'index'])->name('blogs');
 //Route::get('blog/category', [\App\Http\Controllers\frontEnd\BlogController::class, 'catWiseBlogs'])->name('blog.cat');
 Route::get('blog/category', [FrontEndController::class, 'catWiseBlogs'])->name('blog.cat');
@@ -70,7 +70,8 @@ Route::get('about-us', [FrontEndController::class, 'about'])->name('about');
 Route::get('contact-us', [FrontEndController::class, 'contact'])->name('contact');
 Route::post('comment', [FrontEndController::class, 'comment'])->name('comment');
 Route::post('contact-store', [FrontEndController::class, 'storeContact'])->name('storeContact');
-
+Route::post('email_subscription', [FrontEndController::class, 'storeEmail'])->name('email_subscription');
+Route::get('filter-blogs', [FrontEndController::class, 'filterBlogs'])->name('filter_blogs');
 
 /*Route::get('/', function ()
 {

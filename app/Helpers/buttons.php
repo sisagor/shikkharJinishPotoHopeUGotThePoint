@@ -117,6 +117,29 @@ if (! function_exists('delete_button')) {
     }
 }
 
+if (! function_exists('approve_button')) {
+    /**add new button*/
+    function approve_button(string $action, $id)
+    {
+        if (! Permission::hasPermission($action))
+        {
+            return false;
+        }
+
+        if ( isset($id->com_id))
+        {
+            if (\Illuminate\Support\Facades\Auth::user()->com_id !== $id->com_id)
+            {
+                return false;
+            }
+        }
+
+        return '<a class="btn btn-primary" onclick="return confirm(\'are you sure?\')" href="' . route($action, $id) . '"
+                title="'.trans('app.approve').'">
+                <i class="fa fa-check button_icon"> </i> </a>';
+    }
+}
+
 
 /*custom button*/
 if (! function_exists('custom_ajax_button')) {

@@ -35,7 +35,7 @@ class DemoBooksDatabaseSeeder extends Seeder
 
                 DB::table('books')->insert([
                     'url' => $faker->url,
-                    'image' => $faker->image(public_path().'/images/demo/'),
+                    //'image' => $faker->image(public_path().'/images/demo/'),
                     'order' => $i,
                     'status' =>1,
                     'view' =>$i,

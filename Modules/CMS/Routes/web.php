@@ -11,13 +11,11 @@
 |
 */
 use Illuminate\Support\Facades\Route;
-
 Route::prefix('cms')->name('cms.')->middleware(['auth'])->group(function ()
 {
-
+   
     Route::controller(Modules\CMS\Http\Controllers\BlogController::class)->group(function ()
     {
-        //jobPosting
         Route::get('blogs',  'index')->name('blogs');
         Route::get('blog/add','create')->name('blog.add');
         Route::post('blog/store','store')->name('blog.store');
@@ -28,6 +26,9 @@ Route::prefix('cms')->name('cms.')->middleware(['auth'])->group(function ()
         Route::get('blog/{blog}/delete',  'destroy')->name('blog.delete');
         Route::get('blog/{blog}/restore',  'restore')->name('blog.restore');
         Route::get('blog/{blog}/view',  'show')->name('blog.view');
+        Route::get('comments', 'comments')->name('comments');
+        Route::get('comments/{comment}/approve',  'approveComment')->name('comments.approve');
+        Route::get('comments/{comment}/delete',  'deleteComment')->name('comments.delete');
     });
 
 

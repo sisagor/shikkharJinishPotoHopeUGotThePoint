@@ -14,13 +14,23 @@ class Comment extends RootModel
     protected $table = 'comments';
 
     protected $fillable = [
-        'id', 'blog_id', 'user_id', 'name', 'email', 'comment', 'parent_id'
+        'id', 'blog_id', 'user_id', 'name', 'email', 'comment', 'parent_id', 'status'
     ];
 
 
     public function replays()
     {
-        return $this->hasMany(Comment::class, 'parent_id', 'id');
+        return $this->hasMany(Comment::class, 'parent_id', 'id')->where('status',1);
     } 
+
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class, 'blog_id', 'id');
+    }
+
+    public function parent_comment()
+    {
+        return $this->belongsTo(Comment::class, 'parent_id', 'id');
+    }
 
 }
