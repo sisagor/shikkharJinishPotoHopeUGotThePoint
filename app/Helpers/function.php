@@ -162,6 +162,25 @@ if (! function_exists('get_status')) {
     }
 }
 
+if (! function_exists('get_status_old')) {
+    /** return status*/
+    function get_status_old($status): ? string
+    {
+        if($status == RootModel::STATUS_ACTIVE)
+        {
+           return RootModel::DATA_ACTIVE;
+        }
+        elseif ($status == RootModel::STATUS_INACTIVE)
+        {
+            return RootModel::DATA_INACTIVE;
+        }
+        else
+        {
+            return "null";
+        }
+    }
+}
+
 if (! function_exists('get_approval_status')) {
     /** return status*/
     function get_approval_status($approve): ?string

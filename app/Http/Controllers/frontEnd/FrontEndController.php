@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers\frontEnd;
 
-
-use App\Http\Controllers\Api\Auth\AuthenticationController;
+use App\Models\User;
+use App\Models\SeoPage;
 use App\Models\RootModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Modules\CMS\Entities\Blog;
 use Modules\CMS\Entities\Book;
 use Modules\CMS\Entities\Comment;
 use Modules\CMS\Entities\Contact;
-use App\Models\SeoPage;
+use App\Models\EmailSubscription;
 use App\Services\FrontEndService;
 use App\Http\Controllers\Controller;
-use Modules\CMS\Entities\BlogDetails;
-use App\Http\Requests\JobApplicationRequest;
-use App\Models\EmailSubscription;
-use Modules\Settings\Entities\BlogCategory;
-use App\Models\User;
-use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Modules\CMS\Entities\BlogBook;
+use App\Http\Requests\JobApplicationRequest;
+use Modules\Settings\Entities\BlogCategory;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
+
 
 class FrontEndController extends Controller
 {
@@ -247,6 +244,7 @@ class FrontEndController extends Controller
         //$popularBook = Book::with('image')->select(Book::$select)->orderBy('view', 'desc')->first();
         $blogBooks = BlogBook::with('book.image')->where('blog_id', $id)->get();
         $comments = Comment::with('replays')->where('blog_id',$id)->where('parent_id',0)->where('status',1)->orderBy('created_at', 'desc')->get();
+        //dd($blog);
 
         return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','blogBooks','comments','tags'));
     }
