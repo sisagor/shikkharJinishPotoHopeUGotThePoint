@@ -119,14 +119,14 @@ if (! function_exists('delete_button')) {
 
 if (! function_exists('approve_button')) {
     /**add new button*/
-    function approve_button(string $action, $id)
+    function approve_button(string $action, $id): bool|string
     {
         if (! Permission::hasPermission($action))
         {
             return false;
         }
 
-        if ( isset($id->com_id))
+        if (isset($id->com_id))
         {
             if (\Illuminate\Support\Facades\Auth::user()->com_id !== $id->com_id)
             {

@@ -144,6 +144,18 @@ return [
                     'action' => 'cms.comments',
                     'show' => 1,
                 ],
+                [
+                    'name' => 'Approve',
+                    'url' => 'cms/comments/approve',
+                    'action' => 'cms.comments.approve',
+                    'show' => 0,
+                ],
+                [
+                    'name' => 'Delete',
+                    'url' => 'cms/comments/delete',
+                    'action' => 'cms.comments.delete',
+                    'show' => 0,
+                ],
             
             ],
         ],

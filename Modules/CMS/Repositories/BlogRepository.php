@@ -81,8 +81,6 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                 ]);
             }
 
-        
-
             // Store details and associate images
             foreach ($details as $index => $detail) {
                 $order = $orders[$index];
