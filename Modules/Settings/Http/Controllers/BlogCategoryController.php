@@ -35,7 +35,7 @@ class BlogCategoryController extends Controller
                 ->addIndexColumn()
                 ->editColumn('status', function ($row)
                 {
-                    return get_status($row->status);
+                    return get_status_old($row->status);
                 })
                 ->addColumn('action', function ($row)
                 {

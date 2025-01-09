@@ -244,6 +244,7 @@ class FrontEndController extends Controller
         //$popularBook = Book::with('image')->select(Book::$select)->orderBy('view', 'desc')->first();
         $blogBooks = BlogBook::with('book.image')->where('blog_id', $id)->get();
         $comments = Comment::with('replays')->where('blog_id',$id)->where('parent_id',0)->where('status',1)->orderBy('created_at', 'desc')->get();
+        //dd($blog);
 
         return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','blogBooks','comments','tags'));
     }
