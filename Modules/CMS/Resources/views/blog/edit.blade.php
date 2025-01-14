@@ -169,7 +169,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <label class="col-form-label label-align" for="image">
-                        {{ trans('app.image') }} (Size should be 770x500) <span class="required">*</span>
+                        {{ trans('app.image') }} (Size should be 770x500) <span class="required"></span>
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                            title="{{ trans('help.image') }}"></i>
                     </label>
@@ -180,12 +180,12 @@
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <label class="col-form-label label-align" for="image_alter">
-                        {{ trans('app.image_alter') }} <span class="required">*</span>
+                        {{ trans('app.image_alter') }} <span class="required"></span>
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                            title="{{ trans('help.image_alter') }}"></i>
                     </label>
                     <div class="item form-group">
-                        <input type="text" class="form-control" name="images_alter[]" value="{{$detail->image->image_alter}}" required placeholder="{{ trans('app.image_alter') }}">
+                        <input type="text" class="form-control" name="images_alter[]" value="{{$detail->image->image_alter}}"  placeholder="{{ trans('app.image_alter') }}">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3">

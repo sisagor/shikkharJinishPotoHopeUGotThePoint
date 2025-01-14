@@ -146,16 +146,6 @@ class BlogController extends Controller
     }
 
     /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show(JobInterview $interview)
-    {
-        return view('cms::blog.show', compact('interview'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      * @param int $id
      * @return Renderable
@@ -255,9 +245,10 @@ class BlogController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function trash(JobInterview $interview)
+    public function trash( )
     {
-        if ($interview->delete()) {
+        $interview = 1;
+        if ($interview) {
 
             sendActivityNotification(trans('msg.noty.soft_deleted', ['model' => trans('model.blog')]));
 
