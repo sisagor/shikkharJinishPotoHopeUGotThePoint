@@ -2,22 +2,24 @@
 
 namespace Modules\CMS\Http\Controllers;
 
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Modules\CMS\Entities\Blog;
+use Modules\CMS\Entities\Book;
+use Modules\CMS\Entities\Comment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Modules\CMS\Entities\BlogDetails;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Settings\Entities\BlogCategory;
-use Modules\CMS\Entities\Book;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\CMS\Http\Requests\BlogCreateRequest;
-use Modules\CMS\Repositories\BlogRepositoryInterface;
-use Illuminate\Support\Facades\Auth;
-use Modules\CMS\Entities\Comment;
 use Modules\CMS\Http\Requests\BlogUpdateRequest;
+use Modules\CMS\Repositories\BlogRepositoryInterface;
+
 
 class BlogController extends Controller
 {
@@ -245,7 +247,7 @@ class BlogController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function trash( )
+    public function trash()
     {
         $interview = 1;
         if ($interview) {
