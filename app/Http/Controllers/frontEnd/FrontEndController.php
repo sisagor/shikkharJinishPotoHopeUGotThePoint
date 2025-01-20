@@ -123,6 +123,33 @@ class FrontEndController extends Controller
 
     }
 
+    public function getRelatedBlogDetailsWithFirstimage($category_id)
+    {
+        return Blog::with(['user', 'user.profile.image', 'details', 'details.images'])
+                ->where('blog_category_id',$category_id)
+                ->orderBy('created_at', 'desc')
+                ->limit(10) 
+                ->get()
+                ->map(function($blog){
+                    $firstImage = $blog->details->flatMap(function($detail){
+                        return $detail->images;
+                    })->first();
+
+                    return [
+                        'title' => $blog->title,
+                        'id' => $blog->id,
+                        'created_by' => (!empty($blog->user) ? $blog->user->name : null ),
+                        'created_at' => $blog->created_at,
+                        'details' => $blog->details->map(function($detail){
+                            return $detail->details;
+                        })->first(),
+                        'first_image' =>  $firstImage ?  $firstImage->path : null,
+                        'image' => (!empty($blog->user) ? optional($blog->user->profile->image)->path : null),
+                    ];
+                });
+
+    }
+
     public function topCategoriesByViewCount()
     {
         // $topCategories = Blog::select('blog_categories.name')
@@ -240,13 +267,18 @@ class FrontEndController extends Controller
         $popularBlogs = $this->getPopularBlogDetailsWithFirstimage();
 
         $latestBlogs = $this->getLatestBlogDetailsWithFirstimage();
+        $relatedBlogs = $this->getRelatedBlogDetailsWithFirstimage($blog->blog_category_id);
+
+        $previousPost = Blog::where('id', '<', $blog->id)->orderBy('id', 'desc')->first();
+        $nextPost = Blog::where('id', '>', $blog->id)->orderBy('id', 'asc')->first();
+        //$latestBlogs = Blog::latest()->limit(5)->get();
 
         //$popularBook = Book::with('image')->select(Book::$select)->orderBy('view', 'desc')->first();
         $blogBooks = BlogBook::with('book.image')->where('blog_id', $id)->get();
         $comments = Comment::with('replays')->where('blog_id',$id)->where('parent_id',0)->where('status',1)->orderBy('created_at', 'desc')->get();
         //dd($blog);
 
-        return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','blogBooks','comments','tags'));
+        return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','blogBooks','comments','tags','previousPost','nextPost','relatedBlogs'));
     }
 
     public function comment(Request $request)

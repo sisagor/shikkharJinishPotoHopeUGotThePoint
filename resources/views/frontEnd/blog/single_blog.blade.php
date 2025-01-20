@@ -120,6 +120,54 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="navigation-section">
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        @if ($previousPost)
+                            <a href="/blog/{{ $previousPost->id }}" class="navigation-button">
+                                {{-- <span>&#8592;</span> Previous Post: {{ $previousPost->title }} --}}
+                                <span>&#8592;</span> Previous Post
+                            </a>
+                        @endif
+                    </div>
+                    <div class="col-md-6 text-right">
+                        @if ($nextPost)
+                            <a href="/blog/{{ $nextPost->id }}" class="navigation-button">
+                                {{-- Next Post: {{ $nextPost->title }} <span>&#8594;</span> --}}
+                                Next Post <span>&#8594;</span>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <div class="latest-blogs-slider mt-3 mb-3">
+                <div class="slider">
+                    @foreach ($relatedBlogs as $lblog)
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="{{get_storage_file_url($lblog['first_image'] )}}" alt="" class="slider-image">
+                                    {{-- <img src="http://127.0.0.1:8000/frontEnd/img/5804202_33970.png" alt="" class="slider-image"> --}}
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="author_date">
+                                        <img src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
+                                        <p class="author_name">{{ date('d M, Y',strtotime($lblog['created_at']))}}</p>
+                                    </div>
+                                    <div class="card_title">
+                                        <h4><a href="/blog/{{ $lblog['id'] }}">{{ $lblog['title'] }}</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+
             <div class="comment-section">
                 <h2>{{count($comments)}} Comments:</h2>
                 @foreach($comments as $comment)
@@ -803,7 +851,81 @@
       justify-content: center;
       align-items: center;
   }
+  .navigation-button {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 25px;
+    color: #FF3782;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: 1px solid #FDD5E8;
+}
+.navigation-button:hover {
+    color: #FF3782;
+    text-decoration: none
+  }
+  .latest-blogs-slider .slider {
+    display: flex;
+    overflow: hidden;
+    gap: 15px;
+    
+}
+
+.latest-blogs-slider {
+    background-color: #f7f7ff;
+    padding: 20px;
+    border-radius: 20px;
+    padding-bottom: 0;
+    max-height: 190px;
+    width: 100%; 
+    max-width: 800px; 
+    margin: auto;
+}
+.latest-blogs-slider .item {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; 
+}
+.latest-blogs-slider .item img {
+   max-width: 90px;
+}
+.owl-item {
+    float: left !important;
+    width: 270px !important;
+}
+.card_title a {
+    font-family: "Baloo Da 2";
+    font-size: 20px;
+    font-weight: 600;
+    color: #262528;
+}
+.card_title a:hover {
+    text-decoration: none
+  }
+
+  .card_title h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Avoid breaking the text */
+}
+
+.slider-image {
+    max-width: 100%; /* Prevent image overflow */
+    height: auto;
+}
+  
+
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Owl Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var replyButtons = document.querySelectorAll('button.reply-button');
@@ -819,5 +941,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+<script type="text/javascript">
+    ;(function ($, window, document) {
+        $(document).ready(function () {
+            $(".slider").owlCarousel({
+                    items: 2,
+                    margin: 10,
+                    loop: true,
+                    nav: false,
+                    dots: false,
+                    autoplay: true,
+                    autoplayTimeout: 2000,
+                    responsive: {
+                        0: { items: 1 },
+                        400: { items: 2 },
+                        800: { items: 3 }
+                    }
+                });
+        });
+    }(window.jQuery, window, document));
+</script>
+
 
 @endsection
