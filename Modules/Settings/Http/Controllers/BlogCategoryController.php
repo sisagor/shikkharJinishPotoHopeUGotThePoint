@@ -55,7 +55,7 @@ class BlogCategoryController extends Controller
                 })
                 ->addColumn('action', function ($row)
                 {
-                    return  edit_button('componentSettings.blogCategory.edit', $row, "modal") . delete_button('componentSettings.blogCategory.delete',  $row);
+                    return  restore_button('componentSettings.blogCategory.restore', $row) . delete_button('componentSettings.blogCategory.delete',  $row);
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);

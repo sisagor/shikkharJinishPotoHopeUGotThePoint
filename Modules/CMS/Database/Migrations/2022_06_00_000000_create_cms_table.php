@@ -18,6 +18,7 @@ class CreateCmsTable extends Migration
             Schema::create('blog_categories', function (Blueprint $table) {
                 $table->id();
                 $table->bigInteger('com_id')->unsigned()->nullable();
+                $table->string('title');
                 $table->string('name');
                 $table->mediumText('details')->nullable();
                 $table->tinyInteger('status')->default(0)->nullable();

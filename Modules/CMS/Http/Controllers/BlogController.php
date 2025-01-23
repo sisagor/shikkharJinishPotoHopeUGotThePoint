@@ -74,7 +74,7 @@ class BlogController extends Controller
                     return $details;
                 })
                 ->addColumn('action', function ($row) {
-                    return view_button('cms.blog.view', $row). edit_button('cms.blog.edit', $row, "modal") . trash_button('cms.blog.trash', $row);
+                    return view_button('cms.blog.view', $row). edit_button('cms.blog.edit', $row, 0) . trash_button('cms.blog.trash', $row);
                 })
                 ->rawColumns(['status', 'action', 'details'])
                 ->make(true);

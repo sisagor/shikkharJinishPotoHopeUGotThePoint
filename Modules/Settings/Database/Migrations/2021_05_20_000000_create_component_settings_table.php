@@ -17,6 +17,7 @@ class CreateComponentSettingsTable extends Migration
         ##Blog categories
 
 
+
     }
 
     /**

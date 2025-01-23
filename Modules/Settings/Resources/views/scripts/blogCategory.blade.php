@@ -22,6 +22,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'name', name: 'name'},
+                    {data: 'title', name: 'title'},
                     {data: 'details', name: 'details'},
                     {data: 'status', name: 'status', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -50,6 +51,7 @@
                 columns: [
                     {data: 'index', name: 'index', orderable: false, searchable: false},
                     {data: 'name', name: 'name'},
+                    {data: 'title', name: 'title'},
                     {data: 'details', name: 'details'},
                     {data: 'status', name: 'status', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},

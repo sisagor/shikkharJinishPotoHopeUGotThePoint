@@ -6,17 +6,6 @@
         <div class="row">
 
             <div class="col-md-12 col-sm-12">
-                <label class="col-form-label label-align" for="title">
-                    {{trans('app.title')}} <span class="required">*</span>
-                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.title')}}">
-                    </i>
-                </label>
-                <div class="item form-group">
-                    <input class="form-control" id="title" name="title" placeholder="{{trans('app.title')}}" required/>
-                </div>
-            </div>
-
-            <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="name">
                     {{trans('app.name')}} <span class="required">*</span>
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.employment_type_name')}}">
@@ -27,6 +16,16 @@
                 </div>
             </div>
 
+            <div class="col-md-12 col-sm-12">
+                <label class="col-form-label label-align" for="title">
+                    {{trans('app.title')}} <span class="required">*</span>
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.title')}}">
+                    </i>
+                </label>
+                <div class="item form-group">
+                    <input class="form-control" id="title" name="title" placeholder="{{trans('app.title')}}" required/>
+                </div>
+            </div>
 
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="details">
