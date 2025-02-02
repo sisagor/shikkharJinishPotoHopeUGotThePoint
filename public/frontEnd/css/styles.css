@@ -616,3 +616,7 @@ padding: 30px;
 .breadcrumb_item.active::before {
   color: #6c757d;
 }
+
+.card_title a:hover {
+  text-decoration: none
+}
