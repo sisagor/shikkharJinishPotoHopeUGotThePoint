@@ -20,7 +20,9 @@
                     @endif
                     <div class="text-center mt-2">
                         <div class="card_title">
-                            <h4>{{$category->name}}</h4>
+                            <a href="/blog/category?id={{$category['id']}}">
+                                <h4>{{$category->name}}</h4>
+                            </a>
                         </div>
                         <div class="download_button">
                             <a href="/blog/category?id={{$category['id']}}">

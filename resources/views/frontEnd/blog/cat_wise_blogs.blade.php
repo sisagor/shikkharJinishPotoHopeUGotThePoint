@@ -19,6 +19,20 @@
           </section>
           <section>
             @foreach($categories as $category)
+                @if(isset($category['category_title']) && $category['category_title'] != '')
+                    <div class="row descontent" id="category_des_all">
+                        <div class="col-md-6">
+                            <h1>{{ $category['category_title'] }}</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $category['category_details'] }}</p>
+                        </div>
+                    </div>
+                    @php break; @endphp
+                @endif
+            @endforeach
+
+            @foreach($categories as $category)
                 <div class="row descontent" id="{{ 'category_des_' . $category['id'] }}">
                     <div class="col-md-6">
                         <h1>{{ $category['category_title'] }}</h1>
@@ -31,17 +45,55 @@
           </section>
           <section>
           <div class="tab_design">
+            <button class="rounded_button" id="button_all" onclick="showAllBlogs()">All</button>
               @foreach($categories as $category)
                   <button class="rounded_button" id="button_{{ 'category_' . $category['id'] }}" onclick="openTab(event, '{{$category['id'] }}')">{{ $category['category_name'] }}</button>
               @endforeach
           </div>
+
+         <!-- All Category Blogs  -->
+
+         <div class="tabcontent" id="category_all">
+            <section>
+                <div class="row">
+                    @foreach($categories as $category)
+                        @foreach($category['blogs'] as $blog)
+                            <div class="col-md-4 mb-3">
+                                <div class="card_design">
+                                    <img src="{{ get_storage_file_url($blog['first_image']) }}" alt="Avatar" width="300px" height="384px">
+                                    <div class="author_date">
+                                        <img src="{{ get_storage_file_url($blog['image']) }}" width="16px" height="16px" alt="Avatar"/>
+                                        <p class="author_name">{{ $blog['created_by'] }}</p>
+                                        <img src="{{ asset('/frontEnd/img/calendar.png') }}" width="16px" height="16px" alt="calendar"/>
+                                        <p class="author_name">{{ date('d M, Y', strtotime($blog['created_at'])) }}</p>
+                                    </div>
+                                    <div class="card_title">
+                                        <a href="/blog/{{ $blog['id'] }}">
+                                            <h4>{{ $blog['title'] }}</h4>
+                                        </a>
+                                    </div>
+                                    <div class="download_button">
+                                        <a href="/blog/{{ $blog['id'] }}">
+                                            Details
+                                            <img src="{{ asset('/frontEnd/img/ArrowUp.png') }}" width="16px" height="16px" alt="button" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endforeach
+                </div>
+            </section>
+        </div>
+
+
       
           @foreach($categories as $category)
               <div class="tabcontent" id="{{ 'category_' . $category['id'] }}">
                   <section>
                       <div class="row">
                           @foreach($category['blogs'] as $blog)
-                              <div class="col-md-4">
+                              <div class="col-md-4 mb-3">
                                 <div class="card_design">
                                     <img src="{{get_storage_file_url($blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >
                                     <div class="author_date">
@@ -51,7 +103,9 @@
                                         <p class="author_name">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
                                     </div>
                                     <div class="card_title">
-                                        <h4>{{$blog['title']}}</h4>
+                                        <a href="/blog/{{$blog['id']}}">
+                                            <h4>{{$blog['title']}}</h4>
+                                        </a>
                                     </div>
                                     <div class="download_button">
                                       <a href="/blog/{{$blog['id']}}">
@@ -77,37 +131,92 @@
      <!-- tab links and tab content js  -->
 
   <script>
-    function openTab(evt, tabName) {
-      var tabcontent = document.getElementsByClassName("tabcontent");
-      var descontent = document.getElementsByClassName("descontent");
+//     function openTab(evt, tabName) {
+//       var tabcontent = document.getElementsByClassName("tabcontent");
+//       var descontent = document.getElementsByClassName("descontent");
 
-      for (var i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-      }
+//       for (var i = 0; i < tabcontent.length; i++) {
+//           tabcontent[i].style.display = "none";
+//       }
 
-      for (var i = 0; i < descontent.length; i++) {
+//       for (var i = 0; i < descontent.length; i++) {
+//         descontent[i].style.display = "none";
+//       }
+
+//       var tablinks = document.getElementsByClassName("rounded_button");
+//       for (var i = 0; i < tablinks.length; i++) {
+//           tablinks[i].classList.remove("active");
+//       }
+
+//       document.getElementById('category_' + tabName).style.display = "block";
+//       document.getElementById('category_des_' + tabName).style.display = "flex";
+//       evt.currentTarget.classList.add("active");
+//       evt.currentTarget.focus();
+//   }
+
+//   document.addEventListener("DOMContentLoaded", function () {
+//       var categoryId = "{{ $_GET['id'] ?? '' }}"; 
+//       if (categoryId) {
+//           document.getElementById('button_category_' + categoryId).click();
+//       } else {
+//           document.querySelector('.rounded_button').click();
+//       }
+//   });
+
+  function openTab(evt, tabName) {
+    var tabcontent = document.getElementsByClassName("tabcontent");
+    var descontent = document.getElementsByClassName("descontent");
+
+    for (var i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    for (var i = 0; i < descontent.length; i++) {
         descontent[i].style.display = "none";
-      }
+    }
 
-      var tablinks = document.getElementsByClassName("rounded_button");
-      for (var i = 0; i < tablinks.length; i++) {
-          tablinks[i].classList.remove("active");
-      }
+    var tablinks = document.getElementsByClassName("rounded_button");
+    for (var i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
 
-      document.getElementById('category_' + tabName).style.display = "block";
-      document.getElementById('category_des_' + tabName).style.display = "flex";
-      evt.currentTarget.classList.add("active");
-      evt.currentTarget.focus();
-  }
+    document.getElementById('category_' + tabName).style.display = "block";
+    document.getElementById('category_des_' + tabName).style.display = "flex";
+    evt.currentTarget.classList.add("active");
+    evt.currentTarget.focus();
+}
 
-  document.addEventListener("DOMContentLoaded", function () {
-      var categoryId = "{{ $_GET['id'] ?? '' }}"; 
-      if (categoryId) {
-          document.getElementById('button_category_' + categoryId).click();
-      } else {
-          document.querySelector('.rounded_button').click();
-      }
-  });
+function showAllBlogs() {
+    var tabcontent = document.getElementsByClassName("tabcontent");
+    var descontent = document.getElementsByClassName("descontent");
+
+    for (var i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    for (var i = 0; i < descontent.length; i++) {
+        descontent[i].style.display = "none";
+    }
+
+    var tablinks = document.getElementsByClassName("rounded_button");
+    for (var i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    document.getElementById('category_all').style.display = "block";
+    document.getElementById('button_all').classList.add("active");
+    document.getElementById('button_all').focus();
+    document.getElementById('category_des_all').style.display = "flex";
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    var categoryId = "{{ $_GET['id'] ?? '' }}"; 
+    if (categoryId) {
+        document.getElementById('button_category_' + categoryId).click();
+    } else {
+        document.getElementById('button_all').click();
+    }
+});
 
   </script>
 
@@ -150,6 +259,12 @@
     .tabcontent.active {
         display: block;
     }
+    #category_all {
+        display: none;
+    }
+   .card_title a:hover, .download_button  a:hover{
+        text-decoration: none;
+   }
 
 </style>
 

@@ -37,7 +37,9 @@
                     <p class="author_name">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
                 </div>
                 <div class="card_title">
-                    <h4>{{$blog['title']}}</h4>
+                    <a href="/blog/{{$blog['id']}}">
+                        <h4>{{$blog['title']}}</h4>
+                    </a>
                 </div>
                 <div class="download_button">
                     <a href="/blog/{{$blog['id']}}">
