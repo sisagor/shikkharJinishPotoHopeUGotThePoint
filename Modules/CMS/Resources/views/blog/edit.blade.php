@@ -116,7 +116,7 @@
                        title="{{ trans('help.books')}}"></i>
                 </label>
                 <div class="row">
-                    @php $book_1 = ''; $book_2 = ''; $book_3 = ''; $i=1; @endphp
+                    @php $book_1 = null; $book_2 = null; $book_3 = null; $i=1; @endphp
 
                     @foreach($blog->books as $book)
                         @php ${'book_' . $i} = $book->book_id;  $i++;@endphp
@@ -126,7 +126,7 @@
                             <select class="form-control" name="books[]" id="book_1">
                                 <option value="">{{trans('app.select')}}</option>
                                 @foreach($books as $key => $book)
-                                    <option value="{{ $book->id }}" @if(! empty($book_1))@if($book_1 == $key) selected @endif @endif>{{ $book->name }}</option>
+                                    <option value="{{ $book->id }}" @if(! empty($book_1))@if($book_1 == $book->id) selected @endif @endif>{{ $book->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -136,7 +136,7 @@
                             <select class="form-control" name="books[]" id="book_3">
                                 <option value="">{{trans('app.select')}}</option>
                                 @foreach($books as $key => $book)
-                                    <option value="{{$book->id }}" @if(! empty($book_2))@if($book_2 == $key) selected @endif @endif>{{  $book->name  }}</option>
+                                    <option value="{{$book->id }}" @if(! empty($book_2))@if($book_2 == $book->id) selected @endif @endif>{{  $book->name  }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -146,7 +146,7 @@
                             <select class="form-control" name="books[]" id="book_3">
                                  <option value="">{{trans('app.select')}}</option>
                                 @foreach($books as $key => $book)
-                                    <option value="{{ $book->id }}" @if(! empty($book_3))@if($book_3 == $key) selected @endif @endif>{{  $book->name  }}</option>
+                                    <option value="{{ $book->id }}" @if(! empty($book_3))@if($book_3 == $book->id) selected @endif @endif>{{  $book->name  }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -224,7 +224,24 @@
 @endsection
 
 @section('formScripts')
-    @include('cms::scripts.formScript')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        function initializeCKEditor(selector) {
+            // Ensure CKEditor is not already initialized on this textarea
+            if (!CKEDITOR.instances[selector.id]) {
+                CKEDITOR.replace(selector);
+            }
+        }
+
+        // Initialize CKEditor on all existing textareas when the document is ready
+        $(document).ready(function() {
+            // Initialize CKEditor for all existing textareas
+            $('.editor').each(function() {
+                initializeCKEditor(this);
+            });
+        });
+    </script>
 @endsection
 
 <style>
@@ -246,24 +263,11 @@
         margin-left: 10px;
     }
 
+    .cke_chrome {
+        width: -moz-available!important;
+        width: -webkit-fill-available!important;
+    }
+
 </style>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-<script>
-    function initializeCKEditor(selector) {
-            // Ensure CKEditor is not already initialized on this textarea
-            if (!CKEDITOR.instances[selector.id]) {
-                CKEDITOR.replace(selector);
-            }
-    }
-
-    // Initialize CKEditor on all existing textareas when the document is ready
-    $(document).ready(function() {
-        // Initialize CKEditor for all existing textareas
-        $('.editor').each(function() {
-            initializeCKEditor(this);
-        });
-    });
-</script>
