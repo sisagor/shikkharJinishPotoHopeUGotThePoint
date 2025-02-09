@@ -91,7 +91,7 @@
                        title="{{ trans('help.tags')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <input class="form-control" id="tags" name="tags" value="{{$blog->seo->keywords}}" required placeholder="tag1,tag2,tag3,...">
+                    <input class="form-control" id="tags" name="tags" value="{{ $blog->seo->keywords ?? '' }}" required placeholder="tag1,tag2,tag3,...">
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
                        title="{{ trans('help.meta_description')}}"></i>
                 </label>
                 <div class="item form-group">
-                    <input class="form-control" id="meta_description" name="meta_description" value="{{$blog->seo->description}}" required placeholder="Meta Description (max 160 characters)">
+                    <input class="form-control" id="meta_description" name="meta_description" value="{{$blog->seo->description ?? ''}}" required placeholder="Meta Description (max 160 characters)">
                 </div>
             </div>
         </div>
@@ -155,7 +155,9 @@
             </div>
         </div>
 
-
+      
+        @if(count($blog->details) > 0)
+           
         <div id="dynamic-fields">
             @foreach($blog->details as $detail)
             <div class="dynamic-block mt-3">
@@ -174,7 +176,7 @@
                            title="{{ trans('help.image') }}"></i>
                     </label>
                     <div class="item form-group">
-                        <input type="file" class="form-control" name="images[]" value="{{$detail->image->path}}" placeholder="{{ trans('app.image') }}">
+                        <input type="file" class="form-control" name="images[]" value="{{$detail->image->path ?? ''}}" placeholder="{{ trans('app.image') }}">
                     </div>
                     <div> <img style="width: 100px; height: 100px;" src="{{get_storage_file_url(optional($detail->image)->path)}}" alt="Blog Image"></div>
                 </div>
@@ -185,7 +187,7 @@
                            title="{{ trans('help.image_alter') }}"></i>
                     </label>
                     <div class="item form-group">
-                        <input type="text" class="form-control" name="images_alter[]" value="{{$detail->image->image_alter}}"  placeholder="{{ trans('app.image_alter') }}">
+                        <input type="text" class="form-control" name="images_alter[]" value="{{$detail->image->image_alter ?? ''}}"  placeholder="{{ trans('app.image_alter') }}">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3">
@@ -213,9 +215,72 @@
                 </div>
             </div>
         </div>
+
+       
+
         @endforeach
 
       </div>
+      @else
+        <div id="dynamic-fields">
+            <div class="dynamic-block mt-3">
+                <div class="dynamic-block-header">
+                    Blog Details 
+                    <div class="text-end">
+                        <button type="button" class="btn btn-primary btn-sm float-right mr-2" id="add-field">Add More</button>
+                        <button type="button" class="btn btn-danger btn-sm float-right remove-field">Remove</button>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <label class="col-form-label label-align" for="image">
+                        {{ trans('app.image') }} (Size should be 770x500) <span class="required"></span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                        title="{{ trans('help.image') }}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input type="file" class="form-control" name="images[]"  placeholder="{{ trans('app.image') }}">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="col-form-label label-align" for="image_alter">
+                        {{ trans('app.image_alter') }} <span class="required"></span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                        title="{{ trans('help.image_alter') }}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <input type="text" class="form-control" name="images_alter[]"  placeholder="{{ trans('app.image_alter') }}">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="col-form-label label-align" for="details">
+                        {{ trans('app.order') }} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.order') }}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <select class="form-control" name="orders[]" required>
+                            <option value="">{{ trans('app.select') }}</option>
+                            @for($i = 1; $i <= 15; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <label class="col-form-label label-align" for="details">
+                        {{ trans('app.details') }} <span class="required">*</span>
+                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.details') }}"></i>
+                    </label>
+                    <div class="item form-group">
+                        <textarea class="form-control editor" id="initialEditor" name="details[]" placeholder="{{ trans('app.details') }}"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
+
 
 
 
