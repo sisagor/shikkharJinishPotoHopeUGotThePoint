@@ -2,6 +2,10 @@
 
 @section('form')
 
+@php
+   //dd($blog);
+
+@endphp
     <div class="showNotification"></div>
         <div class="form-body">
             @if(auth()->user()->role_id == '1')
@@ -15,8 +19,8 @@
                     <div class="item form-group">
                         <select class="form-control" name="author_id">
                             <option value="">{{trans('app.select')}}</option>
-                            @foreach($authors as $id => $author)
-                                <option value="{{ $author->id }}" @if(! empty($blog))@if($blog->created_by == $author->id) selected @endif @endif>{{ $author->name }}</option>
+                            @foreach($authors as $key => $author)
+                                <option value="{{ $author->id }}" @if($blog->created_by == $author->id) selected @endif>{{ $author->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -156,17 +160,17 @@
         </div>
 
       
-        @if(count($blog->details) > 0)
+       {{-- @if(count($blog->details) > 0)--}}
            
         <div id="dynamic-fields">
             @foreach($blog->details as $detail)
-            <div class="dynamic-block mt-3">
+            <div class="dynamic-block-exist mt-3">
                 <div class="dynamic-block-header">
                     Blog Details 
-                    {{-- <div class="text-end">
-                        <button type="button" class="btn btn-primary btn-sm float-right mr-2" id="add-field">Add More</button>
-                        <button type="button" class="btn btn-danger btn-sm float-right remove-field">Remove</button>
-                    </div> --}}
+                     <div class="text-end">
+                        {{--<button type="button" class="btn btn-primary btn-sm float-right mr-2" id="add-field">Add More</button>--}}
+                        <button type="button" class="btn btn-danger btn-sm float-right remove-field-exist">Remove</button>
+                    </div>
                 </div>
             <div class="row">
                 <div class="col-md-6 col-sm-6">
@@ -210,18 +214,17 @@
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.details') }}"></i>
                     </label>
                     <div class="item form-group">
-                        <textarea class="form-control editor" id="initialEditor" name="details[]" placeholder="{{ trans('app.details') }}">{{ $detail->details}}</textarea>
+                        <input type="hidden" class="form-control" name="details_id[]" value="{{$detail->id}}">
+                        <textarea class="form-control editor" id="initialEditor" name="details[]" placeholder="{{ trans('app.details') }}">{{ json_decode($detail->details)}}</textarea>
                     </div>
                 </div>
             </div>
         </div>
 
-       
-
         @endforeach
 
       </div>
-      @else
+    {{--  @else--}}
         <div id="dynamic-fields">
             <div class="dynamic-block mt-3">
                 <div class="dynamic-block-header">
@@ -234,7 +237,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <label class="col-form-label label-align" for="image">
-                        {{ trans('app.image') }} (Size should be 770x500) <span class="required"></span>
+                        {{ trans('app.image') }} (Size should be 770x500)
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                         title="{{ trans('help.image') }}"></i>
                     </label>
@@ -244,7 +247,7 @@
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <label class="col-form-label label-align" for="image_alter">
-                        {{ trans('app.image_alter') }} <span class="required"></span>
+                        {{ trans('app.image_alter') }}
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
                         title="{{ trans('help.image_alter') }}"></i>
                     </label>
@@ -254,11 +257,11 @@
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <label class="col-form-label label-align" for="details">
-                        {{ trans('app.order') }} <span class="required">*</span>
+                        {{ trans('app.order') }}
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.order') }}"></i>
                     </label>
                     <div class="item form-group">
-                        <select class="form-control" name="orders[]" required>
+                        <select class="form-control" name="orders[]">
                             <option value="">{{ trans('app.select') }}</option>
                             @for($i = 1; $i <= 15; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>
@@ -268,7 +271,7 @@
                 </div>
                 <div class="col-md-12 col-sm-12">
                     <label class="col-form-label label-align" for="details">
-                        {{ trans('app.details') }} <span class="required">*</span>
+                        {{ trans('app.details') }}
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.details') }}"></i>
                     </label>
                     <div class="item form-group">
@@ -278,11 +281,8 @@
             </div>
         </div>
     </div>
-    @endif
 
-
-
-
+   {{-- @endif--}}
 
     </div>
 
@@ -305,8 +305,55 @@
             $('.editor').each(function() {
                 initializeCKEditor(this);
             });
+
+
+
+            $('#add-field').click(function()
+            {
+                // var newField = $('#dynamic-fields .dynamic-block:first').clone();
+                // newField.find('input, select, textarea').val('');
+                // newField.find('.remove-field').show();
+                // newField.find('#add-field').hide();
+                // $('#dynamic-fields').append(newField);
+                // CKEDITOR.replace(newTextarea[0]);
+
+                var newField = $('#dynamic-fields .dynamic-block:first').clone();
+
+                // Reset the values of input, select, and textarea
+                newField.find('input, select, textarea').val('');
+
+                // Show the remove button and hide the add button
+                newField.find('.remove-field').show();
+                newField.find('#add-field').hide();
+
+                // Append the new field to the container
+                $('#dynamic-fields').append(newField);
+
+                var newTextarea = newField.find('textarea')[0];
+
+                // Initialize CKEditor only if it's not already initialized
+                if (!CKEDITOR.instances[newTextarea.id]) {
+                    initializeCKEditor(newTextarea);
+                }
+            });
+
+
+            $(document).on('click', '.remove-field', function() {
+                $(this).closest('.dynamic-block').remove();
+            });
+
+            $(document).on('click', '.remove-field-exist', function() {
+                $(this).closest('.dynamic-block-exist').remove();
+            });
+
+            // Hide remove button for the first set of fields
+            //$('#dynamic-fields .remove-field').hide();
+
+
         });
     </script>
+
+
 @endsection
 
 <style>

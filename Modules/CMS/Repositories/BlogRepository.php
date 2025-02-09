@@ -5,6 +5,7 @@ namespace Modules\CMS\Repositories;
 use App\Common\Filter;
 use App\Models\Image;
 use App\Models\SeoPage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Modules\CMS\Entities\Blog;
 use Illuminate\Queue\Jobs\JobName;
@@ -141,15 +142,20 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                 $created_by = $request->get('author_id');
             }
 
+            //dd($created_by);
             // Update blog entry
             $blog->update([
-                'com_id' => '',
+                'com_id' => null,
                 'blog_category_id' => $request->get('category_id'),
                 'title' => $request->get('title'),
                 'status' => $request->get('status'),
-                'order' => 1,
+                //'order' => $request->get('order'),
                 'created_by' => $created_by,
+                'updated_at' => Carbon::now()
             ]);
+
+            //Delete Old blog details
+            $blog->details()->delete();
 
             // Update or create SEO data
             $seoPage = SeoPage::updateOrCreate(
@@ -177,45 +183,51 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
             $orders = $request->get('orders', []);
             $images_alter = $request->get('images_alter', []);
             $images = $request->file('images', []);
+            //$detailsId = $request->get('details_id', []);
+
+
 
             // Update blog details
             foreach ($details as $index => $detail) {
                 $order = $orders[$index];
                 $image_alter = $images_alter[$index];
 
-                // Find or create new BlogDetail
-                $blogDetail = BlogDetails::updateOrCreate(
-                    ['blog_id' => $blog->id, 'order' => $order],
-                    [
-                        'details' => $detail,
-                        'status' => $request->get('status'),
-                    ]
-                );
+                if (!empty($detail)) {
+                    // Find or create new BlogDetail
+                    $blogDetail = BlogDetails::updateOrCreate(
+                        ['blog_id' => $blog->id, 'order' => $order],
+                        [
+                            'details' => json_encode($detail),
+                            'order' => $order,
+                            'status' => $request->get('status'),
+                        ]
+                    );
 
-                // Update or store associated image if exists
-                if (isset($images[$index])) {
-                    $file = $images[$index];
-                    $path = $file->store('images', 'public');
+                    // Update or store associated image if exists
+                    if (isset($images[$index])) {
+                        $file = $images[$index];
+                        $path = $file->store('images', 'public');
 
-                    // Check if image exists and delete old image if updating
-                    if ($blogDetail->images()->exists()) {
-                        $blogDetail->images()->delete();
+                        // Check if image exists and delete old image if updating
+                        if ($blogDetail->images()->exists()) {
+                            $blogDetail->images()->delete();
+                        }
+
+                        // Save new image
+                        $image = new Image([
+                            'path' => $path,
+                            'name' => $file->getClientOriginalName(),
+                            'extension' => $file->getClientOriginalExtension(),
+                            'size' => $file->getSize(),
+                            'order' => $order,
+                            'image_alter' => $image_alter,
+                            'type' => 'blog',
+                            'imageable_id' => $blogDetail->id,
+                            'imageable_type' => BlogDetails::class,
+                        ]);
+
+                        $blogDetail->images()->save($image);
                     }
-
-                    // Save new image
-                    $image = new Image([
-                        'path' => $path,
-                        'name' => $file->getClientOriginalName(),
-                        'extension' => $file->getClientOriginalExtension(),
-                        'size' => $file->getSize(),
-                        'order' => $order,
-                        'image_alter' => $image_alter,
-                        'type' => 'blog',
-                        'imageable_id' => $blogDetail->id,
-                        'imageable_type' => BlogDetails::class,
-                    ]);
-
-                    $blogDetail->images()->save($image);
                 }
             }
 

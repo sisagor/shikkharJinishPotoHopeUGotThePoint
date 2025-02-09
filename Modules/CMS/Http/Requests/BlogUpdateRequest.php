@@ -27,7 +27,7 @@ class BlogUpdateRequest extends RootRequest
             'title' => 'required|string|max:255',
             'status' => 'required|integer',
             'orders' => 'required|array',
-            'orders.*' => 'integer',
+            'orders.*' => 'nullable|integer',
             'details' => 'required|array',
             'details.*' => 'nullable|string',
             'images' => 'array',

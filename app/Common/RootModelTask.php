@@ -23,10 +23,6 @@ trait RootModelTask
                 $model->com_id = \request()->get('com_id') ?? Auth::user()->com_id;
             }
 
-            if (Schema::hasColumn($table, 'created_by')) {
-                $model->created_by = Auth::id();
-            }
-
             self::clearCacheOnChange($model);
 
         });
