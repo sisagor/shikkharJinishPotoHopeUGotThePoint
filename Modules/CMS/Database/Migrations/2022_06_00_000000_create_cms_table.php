@@ -49,7 +49,7 @@ class CreateCmsTable extends Migration
             Schema::create('blog_details', function (Blueprint $table) {
                 $table->id();
                 $table->bigInteger('blog_id')->unsigned()->nullable();
-                $table->string('details');
+                $table->longText('details');
                 $table->integer('order')->nullable();
                 $table->tinyInteger('status')->default(0)->nullable();
                 $table->softDeletes();
