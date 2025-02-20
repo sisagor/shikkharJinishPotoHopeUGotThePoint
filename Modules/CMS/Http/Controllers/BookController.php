@@ -86,6 +86,7 @@ class BookController extends Controller
     public function store(BookCreateRequest $request): RedirectResponse
     {
         $unsetImage = $request->validated();
+
         unset($unsetImage['image']);
 
         $book = Book::create($unsetImage);

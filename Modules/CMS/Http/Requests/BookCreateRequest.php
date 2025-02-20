@@ -18,6 +18,7 @@ class BookCreateRequest extends RootRequest
             'name' => 'required',
             'url' => 'required',
             'status' => 'required',
+            'url_type' => 'nullable',
             'order' => 'required',
             'image' => 'required',
         ];

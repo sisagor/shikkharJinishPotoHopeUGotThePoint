@@ -742,8 +742,10 @@ return [
     'comments' => 'Comments',
     'comment' => 'Comment',
     'parent_comment' => 'Parent Comment',
-    'approve' => 'Approve',
     'subscriber' => 'Subscriber',
+    'nofollow' => 'nofollow',
+    'dofollow' => 'dofollow',
+    'url_type' => 'URL Type',
 
 
     
