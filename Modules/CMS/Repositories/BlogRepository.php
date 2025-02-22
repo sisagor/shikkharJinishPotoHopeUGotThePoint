@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\SeoPage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Modules\CMS\Entities\Blog;
 use Illuminate\Queue\Jobs\JobName;
 use Illuminate\Support\Facades\DB;
@@ -53,8 +54,10 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                 'com_id' => '',
                 'blog_category_id' => $request->get('category_id'),
                 'title' => $request->get('title'),
+                'slug' => Str::slug($request->get('title'), '-'),
                 'status' => $request->get('status'),
                 'order' => 1,
+                'url_type' => $request->get('url_type'),
                 'created_by' => $created_by
             ]);
 
@@ -149,13 +152,15 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                 'blog_category_id' => $request->get('category_id'),
                 'title' => $request->get('title'),
                 'status' => $request->get('status'),
+                'url_type' => $request->get('url_type'),
+                'slug' => Str::slug($request->get('title'), '-'),
                 //'order' => $request->get('order'),
                 'created_by' => $created_by,
                 'updated_at' => Carbon::now()
             ]);
 
             //Delete Old blog details
-            $blog->details()->delete();
+            //$blog->details()->delete();
 
             // Update or create SEO data
             $seoPage = SeoPage::updateOrCreate(
@@ -197,7 +202,7 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                     $blogDetail = BlogDetails::updateOrCreate(
                         ['blog_id' => $blog->id, 'order' => $order],
                         [
-                            'details' => json_encode($detail),
+                            'details' => ($detail),
                             'order' => $order,
                             'status' => $request->get('status'),
                         ]

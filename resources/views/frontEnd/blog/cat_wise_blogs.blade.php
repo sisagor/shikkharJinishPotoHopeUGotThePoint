@@ -58,6 +58,9 @@
                 <div class="row">
                     @foreach($categories as $category)
                         @foreach($category['blogs'] as $blog)
+                            @php
+                                //dd($blog);
+                            @endphp
                             <div class="col-md-4 mb-3">
                                 <div class="card_design">
                                     <img src="{{ get_storage_file_url($blog['first_image']) }}" alt="Avatar" width="300px" height="384px">
@@ -68,12 +71,12 @@
                                         <p class="author_name">{{ date('d M, Y', strtotime($blog['created_at'])) }}</p>
                                     </div>
                                     <div class="card_title">
-                                        <a href="/blog/{{ $blog['id'] }}">
+                                        <a rel="{{$blog['url_type']}}" href="/{{ $blog['slug'] }}">
                                             <h4>{{ $blog['title'] }}</h4>
                                         </a>
                                     </div>
                                     <div class="download_button">
-                                        <a href="/blog/{{ $blog['id'] }}">
+                                        <a rel="{{$blog['url_type']}}" href="/{{ $blog['slug'] }}">
                                             Details
                                             <img src="{{ asset('/frontEnd/img/ArrowUp.png') }}" width="16px" height="16px" alt="button" />
                                         </a>
@@ -103,12 +106,12 @@
                                         <p class="author_name">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
                                     </div>
                                     <div class="card_title">
-                                        <a href="/blog/{{$blog['id']}}">
+                                        <a rel="{{$blog['url_type']}}" href="/{{ $blog['slug'] }}">
                                             <h4>{{$blog['title']}}</h4>
                                         </a>
                                     </div>
                                     <div class="download_button">
-                                      <a href="/blog/{{$blog['id']}}">
+                                        <a rel="{{$blog['url_type']}}" href="/{{ $blog['slug'] }}">
                                             Details
                                             <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
                                       </a>

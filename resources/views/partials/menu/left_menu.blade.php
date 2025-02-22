@@ -1,6 +1,6 @@
 <div class="left_col">
     <div class="navbar nav_title">
-        <a href="{{url('dashboard')}}" class="site_title @if(request()->is('dashboard')) active @endif">
+        <a href="{{route('dashboard')}}" class="site_title @if(request()->is('admin/dashboard')) active @endif">
            {{-- @if(config('system_settings.logo.path'))
                 <img  class="img-responsive logo_img"
                      src="{{ get_storage_file_url(config('system_settings.logo'), 'logo') }}" alt="logo">
@@ -71,7 +71,7 @@
          <a data-toggle="tooltip" data-placement="top" title="Lock">
              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
          </a>--}}
-        <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{url('logout')}}">
+        <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{route('logout')}}">
             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
         </a>
     </div>

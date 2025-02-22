@@ -106,6 +106,21 @@
                     <input class="form-control" id="tags" name="tags" required placeholder="tag1,tag2,tag3,...">
                 </div>
             </div>
+
+            {{--URL TYPE--}}
+            <div class="col-md-4 col-sm-4">
+                <label class="col-form-label label-align" for="url_type">
+                    {{trans('app.url_type')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.url_type')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <select class="form-control" name="url_type" id="url_type">
+                        <option value="nofollow">{{trans('app.nofollow')}}</option>
+                        <option value="" selected>{{trans('app.dofollow')}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12">

@@ -20,7 +20,7 @@ class Blog extends RootModel
     //protected $cascadeDeletes = ['job_applications', 'job_interview'];
 
     protected $fillable = [
-        'id', 'com_id', 'blog_category_id', 'title', 'order', 'status', 'created_by', 'view'
+        'id', 'com_id', 'blog_category_id', 'title', 'order', 'status', 'url_type', 'slug', 'created_by', 'view'
     ];
 
     public function blog_category()

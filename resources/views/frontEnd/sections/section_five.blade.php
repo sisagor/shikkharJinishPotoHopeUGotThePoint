@@ -20,12 +20,12 @@
                         <p class="author_name">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
                     </div>
                     <div class="card_title">
-                        <a href="/blog/{{$blog['id']}}">
-                            <h4>{{$blog['title']}}</h4>
+                        <a rel="{{$blog['url_type']}}" href="/{{ $blog['slug'] }}">
+                            <h4>{{ $blog['title'] }}</h4>
                         </a>
                     </div>
                     <div class="download_button">
-                        <a href="/blog/{{$blog['id']}}">
+                        <a rel="{{$blog['url_type']}}" href="/{{ $blog['slug'] }}">
                             Details
                             <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" width="16px" height="16px" alt="button" />
                         </a>

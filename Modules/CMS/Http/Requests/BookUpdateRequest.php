@@ -16,6 +16,7 @@ class BookUpdateRequest extends RootRequest
     {
         return [
             'name' => 'required',
+            'url_type' => 'nullable',
             'url' => 'required',
             'status' => 'required',
             'order' => 'required',

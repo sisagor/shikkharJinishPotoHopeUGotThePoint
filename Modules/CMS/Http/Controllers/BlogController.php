@@ -155,6 +155,7 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blog = Blog::with('details.image','seo','books')->where('id',$id)->first();
+        //dd($blog);
         $categories = BlogCategory::active()->pluck('name', 'id');
         $books = Book::where('status',1)->get();
         $authors = User::where('status',1)->where('role_id', 2)->get();
@@ -247,10 +248,9 @@ class BlogController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function trash()
+    public function trash(Blog $blog)
     {
-        $interview = 1;
-        if ($interview) {
+        if ($blog->delete()) {
 
             sendActivityNotification(trans('msg.noty.soft_deleted', ['model' => trans('model.blog')]));
 

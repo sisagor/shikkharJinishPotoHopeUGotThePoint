@@ -32,6 +32,7 @@ class BlogCreateRequest extends RootRequest
             'details.*' => 'nullable|string',
             'images' => 'array',
             'images.*' => 'file|mimes:jpeg,jpg,png|max:2048',
+            'url_type' => 'nullable',
 
         ], $required);
     }

@@ -158,7 +158,7 @@
                                         <p class="author_name">{{ date('d M, Y',strtotime($lblog['created_at']))}}</p>
                                     </div>
                                     <div class="card_title">
-                                        <h4><a href="/blog/{{ $lblog['id'] }}">{{ $lblog['title'] }}</a></h4>
+                                        <h4><a rel="{{$blog['url_type']}}" href="/{{ $lblog['slug'] }}">{{ $lblog['title'] }}</a></h4>
                                     </div>
                                 </div>
                             </div>
@@ -298,7 +298,7 @@
                     <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
                     <div class="article-info">
                         <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
-                        <h3><a href="/blog/{{$blog['id']}}">{{$blog['title']}}</a></h3>
+                        <h3><a rel="{{$blog['url_type']}}" href="/{{$blog['slug']}}">{{$blog['title']}}</a></h3>
                     </div>
                 </div>
                 @endforeach

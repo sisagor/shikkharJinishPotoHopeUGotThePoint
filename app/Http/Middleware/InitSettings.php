@@ -25,7 +25,7 @@ class InitSettings
     public function handle($request, Closure $next)
     {
         config()->set('system_settings', system_settings());
-        config()->set('sms_gateway', sms_gateway());
+        //config()->set('sms_gateway', sms_gateway());
 
         //dd(system_settings());
 

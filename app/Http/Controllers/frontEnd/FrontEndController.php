@@ -85,6 +85,8 @@ class FrontEndController extends Controller
                     return [
                         'title' => $blog->title,
                         'id' => $blog->id,
+                        'url_type' => $blog->url_type,
+                        'slug' => $blog->slug,
                         'created_by' => (!empty($blog->user) ? $blog->user->name : null),
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail){
@@ -111,6 +113,8 @@ class FrontEndController extends Controller
                     return [
                         'title' => $blog->title,
                         'id' => $blog->id,
+                        'url_type' => $blog->url_type,
+                        'slug' => $blog->slug,
                         'created_by' => (!empty($blog->user) ? $blog->user->name : null ),
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail){
@@ -138,6 +142,8 @@ class FrontEndController extends Controller
                     return [
                         'title' => $blog->title,
                         'id' => $blog->id,
+                        'url_type' => $blog->url_type,
+                        'slug' => $blog->slug,
                         'created_by' => (!empty($blog->user) ? $blog->user->name : null ),
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail){
@@ -226,6 +232,8 @@ class FrontEndController extends Controller
                     return [
                         'title' => $blog->title,
                         'id' => $blog->id,
+                        'slug' => $blog->slug,
+                        'url_type' => $blog->url_type,
                         'created_by' => (!empty($blog->user) ? $blog->user->name : null ),
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail) {
@@ -241,12 +249,16 @@ class FrontEndController extends Controller
     }
 
     
-    public function blogDetails(Request $request, $id)
+    public function blogDetails(Request $request, $slug)
     {
+
+        $blog = Blog::with(['user', 'user.profile.image', 'details', 'details.image'])
+            ->where('slug', $slug)
+            ->first();
 
         $seo = SeoPage::where([
                 ['status', '=', RootModel::STATUS_ACTIVE],
-                ['page_id', '=', $id],
+                ['page_id', '=', $blog->id],
                 ['type', '=', 'blog']
             ])->first();
 
@@ -260,10 +272,6 @@ class FrontEndController extends Controller
             $this->seo()->setDescription($seo->description);
         }
 
-        $blog = Blog::with(['user', 'user.profile.image', 'details', 'details.image'])
-                    ->where('id', $id)
-                    ->first();
-
         $popularBlogs = $this->getPopularBlogDetailsWithFirstimage();
 
         $latestBlogs = $this->getLatestBlogDetailsWithFirstimage();
@@ -274,8 +282,8 @@ class FrontEndController extends Controller
         //$latestBlogs = Blog::latest()->limit(5)->get();
 
         //$popularBook = Book::with('image')->select(Book::$select)->orderBy('view', 'desc')->first();
-        $blogBooks = BlogBook::with('book.image')->where('blog_id', $id)->get();
-        $comments = Comment::with('replays')->where('blog_id',$id)->where('parent_id',0)->where('status',1)->orderBy('created_at', 'desc')->get();
+        $blogBooks = BlogBook::with('book.image')->where('blog_id', $blog->id)->get();
+        $comments = Comment::with('replays')->where('blog_id', $blog->id)->where('parent_id',0)->where('status',1)->orderBy('created_at', 'desc')->get();
         //dd($blog);
 
         return view('frontEnd.blog.single_blog', compact('blog','popularBlogs','latestBlogs','blogBooks','comments','tags','previousPost','nextPost','relatedBlogs'));
@@ -313,57 +321,6 @@ class FrontEndController extends Controller
     }
 
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function jobs(Request $request)
-    {
-        $jobs = $this->service->jobs($request);
-
-        return view('frontEnd.jobs.jobs', compact('jobs'));
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function jobShow(Request $request, $id)
-    {
-        $job = $this->service->job($request, $id);
-
-        return view('frontEnd.jobs.show', compact('job'));
-    }
-
-    /**
-     * Apply load
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function jobApply(Request $request, $id)
-    {
-        $job = $this->service->job($request, $id);
-        return view('frontEnd.jobs.apply', compact('job'));
-    }
-
-    /**
-     * Apply load
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function jobApplyStore(JobApplicationRequest $request, $id)
-    {
-        if ($this->service->storeApplication($request, $id)) {
-
-            sendActivityNotification(trans('msg.noty.created', ['model' => trans('model.job_application')]));
-
-            return redirect()->back()->with('success', trans('msg.create_success', ['model' => trans('model.job_application')]));
-        }
-
-        return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.job_application')]))->withInput();
-    }
 
     public function storeEmail(Request $request)
     {
@@ -396,6 +353,8 @@ class FrontEndController extends Controller
                     return [
                         'title' => $blog->title,
                         'id' => $blog->id,
+                        'url_type' => $blog->url_type,
+                        'slug' => $blog->slug,
                         'created_by' => (!empty($blog->user) ? $blog->user->name : null),
                         'created_at' => $blog->created_at,
                         'details' => $blog->details->map(function($detail){

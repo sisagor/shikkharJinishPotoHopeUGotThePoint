@@ -37,7 +37,7 @@
                         </a>
                     @endif
                     <a class="dropdown-item" target="_blank" href="{{config('app.documentation')}}">{{trans('app.help') ?? "Help"}}</a>
-                    <a class="dropdown-item" href="{{url('logout')}}"><i class="fa fa-sign-out pull-right"></i> {{trans('app.logout')}}</a>
+                    <a class="dropdown-item" href="{{route('logout')}}"><i class="fa fa-sign-out pull-right"></i> {{trans('app.logout')}}</a>
                 </div>
             </li>
 

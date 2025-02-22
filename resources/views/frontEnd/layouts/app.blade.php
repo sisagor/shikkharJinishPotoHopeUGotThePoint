@@ -17,7 +17,7 @@
 </head>
 <body>
 
- @yield('contents')
+@yield('contents')
 
 <!-- subscribe section  -->
 <section style="height: 245px;">

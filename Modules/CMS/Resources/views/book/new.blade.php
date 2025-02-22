@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            {{--Status--}}
+            {{--URL TYPE--}}
             <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="url_type">
                     {{trans('app.url_type')}}
