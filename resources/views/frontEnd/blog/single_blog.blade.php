@@ -452,9 +452,9 @@
       border: 0.5px dashed #CB1F27;
       background: rgba(203, 31, 39, 0.08); 
   }
-  .single_post_details {
+  /* .single_post_details {
       text-align: center;
-  }
+  } */
   .download-button {
       display: inline-flex;
       height: 64px;

@@ -19,7 +19,10 @@
                 <img class="bg_new_index_up" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="" />
                 <div class="bg_new_index_down text-center mt-2" style="top: 430px;">
                     <div class="card_title">
-                        <h4 class="text_color">{{$book->name}}</h4>
+                        <a rel="{{$book->url_type}}" href="{{($book->url)}}">
+                            <h4 class="text_color">{{$book->name}}</h4>
+                        </a>
+                       
                     </div>
                 </div>
             </div>
