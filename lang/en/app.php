@@ -715,7 +715,6 @@ return [
     'order' => 'Order',
     'new_book' => 'New Book',
     'edit_book' => 'Edit Book',
-    'order' => 'Order',
     'update_seo' => 'Update SEO Content',
     'slug' => 'Slug',
     'keywords' => 'Keywords',

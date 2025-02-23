@@ -126,7 +126,7 @@
                 <div class="row">
                     <div class="col-md-6 text-left">
                         @if ($previousPost)
-                            <a href="/blog/{{ $previousPost->id }}" class="navigation-button">
+                            <a href="/{{ $previousPost->slug }}" class="navigation-button">
                                 {{-- <span>&#8592;</span> Previous Post: {{ $previousPost->title }} --}}
                                 <span>&#8592;</span> Previous Post
                             </a>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-md-6 text-right">
                         @if ($nextPost)
-                            <a href="/blog/{{ $nextPost->id }}" class="navigation-button">
+                            <a href="/{{ $nextPost->slug }}" class="navigation-button">
                                 {{-- Next Post: {{ $nextPost->title }} <span>&#8594;</span> --}}
                                 Next Post <span>&#8594;</span>
                             </a>
