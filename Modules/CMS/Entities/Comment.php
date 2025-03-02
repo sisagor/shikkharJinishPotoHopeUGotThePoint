@@ -4,12 +4,12 @@ namespace Modules\CMS\Entities;
 
 use App\Models\RootModel;
 use App\Common\Imageable;
-
+use App\Models\User;
 
 
 class Comment extends RootModel
 {
-    use Imageable;
+    //use Imageable;
 
     protected $table = 'comments';
 
@@ -31,6 +31,11 @@ class Comment extends RootModel
     public function parent_comment()
     {
         return $this->belongsTo(Comment::class, 'parent_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 }

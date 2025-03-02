@@ -14,9 +14,13 @@
             <div class="col-md-4">
                 <div class="card_design">
                     @if($category->image)
-                        <img src="{{ get_storage_file_url($category->image->path) }}" alt="Avatar" width ="300px" height = "384px" >
+                        <a href="/blog/category?id={{$category['id']}}">
+                            <img src="{{ get_storage_file_url($category->image->path) }}" alt="Avatar" width ="300px" height = "384px" >
+                        </a>
                     @else
-                        <img src="{{ asset('frontEnd/img/BookImage.png') }}" alt="Avatar" width ="300px" height = "384px" >
+                        <a href="/blog/category?id={{$category['id']}}">
+                            <img src="{{ asset('frontEnd/img/BookImage.png') }}" alt="Avatar" width ="300px" height = "384px" >
+                        </a>
                     @endif
                     <div class="text-center mt-2">
                         <div class="card_title">

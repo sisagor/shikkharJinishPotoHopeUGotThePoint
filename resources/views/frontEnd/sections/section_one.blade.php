@@ -30,28 +30,67 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 mt-3">
                 <div class="frame_group d-flex flex-wrap justify-content-between">
-                    <div class="frame col-md-5">
-                        <img class="frame_bg_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}" alt="" />
-                        <img class="frame_book_up" src="{{asset('/frontEnd/img/5804202_33970.png')}}" alt="Book feature">
-                    </div>
-                    <div class="frame col-md-6">
-                        <img class="frame_bg_down_two" src="{{asset('/frontEnd/img/Rectangler69.png')}}" alt="" />
-                        <img class="frame_book_up_two" src="{{asset('/frontEnd/img/5804202_33970.png')}}" alt="Book feature">
-                    </div>
+                    @foreach($popularBook as $key => $book)
+                        @if($key < 2)
+                            @if($key == 0)
+                                <div class="frame col-md-5">
+                                    <img class="frame_bg_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}" alt="" />
+                                    <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
+                                        <img class="frame_book_up" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="">
+                                    </a>
+                                </div>
+                            @else
+                                <div class="frame col-md-6">
+                                    <img class="frame_bg_down_two" src="{{asset('/frontEnd/img/Rectangler69.png')}}" alt="" />
+                                    <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
+                                    <img class="frame_book_up_two" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="">
+                                    </a>
+                                </div>
+                            @endif
+                        @endif
+                      {{--  <div class="frame col-md-6">
+                            <img class="frame_bg_down_two" src="{{asset('/frontEnd/img/Rectangler69.png')}}" alt="" />
+                            <img class="frame_book_up_two" src="{{asset('/frontEnd/img/5804202_33970.png')}}" alt="Book feature">
+                        </div>--}}
+                    @endforeach
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 mt-3">
                 <div class="frame_group d-flex flex-wrap justify-content-between">
-                    <div class="frame col-md-5">
+
+                    @foreach($popularBook as $key => $book)
+                        @if($key > 1)
+                            @if($key == 2)
+                                <div class="frame col-md-5">
+                                    <img class="frame_bg_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}" alt="" />
+                                    <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
+                                        <img class="frame_book_up" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="">
+                                    </a>
+                                </div>
+                            @else
+                                <div class="frame col-md-6">
+                                    <img class="frame_bg_down_two" src="{{asset('/frontEnd/img/Rectangler69.png')}}" alt="" />
+                                    <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
+                                        <img class="frame_book_up_two" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="">
+                                    </a>
+                                </div>
+                            @endif
+                        @endif
+                        {{--  <div class="frame col-md-6">
+                              <img class="frame_bg_down_two" src="{{asset('/frontEnd/img/Rectangler69.png')}}" alt="" />
+                              <img class="frame_book_up_two" src="{{asset('/frontEnd/img/5804202_33970.png')}}" alt="Book feature">
+                          </div>--}}
+                    @endforeach
+                  {{--  <div class="frame col-md-5">
                         <img class="frame_bg_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}" alt="" />
                         <img class="frame_book_up" src="{{asset('/frontEnd/img/5804202_33970.png')}}" alt="Book feature">
                     </div>
                     <div class="frame col-md-6">
                         <img class="frame_bg_down_two" src="{{asset('/frontEnd/img/Rectangler69.png')}}" alt="" />
                         <img class="frame_book_up_two" src="{{asset('/frontEnd/img/5804202_33970.png')}}" alt="Book feature">
-                    </div>
+                    </div>--}}
                 </div>
             </div>
         </div>
