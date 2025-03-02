@@ -21,7 +21,7 @@
         <section class="about-us">
             <div class="left-panel">
                 <div class="illustration">
-                    <img src="/frontEnd/img/Vector-img.png" alt="Engaging Education" />
+                    <img src="{{asset('frontEnd/img/Vector-img.png')}}" alt="Engaging Education" />
                 </div>
             </div>
     
@@ -69,16 +69,16 @@
         <section class="main-mission-vision-section">
             <div class="mission-vision-container">
                 <div class="card mission">
-                    <img src="/frontEnd/img/Vector-mission.png" alt="Mission Image" class="card-image">
+                    <img src="{{asset('frontEnd/img/Vector-mission.png')}}" alt="Mission Image" class="card-image">
                     <h2>Our Mission:</h2>
                     <p>
                         Our mission is to create a one-stop shop for parents, educators, and caregivers seeking innovative and interactive activities for kids. We strive to:
                     </p>
                     <ul>
-                        <li><img src="/frontEnd/img/check-container-icon.png" alt="check icon">Make Learning Fun</li>
-                        <li><img src="/frontEnd/img/check-container-icon.png" alt="check icon">Spark Creativity and Imagination</li>
-                        <li><img src="/frontEnd/img/check-container-icon.png" alt="check icon">Empower Parents & Educators</li>
-                        <li><img src="/frontEnd/img/check-container-icon.png" alt="check icon">Promote Inclusivity and Accessibility</li>
+                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Make Learning Fun</li>
+                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Spark Creativity and Imagination</li>
+                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Empower Parents & Educators</li>
+                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Promote Inclusivity and Accessibility</li>
                     </ul>
                 </div>
                 <div class="card vision">
@@ -87,12 +87,12 @@
                         We envision a world where children are excited to learn, overflowing with curiosity, and empowered to reach their full potential.
                     </p>
                     <ul>
-                        <li><img src="/frontEnd/img/check-container-icon.png" alt="check icon">Make Learning Fun</li>
-                        <li><img src="/frontEnd/img/check-container-icon.png" alt="check icon">Spark Creativity and Imagination</li>
-                        <li><img src="/frontEnd/img/check-container-icon.png" alt="check icon">Empower Parents & Educators</li>
-                        <li><img src="/frontEnd/img/check-container-icon.png" alt="check icon">Promote Inclusivity and Accessibility</li>
+                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Make Learning Fun</li>
+                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Spark Creativity and Imagination</li>
+                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Empower Parents & Educators</li>
+                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Promote Inclusivity and Accessibility</li>
                     </ul>
-                    <img src="/frontEnd/img/Vector-vision.png" alt="Vision Image" class="card-image">
+                    <img src="{{asset('frontEnd/img/Vector-vision.png')}}" alt="Vision Image" class="card-image">
                 </div>
             </div>
         </section>

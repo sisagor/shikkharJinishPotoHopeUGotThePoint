@@ -58,7 +58,16 @@ if (!auth()->user()) {
     ##front-end
     Route::get('/', [FrontEndController::class, 'index'])->name('home');
     /*this is slug based for permalink*/
-    Route::get('/{slug}', [FrontEndController::class, 'blogDetails'])->name('blog');
+
+    $url = str_replace('/', '', request()->getRequestUri());
+    //dd($url);
+
+    if ($url != "about-us" && $url != "contact-us" && $url != "contact-store"
+        && $url != "email_subscription" && $url != "filter-blogs"
+        && $url != "comment" && $url != "logout")
+    {
+        Route::get('/{slug}', [FrontEndController::class, 'blogDetails'])->name('blog');
+    }
 
     //Route::get('home', [FrontEndController::class, 'index'])->name('home');
     //Route::get('blogs', [\App\Http\Controllers\frontEnd\BlogController::class, 'index'])->name('blogs');
@@ -113,7 +122,7 @@ Route::middleware(['auth'])->group(function ()
     Route::get('admin/notification/markAsRead', [HomeController::class, 'markAsRead'])->name('markAsRead');
 
     //Logout Route:
-    Route::get('admin/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
+    Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
     Route::get('admin/test', [\App\Http\Controllers\TestController::class, 'test']);
 });

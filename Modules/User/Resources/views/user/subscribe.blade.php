@@ -14,7 +14,7 @@
 @endsection
 
 @section('trash')
-    <table class="trash-table table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
+    <table class="table table-striped table-bordered no-footer dtr-inline w-100" role="grid" aria-describedby="datatable-buttons_info">
         <thead>
         <tr>
             <th>#</th>

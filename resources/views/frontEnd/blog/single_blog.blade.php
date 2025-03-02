@@ -75,7 +75,7 @@
                         @foreach($blogBooks as $blogBook)
                             <div class="col-md-4">
                                 @if($blogBook->book)
-                                    <img src="{{get_storage_file_url(optional($blogBook->book->image)->path)}}" alt="book image" style="display:block;margin: auto;">
+                                    <img src="{{get_storage_file_url(optional($blogBook->book->image)->path)}}" alt="book image" style="display:block;margin: auto;width: inherit;">
                                     <a target="_blank" href="{{$blogBook->book->url}}" class="download-button mt-3">
                                         <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="download icon" class="download_icon">
                                         Download this Book
