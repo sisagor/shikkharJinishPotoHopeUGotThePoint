@@ -74,7 +74,7 @@ class BlogController extends Controller
                     return $details;
                 })
                 ->addColumn('action', function ($row) {
-                    return view_button('cms.blog.view', $row). edit_button('cms.blog.edit', $row, 0) . trash_button('cms.blog.trash', $row);
+                    return /*view_button('cms.blog.view', $row).*/ edit_button('cms.blog.edit', $row, 0) . trash_button('cms.blog.trash', $row);
                 })
                 ->rawColumns(['status', 'action', 'details'])
                 ->make(true);
@@ -145,6 +145,18 @@ class BlogController extends Controller
         }
 
         return redirect()->back()->with('error', trans('msg.create_failed', ['model' => trans('model.blog')]))->withInput();
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show(Blog $blog)
+    {
+
+
     }
 
     /**

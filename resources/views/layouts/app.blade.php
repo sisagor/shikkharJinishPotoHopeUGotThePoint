@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/ico"/>
+    <link rel="icon" href="{{asset('./frontEnd/img/Logo.png')}}" type="image/ico"/>
     <!-- Bootstrap -->
     <link href="{{mix('css/vendor.css')}}" rel="stylesheet" type="text/css" {{--media="wait" onload="if(media!='all')media='all'"--}}>
     <!-- style scope -->

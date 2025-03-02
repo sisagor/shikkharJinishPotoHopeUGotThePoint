@@ -330,7 +330,6 @@ class UserController extends Controller
                 })
                 ->make(true);
         }
-
     }
 
     public function subscribeDelete($id)
