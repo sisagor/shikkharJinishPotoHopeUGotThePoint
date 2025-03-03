@@ -126,7 +126,7 @@
                 <div class="row">
                     <div class="col-md-6 text-left">
                         @if ($previousPost)
-                            <a href="/{{ $previousPost->slug }}" class="navigation-button">
+                            <a href="/blog/{{ $previousPost->slug }}" class="navigation-button">
                                 {{-- <span>&#8592;</span> Previous Post: {{ $previousPost->title }} --}}
                                 <span>&#8592;</span> Previous Post
                             </a>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-md-6 text-right">
                         @if ($nextPost)
-                            <a href="/{{ $nextPost->slug }}" class="navigation-button">
+                            <a href="/blog/{{ $nextPost->slug }}" class="navigation-button">
                                 {{-- Next Post: {{ $nextPost->title }} <span>&#8594;</span> --}}
                                 Next Post <span>&#8594;</span>
                             </a>
@@ -158,7 +158,7 @@
                                         <p class="author_name">{{ date('d M, Y',strtotime($lblog['created_at']))}}</p>
                                     </div>
                                     <div class="card_title">
-                                        <h4><a rel="{{$blog['url_type']}}" href="/{{ $lblog['slug'] }}">{{ $lblog['title'] }}</a></h4>
+                                        <h4><a href="/blog/{{ $lblog['slug'] }}">{{ $lblog['title'] }}</a></h4>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +172,13 @@
                 <h2>{{count($comments)}} Comments:</h2>
                 @foreach($comments as $comment)
                 <div class="comment-card">
-                    <img src="{{asset('/frontEnd/img/Rectangle 169-comment.png')}}" alt="Author Image" class="author-comment">
+                    @if($comment->user)
+                        @if($comment->user->profile->image)
+                        <img src="{{get_storage_file_url(optional($comment->user->profile->image)->path, 'tiny_thumb')}}" alt="Author Image" class="author-comment">
+                       @endif
+                    @else
+                        <img src="{{asset('/frontEnd/img/user2.png')}}" alt="Author Image" class="author-comment">
+                    @endif
                     <div class="comment-content">
                         <div class="comment-header">
                             <div class="author-details">
@@ -197,7 +203,7 @@
                                     </div>
                                     <div class="modal-body">
                                     <!-- Form for Reply -->
-                                    <form action="/comment" method="post" class="comment-form">
+                                    <form action="{{route('comment')}}" method="post" class="comment-form">
                                         @csrf
                                         <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
                                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
@@ -231,7 +237,13 @@
                 @if(count($comment['replays']) > 0)
                     @foreach($comment['replays'] as $rcomment)
                     <div class="comment-card child">
-                        <img src="{{asset('/frontEnd/img/Rectangle 169-comment.png')}}" alt="Author Image" class="author-comment">
+                        @if($comment->user)
+                            @if($comment->user->profile->image)
+                                <img src="{{get_storage_file_url(optional($comment->user->profile->image)->path, 'tiny_thumb')}}" alt="Author Image" class="author-comment">
+                            @endif
+                        @else
+                            <img src="{{asset('/frontEnd/img/user2.png')}}" alt="Author Image" class="author-comment">
+                        @endif
                         <div class="comment-content">
                             <div class="comment-header">
                                 <div class="author-details">
@@ -263,7 +275,7 @@
                 </div> --}}
             </div><div class="comment-form-container">
                 <h2>Leave your Comment</h2>
-                <form action="/comment" method="post" class="comment-form">
+                <form action="{{route('comment')}}" method="post" class="comment-form">
                     @csrf
                     <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
                     <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
@@ -298,7 +310,7 @@
                     <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
                     <div class="article-info">
                         <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
-                        <h3><a rel="{{$blog['url_type']}}" href="/{{$blog['slug']}}">{{$blog['title']}}</a></h3>
+                        <h3><a href="/blog/{{$blog['slug']}}">{{$blog['title']}}</a></h3>
                     </div>
                 </div>
                 @endforeach

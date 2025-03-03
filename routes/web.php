@@ -25,49 +25,26 @@ Route::get('clear', function (\Illuminate\Http\Request $request)
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
     //\Illuminate\Support\Facades\Artisan::call('optimize');
     //clear attendance from machine;
-
-
     //Create symlink
    /* File::link(
         storage_path('app/public'), public_path('storage')
     );*/
-
-    if ($request->get('ip'))
-    {
-        try {
-            $zkt = new \App\Services\ZKTService($request->get('ip'));
-            //dd($zkt->connect());
-            //$zkt->clearAttendance();
-            $zkt->connect();
-
-            dd($zkt->getUser());
-            dd($zkt->setUser(55, 55, 'Sagor', '12345', 0));
-
-            return "attendance log clear success!";
-        }
-        catch (Exception $exception)
-        {
-            dd($exception);
-        }
-    }
-
     return "Cache cleared!";
 });
 
 if (!auth()->user()) {
     ##front-end
     Route::get('/', [FrontEndController::class, 'index'])->name('home');
-    /*this is slug based for permalink*/
 
-    $url = str_replace('/', '', request()->getRequestUri());
+    /*this is slug based for permalink*/
+    $url = request()->getRequestUri();
     //dd($url);
 
-    if ($url != "about-us" && $url != "contact-us" && $url != "contact-store"
-        && $url != "email_subscription" && $url != "filter-blogs"
-        && $url != "comment" && $url != "logout")
+    if ($url != "/blog/category")
     {
-        Route::get('/{slug}', [FrontEndController::class, 'blogDetails'])->name('blog');
+        Route::get('/blog/{slug}', [FrontEndController::class, 'blogDetails'])->name('blog');
     }
+
 
     //Route::get('home', [FrontEndController::class, 'index'])->name('home');
     //Route::get('blogs', [\App\Http\Controllers\frontEnd\BlogController::class, 'index'])->name('blogs');

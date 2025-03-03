@@ -60,6 +60,7 @@ class FrontEndController extends Controller
         $latestBlogs = $this->getLatestBlogDetailsWithFirstimage();
         $topCategories = $this->topCategoriesByViewCount();
         $latestBooks = $this->getLatestBook();
+        $popularBook = $this->getPopularBooks();
 
         $authors = User::with(['profile.image']) 
                 ->where('level',  \App\Models\User::USER_AUTHOR)
@@ -68,7 +69,11 @@ class FrontEndController extends Controller
 
         //$home = BlogDetails::where('type', BlogDetails::TYPE_HOME)->select('content')->first();
 
-        return view('frontEnd.index', compact('categories','popularBlogs', 'latestBlogs', 'authors','topCategories', 'latestBooks'));
+        return view('frontEnd.index',
+            compact('categories','popularBlogs',
+                'latestBlogs', 'authors','topCategories',
+                'latestBooks', 'popularBook'
+            ));
     }
 
     public function getPopularBlogDetailsWithFirstimage()
@@ -177,12 +182,26 @@ class FrontEndController extends Controller
         return $topCategories;
     }
 
+    /**
+     * Get latest Books
+     * @return Book
+     * */
     public function getLatestBook()
     {
         return Book::orderBy('created_at', 'desc')
                 ->limit(4) 
                 ->get();
+    }
 
+    /**
+     * Get latest Books
+     * @return Book
+     * */
+    public function getPopularBooks()
+    {
+        return Book::orderBy('order', 'asc')
+                ->limit(4)
+                ->get();
     }
 
     /**

@@ -16,7 +16,9 @@
         @foreach($latestBooks as $book)
             <div class="col-md-3 col-sm-3 new_book_index mx-1">
                 <img class="bg_new_index_down" src="{{asset('/frontEnd/img/Rectangle69.png')}}"  alt="" style="max-width:95%;height:auto;"/>
-                <img class="bg_new_index_up" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="" />
+                <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
+                    <img class="bg_new_index_up" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="{{$book->name}}" />
+                </a>
                 <div class="bg_new_index_down text-center mt-2" style="top: 430px;">
                     <div class="card_title">
                         <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
