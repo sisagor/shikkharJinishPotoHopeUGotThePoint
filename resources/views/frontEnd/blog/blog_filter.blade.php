@@ -1,4 +1,5 @@
-@foreach ($blogs as $blog)
+{{--Use filtering popular blogs in homepage--}}
+@foreach ($popularBlogs as $blog)
 <div class="col-md-4">
     <div class="card_design">
         <img src="{{get_storage_file_url($blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >
