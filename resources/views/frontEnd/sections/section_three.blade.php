@@ -1,22 +1,15 @@
 <div class="row">
     <div class="col-md-9">
         <p class="most_pupolar_post">MOST PUPOLAR</p>
-        <h2 class="most_pupolar_title">Explore Our Most Read Blog Posts</h2>
-        <p class="most_pupolar_text">
-            Challenge your mind and have a blast with our most sought-after puzzles, from word searches to crosswords and brain teasers for all skill levels.
-        </p>
+        <h3 class="most_pupolar_title">Explore Our Most Read Blog Posts</h3>
+            <p class="most_pupolar_text">
+                Challenge your mind and have a blast with our most sought-after puzzles, from word
+                searches to crosswords and brain teasers for all skill levels.
+            </p>
     </div>
     <div class="col-md-3">
-        {{-- <button type="button" class="btn btn-primary rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span id="search_concept">All</span><span><img src="{{asset('/frontEnd/img/Arrow.png')}}"></span>
-        </button>
-        <div class="dropdown-menu scrollable-dropdown">
-            @foreach($categories as $key => $item)
-                <a class="dropdown-item" href="#" data>{{$item}}</a>
-            @endforeach
-        </div> --}}
         <div class="item form-group">
-            <select class="btn btn-primary rounded" name="category" id="category">
+            <select style="background: rgb(250, 185, 213)" class="btn rounded-50" name="category" id="category">
                 <option value="">All</option>
                 @foreach($categories as $key => $item)
                     <option value="{{$key}}"> {{$item}}</option>
@@ -32,7 +25,9 @@
         @endphp
         <div class="col-md-4">
             <div class="card_design">
-                <img src="{{get_storage_file_url($blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >
+                <div class="card_image">
+                    <img src="{{get_storage_file_url($blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >
+                </div>
                 <div class="author_date">
                     <img src="{{get_storage_file_url($blog['image'])}}" width="16px" height="16px" alt="Avatar"/>
                     <p class="author_name">{{$blog['created_by']}}</p>
