@@ -16,7 +16,7 @@
             @endforeach
         </div> --}}
         <div class="item form-group">
-            <select class="btn btn-primary rounded" name="category" id="category">
+            <select style="background: rgb(253, 213, 232)" class="btn rounded-50" name="category" id="category">
                 <option value="">All</option>
                 @foreach($categories as $key => $item)
                     <option value="{{$key}}"> {{$item}}</option>
@@ -34,7 +34,9 @@
             <a href="/blog/{{($blog['slug'])}}">
                 <div class="card_design">
                     <a href="/blog/{{$blog['slug']}}">
-                         <img src="{{get_storage_file_url($blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >
+                        <div class="card_image">
+                            <img src="{{get_storage_file_url($blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >
+                        </div>
                     </a>
                     <div class="author_date">
                         <img src="{{get_storage_file_url($blog['image'])}}" width="16px" height="16px" alt="Avatar"/>
