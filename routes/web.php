@@ -38,13 +38,14 @@ if (!auth()->user()) {
 
     /*this is slug based for permalink*/
     $url = request()->getRequestUri();
-    //dd($url);
 
-    if ($url != "/blog/category")
+    if (!str_contains($url, 'blog/category'))
     {
         Route::get('/blog/{slug}', [FrontEndController::class, 'blogDetails'])->name('blog');
     }
 
+    //Search Option;
+    Route::get('search/blogs', [FrontEndController::class, 'searchBlog'])->name('blog.search');
 
     //Route::get('home', [FrontEndController::class, 'index'])->name('home');
     //Route::get('blogs', [\App\Http\Controllers\frontEnd\BlogController::class, 'index'])->name('blogs');

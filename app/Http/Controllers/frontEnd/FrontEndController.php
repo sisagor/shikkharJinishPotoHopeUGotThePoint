@@ -171,7 +171,8 @@ class FrontEndController extends Controller
         //     ->limit(3)
         //     ->pluck('blog_categories.name');
 
-        $topCategories = BlogCategory::select('blog_categories.name', 'blog_categories.id')
+        $topCategories = BlogCategory::select('blog_categories.name', 'blog_categories.id', 'blog_categories.status')
+            ->where('blog_categories.status', RootModel::STATUS_ACTIVE)
             ->with('image')
             ->join('blogs', 'blog_categories.id', '=', 'blogs.blog_category_id')
             ->groupBy('blog_categories.id', 'blog_categories.name')
@@ -235,7 +236,7 @@ class FrontEndController extends Controller
         $data = BlogCategory::with(['blogs' => function($query) {
             $query->with(['user', 'user.profile.image', 'details', 'details.images'])
                   ->orderBy('view', 'desc');
-        }])->limit(10)->get();
+        }])->where('status', RootModel::STATUS_ACTIVE)->limit(10)->get();
     
         $categories = $data->map(function($category) {
             return [
@@ -340,7 +341,6 @@ class FrontEndController extends Controller
     }
 
 
-
     public function storeEmail(Request $request)
     {
         $request->validate([
@@ -389,6 +389,58 @@ class FrontEndController extends Controller
 
         return view('frontEnd.blog.blog_filter', compact('popularBlogs'));
         
+    }
+
+    /**
+     * Blog Search
+    */
+    public function searchBlog(Request $request)
+    {
+        $data = BlogCategory::with(['blogs' => function($query)use($request)
+        {
+            $query->with(['user', 'user.profile.image', 'details', 'details.images']);
+            if ($request->has('title'))
+            {
+                $query->where('title', 'LIKE', '%'.$request->get('title').'%');
+            }
+            return $query->orderBy('view', 'desc');
+        }]);
+
+        if ($request->get('cat') != "all")
+        {
+            $data = $data->where('category_id', $request->get('cat'));
+        }
+
+        $data = $data->active()->limit(10)->get();
+
+        $categories = $data->map(function($category) {
+            return [
+                'category_title' => $category->title,
+                'category_name' => $category->name,
+                'category_details' => $category->details,
+                'id' => $category->id,
+                'blogs' => $category->blogs->map(function($blog) {
+                    $firstImage = $blog->details->flatMap(function($detail) {
+                        return $detail->images;
+                    })->first();
+
+                    return [
+                        'title' => $blog->title,
+                        'id' => $blog->id,
+                        'slug' => $blog->slug,
+                        'url_type' => $blog->url_type,
+                        'created_by' => (!empty($blog->user) ? $blog->user->name : null ),
+                        'created_at' => $blog->created_at,
+                        'details' => $blog->details->map(function($detail) {
+                            return $detail->details;
+                        })->first(),
+                        'first_image' => $firstImage ? $firstImage->path : null,
+                        'image' => (!empty($blog->user) ? optional($blog->user->profile->image)->path : null),
+                    ];
+                })
+            ];
+        });
+        return view('frontEnd.blog.cat_wise_blogs', compact('categories'));
     }
 
 

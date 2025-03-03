@@ -6,6 +6,9 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
+use Modules\CMS\Entities\Blog;
+use PhpParser\Node\Stmt\TryCatch;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Settings\Entities\BlogCategory;
 use Illuminate\Contracts\Support\Renderable;
@@ -156,12 +159,16 @@ class BlogCategoryController extends Controller
      */
     public function trash(BlogCategory $blogCategory)
     {
-
-        if ($blogCategory->delete()) {
-
+        try {
+            Blog::where('blog_category_id', $blogCategory->id)->update(['blog_category_id' => 1]);
+            $blogCategory->delete();
             sendActivityNotification(trans('msg.noty.soft_deleted', ['model' => trans('model.blog_category')]));
-
             return redirect()->back()->with('success', trans('msg.soft_delete_success', ['model' => trans('model.blog_category')]));
+        }
+        catch (\Exception $exception)
+        {
+            Log::info(get_exception_message($exception));
+            dd($exception);
         }
 
         return redirect()->back()->with('error', trans('msg.soft_delete_failed', ['model' => trans('model.blog_category')]))->withInput();

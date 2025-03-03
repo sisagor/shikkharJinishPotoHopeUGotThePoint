@@ -4,18 +4,19 @@
         <h1>Free Downloadable <br> Activity Books</h1> <br>
         <p>Welcome to our website where you can download tons of free printable activity books, coloring
             pages, puzzles, and more for kids and adults!</p>
-        <form class="input-group" method="get" target="_blank" action="{{route('blog.cat')}}">
+        <form class="input-group" method="get" target="_blank" action="{{route('blog.search')}}">
             <div class="container_btn">
-                <select name="name" id="allName" class="left_select">
-                    <option value="All">All</option>
-                    <option value="Automotive Accessories">Automotive Accessories</option>
-                    <option value="Cell Phone Accessories">Cell Phone Accessories</option>
-                    <option value="Computer Accessories">Computer Accessories</option>
+                <select name="cat" id="cat" class="left_select">
+                    <option value="all">All</option>
+                    @foreach($categories as $key => $cat)
+                        <option value="{{$key}}">{{$cat}}</option>
+                    @endforeach
                 </select>
-                <input type="text" class="template_name" placeholder="Template name">
-                <button class="right_btn">Search</button>
+                <input type="text" class="title" name="title" id="title" placeholder="Title">
+                <button type="submit" id="search_submit" class="right_btn">Search</button>
             </div>
         </form>
+
         <div class="user">
             <div class="user_img">
                 <img src="{{asset('/frontEnd/img/user-group.png')}}" alt="user" />

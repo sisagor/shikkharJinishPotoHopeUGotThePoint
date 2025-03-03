@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 col-sm-8">
+            <div class="col-md-12 col-sm-12">
                 <label class="col-form-label label-align" for="title">
                     {{trans('app.tags')}}
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
@@ -108,7 +108,7 @@
             </div>
 
             {{--URL TYPE--}}
-            <div class="col-md-4 col-sm-4">
+           {{-- <div class="col-md-4 col-sm-4">
                 <label class="col-form-label label-align" for="url_type">
                     {{trans('app.url_type')}}
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
@@ -120,7 +120,7 @@
                         <option value="" selected>{{trans('app.dofollow')}}</option>
                     </select>
                 </div>
-            </div>
+            </div>--}}
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12">

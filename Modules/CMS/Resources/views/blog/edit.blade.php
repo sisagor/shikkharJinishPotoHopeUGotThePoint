@@ -88,7 +88,7 @@
 
         </div>
         <div class="row">
-            <div class="col-md-8 col-sm-8">
+            <div class="col-md-6 col-sm-6">
                 <label class="col-form-label label-align" for="title">
                     {{trans('app.tags')}}
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
@@ -98,9 +98,19 @@
                     <input class="form-control" id="tags" name="tags" value="{{ $blog->seo->keywords ?? '' }}" required placeholder="tag1,tag2,tag3,...">
                 </div>
             </div>
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="slug">
+                    {{trans('app.slug')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.slug')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input class="form-control" id="slug" name="slug" value="{{ $blog->slug ?? '' }}" required placeholder="tag1,tag2,tag3,...">
+                </div>
+            </div>
 
             {{--URL TYPE--}}
-            <div class="col-md-4 col-sm-4">
+          {{--  <div class="col-md-4 col-sm-4">
                 <label class="col-form-label label-align" for="url_type">
                     {{trans('app.url_type')}}
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
@@ -112,7 +122,7 @@
                         <option value="" @if($blog->url_type == null) selected @endif >{{trans('app.dofollow')}}</option>
                     </select>
                 </div>
-            </div>
+            </div>--}}
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12">

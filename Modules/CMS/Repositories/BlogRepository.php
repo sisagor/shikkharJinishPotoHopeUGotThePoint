@@ -153,7 +153,7 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                 'title' => $request->get('title'),
                 'status' => $request->get('status'),
                 'url_type' => $request->get('url_type'),
-                'slug' => Str::slug($request->get('title'), '-'),
+                'slug' => $request->get('slug'),
                 //'order' => $request->get('order'),
                 'created_by' => $created_by,
                 'updated_at' => Carbon::now()
