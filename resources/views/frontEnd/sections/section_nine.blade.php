@@ -3,12 +3,12 @@
         <img src="{{asset('/frontEnd/img/HeaderSubscribeBG.png')}}" alt="" class="center_image"/>
     </div>
     <div class="subscribe_container">
-        <div style="margin-top: 50px;position: relative;">
+        <div style="margin-top: 30px;position: relative;">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <h1>Subscribe for Daily Blog</h1>
             <p>An awesome discount awaite for you</p>
             <input type="email" placeholder="Type your email" id="email-input">
-            <img src="{{asset('/frontEnd/img/Sent-icon.png')}}" alt="Send" id="email-submit-button">
+            <img style="margin-top:10px" src="{{asset('/frontEnd/img/Sent-icon.png')}}" alt="Send" id="email-submit-button">
         </div>
     </div>
 </div>

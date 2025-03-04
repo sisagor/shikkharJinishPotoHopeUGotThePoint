@@ -12,7 +12,7 @@
                         <option value="{{$key}}">{{$cat}}</option>
                     @endforeach
                 </select>
-                <input type="text" class="title" name="title" id="title" placeholder="Title">
+                <input type="text" class="template_name" name="title" id="title" placeholder="Title">
                 <button type="submit" id="search_submit" class="right_btn">Search</button>
             </div>
         </form>
