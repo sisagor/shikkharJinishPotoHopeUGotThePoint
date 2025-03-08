@@ -17,10 +17,10 @@
                 <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
                     <img class="bg_new_index_up" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="{{$book->name}}" />
                 </a>
-                <div class="bg_new_index_down text-center mt-2" style="top: 430px;">
+                <div class="bg_new_index_down_title text-center">
                     <div class="card_title">
                         <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
-                            <h4 class="text_color">{{$book->name}}</h4>
+                            <h4 style="color: #fff">{{$book->name}}</h4>
                         </a>
                     </div>
                 </div>
