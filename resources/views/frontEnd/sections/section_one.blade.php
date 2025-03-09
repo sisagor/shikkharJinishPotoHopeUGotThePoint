@@ -27,9 +27,9 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-sm-6 mt-3">
+    <div class="col-md-6 col-sm-6">
         <div class="row">
-            <div class="col-md-12 col-sm-12 mt-3">
+            <div class="col-md-12 col-sm-12 mb-5">
                 <div class="frame_group d-flex flex-wrap justify-content-between">
                     @foreach($popularBook as $key => $book)
                         @if($key < 2)

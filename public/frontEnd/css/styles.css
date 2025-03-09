@@ -714,6 +714,7 @@ h2 {
   left: 0;
   right: 0;
   text-align: center;
+  object-fit: cover;
 }
 .subscribe_full {
   display: flex;
