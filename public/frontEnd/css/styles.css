@@ -646,7 +646,6 @@ h2 {
 
 .bg_color_new_book {
   background-color: #5B3AFF;
-  padding-bottom: 60px;
 }
 
 /* new book section  */
@@ -720,6 +719,8 @@ h2 {
   display: flex;
   justify-content: center;
 }
+
+
 
 .subscribe_container {
   position: absolute;

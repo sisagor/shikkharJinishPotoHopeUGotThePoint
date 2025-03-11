@@ -1,4 +1,4 @@
-<div class="container-fuild" style="background-color: #F7F5FF;">
+<div class="container-fuild" style="background-color: #F7F5FF;padding: 40px 0">
     <div class="container">
         <div class="row d-flex align-items-center">
             <div class="col-md-6 col-sm-6 pr-5">
