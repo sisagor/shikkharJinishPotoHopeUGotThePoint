@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row d-flex align-items-end">
     <div class="col-md-9">
         <p class="most_pupolar_post">MOST PUPOLAR</p>
         <h2 class="most_pupolar_title">Explore Our Most Read Blog Posts</h2>
@@ -16,12 +16,14 @@
             @endforeach
         </div> --}}
         <div class="item form-group">
-            <select style="background: rgb(253, 213, 232)" class="btn rounded-50" name="category" id="category">
-                <option value="">All</option>
-                @foreach($categories as $key => $item)
-                    <option value="{{$key}}"> {{$item}}</option>
-                @endforeach
-            </select>
+            <div class="select">
+                <select>
+                    <option value="">All</option>
+                    @foreach($categories as $key => $item)
+                        <option value="{{$key}}"> {{$item}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
     </div>
 </div>
