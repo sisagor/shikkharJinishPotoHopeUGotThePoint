@@ -808,15 +808,14 @@ select::-ms-expand {
   outline: none;
 }
 
-.subscribe_sent_btn {
+#email-submit-button {
   position: absolute;
-  right: 5px;
-  top: 50%;
+  right: 10px;
+  top: 78%;
   transform: translateY(-50%);
-  background: #F01E76;
-  border: none;
-  padding: 5px 25px;
-  border-radius: 35px;
+  width: 70px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .footer_bg {
