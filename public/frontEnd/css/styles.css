@@ -1025,6 +1025,7 @@ section {
     background: #FFF;
     box-shadow: 0px 48px 100px rgba(0, 7, 33, 0.08), 0px 16px 48px rgba(0, 7, 33, 0.02);
     text-align: center;
+    margin-bottom: 10px;
   }
 
   .card_design:hover {
@@ -1118,7 +1119,10 @@ section {
 
 @media (max-width: 993px) {
   .bg_new_index_up {
-    top: 65px;
-    left: 16px;
+    top: 100px;
+    left: 10px;
+  }
+  .card_title h4 {
+    font-size: 14px;
   }
 }
