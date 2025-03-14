@@ -15,11 +15,15 @@
                 <div class="card_design">
                     @if($category->image)
                         <a href="/blog/category?id={{$category['id']}}">
-                            <img src="{{ get_storage_file_url($category->image->path) }}" alt="Avatar" width ="300px" height = "384px" >
+                            <div class="card_image">
+                                <img src="{{ get_storage_file_url($category->image->path) }}" alt="Avatar" width ="300px" height = "384px" >
+                            </div>
                         </a>
                     @else
                         <a href="/blog/category?id={{$category['id']}}">
-                            <img src="{{ asset('frontEnd/img/BookImage.png') }}" alt="Avatar" width ="300px" height = "384px" >
+                            <div class="card_image">
+                                <img src="{{ asset('frontEnd/img/BookImage.png') }}" alt="Avatar" width ="300px" height = "384px" >
+                            </div>
                         </a>
                     @endif
                     <div class="text-center mt-2">

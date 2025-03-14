@@ -3,11 +3,11 @@
 @section('contents')
 
     <div class="container">
-        <section>
+        <section style="padding: 10px 0">
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
-          <section>
+          <section style="padding: 0">
             <div class="breadcrumb_design">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -17,11 +17,11 @@
               </nav>
             </div>
           </section>
-          <section>
+          <section style="padding: 0">
             @foreach($categories as $category)
                 @if(isset($category['category_title']) && $category['category_title'] != '')
                     <div class="row descontent" id="category_des_all">
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="border-right: 1px solid #BBBBBC">
                             <h1>{{ $category['category_title'] }}</h1>
                         </div>
                         <div class="col-md-6">
@@ -64,7 +64,9 @@
                             <div class="col-md-4 mb-3">
                                 <a href="/blog/{{($blog['slug'])}}">
                                     <div class="card_design">
-                                        <img src="{{ get_storage_file_url($blog['first_image']) }}" alt="Avatar" width="300px" height="384px">
+                                        <div class="card_image">
+                                            <img src="{{ get_storage_file_url($blog['first_image']) }}" alt="Avatar" width="300px" height="384px">
+                                        </div>
                                         <div class="author_date">
                                             <img src="{{ get_storage_file_url($blog['image']) }}" width="16px" height="16px" alt="Avatar"/>
                                             <p class="author_name">{{ $blog['created_by'] }}</p>

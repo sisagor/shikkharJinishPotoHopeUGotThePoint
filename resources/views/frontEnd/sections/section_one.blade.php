@@ -12,7 +12,7 @@
                         <option value="{{$key}}">{{$cat}}</option>
                     @endforeach
                 </select>
-                <input type="text" class="title" name="title" id="title" placeholder="Title">
+                <input type="text" class="template_name" name="title" id="title" placeholder="Title">
                 <button type="submit" id="search_submit" class="right_btn">Search</button>
             </div>
         </form>
@@ -27,9 +27,9 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-sm-6 mt-3">
+    <div class="col-md-6 col-sm-6">
         <div class="row">
-            <div class="col-md-12 col-sm-12 mt-3">
+            <div class="col-md-12 col-sm-12 mb-5">
                 <div class="frame_group d-flex flex-wrap justify-content-between">
                     @foreach($popularBook as $key => $book)
                         @if($key < 2)

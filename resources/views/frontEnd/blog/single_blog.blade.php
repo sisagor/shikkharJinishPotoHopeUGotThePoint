@@ -666,7 +666,7 @@
   input[type="email"],
   textarea {
       border: 1px solid #dddddd;
-      border-radius: 30px;
+      /*border-radius: 30px;*/
       padding: 12px 20px;
       font-size: 14px;
       outline: none;

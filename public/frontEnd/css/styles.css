@@ -58,7 +58,7 @@ h2 {
 }
 
 .header_bg {
-  background-image: url(/assets/img/HeaderBG.png);
+  background-image: url('../img/HeaderBG.png');
   background-position: bottom center;
   background-size: cover;
 }
@@ -264,14 +264,17 @@ h2 {
   padding: 0 10px;
   border-bottom-left-radius: 60px;
   border-top-left-radius: 60px;
+  background: #fff;
 }
 
 .template_name {
   height: 38px;
-  width: 236px;
+  width: 290px;
   min-width: 100px;
   border: none;
   outline: none;
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 60px;
 }
 
 .right_btn {
@@ -447,7 +450,7 @@ h2 {
 
 .card_image img {
   width: 100%;
-  height: auto;
+  height: 300px;
   border-radius: 20px;
   object-fit: cover;
   background-color: #f5f5f5;
@@ -675,16 +678,18 @@ h2 {
   /* height: 100%; */
   object-fit: cover;
   z-index: 1;
-  fill: linear-gradient(180deg, #C6CEF9 0%, #C4EAF6 46%, #F6BDFF 100%);
+  /*fill: linear-gradient(180deg, #C6CEF9 0%, #C4EAF6 46%, #F6BDFF 100%);*/
+}
+.bg_new_index_down_title {
+  position: absolute;
+  top: 325px;
 }
 
 .bg_new_index_up {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  /* height: 100%; */
-
+  top: 40px;
+  left: 20px;
+  width: 80%;
   object-fit: cover;
   z-index: 2;
 }
@@ -704,15 +709,61 @@ h2 {
 
 .subscribe_bg {
   position: absolute;
-  top: -60px;
+  top: -80px;
   left: 0;
   right: 0;
   text-align: center;
+  object-fit: cover;
 }
 .subscribe_full {
   display: flex;
   justify-content: center;
 }
+/*================ select option design Start*/
+
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 10px red;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #F01E76;
+  background-color: rgb(253, 213, 232);
+  background-image: none;
+  cursor: pointer;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display: flex;
+  /*width: 20em;*/
+  height: 3em;
+  border-radius: 2.25em;
+  overflow: hidden;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  transition: .25s all ease;
+  pointer-events: none;
+  color: #F01E76;
+}
+/* Transition */
+.select:hover::after {
+  color: #FEE9F1;
+}
+/*================ select option design End*/
 
 .subscribe_container {
   position: absolute;
@@ -757,15 +808,14 @@ h2 {
   outline: none;
 }
 
-.subscribe_sent_btn {
+#email-submit-button {
   position: absolute;
-  right: 5px;
-  top: 50%;
+  right: 10px;
+  top: 78%;
   transform: translateY(-50%);
-  background: #F01E76;
-  border: none;
-  padding: 5px 25px;
-  border-radius: 35px;
+  width: 70px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .footer_bg {
@@ -975,6 +1025,7 @@ section {
     background: #FFF;
     box-shadow: 0px 48px 100px rgba(0, 7, 33, 0.08), 0px 16px 48px rgba(0, 7, 33, 0.02);
     text-align: center;
+    margin-bottom: 10px;
   }
 
   .card_design:hover {
@@ -983,7 +1034,7 @@ section {
 
   .card_image img {
     width: 100%;
-    height: auto;
+    height: 300px;
     border-radius: 20px;
     object-fit: cover;
     background-color: #f5f5f5;
@@ -1062,5 +1113,16 @@ section {
 
   .frame_group {
     gap: 10px;
+  }
+
+}
+
+@media (max-width: 993px) {
+  .bg_new_index_up {
+    top: 100px;
+    left: 10px;
+  }
+  .card_title h4 {
+    font-size: 14px;
   }
 }
