@@ -408,7 +408,7 @@ class FrontEndController extends Controller
 
         if ($request->get('cat') != "all")
         {
-            $data = $data->where('category_id', $request->get('cat'));
+            $data = $data->where('id', $request->get('cat'));
         }
 
         $data = $data->active()->limit(10)->get();

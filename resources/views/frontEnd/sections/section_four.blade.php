@@ -31,6 +31,9 @@
     </div>
 </div>
 
+
+
+
 <style>
     .social_card {
         background-color: #51468894;
