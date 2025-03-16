@@ -28,9 +28,9 @@
                         </li>
 
                         <li class="nav-item w-15">
-                            <a class="nav-link thin-tab" id="site_settings" data-toggle="tab" href="#siteSettings"
+                            <a class="nav-link thin-tab" id="social_settings" data-toggle="tab" href="#socialSettings"
                                role="tab" aria-controls="home"
-                               aria-selected="true">{{trans('app.site_settings')}}</a>
+                               aria-selected="true">{{trans('app.social_settings')}}</a>
                         </li>
 
                         <li class="nav-item w-15">
@@ -70,6 +70,12 @@
                              aria-labelledby="generalSettings-tab">
                             {{--general settings--}}
                             @include('settings.general')
+                        </div>
+
+                        <div class="tab-pane fade" id="socialSettings" role="tabpanel"
+                             aria-labelledby="generalSettings-tab">
+                            {{--general settings--}}
+                            @include('settings.social')
                         </div>
                         <div class="tab-pane fade" id="seoSettings" role="tabpanel"
                              aria-labelledby="seoSettings-tab">

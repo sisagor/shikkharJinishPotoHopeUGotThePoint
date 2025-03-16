@@ -745,10 +745,8 @@ return [
     'nofollow' => 'nofollow',
     'dofollow' => 'dofollow',
     'url_type' => 'URL Type',
-
-
-    
-
-
+    'social_settings' => 'Social Settings',
+    'pinterest' => 'Pinterest',
+    'tweeter' => 'Tweeter',
 
 ];

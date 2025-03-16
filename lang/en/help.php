@@ -184,6 +184,13 @@ return [
     'meta_description' => 'SEO Meta Description (max 160 characters)',
     'image_alter' => 'Image Alter',
     'author_name' => 'Author Name',
+    'social_settings' => 'Social Settings',
+    'pinterest' => 'Pinterest',
+    'tweeter' => 'Tweeter',
+    'facebook' => 'Facebook',
+    'twitter' => 'Twitter',
+    'instagram' => 'Instagram',
+    'linkedin' => 'Linkedin',
 
 
 ];
