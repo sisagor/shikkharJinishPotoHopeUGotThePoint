@@ -22,11 +22,11 @@
             @include('frontEnd.sections.section_three')
         </section>
 
-        <!-- OUR AUTHOR -->
-        @include('frontEnd.sections.section_four')
+
 
     </div>
-
+    <!-- OUR AUTHOR -->
+    @include('frontEnd.sections.section_four')
     {{--Blogs--}}
     <section>
         @include('frontEnd.sections.section_five')
