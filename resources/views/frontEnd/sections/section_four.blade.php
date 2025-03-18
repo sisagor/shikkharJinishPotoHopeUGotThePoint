@@ -6,7 +6,7 @@
                     <!-- Testimonial 1 -->
                     <div class="item">
                         <div class="shadow-effect">
-                            <img class="img-circle" src="{{asset('frontEnd/img/slide-girl-1.jpg')}}" alt="">
+                            <img class="img-circle" src="{{asset('frontEnd/img/author/slide-girl-1.jpg')}}" alt="">
                         </div>
                         <div class="testimonial-name">
                             <h2>Jhon Due</h2>
@@ -25,7 +25,7 @@
                     <!-- Testimonial 2 -->
                     <div class="item">
                         <div class="shadow-effect">
-                            <img class="img-circle" src="{{asset('frontEnd/img/slide-girl-2.jpg')}}" alt="">
+                            <img class="img-circle" src="{{asset('frontEnd/img/author/slide-girl-2.jpg')}}" alt="">
                         </div>
                         <div class="testimonial-name">
                             <h2>Jane Smith</h2>
@@ -45,7 +45,7 @@
                     <!-- Testimonial 3 -->
                     <div class="item">
                         <div class="shadow-effect">
-                            <img class="img-circle" src="{{asset('frontEnd/img/slide-man-1.jpg')}}" alt="">
+                            <img class="img-circle" src="{{asset('frontEnd/img/author/slide-man-1.jpg')}}" alt="">
                         </div>
                         <div class="testimonial-name">
                             <h2>Emily Rose</h2>
@@ -64,7 +64,7 @@
                     <!-- Testimonial 4 -->
                     <div class="item">
                         <div class="shadow-effect">
-                            <img class="img-circle" src="{{asset('frontEnd/img/slide-man-1.jpg')}}" alt="">
+                            <img class="img-circle" src="{{asset('frontEnd/img/author/slide-man-1.jpg')}}" alt="">
                         </div>
                         <div class="testimonial-name">
                             <h2>Jane Smith</h2>
