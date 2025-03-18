@@ -2,11 +2,11 @@
 
 @section('contents')
     <div class="container">
-        <section>
+        <section class="p-0">
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
-        <section>
+        <section class="py-1">
             <div class="breadcrumb_design">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -21,12 +21,12 @@
 
     <div class="container container2">
         <div class="content">
-            <h1>{{$blog->title}}</h1>
+            <h3 class="blog_content_title">{{$blog->title}}</h3>
             <div class="author_container">
                 <div class="left_column">
                     @if (!empty($blog->user->profile))
                     <img src="{{get_storage_file_url($blog->user->profile->image->path )}}" alt="author image" class="author_image">
-                    @else 
+                    @else
                     <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author_image">
                     @endif
                     <div class="author_details">
@@ -84,7 +84,7 @@
                             </div>
                         @endforeach
                    </div>
-                   
+
                 @endif
             </div>
 
@@ -104,7 +104,7 @@
                 <div class="author-info">
                     @if (!empty($blog->user->profile))
                     <img src="{{get_storage_file_url($blog->user->profile->image->path)}}" alt="author image" class="author-image">
-                    @else 
+                    @else
                     <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author-image">
                     @endif
                     <div class="author-details">
@@ -190,7 +190,7 @@
                             <button type="button" class="reply-button" data-toggle="modal" data-parent-id="{{$comment->id}}" data-target="#replyModal">
                                 <span>&#8634;</span> Reply
                             </button>
-                            
+
                             <!-- Modal Structure -->
                             <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -257,7 +257,7 @@
                     @endforeach
                 @endif
                 @endforeach
-        
+
                 {{-- <div class="comment-card">
                     <img src="{{asset('/frontEnd/img/Rectangle 169-comment.png')}}" alt="Author Image" class="author-comment">
                     <div class="comment-content">
@@ -298,23 +298,30 @@
             </div>
         </div>
         <div class="sidebar">
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search here">
-                <button class="search-button">Search</button>
+            <div class="recent-articles">
+                <div class="search-container">
+                    <svg class="search-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.414-1.415l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search here">
+                    <button class="search-button">Search</button>
+                </div>
             </div>
             <div class="recent-articles">
                 <h2>Recent Articles</h2>
                 <div class="underline"></div> <!-- Added underline -->
                 @foreach ($latestBlogs as $blog)
                 <div class="article">
-                    <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
+                    <div class="article_image">
+                        <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
+                    </div>
                     <div class="article-info">
                         <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
                         <h3><a href="/blog/{{$blog['slug']}}">{{$blog['title']}}</a></h3>
                     </div>
                 </div>
                 @endforeach
-                
+
                 {{-- <div class="article">
                     <img src="{{asset('/frontEnd/img/Container-1.png')}}" alt="Article 3">
                     <div class="article-info">
@@ -328,7 +335,9 @@
                 <div class="underline"></div> <!-- Added underline -->
                 @foreach ($popularBlogs as $blog)
                 <div class="article">
-                    <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
+                    <div class="article_image">
+                        <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
+                    </div>
                     <div class="article-info">
                         <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
                         <h3><a href="/blog/{{$blog['id']}}"> {{$blog['title']}} </a></h3>
@@ -360,22 +369,40 @@
                     <a href="#" class="tag">Reading</a>--}}
                 </div>
             </div>
+            <div class="tags-section" style="background: #5B3AFF">
+                <h5 class="subscribe_title">Never miss a post</h5>
+                <div style="position: relative; display: inline-block; width: 100%;">
+                    <input type="email" placeholder="Type your email" id="email-input">
+                    <img src="{{asset('/frontEnd/img/Sent-icon.png')}}" alt="Send" id="email-submit-button-sidebar">
+                </div>
+            </div>
         </div>
     </div>
-
-
-
 <style>
+    #email-submit-button-sidebar {
+        position: absolute;
+        right: 10px;
+        top: 53%;
+        transform: translateY(-50%);
+        width: 70px;
+        height: 30px;
+        cursor: pointer;
+    }
   .container2 {
     display: flex;
     flex-direction: row;
-    padding: 20px;
+    padding:0 20px;
   }
   .content {
       flex: 3;
-      padding: 20px;
+      /*padding: 20px;*/
       background-color: #ffffff;
       /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+  .blog_content_title {
+      font-family: "Baloo Da 2", sans-serif;
+      font-weight: 700;
+      font-size: 40px;
   }
   .sidebar {
       flex: 1;
@@ -398,13 +425,13 @@
   .author_image {
       width: 40px;
       height: 40px;
-      border: 50%;
+      border-radius: 50%;
       margin-right: 10px;
   }
   .author_details {
       display: flex;
       flex-direction: column;
-      
+
   }
   .author_name {
       font-size: 16px;
@@ -426,7 +453,6 @@
       align-items: center;
       width: 32px;
       height: 32px;
-      border-radius: 2px;
       transition: background-color 0.3s;
       border-radius: 8px;
   }
@@ -445,7 +471,7 @@
       background: rgba(29, 155, 240, 0.08);
   }
   .bg_pinterest {
-      background: rgba(203, 31, 39, 0.08); 
+      background: rgba(203, 31, 39, 0.08);
   }
 
   .bg_facebook:hover {
@@ -462,7 +488,7 @@
   }
   .bg_pinterest:hover {
       border: 0.5px dashed #CB1F27;
-      background: rgba(203, 31, 39, 0.08); 
+      background: rgba(203, 31, 39, 0.08);
   }
   /* .single_post_details {
       text-align: center;
@@ -489,7 +515,7 @@
       color: white;
   }
   .download-button:hover {
-      background-color: #E0116B; 
+      background-color: #E0116B;
   }
   .writer {
       margin-top: 50px;
@@ -636,7 +662,7 @@
       background-color: #f7f7ff;
       padding: 30px;
       border-radius: 20px;
-      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+      margin-bottom: 44px;
   }
 
   .comment-form {
@@ -665,9 +691,9 @@
   input[type="text"],
   input[type="email"],
   textarea {
-      border: 1px solid #dddddd;
+      /*border: 1px solid #dddddd;*/
       /*border-radius: 30px;*/
-      padding: 12px 20px;
+      padding: 12px 5px;
       font-size: 14px;
       outline: none;
       background-color: #ffffff;
@@ -705,6 +731,11 @@
       border-radius: 50px;
       /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
       overflow: hidden;
+  }
+  .search-container .search-icon {
+      font-size: 16px;
+      color: #666;
+      margin: 16px;
   }
   .search-input {
       border: none;
@@ -753,16 +784,26 @@
       align-items: center;
       margin-bottom: 15px;
   }
-  .article img {
-      width: 50px;
-      height: 50px;
-      border-radius: 10px;
-      margin-right: 15px;
+  .article_image{
+      width: 112px;
+      height: 108px;
+      border-radius: 16px;
   }
+  .article_image img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+  }
+
 
   .article-info {
       display: flex;
       flex-direction: column;
+      width: 193px;
+      height: 76px;
+      margin-left: 10px;
+
   }
 
   .article-info .date {
@@ -775,6 +816,7 @@
   .date img {
       width: 20px;
       height: 20px;
+      margin-right: 5px;
   }
 
   .article-info h3 {
@@ -789,7 +831,6 @@
       background-color: #F7F5FF;
       padding: 20px;
       border-radius: 15px;
-      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   }
 
   .tags-section h2 {
@@ -801,7 +842,7 @@
 
   .underline {
       height: 0.2px;
-      background-color: #ddd;
+      background-color: #E9E9EA;
       margin: 0 auto 20px auto;
   }
   .tags {
@@ -825,6 +866,12 @@
   .tag:hover {
       background-color: #f0f0f0;
       border-color: #ccc;
+  }
+  .subscribe_title {
+      font-family: "Baloo Da 2", sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #FFFFFF;
   }
   .newsletter-signup {
       background-color: #5B3AFF;
@@ -882,7 +929,7 @@
     display: flex;
     overflow: hidden;
     gap: 15px;
-    
+
 }
 
 .latest-blogs-slider {
@@ -891,15 +938,15 @@
     border-radius: 20px;
     padding-bottom: 0;
     max-height: 190px;
-    width: 100%; 
-    max-width: 800px; 
+    width: 100%;
+    max-width: 800px;
     margin: auto;
 }
 .latest-blogs-slider .item {
     display: inline-block;
     width: 100%;
     padding: 10px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 .latest-blogs-slider .item img {
    max-width: 90px;
@@ -928,7 +975,7 @@
     max-width: 100%; /* Prevent image overflow */
     height: auto;
 }
-  
+
 
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -944,12 +991,12 @@ document.addEventListener('DOMContentLoaded', function() {
     replyButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             var parentId = button.getAttribute('data-parent-id');
-            document.getElementById('parent_id').value = parentId; 
+            document.getElementById('parent_id').value = parentId;
             var replyModal = new bootstrap.Modal(document.getElementById('replyModal'));
             replyModal.show();
         });
     });
-    
+
 });
 
 </script>

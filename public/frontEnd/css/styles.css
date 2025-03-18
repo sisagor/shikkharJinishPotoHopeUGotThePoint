@@ -831,7 +831,7 @@ select::-ms-expand {
   list-style: none;
   display: flex;
   padding: 10px 16px;
-  background-color: #f8f9fa;
+  background-color: #fff;
   border-radius: 15px;
 
 }

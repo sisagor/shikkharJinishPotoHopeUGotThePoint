@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="{{route('home')}}">
         <img src="{{asset('./frontEnd/img/Logo.png')}}" width="30" height="30" alt="Logo">
     </a>

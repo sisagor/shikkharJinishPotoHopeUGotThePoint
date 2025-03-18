@@ -3,12 +3,12 @@
 @section('contents')
 
     <div class="container">
-        <section>
+        <section class="p-0">
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
         <!--  feature free downloadable -->
-        <section class="header_bg">
+        <section class="header_bg mt-4">
             @include('frontEnd.sections.section_one')
         </section>
 

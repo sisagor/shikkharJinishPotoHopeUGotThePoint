@@ -113,10 +113,10 @@
                     items: 1
                 },
                 768: {
-                    items: 4
+                    items: 2
                 },
                 1170: {
-                    items: 4
+                    items: 3
                 }
             }
         });
