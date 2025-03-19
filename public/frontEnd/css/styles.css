@@ -237,10 +237,28 @@ h2 {
   display: flex;
   align-items: flex-start;
 }
-
+.generator_h4_title h4{
+  background-color: #FFFFFF;
+  color: #5B3AFF;
+  border-radius: 24px;
+  padding: 5px 10px;
+  gap: 8px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  display: inline;
+}
 .about_widget_left {
   flex: 0 0 auto;
   margin-right: 20px;
+}
+
+.generator_icon_bg {
+  background-color: #EFEBFF;
+  padding: 5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px dashed #F47E08;
 }
 
 .about_widget_right {

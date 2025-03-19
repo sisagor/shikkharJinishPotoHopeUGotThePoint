@@ -1,12 +1,14 @@
 <div class="container-fuild" style="background-color: #F7F5FF;padding: 40px 0">
     <div class="container">
         <div class="row d-flex align-items-center">
-            <div class="col-md-6 col-sm-6 pr-5">
-                <h4 style="color: #5B3AFF;">GENERATOR</h4>
-                <h2>Generate Fun with Our Interactive Puzzle Tools!</h2>
+            <div class="col-md-7 col-sm-8 pr-5">
+                <div class="generator_h4_title">
+                    <h4>GENERATOR</h4>
+                </div>
+                <h2 style="margin-top: 20px">Generate Fun with Our Interactive Puzzle Tools!</h2>
                 <p>Unleash your inner puzzle master and create personalized learning experiences with our free, interactive generators! Whether you're a teacher seeking engaging classroom</p>
                 <div class="about_widget">
-                    <div class="about_widget_left">
+                    <div class="about_widget_left generator_icon_bg">
                         <img src="{{asset('/frontEnd/img/elements-1.png')}}" alt="" />
                     </div>
                     <div class="about_widget_right">
@@ -16,7 +18,7 @@
                     </div>
                 </div>
                 <div class="about_widget">
-                    <div class="about_widget_left">
+                    <div class="about_widget_left generator_icon_bg">
                         <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="" />
                     </div>
                     <div class="about_widget_right">
@@ -26,7 +28,7 @@
                     </div>
                 </div>
                 <div class="about_widget">
-                    <div class="about_widget_left">
+                    <div class="about_widget_left generator_icon_bg">
                         <img src="{{asset('/frontEnd/img/rocket.png')}}" alt="" />
                     </div>
                     <div class="about_widget_right">
@@ -36,7 +38,7 @@
                     </div>
                 </div>
                 <div class="about_widget">
-                    <div class="about_widget_left">
+                    <div class="about_widget_left generator_icon_bg">
                         <img src="{{asset('/frontEnd/img/fi_92320841.png')}}" alt="" />
                     </div>
                     <div class="about_widget_right">
@@ -46,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-5 col-sm-4">
                 <div class="about_img">
                     <img src="{{asset('/frontEnd/img/Vector-image.png')}}" />
                 </div>
