@@ -11,10 +11,10 @@
             That's why we created Print & USe, a treasure trove of downloadable activities, printable books,
             and interactive tools</p>
         <div class="about_widget">
-            <div class="about_widget_left">
+            <div class="about_widget_left generator_icon_bg">
                 <img src="{{asset('/frontEnd/img/fi_92320841.png')}}" alt="" />
             </div>
-            <div class="about_widget_right">
+            <div class="about_widget_right ">
                 <h4>Created by Educators</h4>
                 <p>Our resources are developed by experienced teachers and early childhood
                     specialists, ensuring they're aligned with educational standards and promote essential
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="about_widget">
-            <div class="about_widget_left">
+            <div class="about_widget_left generator_icon_bg">
                 <img src="{{asset('/frontEnd/img/fi_14575714.png')}}" alt="" />
             </div>
             <div class="about_widget_right">
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="about_widget">
-            <div class="about_widget_left">
+            <div class="about_widget_left generator_icon_bg">
                 <img src="{{asset('/frontEnd/img/fi_1007975.png')}}" alt="" />
             </div>
             <div class="about_widget_right">
@@ -48,7 +48,7 @@
         </div>
         <button class="learn-more-button">
             Learn More
-            <img src="{{asset('/frontEnd/img/ArrowUp.png')}}" alt="arrow up" />
+            <span class="icon">➝</span>
         </button>
     </div>
 </div>

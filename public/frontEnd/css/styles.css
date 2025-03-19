@@ -411,19 +411,34 @@ h2 {
 }
 
 .learn-more-button {
-  border-radius: 92px;
-  border-bottom: 4px solid #AA1554;
-  background: #F01E76;
-  padding: 10px 20px;
+  background-color: #ff2d78;
   color: white;
+  font-size: 18px;
   font-weight: bold;
-  text-decoration: none;
-  display: inline-block;
+  border: none;
+  border-radius: 24px;
+  padding: 16px 28px; /* Adjusted for spacing */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0px 4px 0px #c51a5a; /* Bottom shadow effect */
+  transition: all 0.2s ease-in-out;
+}
+
+.learn-more-button .icon {
+  font-size: 20px;
 }
 
 .learn-more-button:hover {
-  opacity: 0.8;
+  background-color: #e0266b; /* Slightly darker pink on hover */
 }
+
+.learn-more-button:active {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 0px #c51a5a;
+}
+
 
 /* MOST PUPOLAR SECTION CSS */
 .most_pupolar_post {
