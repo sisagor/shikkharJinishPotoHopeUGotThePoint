@@ -453,26 +453,37 @@ h2 {
 
 .card_design {
   max-height: 560px;
-  height: 560px;
+  height: 514px;
   padding: 24px;
   border-radius: 40px;
-  border: 2px solid #FEE9F1;
+  border: 2px dashed #FEE9F1;
   background: #FFF;
-  box-shadow: 0px 48px 100px rgba(0, 7, 33, 0.08), 0px 16px 48px rgba(0, 7, 33, 0.02);
+  box-shadow: 0 48px 100px rgba(0, 7, 33, 0.08), 0 16px 48px rgba(0, 7, 33, 0.02);
   text-align: center;
 }
 
 .card_design:hover {
   border: 2px dashed #F01E76;
 }
-
+.card_design_categories {
+  max-height: 560px;
+  height: 460px;
+  padding: 24px;
+  border-radius: 40px;
+  border: 2px dashed #FEE9F1;
+  background: #FFF;
+  box-shadow: 0 48px 100px rgba(0, 7, 33, 0.08), 0 16px 48px rgba(0, 7, 33, 0.02);
+  text-align: center;
+}
+.card_design_categories:hover {
+  border: 2px dashed #F01E76;
+}
 .card_image img {
   width: 100%;
   height: 300px;
   border-radius: 20px;
   object-fit: cover;
   background-color: #f5f5f5;
-  /* Fallback color for missing images */
 }
 
 .card_title h4 {

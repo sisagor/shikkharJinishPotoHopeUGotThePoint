@@ -12,7 +12,7 @@
     <div class="row"> 
         @foreach($topCategories as $key => $category)
             <div class="col-md-4">
-                <div class="card_design">
+                <div class="card_design_categories">
                     @if($category->image)
                         <a href="/blog/category?id={{$category['id']}}">
                             <div class="card_image">
