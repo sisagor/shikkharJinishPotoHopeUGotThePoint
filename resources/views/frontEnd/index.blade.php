@@ -16,15 +16,13 @@
         <section>
             @include('frontEnd.sections.section_two')
         </section>
-
-        <!-- Explore Our Most Read Blog Posts section Start -->
-        <section>
-            @include('frontEnd.sections.section_three')
-        </section>
-
-
-
     </div>
+    <!-- Explore Our Most Read Blog Posts section Start -->
+    <section style="background-color: #F7F5FF; padding-bottom: 50px; padding-top: 0px">
+        <div class="container">
+            @include('frontEnd.sections.section_three')
+        </div>
+    </section>
     <!-- OUR AUTHOR -->
     @include('frontEnd.sections.section_four')
     {{--Blogs--}}
@@ -38,7 +36,7 @@
     </div>
 
     <!-- Get Organized & Inspired: Your Guide to Planners & Calendars -->
-    <section>
+    <section style="padding-bottom: 0; padding-top: 50px">
         @include('frontEnd.sections.section_seven')
     </section>
 

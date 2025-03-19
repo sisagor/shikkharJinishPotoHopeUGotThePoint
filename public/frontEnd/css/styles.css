@@ -751,32 +751,41 @@ h2 {
 /*================ select option design Start*/
 
 select {
-  /* Reset Select */
   appearance: none;
-  outline: 10px red;
-  border: 0;
+  outline: none;
+  border: 1px solid #FAB9D5;
   box-shadow: none;
-  /* Personalize */
   flex: 1;
   padding: 0 1em;
   color: #F01E76;
-  background-color: rgb(253, 213, 232);
+  background-color: #FEE9F1;
   background-image: none;
   cursor: pointer;
+  border-radius: 2.25rem;
+  transition: border-color 0.3s ease;
 }
-/* Remove IE arrow */
+
+select:focus,
+select:active {
+  border-color: #F01E76 !important;
+  outline: none !important;
+}
+
 select::-ms-expand {
   display: none;
 }
-/* Custom Select wrapper */
+
 .select {
   position: relative;
   display: flex;
-  /*width: 20em;*/
   height: 3em;
   border-radius: 2.25em;
   overflow: hidden;
+  font-family: "Rubik", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
 }
+
 /* Arrow */
 .select::after {
   content: '\25BC';
@@ -788,10 +797,8 @@ select::-ms-expand {
   pointer-events: none;
   color: #F01E76;
 }
-/* Transition */
-.select:hover::after {
-  color: #FEE9F1;
-}
+
+
 /*================ select option design End*/
 
 .subscribe_container {
