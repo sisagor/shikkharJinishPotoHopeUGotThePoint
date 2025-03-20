@@ -104,7 +104,7 @@
             center: true,
             items: 3,
             margin: 0,
-            autoplay: true,
+            // autoplay: true,
             dots: true,
             autoplayTimeout: 8500,
             smartSpeed: 450,
