@@ -1,6 +1,12 @@
 <section class="testimonials bg">
     <div class="container">
         <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="our-author" style="background-color: #EFEBFF;">OUR AUTHOR</div>
+                <h2 class="most_pupolar_title" style="color: #FFFFFF;">Meet Our Amazing Author</h2>
+            </div>
+        </div>
+        <div class="row mt-5">
             <div class="col-sm-12">
                 <div id="customers-testimonials" class="owl-carousel">
                     <!-- Testimonial 1 -->
