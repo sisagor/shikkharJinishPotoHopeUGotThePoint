@@ -13,10 +13,16 @@
                             <div>
                                 <div class="profession">
                                     <p>Engineer</p>
-                                    <div class="social_icon">
-                                        <a href="#"><span><i class='bx bxl-facebook'></i></span></a>
-                                        <a href="#"><span><i class='bx bxl-linkedin'></i></span></a>
-                                        <a href="#"><span><i class='bx bxl-instagram'></i></span></a>
+                                    <div class="right_column">
+                                        <a href="#" class="social_icon bg_pinterest">
+                                            <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
+                                        </a>
+                                        <a href="#" class="social_icon bg_facebook">
+                                            <img src="{{asset('/frontEnd/img/logos_facebook-icon.png')}}" alt="facebook icon"/>
+                                        </a>
+                                        <a href="#" class="social_icon bg_instagram">
+                                            <img src="{{asset('/frontEnd/img/skill-icons_instagram-icon.png')}}" alt="Instagram icon"/>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -32,10 +38,16 @@
                             <div>
                                 <div class="profession">
                                     <p>Blog Writter</p>
-                                    <div class="social_icon">
-                                        <a href="#"><span><i class='bx bxl-facebook'></i></span></a>
-                                        <a href="#"><span><i class='bx bxl-linkedin'></i></span></a>
-                                        <a href="#"><span><i class='bx bxl-instagram'></i></span></a>
+                                    <div class="right_column">
+                                        <a href="#" class="social_icon bg_pinterest">
+                                            <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
+                                        </a>
+                                        <a href="#" class="social_icon bg_facebook">
+                                            <img src="{{asset('/frontEnd/img/logos_facebook-icon.png')}}" alt="facebook icon"/>
+                                        </a>
+                                        <a href="#" class="social_icon bg_instagram">
+                                            <img src="{{asset('/frontEnd/img/skill-icons_instagram-icon.png')}}" alt="Instagram icon"/>
+                                        </a>
                                     </div>
 
                                 </div>
@@ -52,10 +64,16 @@
                             <div>
                                 <div class="profession">
                                     <p>Blog Writter</p>
-                                    <div class="social_icon">
-                                        <a href="#"><span><i class='bx bxl-facebook'></i></span></a>
-                                        <a href="#"><span><i class='bx bxl-linkedin'></i></span></a>
-                                        <a href="#"><span><i class='bx bxl-instagram'></i></span></a>
+                                    <div class="right_column">
+                                        <a href="#" class="social_icon bg_pinterest">
+                                            <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
+                                        </a>
+                                        <a href="#" class="social_icon bg_facebook">
+                                            <img src="{{asset('/frontEnd/img/logos_facebook-icon.png')}}" alt="facebook icon"/>
+                                        </a>
+                                        <a href="#" class="social_icon bg_instagram">
+                                            <img src="{{asset('/frontEnd/img/skill-icons_instagram-icon.png')}}" alt="Instagram icon"/>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -71,10 +89,16 @@
                             <div>
                                 <div class="profession">
                                     <p>Blog Writter</p>
-                                    <div class="social_icon">
-                                        <a href="#"><span><i class='bx bxl-facebook'></i></span></a>
-                                        <a href="#"><span><i class='bx bxl-linkedin'></i></span></a>
-                                        <a href="#"><span><i class='bx bxl-instagram'></i></span></a>
+                                    <div class="right_column">
+                                        <a href="#" class="social_icon bg_pinterest">
+                                            <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
+                                        </a>
+                                        <a href="#" class="social_icon bg_facebook">
+                                            <img src="{{asset('/frontEnd/img/logos_facebook-icon.png')}}" alt="facebook icon"/>
+                                        </a>
+                                        <a href="#" class="social_icon bg_instagram">
+                                            <img src="{{asset('/frontEnd/img/skill-icons_instagram-icon.png')}}" alt="Instagram icon"/>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +128,7 @@
             center: true,
             items: 3,
             margin: 0,
-            // autoplay: true,
+            autoplay: true,
             dots: true,
             autoplayTimeout: 8500,
             smartSpeed: 450,
@@ -115,8 +139,11 @@
                 768: {
                     items: 2
                 },
-                1170: {
-                    items: 3
+                1199: {
+                    items: 2
+                },
+                1200:{
+                    items:3
                 }
             }
         });
