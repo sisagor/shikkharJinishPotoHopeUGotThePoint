@@ -228,7 +228,7 @@
                                             <label for="message">Message</label>
                                             <textarea id="message" name="message" placeholder="Write your message" required></textarea>
                                         </div>
-                                        <button type="submit" class="submit-button">Submit Comment</button>
+                                        <button type="submit" class="comment-submit-button">Submit Comment</button>
                                     </form>
                                     </div>
                                 </div>
@@ -299,7 +299,7 @@
                         <label for="message" style="padding-left: 15px;">Message</label>
                         <textarea id="message" name="message" placeholder="Write your message" required></textarea>
                     </div>
-                    <button type="submit" class="submit-button">Submit Comment</button>
+                    <button type="submit" class="comment-submit-button">Submit Comment</button>
                 </form>
             </div>
         </div>
@@ -708,9 +708,10 @@
   input[type="text"],
   input[type="email"],
   textarea {
-      /*border: 1px solid #dddddd;*/
-      /*border-radius: 30px;*/
-      padding: 12px 5px;
+      width: 100%;
+      border: 1px solid #dddddd;
+      border-radius: 33px;
+      padding: 5px 15px;
       font-size: 14px;
       outline: none;
       background-color: #ffffff;
@@ -723,23 +724,26 @@
   }
 
   textarea {
-      height: 120px;
+      height: 100px;
       resize: none;
       width: 100%;
+      padding: 10px 15px;
+      border-radius: 12px;
   }
-  /*.submit-button {*/
-  /*    margin-top: 20px;*/
-  /*    background-color: #F01E76;*/
-  /*    color: #ffffff;*/
-  /*    border: none;*/
-  /*    border-radius: 50px;*/
-  /*    padding: 15px;*/
-  /*    font-size: 16px;*/
-  /*    font-weight: bold;*/
-  /*    cursor: pointer;*/
-  /*    transition: background-color 0.3s ease;*/
-  /*    width: 100%;*/
-  /*}*/
+  .comment-submit-button {
+      margin-top: 20px;
+      background-color: #F01E76;
+      color: #ffffff;
+      border: none;
+      border-radius: 50px;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      border-bottom: 4px solid #AA1554;
+  }
 
   /* right sidebar design  */
   .search-container {
@@ -755,10 +759,10 @@
       margin: 16px;
   }
   .search-input {
-      border: none;
+      border: none !important;
       padding: 12px 20px;
       border-radius: 50px 0 0 50px;
-      outline: none;
+      outline: none !important;
       font-size: 14px;
       color: #777;
       flex: 1;
