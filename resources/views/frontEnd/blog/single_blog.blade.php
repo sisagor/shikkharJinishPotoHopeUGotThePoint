@@ -6,6 +6,11 @@
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
+    </div>
+    <div class="container-fluid">
+        <div class="underline"></div>
+    </div>
+    <div class="container">
         <section class="py-1">
             <div class="breadcrumb_design">
               <nav aria-label="breadcrumb">
@@ -50,6 +55,7 @@
                     </a>
                 </div>
             </div>
+            <div class="underline"></div>
             <div class="single_post_details">
             @foreach ($blog->details as $detail)
                 @if ($detail->image)
@@ -416,7 +422,7 @@
       justify-content: space-between;
       align-items: center;
       background-color: #fff;
-      padding: 10px;
+      padding: 10px 0;
   }
   .left_column {
       display: flex;
@@ -434,18 +440,29 @@
 
   }
   .author_name {
-      font-size: 16px;
+      font-size: 14px;
+      font-family: "Rubik", sans-serif;
+      font-weight: 600;
+      color: #262528;
       margin: 0;
   }
   .post_date {
-      font-size: 14px;
+      font-size: 12px;
+      color: #424244;
+      font-family: "Rubik", sans-serif;
+      font-weight: 400;
       margin: 0;
-      color: #777;
   }
   .right_column {
       display: flex;
       align-items: center;
       gap: 10px;
+  }
+  .right_column span{
+      font-family: "Rubik", sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #262528;
   }
   .social_icon {
       display: flex;
@@ -710,19 +727,19 @@
       resize: none;
       width: 100%;
   }
-  .submit-button {
-      margin-top: 20px;
-      background-color: #f542c6;
-      color: #ffffff;
-      border: none;
-      border-radius: 50px;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;
-  }
+  /*.submit-button {*/
+  /*    margin-top: 20px;*/
+  /*    background-color: #F01E76;*/
+  /*    color: #ffffff;*/
+  /*    border: none;*/
+  /*    border-radius: 50px;*/
+  /*    padding: 15px;*/
+  /*    font-size: 16px;*/
+  /*    font-weight: bold;*/
+  /*    cursor: pointer;*/
+  /*    transition: background-color 0.3s ease;*/
+  /*    width: 100%;*/
+  /*}*/
 
   /* right sidebar design  */
   .search-container {
@@ -750,7 +767,7 @@
       color: #b0b0b0;
   }
   .search-button {
-      background-color: #f542c6;
+      background-color: #F01E76;
       color: #fff;
       border: none;
       padding: 12px 25px;
@@ -760,7 +777,7 @@
       transition: background-color 0.3s ease;
   }
   .search-button:hover {
-      background-color: #d039a8;
+      background-color: #f61573;
   }
 
   /* recent Articles and Popular Article Design  */
@@ -841,7 +858,7 @@
   }
 
   .underline {
-      height: 0.2px;
+      height: 1px;
       background-color: #E9E9EA;
       margin: 0 auto 20px auto;
   }

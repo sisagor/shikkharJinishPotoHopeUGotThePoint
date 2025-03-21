@@ -40,6 +40,10 @@ h2 {
   border-radius: 22px;
   transition: background-color 0.3s ease;
   margin-left: 10px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border-bottom: 4px solid #AA1554;
 }
 
 .sign-in-button:hover {
@@ -884,7 +888,7 @@ select::-ms-expand {
   list-style: none;
   display: flex;
   padding: 10px 16px;
-  background-color: #fff;
+  background-color: #F7F5FF;
   border-radius: 15px;
 
 }
