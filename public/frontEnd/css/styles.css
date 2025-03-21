@@ -60,7 +60,10 @@ h2 {
   margin-left: auto;
   margin-right: -28px;
 }
-
+.navigation_btn{
+  right: 98px;
+  bottom: 11px !important;
+}
 .header_bg {
   background-image: url('../img/HeaderBG.png');
   background-position: bottom center;

@@ -6,7 +6,12 @@
             {{--menu section--}}
             @include('frontEnd.header', ['title' => "About us"])
         </section>
-        <section>
+    </div>
+    <div class="container-fluid">
+        <div class="underline"></div>
+    </div>
+    <div class="container">
+        <section class="p-0">
             <div class="breadcrumb_design">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -26,42 +31,45 @@
             </div>
     
             <div class="right-panel">
+                <div class="our-author" style="background-color: #EFEBFF;">ABOUT US</div>
                 <div class="about-header">
                     <h2>Your Trusted Partner in Engaging Education</h2>
                     <p>We believe that every child deserves access to fun, engaging, and effective learning resources. That's why we created Print & Use, a treasure trove of downloadable activities, printable books, and interactive tools.</p>
                 </div>
-    
-                <div class="features">
-                    <div class="feature-item">
-                        <span class="icon">🎓</span>
-                        <div class="feature-text">
-                            <h3>Created by Educators</h3>
-                            <p>Our resources are developed by experienced teachers and early childhood specialists, ensuring they’re aligned with educational standards.</p>
-                        </div>
+                <div class="about_widget">
+                    <div class="about_widget_left generator_icon_bg">
+                        <img src="{{asset('/frontEnd/img/fi_92320841.png')}}" alt="" />
                     </div>
-                
-                    <div class="feature-item">
-                        <span class="icon">📚</span>
-                        <div class="feature-text">
-                            <h3>Variety for Every Learner</h3>
-                            <p>Discover a diverse collection of resources for different learning styles, subjects, and age groups, from colorful pages to brain-teasing word games.</p>
-                        </div>
-                    </div>
-                
-                    <div class="feature-item">
-                        <span class="icon">✔️</span>
-                        <div class="feature-text">
-                            <h3>Free and Accessible</h3>
-                            <p>We believe all children deserve a chance to learn. That's why we offer our resources completely free of charge.</p>
-                        </div>
+                    <div class="about_widget_right ">
+                        <h4>Created by Educators</h4>
+                        <p>Our resources are developed by experienced teachers and early childhood
+                            specialists, ensuring they're aligned with educational standards and promote essential
+                            skills.</p>
+
                     </div>
                 </div>
-                
-    
-                <div class="cta">
-                    <div class="template-count">
-                        <span>750+</span>
-                        <p>Free Templates</p>
+                <div class="about_widget">
+                    <div class="about_widget_left generator_icon_bg">
+                        <img src="{{asset('/frontEnd/img/fi_14575714.png')}}" alt="" />
+                    </div>
+                    <div class="about_widget_right">
+                        <h4>Variety for Every Learner</h4>
+                        <p>Discover a diverse collection of resources catering to different learning
+                            styles, subjects, and age groups. From colorful coloring pages to challenging puzzles
+                            and brain-teasing word games, we have something for everyone.</p>
+
+                    </div>
+                </div>
+                <div class="about_widget">
+                    <div class="about_widget_left generator_icon_bg">
+                        <img src="{{asset('/frontEnd/img/fi_1007975.png')}}" alt="" />
+                    </div>
+                    <div class="about_widget_right">
+                        <h4>Free and Accessible</h4>
+                        <p>We believe all children deserve a chance to learn, regardless of background. That's why
+                            we offer our resources completely free of charge, making them accessible to everyone.
+                        </p>
+
                     </div>
                 </div>
             </div>
@@ -158,11 +166,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-.icon {
-    font-size: 2rem;
-    margin-right: 15px;
-    color: #4CAF50;
-}
 
 .feature-text {
     display: flex;

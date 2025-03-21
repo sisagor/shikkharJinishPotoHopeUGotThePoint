@@ -26,7 +26,7 @@
         <div class="nav_right">
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn  my-2 my-sm-0" type="submit"><img src="{{asset('./frontEnd/img/search-01.png')}}" alt="search"/></button>
+                <button class="btn navigation_btn my-2 my-sm-0" type="submit"><img src="{{asset('./frontEnd/img/search-01.png')}}" alt="search"/></button>
             </form>
             <a href="#" class="sign-in-button">Sign in</a>
         </div>

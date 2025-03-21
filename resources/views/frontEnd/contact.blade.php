@@ -3,11 +3,16 @@
 @section('contents')
 
     <div class="container">
-        <section>
+        <section class="p-0">
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
-        <section>
+    </div>
+    <div class="container-fluid">
+        <div class="underline"></div>
+    </div>
+    <div class="container">
+        <section class="p-0">
             <div class="breadcrumb_design">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -121,7 +126,6 @@
     text-align: center;
     max-width: 400px;
     min-width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
 }
 
