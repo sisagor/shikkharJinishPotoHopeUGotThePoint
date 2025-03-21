@@ -878,6 +878,11 @@ select::-ms-expand {
 .footer_bg {
   background-color: #0B0332;
 }
+.underline {
+  height: 1px;
+  background-color: #E9E9EA;
+  margin: 0 auto 20px auto;
+}
 
 /* breadcrumb CSS design */
 .breadcrumb_design {

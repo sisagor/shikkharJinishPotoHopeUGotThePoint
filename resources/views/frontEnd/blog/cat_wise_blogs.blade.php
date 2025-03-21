@@ -3,10 +3,15 @@
 @section('contents')
 
     <div class="container">
-        <section style="padding: 10px 0">
+        <section class="p-0">
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
+    </div>
+    <div class="container-fluid">
+        <div class="underline"></div>
+    </div>
+        <div class="container">
           <section style="padding: 0">
             <div class="breadcrumb_design">
               <nav aria-label="breadcrumb">

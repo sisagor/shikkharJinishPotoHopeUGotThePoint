@@ -2,7 +2,7 @@
 
 @section('contents')
     <div class="container">
-        <section>
+        <section class="p-0">
             {{--menu section--}}
             @include('frontEnd.header', ['title' => "About us"])
         </section>

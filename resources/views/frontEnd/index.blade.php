@@ -7,6 +7,11 @@
             {{--menu section--}}
             @include('frontEnd.partials.header')
         </section>
+    </div>
+    <div class="container-fluid">
+        <div class="underline"></div>
+    </div>
+    <div class="container">
         <!--  feature free downloadable -->
         <section class="header_bg mt-4">
             @include('frontEnd.sections.section_one')
