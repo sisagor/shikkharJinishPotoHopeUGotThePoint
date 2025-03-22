@@ -100,7 +100,9 @@
                               <div class="col-md-4 mb-3">
                                   <a href="/blog/{{($blog['slug'])}}">
                                     <div class="card_design">
-                                        <img src="{{get_storage_file_url($blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >
+                                        <div class="card_image">
+                                            <img src="{{get_storage_file_url($blog['first_image'])}}" alt="Avatar" width ="300px" height = "384px" >
+                                        </div>
                                         <div class="author_date">
                                             <img src="{{get_storage_file_url($blog['image'])}}" width="16px" height="16px" alt="Avatar"/>
                                             <p class="author_name">{{$blog['created_by']}}</p>
