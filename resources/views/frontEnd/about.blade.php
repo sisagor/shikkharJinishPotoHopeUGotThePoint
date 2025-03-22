@@ -1,15 +1,10 @@
 @extends('frontEnd.layouts.app')
 
 @section('contents')
-    <div class="container">
-        <section class="p-0">
-            {{--menu section--}}
-            @include('frontEnd.header', ['title' => "About us"])
-        </section>
-    </div>
-    <div class="container-fluid">
-        <div class="underline"></div>
-    </div>
+    <section class="p-0">
+        {{--menu section--}}
+        @include('frontEnd.header', ['title' => "About us"])
+    </section>
     <div class="container">
         <section class="p-0">
             <div class="breadcrumb_design">

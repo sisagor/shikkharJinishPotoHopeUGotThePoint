@@ -1,16 +1,11 @@
 @extends('frontEnd.layouts.app')
 
 @section('contents')
+    <section class="p-0">
+        {{--menu section--}}
+        @include('frontEnd.partials.header')
+    </section>
 
-    <div class="container">
-        <section class="p-0">
-            {{--menu section--}}
-            @include('frontEnd.partials.header')
-        </section>
-    </div>
-    <div class="container-fluid">
-        <div class="underline"></div>
-    </div>
     <div class="container">
         <!--  feature free downloadable -->
         <section class="header_bg mt-4">
