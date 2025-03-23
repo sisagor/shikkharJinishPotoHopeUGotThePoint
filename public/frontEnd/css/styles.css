@@ -279,19 +279,49 @@ h2 {
   border-radius: 60px;
   position: relative;
   background-color: #fff;
+  display: flex;
+  align-items: center;
 }
-
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
 .left_select {
   height: 40px;
-  width: 100px;
+  width: 120px;
   border: none;
   outline: none;
   padding: 0 10px;
   border-bottom-left-radius: 60px;
   border-top-left-radius: 60px;
   background: #fff;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #262528;
+  appearance: none; /* Hides the default dropdown arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
 }
 
+.select-wrapper::after {
+  content: "v";
+  font-size: 18px;
+  color: #141B34;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-weight: 500;
+}
+.vertical-line {
+  width: 1px;
+  height: 18px;
+  background-color: #ccc;
+  margin: 0 10px;
+}
 .template_name {
   height: 38px;
   width: 290px;
@@ -300,6 +330,11 @@ h2 {
   outline: none;
   border-top-right-radius: 60px;
   border-bottom-right-radius: 60px;
+  padding: 0 100px 0 5px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #6E6D6F;
 }
 
 .right_btn {
