@@ -1,15 +1,13 @@
 @extends('frontEnd.layouts.app')
 
 @section('contents')
-    <div class="container">
-        <section class="p-0">
-            {{--menu section--}}
-            @include('frontEnd.header', ['title' => "About us"])
-        </section>
-    </div>
-    <div class="container-fluid">
+    <section class="p-0">
+        {{--menu section--}}
+        <div class="container">
+            @include('frontEnd.header')
+        </div>
         <div class="underline"></div>
-    </div>
+    </section>
     <div class="container">
         <section class="p-0">
             <div class="breadcrumb_design">
@@ -221,6 +219,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
 }
 .mission-vision-container {
     display: flex;

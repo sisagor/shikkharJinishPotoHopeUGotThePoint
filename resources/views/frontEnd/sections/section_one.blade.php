@@ -8,12 +8,19 @@
             pages, puzzles, and more for kids and adults!</p>
         <form class="input-group" method="get" target="_blank" action="{{route('blog.search')}}">
             <div class="container_btn">
-                <select name="cat" id="cat" class="left_select">
-                    <option value="all">All</option>
-                    @foreach($categories as $key => $cat)
-                        <option value="{{$key}}">{{$cat}}</option>
-                    @endforeach
-                </select>
+
+                <div class="select-wrapper">
+                    <select name="cat" id="cat" class="left_select">
+                        <option value="all">All</option>
+                        @foreach($categories as $key => $cat)
+                            <option value="{{$key}}">{{$cat}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="vertical-line"></div>
+                <svg class="search-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.414-1.415l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                </svg>
                 <input type="text" class="template_name" name="title" id="title" placeholder="Title">
                 <button type="submit" id="search_submit" class="right_btn">Search</button>
             </div>

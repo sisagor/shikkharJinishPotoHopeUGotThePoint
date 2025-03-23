@@ -279,19 +279,49 @@ h2 {
   border-radius: 60px;
   position: relative;
   background-color: #fff;
+  display: flex;
+  align-items: center;
 }
-
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
 .left_select {
   height: 40px;
-  width: 100px;
+  width: 120px;
   border: none;
   outline: none;
   padding: 0 10px;
   border-bottom-left-radius: 60px;
   border-top-left-radius: 60px;
   background: #fff;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #262528;
+  appearance: none; /* Hides the default dropdown arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
 }
 
+.select-wrapper::after {
+  content: "v";
+  font-size: 18px;
+  color: #141B34;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-weight: 500;
+}
+.vertical-line {
+  width: 1px;
+  height: 18px;
+  background-color: #ccc;
+  margin: 0 10px;
+}
 .template_name {
   height: 38px;
   width: 290px;
@@ -300,6 +330,11 @@ h2 {
   outline: none;
   border-top-right-radius: 60px;
   border-bottom-right-radius: 60px;
+  padding: 0 100px 0 5px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #6E6D6F;
 }
 
 .right_btn {
@@ -481,7 +516,7 @@ h2 {
   border: 2px dashed #FEE9F1;
   background: #FFF;
   box-shadow: 0 48px 100px rgba(0, 7, 33, 0.08), 0 16px 48px rgba(0, 7, 33, 0.02);
-  text-align: center;
+  text-align: left;
 }
 
 .card_design:hover {
@@ -514,12 +549,13 @@ h2 {
   font-weight: 600;
   margin-top: 15px;
   color: #333;
+  text-align: left;
 }
 
 .author_date {
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: baseline;
   gap: 10px;
 }
@@ -533,7 +569,12 @@ h2 {
   font-size: 14px;
   color: #666;
 }
-
+.sub_author {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
 .download_button {
   display: inline-flex;
   align-items: center;
@@ -699,6 +740,7 @@ h2 {
 
 .bg_color_new_book {
   background-color: #5B3AFF;
+  padding: 30px 0;
 }
 
 /* new book section  */
