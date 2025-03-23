@@ -3,7 +3,10 @@
 @section('contents')
     <section class="p-0">
         {{--menu section--}}
-        @include('frontEnd.header', ['title' => "About us"])
+        <div class="container">
+            @include('frontEnd.header')
+        </div>
+        <div class="underline"></div>
     </section>
     <div class="container">
         <section class="p-0">
@@ -216,6 +219,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
 }
 .mission-vision-container {
     display: flex;
