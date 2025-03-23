@@ -41,11 +41,14 @@
                         </div>
                     </a>
                     <div class="author_date">
-                        <img src="{{get_storage_file_url($blog['image'])}}" width="16px" height="16px" alt="Avatar"/>
-
-                        <p class="author_name">{{$blog['created_by']}}</p>
-                        <img src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
-                        <p class="author_name">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
+                        <div class="sub_author">
+                            <img src="{{get_storage_file_url($blog['image'])}}" width="16px" height="16px" alt="Avatar"/>
+                            <p class="author_name">{{$blog['created_by']}}</p>
+                        </div>
+                        <div class="sub_author">
+                            <img src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
+                            <p class="author_name">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
+                        </div>
                     </div>
                     <div class="card_title">
                         <a rel="{{$blog['url_type']}}" href="/blog/{{($blog['slug'])}}">

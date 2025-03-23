@@ -481,7 +481,7 @@ h2 {
   border: 2px dashed #FEE9F1;
   background: #FFF;
   box-shadow: 0 48px 100px rgba(0, 7, 33, 0.08), 0 16px 48px rgba(0, 7, 33, 0.02);
-  text-align: center;
+  text-align: left;
 }
 
 .card_design:hover {
@@ -514,12 +514,13 @@ h2 {
   font-weight: 600;
   margin-top: 15px;
   color: #333;
+  text-align: left;
 }
 
 .author_date {
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: baseline;
   gap: 10px;
 }
@@ -533,7 +534,12 @@ h2 {
   font-size: 14px;
   color: #666;
 }
-
+.sub_author {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
 .download_button {
   display: inline-flex;
   align-items: center;
@@ -699,6 +705,7 @@ h2 {
 
 .bg_color_new_book {
   background-color: #5B3AFF;
+  padding: 30px 0;
 }
 
 /* new book section  */
