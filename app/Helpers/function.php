@@ -293,20 +293,7 @@ if (! function_exists('get_profile_picture_url')) {
      */
     function get_profile_picture_url()
     {
-        if (is_employee()) {
-            return \Illuminate\Support\Facades\Cache::rememberForever('images_single_' . Auth::id(), function () {
-                return optional(Auth::user()->employee->profile)->path;
-            });
-        }
-        if (is_company_admin()) {
-            return \Illuminate\Support\Facades\Cache::rememberForever('images_single_' . Auth::id(), function () {
-                return optional(Auth::user()->company->profile)->path;
-            });
-        }
-
-        return \Illuminate\Support\Facades\Cache::rememberForever('images_single_' . Auth::id(), function () {
-            return optional(Auth::user()->profile->profile)->path;
-        });
+        return optional(Auth::user()->profile->profile)->path;
     }
 }
 

@@ -10,32 +10,37 @@
             <div class="col-sm-12">
                 <div id="customers-testimonials" class="owl-carousel">
                     <!-- Testimonial 1 -->
-                    <div class="item">
-                        <div class="shadow-effect">
-                            <img class="img-circle" src="{{asset('frontEnd/img/author/slide-girl-1.jpg')}}" alt="">
-                        </div>
-                        <div class="testimonial-name">
-                            <h2>Jhon Due</h2>
-                            <div>
-                                <div class="profession">
-                                    <p>Engineer</p>
-                                    <div class="right_column">
-                                        <a href="#" class="social_icon bg_pinterest">
-                                            <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
-                                        </a>
-                                        <a href="#" class="social_icon bg_facebook">
-                                            <img src="{{asset('/frontEnd/img/logos_facebook-icon.png')}}" alt="facebook icon"/>
-                                        </a>
-                                        <a href="#" class="social_icon bg_instagram">
-                                            <img src="{{asset('/frontEnd/img/skill-icons_instagram-icon.png')}}" alt="Instagram icon"/>
-                                        </a>
+                    @foreach($authors as $author)
+                        <div class="item">
+                            <div class="shadow-effect">
+                                <img class="img-circle" src="{{get_storage_file_url($author->profile->image->path)}}" alt="">
+                            </div>
+                            <div class="testimonial-name">
+                                <h2>{{$author->name}}</h2>
+                                <div>
+                                    <div class="profession">
+                                        <p>{{$author->profile->occupation}}</p>
+                                        <div class="right_column">
+                                            <a target="_blank" href="{{$author->profile->facebook}}" class="social_icon bg_facebook">
+                                                <img src="{{asset('/frontEnd/img/logos_facebook-icon.png')}}" alt="facebook icon"/>
+                                            </a>
+                                            <a target="_blank" href="{{$author->profile->instagram}}" class="social_icon bg_instagram">
+                                                <img src="{{asset('/frontEnd/img/skill-icons_instagram-icon.png')}}" alt="Instagram icon"/>
+                                            </a>
+                                            <a target="_blank" href="{{$author->profile->twitter}}" class="social_icon bg_pinterest">
+                                                <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
+                                            </a>
+                                            <a target="_blank" href="{{$author->profile->linedin}}" class="social_icon bg_pinterest">
+                                                <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                     <!-- Testimonial 2 -->
-                    <div class="item">
+                    {{--<div class="item">
                         <div class="shadow-effect">
                             <img class="img-circle" src="{{asset('frontEnd/img/author/slide-girl-2.jpg')}}" alt="">
                         </div>
@@ -59,9 +64,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                     <!-- Testimonial 3 -->
-                    <div class="item">
+                   {{-- <div class="item">
                         <div class="shadow-effect">
                             <img class="img-circle" src="{{asset('frontEnd/img/author/slide-man-1.jpg')}}" alt="">
                         </div>
@@ -84,9 +89,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                     <!-- Testimonial 4 -->
-                    <div class="item">
+                   {{-- <div class="item">
                         <div class="shadow-effect">
                             <img class="img-circle" src="{{asset('frontEnd/img/author/slide-man-1.jpg')}}" alt="">
                         </div>
@@ -109,7 +114,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
             </div>
         </div>

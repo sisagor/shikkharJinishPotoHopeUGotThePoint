@@ -79,7 +79,7 @@ trait Imageable
      */
     public function profile()
     {
-        return $this->morphOne(Image::class, 'imageable')->where('type', 'profile')->select('path');
+        return $this->morphOne(Image::class, 'imageable')->where('type', 'profile')->orderBy('id', 'DESC');
     }
 
     /**

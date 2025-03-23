@@ -2,8 +2,10 @@
 
 namespace Modules\User\Repositories;
 
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Modules\CMS\Entities\BlogDetails;
 use Modules\User\Entities\Profile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -59,7 +61,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
                 'email' => $request->get('email'),
                 'dob' => $request->get('dob'),
                 'gender' => $request->get('gender'),
-                'address' => $request->get('address'),
+                //'address' => $request->get('address'),
                 'occupation' => $request->get('occupation'),
                 'about' => $request->get('about'),
                 'facebook' => $request->get('facebook'),
@@ -68,13 +70,12 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
                 'linkedin' => $request->get('linkedin'),
             ]);
 
-            $level = ($request->get('manager') == User::USER_MANAGER ? User::USER_MANAGER : User::USER_ADMIN);
 
             User::create([
                 'com_id' => com_id(),
                 'profile_id' => $profile->id,
                 'role_id' => $request->get('role_id'),
-                'level' => $level,
+                'level' => $request->get('level'),
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'status' => $request->get('status'),
@@ -84,7 +85,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
             DB::commit();
 
         } catch (\Exception $exception) {
-
+            dd($exception);
             DB::rollBack();
             Log::error("User create Failed");
             Log::info(get_exception_message($exception));
@@ -148,7 +149,23 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
             DB::beginTransaction();
 
             if ($request->hasFile('image')) {
-                $profile->updateImage($request->file('image'), 'profile');
+
+                $file = $request->file('image');
+                $path = $file->store('images', 'public');
+                // Save new image
+                $image = new Image([
+                    'path' => $path,
+                    'name' => $file->getClientOriginalName(),
+                    'extension' => $file->getClientOriginalExtension(),
+                    'size' => $file->getSize(),
+                    'order' => 0,
+                    'image_alter' => "profile image",
+                    'type' => 'profile',
+                    'imageable_id' => $profile->id,
+                    'imageable_type' => Profile::class,
+                ]);
+
+                $profile->images()->save($image);
             }
 
             $profile->update([

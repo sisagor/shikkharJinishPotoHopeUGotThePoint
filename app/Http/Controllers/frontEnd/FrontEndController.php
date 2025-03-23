@@ -64,7 +64,7 @@ class FrontEndController extends Controller
 
         $authors = User::with(['profile.image']) 
                 ->where('level',  \App\Models\User::USER_AUTHOR)
-                ->limit(3)
+                ->limit(10)
                 ->get();
 
         //$home = BlogDetails::where('type', BlogDetails::TYPE_HOME)->select('content')->first();

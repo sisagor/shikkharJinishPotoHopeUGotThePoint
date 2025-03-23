@@ -53,9 +53,9 @@ if (! function_exists('get_roles')) {
     function get_roles($level = null)
     {
         if ($level) {
-            return Role::active()->commonScope()->where('level', $level)->pluck('name', 'id');
+            return Role::active()->where('level', $level)->pluck('name', 'id');
         }
-        return Role::mine()->active()->pluck('name', 'id');
+        return Role::active()->pluck('name', 'id');
     }
 }
 

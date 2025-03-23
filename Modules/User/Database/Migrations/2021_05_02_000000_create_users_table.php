@@ -23,6 +23,11 @@ class CreateUsersTable extends Migration
                 $table->date('dob')->nullable();
                 $table->string('gender')->nullable();
                 $table->string('address')->nullable();
+                $table->string('occupation')->nullable();
+                $table->string('facebook')->nullable();
+                $table->string('linkedin')->nullable();
+                $table->string('twitter')->nullable();
+                $table->string('instagram')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
                 $table->integer('created_by')->default(0);

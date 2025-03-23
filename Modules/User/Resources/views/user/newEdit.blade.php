@@ -50,6 +50,19 @@
             </div>
 
             <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="user_type">
+                    {{trans('app.user_type')}} <span class="required">*</span>
+                </label>
+                <div class="item form-group">
+                    <select class="form-control" name="level" id="user_type">
+                        <option value="admin_user" @if($profile) @if($profile->level == "admin_user")
+                        selected @endif @endif> {{trans('app.admin_user')}} </option>
+                        <option value="author" @if($profile) @if($profile->level == "author")
+                        selected @endif @endif> {{trans('app.admin_author')}} </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
                 <label class="col-form-label label-align" for="gender">
                     {{trans('app.gender')}} <span class="required">*</span>
                 </label>
@@ -65,7 +78,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-6">
+           {{-- <div class="col-md-6 col-sm-6">
                 <label class="col-form-label label-align" for="address">
                     {{trans('app.address')}}
                 </label>
@@ -74,7 +87,7 @@
                            value="@if(!empty($profile)){{$profile->address}}@endif"
                            placeholder="{{trans('app.address')}}">
                 </div>
-            </div>
+            </div>--}}
 
             {{--Status--}}
             <div class="col-md-6 col-sm-6">
@@ -127,7 +140,7 @@
                 <div class="item form-group">
                     <input id="occupation" class="form-control" type="text" name="occupation"
                            value="@if(!empty($profile)){{$profile->occupation}}@endif"
-                           placeholder="{{trans('app.address')}}">
+                           placeholder="{{trans('app.occupation')}}">
                 </div>
             </div>
            

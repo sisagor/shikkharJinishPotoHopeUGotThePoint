@@ -748,5 +748,8 @@ return [
     'social_settings' => 'Social Settings',
     'pinterest' => 'Pinterest',
     'tweeter' => 'Tweeter',
+    'admin_author' => 'Author',
+    'user_type' => 'User Type',
+    'admin_user' => 'Admin User',
 
 ];

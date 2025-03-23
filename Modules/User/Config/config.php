@@ -18,7 +18,7 @@ return [
     ##detarmine role level to get role
     'role_levels' => [
         ['name' => 'Admin', 'value' => Role::ROLE_ADMIN],
-        ['name' => 'Author', 'value' => \App\Models\User::USER_AUTHOR],
+        ['name' => 'Admin User', 'value' => Role::ROLE_ADMIN_USER],
     ],
 
 
