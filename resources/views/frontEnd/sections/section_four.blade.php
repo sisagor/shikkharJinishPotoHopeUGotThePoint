@@ -21,17 +21,17 @@
                                     <div class="profession">
                                         <p>{{$author->profile->occupation}}</p>
                                         <div class="right_column">
-                                            <a target="_blank" href="{{$author->profile->facebook}}" class="social_icon bg_facebook">
+                                            <a target="_blank" href="{{$author->profile->facebook}}" style="width: 16px;height: 16px" class="social_icon ">
                                                 <img src="{{asset('/frontEnd/img/logos_facebook-icon.png')}}" alt="facebook icon"/>
                                             </a>
-                                            <a target="_blank" href="{{$author->profile->instagram}}" class="social_icon bg_instagram">
+                                            <a target="_blank" href="{{$author->profile->instagram}}" style="width: 16px;height: 16px"  class="social_icon ">
                                                 <img src="{{asset('/frontEnd/img/skill-icons_instagram-icon.png')}}" alt="Instagram icon"/>
                                             </a>
-                                            <a target="_blank" href="{{$author->profile->twitter}}" class="social_icon bg_pinterest">
+                                            <a target="_blank" href="{{$author->profile->twitter}}" style="width: 16px;height: 16px"  class="social_icon ">
                                                 <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
                                             </a>
-                                            <a target="_blank" href="{{$author->profile->linedin}}" class="social_icon bg_pinterest">
-                                                <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
+                                            <a target="_blank" href="{{$author->profile->linedin}}" style="width: 16px;height: 16px"  class="social_icon ">
+                                                <img src="{{asset('/frontEnd/img/entypo-social_linkedin-with-circle.png')}}" alt="pinterest icon"/>
                                             </a>
                                         </div>
                                     </div>

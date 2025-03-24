@@ -18,7 +18,7 @@
                 </ol>
               </nav>
             </div>
-          </section>
+        </section>
     </div>
     <div class="container">
         <section class="about-us">
@@ -154,21 +154,6 @@ h2 {
     font-size: 1.1rem;
     line-height: 1.6;
 }
-.features {
-    margin-top: 30px;
-}
-
-.feature-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-}
-
-
-.feature-text {
-    display: flex;
-    flex-direction: column;
-}
 
 .feature-text h3 {
     font-size: 1.4rem;
@@ -179,26 +164,6 @@ h2 {
 .feature-text p {
     color: #777;
     font-size: 1rem;
-}
-
-.cta {
-    position: absolute;
-    bottom: 298px; /* Position 20px from the bottom of the .left-panel */
-    left: 24%;
-    transform: translateX(-47%); /* Center the .template-count horizontally */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.template-count {
-    background-color: #e91e63;
-    color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    display: inline-block;
-    text-align: center;
 }
 
 .template-count span {
@@ -275,6 +240,5 @@ h2 {
 
 </style>
 
-  
 
 @endsection
