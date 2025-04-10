@@ -1,4 +1,4 @@
-<div class="container" style="height: 700px;">
+<div class="container">
     <div class="row">
         <div class="col-md-12 text-center pt-4">
             <div class="our-author" style="background-color: #EFEBFF;">NEW BOOK</div>

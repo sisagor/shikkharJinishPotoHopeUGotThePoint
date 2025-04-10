@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="{{route('home')}}">
                 <img src="{{asset('./frontEnd/img/Logo.png')}}" width="30" height="30" alt="Logo">
             </a>
@@ -29,16 +29,16 @@
                         <a class="nav-link" href="{{route('blog.cat')}}">Blogs</a>
                     </li>
                 </ul>
-                <div class="nav_right ml-auto">
-                    <form class="form-inline my-2 my-lg-0" method="get" target="_blank" action="{{route('blog.search')}}">
-                        <input type="hidden" class="cat" name="cat" value="all">
-                        <input class="form-control mr-sm-2" name="title" type="text" placeholder="Search" aria-label="Search">
+                <div class="nav_right">
+                    <form class="form-inline my-2 my-lg-0 position-relative" method="get" target="_blank" action="{{route('blog.search')}}">
+{{--                        <input type="hidden" class="cat" name="cat" value="all">--}}
+                        <input class="form-control" name="title" type="text" placeholder="Search" aria-label="Search">
                         <button class="btn s_btn my-2 my-sm-0" type="submit">
                             <img src="{{asset('./frontEnd/img/search-01.png')}}" alt="search" />
                         </button>
                     </form>
-                    <a href="#" class="sign-in-button ml-2">Sign in</a>
                 </div>
+                <a href="#" class="sign-in-button ml-2">Sign in</a>
             </div>
         </nav>
     </div>

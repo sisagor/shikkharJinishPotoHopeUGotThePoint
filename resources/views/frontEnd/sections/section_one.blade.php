@@ -6,7 +6,7 @@
         <h1>Free Downloadable <br> Activity Books</h1> <br>
         <p>Welcome to our website where you can download tons of free printable activity books, coloring
             pages, puzzles, and more for kids and adults!</p>
-        <form class="input-group" method="get" target="_blank" action="{{route('blog.search')}}">
+        <form method="get" target="_blank" action="{{route('blog.search')}}">
             <div class="container_btn">
 
                 <div class="select-wrapper">
