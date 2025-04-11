@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row py-5">
+    <div class="row footer_content">
         <div class=" col-sm-12 col-lg-4 mb-4 order-0 order-sm-0" ><a  href="#"><img src="{{asset('/frontEnd/img/Logo.png')}}"  alt="" /></a>
             <p class="text-light my-4">Award winning full-service, creative digital agency, collaborating with brands all over the world.</p>
         </div>
