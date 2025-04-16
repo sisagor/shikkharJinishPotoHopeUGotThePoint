@@ -3,7 +3,7 @@
         <img src="{{asset('/frontEnd/img/HeaderSubscribeBG.png')}}" alt="" class="center_image"/>
     </div>
     <div class="subscribe_container">
-        <div style="margin-top: 30px; position: relative; display: inline-block;">
+        <div class="sub_subscribe_container" style="margin-top: 30px; position: relative; display: inline-block;">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <h1>Subscribe for Daily Blog</h1>
             <p>An awesome discount awaits for you</p>

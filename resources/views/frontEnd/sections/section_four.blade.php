@@ -1,7 +1,7 @@
 <section class="testimonials bg">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 col-sm-12 text-center">
                 <div class="our-author" style="background-color: #EFEBFF;">OUR AUTHOR</div>
                 <h2 class="most_pupolar_title" style="color: #FFFFFF;">Meet Our Amazing Author</h2>
             </div>
@@ -148,9 +148,6 @@
                     items: 1
                 },
                 768: {
-                    items: 2
-                },
-                1199: {
                     items: 2
                 },
                 1200:{

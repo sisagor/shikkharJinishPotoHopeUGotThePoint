@@ -17,13 +17,13 @@
                 <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
                     <img class="bg_new_index_up" src="{{ get_storage_file_url(optional($book->book)->path) }}" alt="{{$book->name}}" />
                 </a>
-                <div class="bg_new_index_down_title text-center">
-                    <div class="card_title">
-                        <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">
-                            <h4 style="color: #fff">{{$book->name}}</h4>
-                        </a>
-                    </div>
-                </div>
+{{--                <div class="bg_new_index_down_title text-center">--}}
+{{--                    <div class="card_title">--}}
+{{--                        <a target="_blank" rel="{{$book->url_type}}" href="{{($book->url)}}">--}}
+{{--                            <h4 style="color: #fff">{{$book->name}}</h4>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         @endforeach
         {{-- <div class="col-md-3 col-sm-3 new_book_index mx-4">

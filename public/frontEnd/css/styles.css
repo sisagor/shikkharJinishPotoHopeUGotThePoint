@@ -1,3 +1,11 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  width: 100%;
+}
 h6 {
   font-family: "Rubik", sans-serif;
   font-size: 14px;
@@ -31,6 +39,14 @@ h2 {
 }
 
 /* Nav bar  */
+.nav_search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50px;
+  overflow: hidden;
+}
 .sign-in-button {
   display: inline-block;
   padding: 10px 20px;
@@ -60,9 +76,11 @@ h2 {
   display: flex;
   margin-left: auto;
   margin-right: 0;
+  align-items: center;
+  justify-content: center;
 }
 .nav_right input{
-  padding: 0 33px 0 15px;
+  /*padding: 0 33px 0 15px;*/
 }
 .navigation_btn{
   right: 98px;
@@ -554,7 +572,6 @@ h2 {
   font-weight: 600;
   margin-top: 15px;
   color: #333;
-  text-align: left;
 }
 
 .author_date {
@@ -805,8 +822,9 @@ h2 {
 }
 
 .center_image {
-  width: 690px;
+  width: 80%;
   margin: auto;
+  height: 300px;
 }
 
 .subscribe_bg {
@@ -920,7 +938,7 @@ select::-ms-expand {
 #email-submit-button {
   position: absolute;
   right: 10px;
-  top: 78%;
+  top: 53%;
   transform: translateY(-50%);
   width: 70px;
   height: 30px;
@@ -1051,10 +1069,16 @@ select::-ms-expand {
 section {
   padding: 50px 0;
 }
+.footer_content {
+  padding-top: 40px;
+}
 
 @media (max-width: 1200px) {
   .frame_group {
     gap: 20px;
+  }
+  #email-submit-button {
+    top: 53%;
   }
 }
 
@@ -1228,7 +1252,11 @@ section {
   .frame_group {
     gap: 10px;
   }
-
+  .nav_right {
+    display: flex;
+    margin: auto;
+    display: inline-block;
+  }
 }
 
 @media (max-width: 993px) {
@@ -1395,9 +1423,28 @@ section {
   background-position: center;
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  .navbar-toggler {
-    display: none !important;
+@media (min-width: 769px) and (max-width: 991px) {
+  #email-submit-button{
+    top: 53%;
+  }
+}
+@media (min-width: 992px) and (max-width: 1024px) {
+  .navbar-expand-lg .navbar-toggler {
+    display: none!important;
+  }
+}
+@media (max-width: 768px) {
+
+  .sub_subscribe_container{
+    margin-top: 30px;
+    position: relative;
+    display: inline-block;
+  }
+  .sub_subscribe_container h1{
+    font-size: 30px;
+  }
+  #email-submit-button{
+    top: 53%;
   }
 }
 /* Styles for screen widths between 700px and 824px */
@@ -1484,6 +1531,16 @@ section {
   .profession p {
     font-size: 11px;
   }
+  .footer_content {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 700px) {
+  .footer_content {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 575px) {
 
 }
 
