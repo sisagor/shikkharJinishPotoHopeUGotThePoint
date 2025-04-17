@@ -1,3 +1,11 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  width: 100%;
+}
 h6 {
   font-family: "Rubik", sans-serif;
   font-size: 14px;
@@ -31,6 +39,14 @@ h2 {
 }
 
 /* Nav bar  */
+.nav_search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50px;
+  overflow: hidden;
+}
 .sign-in-button {
   display: inline-block;
   padding: 10px 20px;
@@ -44,6 +60,7 @@ h2 {
   font-weight: 600;
   font-size: 16px;
   border-bottom: 4px solid #AA1554;
+  text-align: center;
 }
 
 .sign-in-button:hover {
@@ -58,7 +75,12 @@ h2 {
 .nav_right {
   display: flex;
   margin-left: auto;
-  margin-right: -28px;
+  margin-right: 0;
+  align-items: center;
+  justify-content: center;
+}
+.nav_right input{
+  /*padding: 0 33px 0 15px;*/
 }
 .navigation_btn{
   right: 98px;
@@ -353,7 +375,8 @@ h2 {
 }
 
 .s_btn {
-  right: 90px;
+  right: -9px;
+  top: -6px;
 }
 
 .btn {
@@ -549,7 +572,6 @@ h2 {
   font-weight: 600;
   margin-top: 15px;
   color: #333;
-  text-align: left;
 }
 
 .author_date {
@@ -741,6 +763,7 @@ h2 {
 .bg_color_new_book {
   background-color: #5B3AFF;
   padding: 30px 0;
+  height: 800px;
 }
 
 /* new book section  */
@@ -777,7 +800,8 @@ h2 {
 }
 .bg_new_index_down_title {
   position: absolute;
-  top: 325px;
+  top: 421px;
+  z-index: 9999;
 }
 
 .bg_new_index_up {
@@ -798,8 +822,9 @@ h2 {
 }
 
 .center_image {
-  width: 690px;
+  width: 80%;
   margin: auto;
+  height: 300px;
 }
 
 .subscribe_bg {
@@ -913,7 +938,7 @@ select::-ms-expand {
 #email-submit-button {
   position: absolute;
   right: 10px;
-  top: 78%;
+  top: 53%;
   transform: translateY(-50%);
   width: 70px;
   height: 30px;
@@ -1044,10 +1069,16 @@ select::-ms-expand {
 section {
   padding: 50px 0;
 }
+.footer_content {
+  padding-top: 40px;
+}
 
 @media (max-width: 1200px) {
   .frame_group {
     gap: 20px;
+  }
+  #email-submit-button {
+    top: 53%;
   }
 }
 
@@ -1221,7 +1252,11 @@ section {
   .frame_group {
     gap: 10px;
   }
-
+  .nav_right {
+    display: flex;
+    margin: auto;
+    display: inline-block;
+  }
 }
 
 @media (max-width: 993px) {
@@ -1284,7 +1319,7 @@ section {
 
 .profession p {
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   color: #666;
 }
 
@@ -1387,4 +1422,126 @@ section {
   background-color: #26186B;
   background-position: center;
 }
+
+@media (min-width: 769px) and (max-width: 991px) {
+  #email-submit-button{
+    top: 53%;
+  }
+}
+@media (min-width: 992px) and (max-width: 1024px) {
+  .navbar-expand-lg .navbar-toggler {
+    display: none!important;
+  }
+}
+@media (max-width: 768px) {
+
+  .sub_subscribe_container{
+    margin-top: 30px;
+    position: relative;
+    display: inline-block;
+  }
+  .sub_subscribe_container h1{
+    font-size: 30px;
+  }
+  #email-submit-button{
+    top: 53%;
+  }
+}
+/* Styles for screen widths between 700px and 824px */
+@media (min-width: 700px) and (max-width: 824px) {
+  .s_btn {
+    right: -5px;
+    top: -6px;
+  }
+  .nav_right{
+    display: block;
+    width: 50%;
+  }
+  .nav_right input{
+    padding: 0 40px 0 10px;
+  }
+  .sign-in-button {
+    display: block;
+  }
+  .feature_free_header h5{
+    font-size: 20px;
+  }
+
+  .feature_free_header p {
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .right_btn {
+    padding: 0 10px;
+    font-size: 14px;
+  }
+  .template_name {
+    padding: 0 0 0 5px;
+  }
+  .card_image img {
+    height: 300px;
+  }
+  .card_design {
+    height: 390px;
+    padding: 14px;
+  }
+  .card_image img {
+    height: 214px;
+  }
+  .author_date{
+    gap: 5px;
+  }
+  .author_date img {
+    width: 12px;
+    height: 12px;
+  }
+  .author_date .author_name {
+    font-size: 10px;
+  }
+  .download_button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  .card_design_categories {
+    height: 360px;
+  }
+  .bg_color_new_book{
+    height: 585px;
+  }
+  .bg_new_index_down_title{
+    top: 280px;
+  }
+  .bg_new_index_down{
+    top: 100px;
+  }
+  .bg_new_index_up {
+    top: 42px;
+    left: 10px;
+  }
+  .shadow-effect{
+    width: 300px;
+    height: 348px;
+  }
+  .testimonial-name {
+    width: 250px;
+    height: 98px;
+  }
+  .profession p {
+    font-size: 11px;
+  }
+  .footer_content {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 700px) {
+  .footer_content {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 575px) {
+
+}
+
 

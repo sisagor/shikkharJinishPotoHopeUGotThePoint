@@ -8,15 +8,15 @@
     <div class="container">
         <section class="py-1">
             <div class="breadcrumb_design">
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb_item"><a href="/">Home</a></li>
-                  <li class="breadcrumb_item"><a href="/blog/category">Blog</a></li>
-                  <li class="breadcrumb_item active" aria-current="page">{{$blog->title}}</li>
-                </ol>
-              </nav>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb_item"><a href="/">Home</a></li>
+                        <li class="breadcrumb_item"><a href="/blog/category">Blog</a></li>
+                        <li class="breadcrumb_item active" aria-current="page">{{$blog->title}}</li>
+                    </ol>
+                </nav>
             </div>
-          </section>
+        </section>
     </div>
 
     <div class="container container2">
@@ -25,9 +25,9 @@
             <div class="author_container">
                 <div class="left_column">
                     @if (!empty($blog->user->profile))
-                    <img src="{{get_storage_file_url($blog->user->profile->image->path )}}" alt="author image" class="author_image">
+                        <img src="{{get_storage_file_url($blog->user->profile->image->path )}}" alt="author image" class="author_image">
                     @else
-                    <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author_image">
+                        <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author_image">
                     @endif
                     <div class="author_details">
                         <p class="author_name">{{$blog->user->name}}</p>
@@ -52,27 +52,16 @@
             </div>
             <div class="underline"></div>
             <div class="single_post_details">
-            @foreach ($blog->details as $detail)
-                @if ($detail->image)
-                    <img src="{{get_storage_file_url($detail->image->path)}}" alt="{{$detail->image->image_alter}}" class="single_img w-100">
-                @endif
+                @foreach ($blog->details as $detail)
+                    @if ($detail->image)
+                        <img src="{{get_storage_file_url($detail->image->path)}}" alt="{{$detail->image->image_alter}}" class="single_img w-100">
+                    @endif
 
-                <p class="mt-1">{!! html_entity_decode($detail->details) !!}</p>
-            @endforeach
-                {{-- <h4>Why Coloring is Great for Kids:</h4> --}}
-                {{-- <ol>
-                    <li><strong>Animals:</strong> Coloring pages featuring their favorite animals, from majestic lions to playful puppies, can spark children's curiosity about the natural world.</li>
-                    <li><strong>Nature:</strong> Lush landscapes, vibrant flowers, and majestic trees can be a gateway to appreciating the beauty of nature.</li>
-                    <li><strong>Underwater Adventures:</strong> Dive into a world of colorful fish, playful dolphins, and whimsical sea creatures.</li>
-                    <li><strong>Mandala Magic:</strong> Explore intricate mandala designs that promote mindfulness and relaxation for both kids and adults.</li>
-                    <li><strong>Holidays & Seasons:</strong> Celebrate special occasions with themed coloring pages featuring pumpkins for Halloween, snowflakes for winter, or fireworks for the Fourth of July.</li>
-                    <li><strong>Mazes & Activities:</strong> Combine coloring with problem-solving skills with coloring pages featuring mazes, puzzles, and hidden object games.</li>
-                    <li><strong>Storytelling Adventures:</strong> Coloring pages that depict scenes from children's favorite stories can bring those stories to life and encourage reading comprehension.</li>
-                </ol> --}}
-
+                    <p class="mt-1">{!! html_entity_decode($detail->details) !!}</p>
+                @endforeach
 
                 @if($blogBooks)
-                   <div class="row">
+                    <div class="row">
                         @foreach($blogBooks as $blogBook)
                             <div class="col-md-4">
                                 @if($blogBook->book)
@@ -84,8 +73,7 @@
                                 @endif
                             </div>
                         @endforeach
-                   </div>
-
+                    </div>
                 @endif
             </div>
 
@@ -104,19 +92,19 @@
             <div class="author-card">
                 <div class="author-info">
                     @if (!empty($blog->user->profile))
-                    <img src="{{get_storage_file_url($blog->user->profile->image->path)}}" alt="author image" class="author-image">
+                        <img src="{{get_storage_file_url($blog->user->profile->image->path)}}" alt="author image" class="author-image">
                     @else
-                    <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author-image">
+                        <img src="{{asset('/frontEnd/img/Ellipse 1981-icon.png')}}" alt="author image" class="author-image">
                     @endif
                     <div class="author-details">
                         <h2 class="author-name">{{$blog->user->name}}</h2>
-                        <h3 class="author-title">{{$blog->user->profile->occupation}}</h3>
-                        <p class="author-description">{{$blog->user->profile->about}}</p>
+                        <h3 class="author-title">{{$blog->user->profile->occupation ?? ''}}</h3>
+                        <p class="author-description">{{$blog->user->profile->about ?? ''}}</p>
                         <div class="social-media">
-                            <a href="{{$blog->user->profile->facebook}}" target="_blank"><img src="{{asset('/frontEnd/img/Vector-facebook.png')}}" alt="facebook"></a>
-                            <a href="{{$blog->user->profile->twitter}}" target="_blank"><img src="{{asset('/frontEnd/img/Vector-twitter.png')}}" alt="Twitter"></a>
-                            <a href="{{$blog->user->profile->instagram}}" target="_blank"><img src="{{asset('/frontEnd/img/Vectorinstagram.png')}}" alt="Instagram"></a>
-                            <a href="{{$blog->user->profile->linkedin}}" target="_blank"><img src="{{asset('/frontEnd/img/Vector-linkedin.png')}}" alt="LinkedIn"></a>
+                            <a href="{{$blog->user->profile->facebook ?? '#'}}" target="_blank"><img src="{{asset('/frontEnd/img/Vector-facebook.png')}}" alt="facebook"></a>
+                            <a href="{{$blog->user->profile->twitter ?? '#'}}" target="_blank"><img src="{{asset('/frontEnd/img/Vector-twitter.png')}}" alt="Twitter"></a>
+                            <a href="{{$blog->user->profile->instagram ?? '#'}}" target="_blank"><img src="{{asset('/frontEnd/img/Vectorinstagram.png')}}" alt="Instagram"></a>
+                            <a href="{{$blog->user->profile->linkedin ?? '#'}}" target="_blank"><img src="{{asset('/frontEnd/img/Vector-linkedin.png')}}" alt="LinkedIn"></a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +116,6 @@
                     <div class="col-md-6 text-left">
                         @if ($previousPost)
                             <a href="/blog/{{ $previousPost->slug }}" class="navigation-button">
-                                {{-- <span>&#8592;</span> Previous Post: {{ $previousPost->title }} --}}
                                 <span>&#8592;</span> Previous Post
                             </a>
                         @endif
@@ -136,7 +123,6 @@
                     <div class="col-md-6 text-right">
                         @if ($nextPost)
                             <a href="/blog/{{ $nextPost->slug }}" class="navigation-button">
-                                {{-- Next Post: {{ $nextPost->title }} <span>&#8594;</span> --}}
                                 Next Post <span>&#8594;</span>
                             </a>
                         @endif
@@ -151,7 +137,6 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <img src="{{get_storage_file_url($lblog['first_image'] )}}" alt="" class="slider-image">
-                                    {{-- <img src="http://127.0.0.1:8000/frontEnd/img/5804202_33970.png" alt="" class="slider-image"> --}}
                                 </div>
                                 <div class="col-md-7">
                                     <div class="author_date">
@@ -172,127 +157,104 @@
             <div class="comment-section">
                 <h2>{{count($comments)}} Comments:</h2>
                 @foreach($comments as $comment)
-                <div class="comment-card">
-                    @if($comment->user)
-                        @if($comment->user->profile->image)
-                        <img src="{{get_storage_file_url(optional($comment->user->profile->image)->path, 'tiny_thumb')}}" alt="Author Image" class="author-comment">
-                       @endif
-                    @else
-                        <img src="{{asset('/frontEnd/img/user2.png')}}" alt="Author Image" class="author-comment">
-                    @endif
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <div class="author-details">
-                                <h3 class="comment-name">{{$comment->name}}</h3>
-                                <p class="comment-title">{{$comment->email}}</p>
-                            </div>
-
-                            <!-- Button to trigger modal -->
-                            <button type="button" class="reply-button" data-toggle="modal" data-parent-id="{{$comment->id}}" data-target="#replyModal">
-                                <span>&#8634;</span> Reply
-                            </button>
-
-                            <!-- Modal Structure -->
-                            <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title" id="replyModalLabel">Reply to Comment</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    <!-- Form for Reply -->
-                                    <form action="{{route('comment')}}" method="post" class="comment-form">
-                                        @csrf
-                                        <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
-                                        <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
-                                        <input type="hidden" id="parent_id" name="parent_id" value="">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <label for="name">Name</label>
-                                                <input type="text" id="name" name="name" placeholder="Your name" required>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="email">Email</label>
-                                                <input type="email" id="email" name="email" placeholder="Your email" required>
-                                            </div>
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="message">Message</label>
-                                            <textarea id="message" name="message" placeholder="Write your message" required></textarea>
-                                        </div>
-                                        <button type="submit" class="comment-submit-button">Submit Comment</button>
-                                    </form>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <p class="comment-text">{{$comment->comment}}</p>
-                    </div>
-                </div>
-                @if(count($comment['replays']) > 0)
-                    @foreach($comment['replays'] as $rcomment)
-                    <div class="comment-card child">
-                        @if($comment->user)
-                            @if($comment->user->profile->image)
-                                <img src="{{get_storage_file_url(optional($comment->user->profile->image)->path, 'tiny_thumb')}}" alt="Author Image" class="author-comment">
-                            @endif
+                    <div class="comment-card">
+                        @if($comment->user && $comment->user->profile && $comment->user->profile->image)
+                            <img src="{{get_storage_file_url(optional($comment->user->profile->image)->path, 'tiny_thumb')}}" alt="Author Image" class="author-comment">
                         @else
                             <img src="{{asset('/frontEnd/img/user2.png')}}" alt="Author Image" class="author-comment">
                         @endif
                         <div class="comment-content">
                             <div class="comment-header">
                                 <div class="author-details">
-                                    <h3 class="comment-name">{{$rcomment->name}}</h3>
-                                    <p class="comment-title">{{$rcomment->email}}</p>
+                                    <h3 class="comment-name">{{$comment->name}}</h3>
+                                    <p class="comment-title">{{$comment->email}}</p>
+                                </div>
+
+                                <button type="button" class="reply-button" data-toggle="modal" data-parent-id="{{$comment->id}}" data-target="#replyModal">
+                                    <span>&#8634;</span> Reply
+                                </button>
+
+                                <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="replyModalLabel">Reply to Comment</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{route('comment')}}" method="post" class="comment-form">
+                                                    @csrf
+                                                    <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
+                                                    <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
+                                                    <input type="hidden" id="parent_id" name="parent_id" value="">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <label for="name">Name</label>
+                                                            <input type="text" class="form-input-blog" id="name" name="name" placeholder="Your name" required>
+                                                        </div>
+                                                        <div class="input-group">
+                                                            <label for="email">Email</label>
+                                                            <input type="email" class="form-input-blog" id="email" name="email" placeholder="Your email" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <label for="message">Message</label>
+                                                        <textarea class="form-input-blog" id="message" name="message" placeholder="Write your message" required></textarea>
+                                                    </div>
+                                                    <button type="submit" class="comment-submit-button">Submit Comment</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <p class="comment-text">{{$rcomment->comment}}</p>
+                            <p class="comment-text">{{$comment->comment}}</p>
                         </div>
                     </div>
-                    @endforeach
-                @endif
-                @endforeach
-
-                {{-- <div class="comment-card">
-                    <img src="{{asset('/frontEnd/img/Rectangle 169-comment.png')}}" alt="Author Image" class="author-comment">
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <div class="author-details">
-                                <h3 class="comment-name">Rasel Mondol</h3>
-                                <p class="comment-title">UI/UX Designer</p>
+                    @if(count($comment['replays']) > 0)
+                        @foreach($comment['replays'] as $rcomment)
+                            <div class="comment-card child">
+                                @if($rcomment->user && $rcomment->user->profile && $rcomment->user->profile->image)
+                                    <img src="{{get_storage_file_url(optional($rcomment->user->profile->image)->path, 'tiny_thumb')}}" alt="Author Image" class="author-comment">
+                                @else
+                                    <img src="{{asset('/frontEnd/img/user2.png')}}" alt="Author Image" class="author-comment">
+                                @endif
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <div class="author-details">
+                                            <h3 class="comment-name">{{$rcomment->name}}</h3>
+                                            <p class="comment-title">{{$rcomment->email}}</p>
+                                        </div>
+                                    </div>
+                                    <p class="comment-text">{{$rcomment->comment}}</p>
+                                </div>
                             </div>
-                            <a href="#" class="reply-button">
-                                <span>&#8634;</span> Reply
-                            </a>
-                        </div>
-                        <p class="comment-text">Competently provide access to fully researched methods of empowerment without sticky models. Credibly morph front-end niche markets.</p>
-                    </div>
-                </div> --}}
-            </div><div class="comment-form-container">
+                        @endforeach
+                    @endif
+                @endforeach
+            </div>
+
+            <div class="comment-form-container">
                 <h2>Leave your Comment</h2>
                 <form action="{{route('comment')}}" method="post" class="comment-form">
                     @csrf
                     <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
                     <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
                     <div class="form-group">
-                        <div class="input-group" style="align-items: flex-start;">
-                            <label for="name" style="padding-left: 15px;">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        <div class="input-group">
+                            <label for="name">Name</label>
+                            <input class="form-input-blog" type="text" id="name" name="name" placeholder="Your name" required>
                         </div>
-                        <div class="input-group" style="align-items: flex-start;">
-                            <label for="email" style="padding-left: 15px;">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Your email" required>
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input class="form-input-blog" type="email" id="email" name="email" placeholder="Your email" required>
                         </div>
                     </div>
-                    <div class="input-group" style="align-items: flex-start;">
-                        <label for="message" style="padding-left: 15px;">Message</label>
-                        <textarea id="message" name="message" placeholder="Write your message" required></textarea>
+                    <div class="input-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-input-blog" id="message" name="message" placeholder="Write your message" required></textarea>
                     </div>
                     <button type="submit" class="comment-submit-button">Submit Comment</button>
                 </form>
@@ -310,67 +272,44 @@
             </div>
             <div class="recent-articles">
                 <h2>Recent Articles</h2>
-                <div class="underline"></div> <!-- Added underline -->
+                <div class="underline"></div>
                 @foreach ($latestBlogs as $blog)
-                <div class="article">
-                    <div class="article_image">
-                        <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
+                    <div class="article">
+                        <div class="article_image">
+                            <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
+                        </div>
+                        <div class="article-info">
+                            <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
+                            <h3><a href="/blog/{{$blog['slug']}}">{{$blog['title']}}</a></h3>
+                        </div>
                     </div>
-                    <div class="article-info">
-                        <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
-                        <h3><a href="/blog/{{$blog['slug']}}">{{$blog['title']}}</a></h3>
-                    </div>
-                </div>
                 @endforeach
-
-                {{-- <div class="article">
-                    <img src="{{asset('/frontEnd/img/Container-1.png')}}" alt="Article 3">
-                    <div class="article-info">
-                        <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon"> 2, Sept 2020</p>
-                        <h3>How to Prepare Your Child for School</h3>
-                    </div>
-                </div> --}}
             </div>
             <div class="recent-articles">
                 <h2>Popular Articles</h2>
-                <div class="underline"></div> <!-- Added underline -->
+                <div class="underline"></div>
                 @foreach ($popularBlogs as $blog)
-                <div class="article">
-                    <div class="article_image">
-                        <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
+                    <div class="article">
+                        <div class="article_image">
+                            <img src="{{get_storage_file_url($blog['first_image'] )}}" alt="Article 1">
+                        </div>
+                        <div class="article-info">
+                            <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
+                            <h3><a href="/blog/{{$blog['slug']}}"> {{$blog['title']}} </a></h3>
+                        </div>
                     </div>
-                    <div class="article-info">
-                        <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender">{{ date('d M, Y',strtotime($blog['created_at']))}}</p>
-                        <h3><a href="/blog/{{$blog['id']}}"> {{$blog['title']}} </a></h3>
-                    </div>
-                </div>
                 @endforeach
-                {{-- <div class="article">
-                    <img src="{{asset('/frontEnd/img/Container-1.png')}}" alt="Article 2">
-                    <div class="article-info">
-                        <p class="date"><img src="{{asset('/frontEnd/img/calendar-icon.png')}}" alt="calendar-icon" class="recent_calender"> 2, Sept 2020</p>
-                        <h3>How to Prepare Your Child for School</h3>
-                    </div>
-                </div> --}}
             </div>
             <div class="tags-section">
                 <h2>Tags</h2>
-                <div class="underline"></div> <!-- Added underline -->
+                <div class="underline"></div>
                 <div class="tags">
                     @foreach($tags as $tag)
-                    <a href="#" class="tag">{{$tag}}</a>
+                        <a href="#" class="tag">{{$tag}}</a>
                     @endforeach
-                    {{-- <a href="#" class="tag">Education</a>
-                    <a href="#" class="tag">Day Care</a>
-                    <a href="#" class="tag">Kindergarten</a>
-                    <a href="#" class="tag">Nursery</a>
-                    <a href="#" class="tag">Reading</a>
-                    <a href="#" class="tag">Arts Class</a>
-                    <a href="#" class="tag">Nursery</a>
-                    <a href="#" class="tag">Reading</a>--}}
                 </div>
             </div>
-            <div class="tags-section" style="background: #5B3AFF">
+            <div class="tags-section" style="background: #5B3AFF;margin-bottom: 30px">
                 <h5 class="subscribe_title">Never miss a post</h5>
                 <div style="position: relative; display: inline-block; width: 100%;">
                     <input type="email" placeholder="Type your email" id="email-input">
@@ -379,663 +318,998 @@
             </div>
         </div>
     </div>
-<style>
-    #email-submit-button-sidebar {
-        position: absolute;
-        right: 10px;
-        top: 53%;
-        transform: translateY(-50%);
-        width: 70px;
-        height: 30px;
-        cursor: pointer;
-    }
-  .container2 {
-    display: flex;
-    flex-direction: row;
-    padding:0 20px;
-  }
-  .content {
-      flex: 3;
-      /*padding: 20px;*/
-      background-color: #ffffff;
-      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  }
-  .blog_content_title {
-      font-family: "Baloo Da 2", sans-serif;
-      font-weight: 700;
-      font-size: 40px;
-  }
-  .sidebar {
-      flex: 1;
-      padding: 20px;
-      /* margin-left: 20px; */
-      background-color: #fff;
-      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  }
-  .author_container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #fff;
-      padding: 10px 0;
-  }
-  .left_column {
-      display: flex;
-      align-items: center;
-  }
-  .author_image {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
-  }
-  .author_details {
-      display: flex;
-      flex-direction: column;
 
-  }
-  .author_name {
-      font-size: 14px;
-      font-family: "Rubik", sans-serif;
-      font-weight: 600;
-      color: #262528;
-      margin: 0;
-  }
-  .post_date {
-      font-size: 12px;
-      color: #424244;
-      font-family: "Rubik", sans-serif;
-      font-weight: 400;
-      margin: 0;
-  }
-  .right_column {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-  }
-  .right_column span{
-      font-family: "Rubik", sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      color: #262528;
-  }
-  .social_icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 32px;
-      height: 32px;
-      transition: background-color 0.3s;
-      border-radius: 8px;
-  }
-  .social_icon img {
-      width: 16px;
-      height: 16px;
-      display: block;
-  }
-  .bg_facebook {
-      background: rgba(24, 119, 242, 0.08);
-  }
-  .bg_instagram {
-      background: linear-gradient(180deg, rgba(255, 208, 83, 0.08) 0%, rgba(201, 56, 172, 0.08) 55%, rgba(24, 119, 242, 0.08) 100%);
-  }
-  .bg_twitter {
-      background: rgba(29, 155, 240, 0.08);
-  }
-  .bg_pinterest {
-      background: rgba(203, 31, 39, 0.08);
-  }
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  .bg_facebook:hover {
-      border: 0.5px dashed #1877F2;
-      background: rgba(24, 119, 242, 0.08);
-  }
-  .bg_instagram:hover {
-      border: 0.5px dashed #C938AC;
-      background: linear-gradient(180deg, rgba(255, 208, 83, 0.08) 0%, rgba(201, 56, 172, 0.08) 55%, rgba(24, 119, 242, 0.08) 100%);
-  }
-  .bg_twitter:hover {
-      border: 0.5px dashed #1D9BF0;
-      background: rgba(29, 155, 240, 0.08);
-  }
-  .bg_pinterest:hover {
-      border: 0.5px dashed #CB1F27;
-      background: rgba(203, 31, 39, 0.08);
-  }
-  /* .single_post_details {
-      text-align: center;
-  } */
-  .download-button {
-      display: inline-flex;
-      height: 64px;
-      padding: 15px 20px;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-      border-radius: 92px;
-      border-bottom: 4px solid #AA1554;
-      background-color: #F01E76;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      text-decoration: none;
-  }
-  .download_icon {
-      color: white;
-  }
-  .download-button:hover {
-      background-color: #E0116B;
-  }
-  .writer {
-      margin-top: 50px;
-  }
-  .author-card{
-      background-color: #5b46f1 !important;
-      border-radius: 20px !important;
-      /* box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1); */
-      padding: 20px !important;
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: center !important;
-      color: #ffffff !important;
-      position: unset;
-      text-align: start;
-  }
-  .author-info {
-      display: flex !important;
-      flex-direction: row !important;
-  }
-  .author-image {
-      border-radius: 15px !important;
-      width: 100px !important;
-      height: 100px !important;
-      margin-right: 20px !important;
-      object-fit: cover !important;
-  }
-  .author-details {
-      flex: 1 !important;
-  }
-  .author-name {
-      font-size: 24px !important;
-      margin: 0 !important;
-  }
-  .author-title {
-      font-size: 18px !important;
-      margin:  5px 0 !important;
-      text-align: start;
-  }
-  .author-description {
-      font-size: 14px !important;
-      margin: 10px 0 !important;
-  }
-  .social-media {
-      margin-top: 15px;
-  }
-  .social-media a {
-      display: inline-block;
-      margin-right: 10px;
-  }
-  .social-media img {
-      width: 24px;
-      height: 24px;
-      transition: transform 0.3s ease;
-  }
+        body {
+            font-family: 'Rubik', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
 
-  .social-media img:hover {
-      transform: scale(1.2);
-  }
-  comment-section {
-      width: 100%;
-      max-width: 700px;
-      margin: 0 auto;
-  }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
 
-  .comment-card {
-      background-color: #f7f7ff;
-      border-radius: 20px;
-      /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-      padding: 20px;
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 20px;
-  }
-  .comment-card.child {
-        margin-left: 10%;
-        margin-top: -15px;
-  }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-  .author-comment {
-      border-radius: 5px;
-      width: 60px;
-      height: 60px;
-      margin-right: 20px;
-      object-fit: cover;
-  }
+        /* Layout */
+        .container2 {
+            display: flex;
+            flex-direction: column;
+            padding: 0 15px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-  .comment-content {
-      flex: 1;
-  }
+        @media (min-width: 992px) {
+            .container2 {
+                flex-direction: row;
+                padding: 0 20px;
+            }
+        }
 
-  .comment-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-  }
+        .content {
+            width: 100%;
+            padding: 15px;
+            background-color: #ffffff;
+        }
 
-  .author-details {
-      flex: 1;
-  }
+        @media (min-width: 992px) {
+            .content {
+                flex: 3;
+                padding: 20px;
+            }
+        }
 
-  .comment-name {
-      font-size: 18px;
-      margin: 0;
-      color: #333333;
-  }
+        .sidebar {
+            width: 100%;
+            padding: 15px;
+            background-color: #fff;
+        }
 
-  .comment-title {
-      font-size: 14px;
-      color: #777777;
-      margin: 5px 0 0;
-  }
+        @media (min-width: 992px) {
+            .sidebar {
+                flex: 1;
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
 
-  .reply-button {
-      background-color: #ffffff;
-      color: #f542c6;
-      border: 2px solid #f542c6;
-      border-radius: 50px;
-      padding: 5px 15px;
-      font-size: 14px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
-  }
+        /* Typography */
+        .blog_content_title {
+            font-family: "Baloo Da 2", sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
 
-  .reply-button span {
-      margin-right: 5px;
-  }
+        @media (min-width: 768px) {
+            .blog_content_title {
+                font-size: 40px;
+            }
+        }
 
-  .reply-button:hover {
-      background-color: #f542c6;
-      color: #ffffff;
-  }
+        /* Author Section */
+        .author_container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            background-color: #fff;
+            padding: 10px 0;
+            gap: 15px;
+        }
 
-  .comment-text {
-      font-size: 14px;
-      color: #555555;
-      margin: 10px 0 0;
-  }
-  .comment-form-container {
-      background-color: #f7f7ff;
-      padding: 30px;
-      border-radius: 20px;
-      margin-bottom: 44px;
-  }
+        @media (min-width: 576px) {
+            .author_container {
+                flex-direction: row;
+                align-items: center;
+                gap: 0;
+            }
+        }
 
-  .comment-form {
-      display: flex;
-      flex-direction: column;
-  }
-  .form-group {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-  }
-  .input-group {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      margin-right: 20px;
-  }
-  .input-group:last-child {
-      margin-right: 0;
-  }
-  label {
-      color: #333333;
-      margin-bottom: 5px;
-      font-size: 14px;
-  }
-  input[type="text"],
-  input[type="email"],
-  textarea {
-      width: 100%;
-      border: 1px solid #dddddd;
-      border-radius: 33px;
-      padding: 5px 15px;
-      font-size: 14px;
-      outline: none;
-      background-color: #ffffff;
-      transition: border-color 0.3s ease;
-  }
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  textarea:focus {
-      border-color: #3d3d5c;
-  }
+        .left_column {
+            display: flex;
+            align-items: center;
+        }
 
-  textarea {
-      height: 100px;
-      resize: none;
-      width: 100%;
-      padding: 10px 15px;
-      border-radius: 12px;
-  }
-  .comment-submit-button {
-      margin-top: 20px;
-      background-color: #F01E76;
-      color: #ffffff;
-      border: none;
-      border-radius: 50px;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;
-      border-bottom: 4px solid #AA1554;
-  }
+        .author_image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
 
-  /* right sidebar design  */
-  .search-container {
-      display: flex;
-      background-color: #fff;
-      border-radius: 50px;
-      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-      overflow: hidden;
-  }
-  .search-container .search-icon {
-      font-size: 16px;
-      color: #666;
-      margin: 16px;
-  }
-  .search-input {
-      border: none !important;
-      padding: 12px 20px;
-      border-radius: 50px 0 0 50px;
-      outline: none !important;
-      font-size: 14px;
-      color: #777;
-      flex: 1;
-  }
-  .search-input::placeholder {
-      color: #b0b0b0;
-  }
-  .search-button {
-      background-color: #F01E76;
-      color: #fff;
-      border: none;
-      padding: 12px 25px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 0 50px 50px 0;
-      transition: background-color 0.3s ease;
-  }
-  .search-button:hover {
-      background-color: #f61573;
-  }
+        .author_details {
+            display: flex;
+            flex-direction: column;
+        }
 
-  /* recent Articles and Popular Article Design  */
-  .recent-articles {
-      margin-top: 20px;
-      background-color: #F7F5FF;
-      padding: 20px;
-      border-radius: 15px;
-      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-  }
+        .author_name {
+            font-size: 14px;
+            font-family: "Rubik", sans-serif;
+            font-weight: 600;
+            color: #262528;
+            margin: 0;
+        }
 
-  .recent-articles h2 {
-      margin: 0;
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 20px;
-  }
+        .post_date {
+            font-size: 12px;
+            color: #424244;
+            font-family: "Rubik", sans-serif;
+            font-weight: 400;
+            margin: 0;
+        }
 
-  .article {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-  }
-  .article_image{
-      width: 112px;
-      height: 108px;
-      border-radius: 16px;
-  }
-  .article_image img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 16px;
-  }
+        .right_column {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
 
+        .right_column span {
+            font-family: "Rubik", sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #262528;
+        }
 
-  .article-info {
-      display: flex;
-      flex-direction: column;
-      width: 193px;
-      height: 76px;
-      margin-left: 10px;
+        .social_icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            transition: background-color 0.3s;
+            border-radius: 8px;
+        }
 
-  }
+        .social_icon img {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
 
-  .article-info .date {
-      font-size: 12px;
-      color: #888;
-      margin: 0;
-      display: flex;
-      align-items: center;
-  }
-  .date img {
-      width: 20px;
-      height: 20px;
-      margin-right: 5px;
-  }
+        .bg_facebook {
+            background: rgba(24, 119, 242, 0.08);
+        }
 
-  .article-info h3 {
-      margin: 5px 0 0;
-      font-size: 14px;
-      color: #333;
-  }
+        .bg_instagram {
+            background: linear-gradient(180deg, rgba(255, 208, 83, 0.08) 0%, rgba(201, 56, 172, 0.08) 55%, rgba(24, 119, 242, 0.08) 100%);
+        }
 
-  /* Tags css Design  */
-  .tags-section {
-      margin-top: 20px;
-      background-color: #F7F5FF;
-      padding: 20px;
-      border-radius: 15px;
-  }
+        .bg_twitter {
+            background: rgba(29, 155, 240, 0.08);
+        }
 
-  .tags-section h2 {
-      margin: 0;
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 10px;
-  }
+        .bg_pinterest {
+            background: rgba(203, 31, 39, 0.08);
+        }
 
-  .underline {
-      height: 1px;
-      background-color: #E9E9EA;
-      margin: 0 auto 20px auto;
-  }
-  .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-  }
+        .bg_facebook:hover {
+            border: 0.5px dashed #1877F2;
+            background: rgba(24, 119, 242, 0.08);
+        }
 
-  .tag {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      padding: 8px 12px;
-      border-radius: 20px;
-      font-size: 14px;
-      color: #333;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s, border-color 0.3s;
-  }
+        .bg_instagram:hover {
+            border: 0.5px dashed #C938AC;
+            background: linear-gradient(180deg, rgba(255, 208, 83, 0.08) 0%, rgba(201, 56, 172, 0.08) 55%, rgba(24, 119, 242, 0.08) 100%);
+        }
 
-  .tag:hover {
-      background-color: #f0f0f0;
-      border-color: #ccc;
-  }
-  .subscribe_title {
-      font-family: "Baloo Da 2", sans-serif;
-      font-weight: 700;
-      font-size: 24px;
-      color: #FFFFFF;
-  }
-  .newsletter-signup {
-      background-color: #5B3AFF;
-      padding: 20px 30px;
-      border-radius: 30px;
-      margin-top: 20px;
-      /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
-  }
-  .headline {
-      color: #fff;
-      font-size: 18px;
-      margin: 0 0 20px 0;
-  }
-  .signup-form {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #fff;
-      border-radius: 50px;
-      padding: 5px 10px;
-  }
-  .signup-form input {
-      border: none;
-      padding: 10px;
-      border-radius: 50px;
-      flex: 1;
-      font-size: 16px;
-  }
-  .signup-form button {
-      background-color: #F01E76;
-      border: none;
-      padding: 10px;
-      border-radius: 50px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  .navigation-button {
-    display: inline-block;
-    padding: 6px 20px;
-    border-radius: 25px;
-    color: #FF3782;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    border: 1px solid #FDD5E8;
-}
-.navigation-button:hover {
-    color: #FF3782;
-    text-decoration: none
-  }
-  .latest-blogs-slider .slider {
-    display: flex;
-    overflow: hidden;
-    gap: 15px;
+        .bg_twitter:hover {
+            border: 0.5px dashed #1D9BF0;
+            background: rgba(29, 155, 240, 0.08);
+        }
 
-}
+        .bg_pinterest:hover {
+            border: 0.5px dashed #CB1F27;
+            background: rgba(203, 31, 39, 0.08);
+        }
 
-.latest-blogs-slider {
-    background-color: #f7f7ff;
-    padding: 20px;
-    border-radius: 20px;
-    padding-bottom: 0;
-    max-height: 190px;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-}
-.latest-blogs-slider .item {
-    display: inline-block;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-}
-.latest-blogs-slider .item img {
-   max-width: 90px;
-}
-.owl-item {
-    float: left !important;
-    width: 270px !important;
-}
-.card_title a {
-    font-family: "Baloo Da 2";
-    font-size: 20px;
-    font-weight: 600;
-    color: #262528;
-}
-.card_title a:hover {
-    text-decoration: none
-  }
+        .underline {
+            height: 1px;
+            background-color: #E9E9EA;
+            margin: 0 auto 20px auto;
+        }
 
-  .card_title h4 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; /* Avoid breaking the text */
-}
+        /* Post Details */
+        .single_post_details p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
 
-.slider-image {
-    max-width: 100%; /* Prevent image overflow */
-    height: auto;
-}
+        .single_img {
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
 
+        /* Download Button */
+        .download-button {
+            display: inline-flex;
+            height: 50px;
+            padding: 10px 15px;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            border-radius: 92px;
+            border-bottom: 4px solid #AA1554;
+            background-color: #F01E76;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
 
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Owl Carousel JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        @media (min-width: 576px) {
+            .download-button {
+                height: 64px;
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+        }
 
+        .download_icon {
+            color: white;
+            width: 16px;
+            height: 16px;
+        }
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var replyButtons = document.querySelectorAll('button.reply-button');
-    replyButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var parentId = button.getAttribute('data-parent-id');
-            document.getElementById('parent_id').value = parentId;
-            var replyModal = new bootstrap.Modal(document.getElementById('replyModal'));
-            replyModal.show();
-        });
-    });
+        .download-button:hover {
+            background-color: #E0116B;
+        }
 
-});
+        /* Author Card */
+        .author-card {
+            background-color: #5b46f1 !important;
+            border-radius: 20px !important;
+            padding: 15px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            color: #ffffff !important;
+            margin: 30px 0;
+            text-align: center;
+        }
 
-</script>
-<script type="text/javascript">
-    ;(function ($, window, document) {
-        $(document).ready(function () {
-            $(".slider").owlCarousel({
-                    items: 2,
-                    margin: 10,
-                    loop: true,
-                    nav: false,
-                    dots: false,
-                    autoplay: true,
-                    autoplayTimeout: 2000,
-                    responsive: {
-                        0: { items: 1 },
-                        400: { items: 2 },
-                        800: { items: 3 }
-                    }
+        @media (min-width: 768px) {
+            .author-card {
+                flex-direction: row !important;
+                align-items: flex-start !important;
+                text-align: left;
+                padding: 20px !important;
+            }
+        }
+
+        .author-info {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+
+        @media (min-width: 768px) {
+            .author-info {
+                flex-direction: row !important;
+                align-items: flex-start !important;
+            }
+        }
+
+        .author-image {
+            border-radius: 15px !important;
+            width: 80px !important;
+            height: 80px !important;
+            margin-right: 0 !important;
+            margin-bottom: 15px !important;
+            object-fit: cover !important;
+        }
+
+        @media (min-width: 768px) {
+            .author-image {
+                width: 100px !important;
+                height: 100px !important;
+                margin-right: 20px !important;
+                margin-bottom: 0 !important;
+            }
+        }
+
+        .author-details {
+            flex: 1 !important;
+        }
+
+        .author-name {
+            font-size: 20px !important;
+            margin: 0 0 5px 0 !important;
+        }
+
+        @media (min-width: 768px) {
+            .author-name {
+                font-size: 24px !important;
+            }
+        }
+
+        .author-title {
+            font-size: 16px !important;
+            margin: 0 0 10px 0 !important;
+        }
+
+        @media (min-width: 768px) {
+            .author-title {
+                font-size: 18px !important;
+            }
+        }
+
+        .author-description {
+            font-size: 14px !important;
+            margin: 0 0 15px 0 !important;
+            line-height: 1.6;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-media a {
+            display: inline-block;
+        }
+
+        .social-media img {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .social-media img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .social-media img:hover {
+            transform: scale(1.2);
+        }
+
+        /* Navigation Section */
+        .navigation-section {
+            margin: 30px 0;
+        }
+
+        .navigation-section .row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .navigation-section .row {
+                flex-direction: row;
+                gap: 0;
+            }
+        }
+
+        .navigation-section .col-md-6 {
+            width: 100%;
+            text-align: center !important;
+        }
+
+        @media (min-width: 768px) {
+            .navigation-section .col-md-6 {
+                width: 50%;
+                text-align: left !important;
+            }
+
+            .navigation-section .col-md-6.text-right {
+                text-align: right !important;
+            }
+        }
+
+        .navigation-button {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 25px;
+            color: #FF3782;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: 1px solid #FDD5E8;
+        }
+
+        @media (min-width: 576px) {
+            .navigation-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        .navigation-button:hover {
+            color: #FF3782;
+            text-decoration: none;
+            background-color: #FDD5E8;
+        }
+
+        /* Latest Blogs Slider */
+        .latest-blogs-slider {
+            background-color: #f7f7ff;
+            padding: 15px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        @media (min-width: 768px) {
+            .latest-blogs-slider {
+                padding: 20px;
+            }
+        }
+
+        .latest-blogs-slider .slider {
+            display: flex;
+            overflow: hidden;
+            gap: 15px;
+        }
+
+        .latest-blogs-slider .item {
+            min-width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 576px) {
+            .latest-blogs-slider .item {
+                min-width: 50%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .latest-blogs-slider .item {
+                min-width: 33.33%;
+            }
+        }
+
+        .latest-blogs-slider .item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .author_date {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .author_date img {
+            margin-right: 5px;
+        }
+
+        .card_title h4 {
+            font-family: "Baloo Da 2";
+            font-size: 18px;
+            font-weight: 600;
+            color: #262528;
+            margin: 0;
+        }
+
+        .card_title a:hover {
+            text-decoration: none;
+            color: #F01E76;
+        }
+
+        /* Comment Section */
+        .comment-section {
+            margin: 30px 0;
+        }
+
+        .comment-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .comment-card {
+            background-color: #f7f7ff;
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .comment-card {
+                flex-direction: row;
+                padding: 20px;
+            }
+        }
+
+        .comment-card.child {
+            margin-left: 5%;
+            margin-top: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .comment-card.child {
+                margin-left: 10%;
+                margin-top: -15px;
+            }
+        }
+
+        .author-comment {
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            margin-right: 0;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        @media (min-width: 768px) {
+            .author-comment {
+                width: 60px;
+                height: 60px;
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 576px) {
+            .comment-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .comment-name {
+            font-size: 16px;
+            margin: 0;
+            color: #333333;
+        }
+
+        .comment-title {
+            font-size: 14px;
+            color: #777777;
+            margin: 5px 0 0;
+        }
+
+        .reply-button {
+            background-color: #ffffff;
+            color: #f542c6;
+            border: 2px solid #f542c6;
+            border-radius: 50px;
+            padding: 5px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        @media (min-width: 576px) {
+            .reply-button {
+                margin-top: 0;
+            }
+        }
+
+        .reply-button span {
+            margin-right: 5px;
+        }
+
+        .reply-button:hover {
+            background-color: #f542c6;
+            color: #ffffff;
+        }
+
+        .comment-text {
+            font-size: 14px;
+            color: #555555;
+            margin: 10px 0 0;
+            line-height: 1.6;
+        }
+
+        /* Comment Form */
+        .comment-form-container {
+            background-color: #f7f7ff;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .comment-form-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .form-group {
+                flex-direction: row;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .input-group {
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+
+            .input-group:last-child {
+                margin-right: 0;
+            }
+        }
+
+        label {
+            color: #333333;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /*input[type="text"],*/
+        /*input[type="email"],*/
+        /*textarea {*/
+        /*    width: 100%;*/
+        /*    border: 1px solid #dddddd;*/
+        /*    border-radius: 33px;*/
+        /*    padding: 10px 15px;*/
+        /*    font-size: 14px;*/
+        /*    outline: none;*/
+        /*    background-color: #ffffff;*/
+        /*    transition: border-color 0.3s ease;*/
+        /*}*/
+        .form-input-blog {
+            width: 100%;
+            border: 1px solid #dddddd;
+            border-radius: 33px;
+            padding: 10px 15px;
+            font-size: 14px;
+            outline: none;
+            background-color: #ffffff;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+            border-radius: 12px;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #3d3d5c;
+        }
+
+        .comment-submit-button {
+            margin-top: 20px;
+            background-color: #F01E76;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            border-bottom: 4px solid #AA1554;
+        }
+
+        .comment-submit-button:hover {
+            background-color: #E0116B;
+        }
+
+        /* Sidebar Styles */
+        .recent-articles {
+            margin-top: 20px;
+            background-color: #F7F5FF;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .recent-articles h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .article {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 576px) {
+            .article {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .article_image {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 576px) {
+            .article_image {
+                width: 112px;
+                height: 108px;
+                margin-bottom: 0;
+            }
+        }
+
+        .article-info {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-left: 0;
+        }
+
+        @media (min-width: 576px) {
+            .article-info {
+                width: calc(100% - 122px);
+                margin-left: 10px;
+            }
+        }
+
+        .article-info .date {
+            font-size: 12px;
+            color: #888;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .date img {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+
+        .article-info h3 {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        /* Search Container */
+        .search-container {
+            display: flex;
+            background-color: #fff;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-icon {
+            font-size: 16px;
+            color: #666;
+            margin: 16px;
+        }
+
+        .search-input {
+            border: none !important;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #777;
+            flex: 1;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #b0b0b0;
+        }
+
+        .search-button {
+            background-color: #F01E76;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        @media (min-width: 576px) {
+            .search-button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+
+        .search-button:hover {
+            background-color: #f61573;
+        }
+
+        /* Tags Section */
+        .tags-section {
+            margin-top: 20px;
+            background-color: #F7F5FF;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .tags-section h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .tag:hover {
+            background-color: #f0f0f0;
+            border-color: #ccc;
+            color: #F01E76;
+        }
+
+        /* Subscribe Section */
+        .subscribe_title {
+            font-family: "Baloo Da 2", sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #FFFFFF;
+            margin-bottom: 15px;
+        }
+
+        #email-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        #email-submit-button-sidebar {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 66px;
+            cursor: pointer;
+        }
+
+        /* Modal Styles */
+        .modal-header {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .modal-title {
+            font-weight: 600;
+        }
+
+        .close {
+            font-size: 24px;
+        }
+
+        /* Responsive Images */
+        .single_img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Utility Classes */
+        .mt-1 {
+            margin-top: 10px;
+        }
+
+        .mt-3 {
+            margin-top: 20px;
+        }
+
+        .mb-3 {
+            margin-bottom: 20px;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var replyButtons = document.querySelectorAll('button.reply-button');
+            replyButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var parentId = button.getAttribute('data-parent-id');
+                    document.getElementById('parent_id').value = parentId;
                 });
-        });
-    }(window.jQuery, window, document));
-</script>
+            });
 
+            $(".slider").owlCarousel({
+                items: 1,
+                margin: 10,
+                loop: true,
+                nav: false,
+                dots: false,
+                autoplay: true,
+                autoplayTimeout: 2000,
+                responsive: {
+                    0: { items: 1 },
+                    576: { items: 2 },
+                    992: { items: 3 }
+                }
+            });
+        });
+    </script>
 
 @endsection
