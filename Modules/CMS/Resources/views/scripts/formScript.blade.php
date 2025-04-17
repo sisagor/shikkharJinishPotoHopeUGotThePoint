@@ -38,7 +38,7 @@
                 initializeCKEditor(this);
             });
 
-            $('#add-field').click(function()
+          /*  $('#add-field').click(function()
             {
                 // var newField = $('#dynamic-fields .dynamic-block:first').clone();
                 // newField.find('input, select, textarea').val('');
@@ -73,7 +73,7 @@
             });
 
             // Hide remove button for the first set of fields
-            $('#dynamic-fields .remove-field').hide();
+            $('#dynamic-fields .remove-field').hide();*/
         });
 
 
@@ -86,6 +86,28 @@
         }
 
     }(window.jQuery, window, document));
+
+
+
+    var counter = 1;
+
+    function addDynamicFiled(){
+        counter = counter + 1;
+        $.ajax({
+            "url" : '{{route('cms.blog.getSingleDetails')}}',
+            "type": "post",
+            "content-type" : "application/json",
+            "data" : {"counter" : counter}
+        }).done(function(result)
+        {
+            $('#dynamic-fields').append(result);
+
+        }).fail(function(error)
+        {
+            console.log(error)
+        });
+
+    }
 
 
 </script>
