@@ -1,9 +1,8 @@
-
 <div class="container-fluid">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-            <a class="navbar-brand" href="#">
-                <img src="https://via.placeholder.com/30" width="30" height="30" alt="Logo">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{{route('home')}}">
+                <img src="{{asset('./frontEnd/img/Logo.png')}}" width="30" height="30" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05"
                     aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,12 +12,12 @@
             <div class="collapse navbar-collapse" id="navbarsExample05">
                 <!-- Left side nav links -->
                 <div class="navbar-left navbar-nav">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-link" href="#">Kids</a>
                     <a class="nav-link" href="#">Adults</a>
                     <a class="nav-link" href="#">Generator</a>
                     <a class="nav-link" href="#">Seasonal</a>
-                    <a class="nav-link" href="#">Blogs</a>
+                    <a class="nav-link" href="{{route('blog.cat')}}">Blogs</a>
                 </div>
 
                 <!-- Right side search and sign-in -->

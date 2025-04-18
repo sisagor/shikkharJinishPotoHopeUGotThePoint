@@ -1424,11 +1424,11 @@ section {
 
 .nav-link,
 .navbar-brand {
-  color: white !important;
+  color: #6E6D6F !important;
 }
 
 .nav-link:hover {
-  color: #F01E76 !important;
+  color: #262528 !important;
 }
 
 .navbar-toggler {
@@ -1475,6 +1475,7 @@ section {
   font-size: 16px;
   border-bottom: 4px solid #AA1554;
   text-align: center;
+  width: 100%;
 }
 
 .sign-in-button:hover {
