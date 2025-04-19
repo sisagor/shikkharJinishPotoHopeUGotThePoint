@@ -135,13 +135,13 @@
                     @foreach ($relatedBlogs as $lblog)
                         <div class="item">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-5 p-2">
                                     <img src="{{get_storage_file_url($lblog['first_image'] )}}" alt="" class="slider-image">
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-7 p-0 m-0">
                                     <div class="author_date">
-                                        <img src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
-                                        <p class="author_name">{{ date('d M, Y',strtotime($lblog['created_at']))}}</p>
+                                        <img class="slider_claender_icon" src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
+                                        <p class="slide_author_name">{{ date('d M, Y',strtotime($lblog['created_at']))}}</p>
                                     </div>
                                     <div class="card_title">
                                         <h4><a href="/blog/{{ $lblog['slug'] }}">{{ $lblog['title'] }}</a></h4>
@@ -333,10 +333,6 @@
             color: #333;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-        }
 
         a {
             text-decoration: none;
@@ -378,7 +374,10 @@
             padding: 15px;
             background-color: #fff;
         }
-
+        .slider-image {
+            width: 100%;
+            height: 100px;
+        }
         @media (min-width: 992px) {
             .sidebar {
                 flex: 1;
@@ -415,7 +414,6 @@
         @media (min-width: 576px) {
             .author_container {
                 flex-direction: row;
-                align-items: center;
                 gap: 0;
             }
         }
@@ -443,6 +441,9 @@
             font-weight: 600;
             color: #262528;
             margin: 0;
+        }
+        .slide_author_name {
+            font-size: 12px;
         }
 
         .post_date {
@@ -763,7 +764,7 @@
         .latest-blogs-slider .slider {
             display: flex;
             overflow: hidden;
-            gap: 15px;
+            gap: 5px;
         }
 
         .latest-blogs-slider .item {
@@ -784,16 +785,22 @@
             }
         }
 
-        .latest-blogs-slider .item img {
+        .latest-blogs-slider {
             width: 100%;
             height: auto;
             border-radius: 10px;
         }
-
+        .slider_claender_icon {
+            width: 16px;
+            height: 16px;
+        }
         .author_date {
             display: flex;
-            align-items: center;
-            margin: 10px 0;
+            align-items: flex-start;
+            margin: 0;
+        }
+        .author-name{
+            font-size: 11px;
         }
 
         .author_date img {
@@ -802,7 +809,7 @@
 
         .card_title h4 {
             font-family: "Baloo Da 2";
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: #262528;
             margin: 0;
@@ -1057,7 +1064,6 @@
         }
 
         .recent-articles h2 {
-            margin: 0;
             font-size: 18px;
             color: #333;
             margin-bottom: 20px;
@@ -1072,7 +1078,7 @@
         @media (min-width: 576px) {
             .article {
                 flex-direction: row;
-                align-items: center;
+                width: 100%;
             }
         }
 
@@ -1082,7 +1088,10 @@
             border-radius: 16px;
             margin-bottom: 10px;
         }
-
+        .article_image img {
+            width: 100px;
+            height: 100px;
+        }
         @media (min-width: 576px) {
             .article_image {
                 width: 112px;

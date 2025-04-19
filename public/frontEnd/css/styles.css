@@ -1448,6 +1448,7 @@ section {
   overflow: hidden;
   height: 40px;
   margin-bottom: 10px;
+  border: 1px solid #ccc;
 }
 
 .nav-search-input {
@@ -1461,6 +1462,7 @@ section {
 .nav-search-icon {
   margin-right: 10px;
   color: #555;
+  width: 30px;
 }
 
 .sign-in-button {
@@ -1475,7 +1477,7 @@ section {
   font-size: 16px;
   border-bottom: 4px solid #AA1554;
   text-align: center;
-  width: 100%;
+  /*width: 29%;*/
 }
 
 .sign-in-button:hover {
@@ -1518,6 +1520,7 @@ section {
 
   .nav_search {
     margin: 0 15px 0 0;
+    border: 1px solid #ccc;
   }
 
   .sign-in-button {
@@ -1541,7 +1544,11 @@ section {
   }
   .nav_search {
     width: 100%;
-    max-width: 250px;
+    /*max-width: 250px;*/
+    border: 1px solid #ccc;
+  }
+  .sign-in-button {
+    width: 100%;
   }
 
 }
