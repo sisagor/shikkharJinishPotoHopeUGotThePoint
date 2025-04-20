@@ -22,10 +22,10 @@
                 @if(isset($category['category_title']) && $category['category_title'] != '')
                     <div class="row descontent" id="category_des_all">
                         <div class="col-md-6" style="border-right: 1px solid #BBBBBC">
-                            <h1>{{ $category['category_title'] }}</h1>
+                            <h1>All</h1>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ $category['category_details'] }}</p>
+                            <p>All Categories Show here.</p>
                         </div>
                     </div>
                     @php break; @endphp
@@ -34,7 +34,7 @@
 
             @foreach($categories as $category)
                 <div class="row descontent" id="{{ 'category_des_' . $category['id'] }}">
-                    <div class="col-md-6">
+                    <div class="col-md-6"  style="border-right: 1px solid #BBBBBC">
                         <h1>{{ $category['category_title'] }}</h1>
                     </div>
                     <div class="col-md-6">

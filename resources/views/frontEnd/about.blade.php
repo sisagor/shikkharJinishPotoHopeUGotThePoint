@@ -3,10 +3,7 @@
 @section('contents')
     <section class="p-0">
         {{--menu section--}}
-        <div class="container">
-            @include('frontEnd.header')
-        </div>
-        <div class="underline"></div>
+        @include('frontEnd.partials.header')
     </section>
     <div class="container">
         <section class="p-0">

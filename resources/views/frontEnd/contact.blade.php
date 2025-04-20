@@ -3,6 +3,7 @@
 @section('contents')
 
     <section class="p-0">
+        {{--menu section--}}
         @include('frontEnd.partials.header')
     </section>
 
@@ -99,11 +100,11 @@
 
     <style>
         /* General Reset & Container */
-        .container {
+       /* .container {
             max-width: 1200px;
             margin: auto;
             padding: 15px;
-        }
+        }*/
 
         /* Contact Info Cards */
         .contact-container {
