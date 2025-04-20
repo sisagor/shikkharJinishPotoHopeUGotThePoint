@@ -131,7 +131,7 @@
             </div>
 
             <div class="latest-blogs-slider mt-3 mb-3">
-                <div class="slider">
+                <div class="slider owl-carousel">
                     @foreach ($relatedBlogs as $lblog)
                         <div class="item">
                             <div class="row">
@@ -139,7 +139,7 @@
                                     <img src="{{get_storage_file_url($lblog['first_image'] )}}" alt="" class="slider-image">
                                 </div>
                                 <div class="col-md-7 p-0 m-0">
-                                    <div class="author_date">
+                                    <div class="slide_author_date">
                                         <img class="slider_claender_icon" src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
                                         <p class="slide_author_name">{{ date('d M, Y',strtotime($lblog['created_at']))}}</p>
                                     </div>
@@ -444,6 +444,7 @@
         }
         .slide_author_name {
             font-size: 12px;
+            margin-left: 5px;
         }
 
         .post_date {
@@ -647,6 +648,7 @@
         .author-title {
             font-size: 16px !important;
             margin: 0 0 10px 0 !important;
+            text-align: left !important;
         }
 
         @media (min-width: 768px) {
@@ -794,10 +796,9 @@
             width: 16px;
             height: 16px;
         }
-        .author_date {
+        .slide_author_date {
             display: flex;
-            align-items: flex-start;
-            margin: 0;
+            margin: 0px 10px;
         }
         .author-name{
             font-size: 11px;
@@ -813,6 +814,7 @@
             font-weight: 600;
             color: #262528;
             margin: 0;
+            padding: 0 10px;
         }
 
         .card_title a:hover {
@@ -975,6 +977,7 @@
                 margin-bottom: 20px;
             }
         }
+
 
         .input-group {
             display: flex;
@@ -1295,16 +1298,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var replyButtons = document.querySelectorAll('button.reply-button');
-            replyButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    var parentId = button.getAttribute('data-parent-id');
-                    document.getElementById('parent_id').value = parentId;
-                });
+        $(document).ready(function() {
+            // Reply button logic
+            $('button.reply-button').on('click', function() {
+                var parentId = $(this).data('parent-id');
+                $('#parent_id').val(parentId);
             });
 
-            $(".slider").owlCarousel({
+            // Owl Carousel
+            $('.slider').owlCarousel({
                 items: 1,
                 margin: 10,
                 loop: true,
@@ -1320,5 +1322,6 @@
             });
         });
     </script>
+
 
 @endsection
