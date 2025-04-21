@@ -63,11 +63,19 @@
                 @if($blogBooks)
                     <div class="row">
                         @foreach($blogBooks as $blogBook)
-                            <div class="col-md-4">
+                            <div class="col-md-4 text-center text-md-left">
                                 @if($blogBook->book)
-                                    <img src="{{get_storage_file_url(optional($blogBook->book->image)->path)}}" alt="book image" style="display:block;margin: auto;width: inherit;">
-                                    <a target="_blank" href="{{$blogBook->book->url}}" class="download-button mt-3">
-                                        <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="download icon" class="download_icon">
+                                    <img src="{{get_storage_file_url(optional($blogBook->book->image)->path)}}"
+                                         alt="book image"
+                                         class="img-fluid d-block mx-auto mx-md-0"
+                                         style="max-width: 100%; height: auto;">
+
+                                    <a target="_blank"
+                                       href="{{$blogBook->book->url}}"
+                                       class="download-button mt-3 d-inline-flex align-items-center justify-content-center justify-content-md-start">
+                                        <img src="{{asset('/frontEnd/img/download-04.png')}}"
+                                             alt="download icon"
+                                             class="download_icon me-2">
                                         Download this Book
                                     </a>
                                 @endif
@@ -561,9 +569,9 @@
 
         @media (min-width: 576px) {
             .download-button {
-                height: 64px;
+                height: 50px;
                 padding: 15px 20px;
-                font-size: 16px;
+                font-size: 14px;
             }
         }
 
@@ -579,92 +587,52 @@
 
         /* Author Card */
         .author-card {
-            background-color: #5b46f1 !important;
-            border-radius: 20px !important;
-            padding: 15px !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            color: #ffffff !important;
+            background-color: #5b46f1;
+            border-radius: 20px;
+            padding: 20px;
+            color: #ffffff;
             margin: 30px 0;
+        }
+
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
 
-        @media (min-width: 768px) {
-            .author-card {
-                flex-direction: row !important;
-                align-items: flex-start !important;
-                text-align: left;
-                padding: 20px !important;
-            }
-        }
-
-        .author-info {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-        }
-
-        @media (min-width: 768px) {
-            .author-info {
-                flex-direction: row !important;
-                align-items: flex-start !important;
-            }
-        }
-
         .author-image {
-            border-radius: 15px !important;
-            width: 80px !important;
-            height: 80px !important;
-            margin-right: 0 !important;
-            margin-bottom: 15px !important;
-            object-fit: cover !important;
-        }
-
-        @media (min-width: 768px) {
-            .author-image {
-                width: 100px !important;
-                height: 100px !important;
-                margin-right: 20px !important;
-                margin-bottom: 0 !important;
-            }
+            border-radius: 15px;
+            width: 80px!important;
+            height: 80px!important;
+            object-fit: cover;
+            margin-bottom: 15px;
         }
 
         .author-details {
-            flex: 1 !important;
+            width: 100%;
         }
 
         .author-name {
-            font-size: 20px !important;
-            margin: 0 0 5px 0 !important;
-        }
-
-        @media (min-width: 768px) {
-            .author-name {
-                font-size: 24px !important;
-            }
+            font-size: 20px;
+            margin: 0 0 5px 0;
         }
 
         .author-title {
-            font-size: 16px !important;
-            margin: 0 0 10px 0 !important;
-            text-align: left !important;
-        }
-
-        @media (min-width: 768px) {
-            .author-title {
-                font-size: 18px !important;
-            }
+            font-size: 16px;
+            margin: 0 0 10px 0;
         }
 
         .author-description {
-            font-size: 14px !important;
-            margin: 0 0 15px 0 !important;
+            font-size: 14px;
+            margin: 0 0 15px 0;
             line-height: 1.6;
         }
 
         .social-media {
             display: flex;
+            justify-content: center;
             gap: 10px;
             margin-top: 15px;
         }
@@ -679,17 +647,43 @@
             transition: transform 0.3s ease;
         }
 
+        .social-media img:hover {
+            transform: scale(1.2);
+        }
+
+        /* Desktop styles */
         @media (min-width: 768px) {
+            .author-info {
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .author-image {
+                width: 100px;
+                height: 100px;
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+
+            .author-name {
+                font-size: 24px;
+            }
+
+            .author-title {
+                font-size: 18px;
+                text-align: left;
+            }
+
+            .social-media {
+                justify-content: flex-start;
+            }
+
             .social-media img {
                 width: 24px;
                 height: 24px;
             }
         }
-
-        .social-media img:hover {
-            transform: scale(1.2);
-        }
-
         /* Navigation Section */
         .navigation-section {
             margin: 30px 0;
@@ -801,7 +795,7 @@
             margin: 0px 10px;
         }
         .author-name{
-            font-size: 11px;
+            font-size: 24px;
         }
 
         .author_date img {
