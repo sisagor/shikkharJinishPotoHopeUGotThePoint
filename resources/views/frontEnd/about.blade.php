@@ -110,7 +110,6 @@ h2 {
 }
 
 /* about us css design  */
-
 .about-us {
     display: flex;
     justify-content: center;
@@ -171,6 +170,27 @@ h2 {
 .template-count p {
     font-size: 1rem;
 }
+@media (max-width: 767px) {
+    .about-us {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .right-panel {
+        padding-left: 10px;
+    }
+
+    .left-panel .illustration img {
+        max-width: 100%;
+    }
+}
+
 /* Mission and vision design  */
 .main-mission-vision-section {
     padding: 20px 20px;
