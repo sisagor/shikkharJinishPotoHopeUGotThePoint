@@ -69,36 +69,74 @@
                 </div>
             </div>
         </section>
+{{--        <section class="main-mission-vision-section">--}}
+{{--            <div class="mission-vision-container">--}}
+{{--                <div class="card mission">--}}
+{{--                    <img src="{{asset('frontEnd/img/Vector-mission.png')}}" alt="Mission Image" class="card-image">--}}
+{{--                    <h2>Our Mission:</h2>--}}
+{{--                    <p>--}}
+{{--                        Our mission is to create a one-stop shop for parents, educators, and caregivers seeking innovative and interactive activities for kids. We strive to:--}}
+{{--                    </p>--}}
+{{--                    <ul>--}}
+{{--                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Make Learning Fun</li>--}}
+{{--                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Spark Creativity and Imagination</li>--}}
+{{--                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Empower Parents & Educators</li>--}}
+{{--                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Promote Inclusivity and Accessibility</li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--                <div class="card vision">--}}
+{{--                    <h2>Our Vision:</h2>--}}
+{{--                    <p>--}}
+{{--                        We envision a world where children are excited to learn, overflowing with curiosity, and empowered to reach their full potential.--}}
+{{--                    </p>--}}
+{{--                    <ul>--}}
+{{--                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Make Learning Fun</li>--}}
+{{--                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Spark Creativity and Imagination</li>--}}
+{{--                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Empower Parents & Educators</li>--}}
+{{--                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Promote Inclusivity and Accessibility</li>--}}
+{{--                    </ul>--}}
+{{--                    <img src="{{asset('frontEnd/img/Vector-vision.png')}}" alt="Vision Image" class="card-image">--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+
         <section class="main-mission-vision-section">
-            <div class="mission-vision-container">
-                <div class="card mission">
-                    <img src="{{asset('frontEnd/img/Vector-mission.png')}}" alt="Mission Image" class="card-image">
-                    <h2>Our Mission:</h2>
-                    <p>
-                        Our mission is to create a one-stop shop for parents, educators, and caregivers seeking innovative and interactive activities for kids. We strive to:
-                    </p>
-                    <ul>
-                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Make Learning Fun</li>
-                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Spark Creativity and Imagination</li>
-                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Empower Parents & Educators</li>
-                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Promote Inclusivity and Accessibility</li>
-                    </ul>
-                </div>
-                <div class="card vision">
-                    <h2>Our Vision:</h2>
-                    <p>
-                        We envision a world where children are excited to learn, overflowing with curiosity, and empowered to reach their full potential.
-                    </p>
-                    <ul>
-                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Make Learning Fun</li>
-                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Spark Creativity and Imagination</li>
-                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Empower Parents & Educators</li>
-                        <li><img src="{{asset('frontEnd/img/check-container-icon.png')}}" alt="check icon">Promote Inclusivity and Accessibility</li>
-                    </ul>
-                    <img src="{{asset('frontEnd/img/Vector-vision.png')}}" alt="Vision Image" class="card-image">
+            <div class="container mission-vision-container">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card mission h-100">
+                            <img src="{{ asset('frontEnd/img/Vector-mission.png') }}" alt="Mission Image" class="card-image">
+                            <h2>Our Mission:</h2>
+                            <p>
+                                Our mission is to create a one-stop shop for parents, educators, and caregivers seeking innovative and interactive activities for kids. We strive to:
+                            </p>
+                            <ul>
+                                <li><img src="{{ asset('frontEnd/img/check-container-icon.png') }}" alt="check icon">Make Learning Fun</li>
+                                <li><img src="{{ asset('frontEnd/img/check-container-icon.png') }}" alt="check icon">Spark Creativity and Imagination</li>
+                                <li><img src="{{ asset('frontEnd/img/check-container-icon.png') }}" alt="check icon">Empower Parents & Educators</li>
+                                <li><img src="{{ asset('frontEnd/img/check-container-icon.png') }}" alt="check icon">Promote Inclusivity and Accessibility</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card vision h-100">
+                            <h2>Our Vision:</h2>
+                            <p>
+                                We envision a world where children are excited to learn, overflowing with curiosity, and empowered to reach their full potential.
+                            </p>
+                            <ul>
+                                <li><img src="{{ asset('frontEnd/img/check-container-icon.png') }}" alt="check icon">Make Learning Fun</li>
+                                <li><img src="{{ asset('frontEnd/img/check-container-icon.png') }}" alt="check icon">Spark Creativity and Imagination</li>
+                                <li><img src="{{ asset('frontEnd/img/check-container-icon.png') }}" alt="check icon">Empower Parents & Educators</li>
+                                <li><img src="{{ asset('frontEnd/img/check-container-icon.png') }}" alt="check icon">Promote Inclusivity and Accessibility</li>
+                            </ul>
+                            <img src="{{ asset('frontEnd/img/Vector-vision.png') }}" alt="Vision Image" class="card-image mt-3">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
     </div>
 
 <style>
@@ -191,53 +229,48 @@ h2 {
     }
 }
 
-/* Mission and vision design  */
+/* Mission and Vision section styling */
 .main-mission-vision-section {
-    padding: 20px 20px;
-    background-image: url('//frontEnd/img/missin-vision-bg.png');
+    padding: 40px 15px;
+    background-image: url('/frontEnd/img/missin-vision-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-}
-.mission-vision-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    gap: 20px;
 }
 
 .card {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    width: 49%;
+    height: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card h2 {
     font-size: 1.8rem;
     margin-bottom: 10px;
+    color: #333;
 }
 
 .card p {
     font-size: 1rem;
     margin-bottom: 15px;
+    color: #555;
 }
 
 .card ul {
     list-style-type: none;
+    padding: 0;
     font-size: 1rem;
     text-align: left;
     margin-top: 10px;
 }
 
 .card ul li {
-    margin-bottom: 20px;
-    padding-left: 10px;
-    position: relative;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
 }
@@ -254,6 +287,24 @@ h2 {
     margin-bottom: 20px;
     border-radius: 10px;
 }
+
+/* Responsive tweaks */
+@media (max-width: 767.98px) {
+    .card h2 {
+        font-size: 1.5rem;
+    }
+
+    .card p,
+    .card ul {
+        font-size: 0.95rem;
+    }
+
+    .card-image {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
+
 
 </style>
 
