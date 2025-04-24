@@ -236,11 +236,11 @@ h2 {
 }
 
 .select-wrapper::after {
-  content: "v";
+  content: "|";
   font-size: 18px;
   color: #141B34;
   position: absolute;
-  top: 50%;
+  top: 40%;
   right: 0;
   transform: translateY(-50%);
   pointer-events: none;

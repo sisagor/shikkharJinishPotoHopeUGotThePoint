@@ -270,13 +270,16 @@
         </div>
         <div class="sidebar">
             <div class="recent-articles">
-                <div class="search-container">
-                    <svg class="search-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.414-1.415l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                    <input type="text" class="search-input" placeholder="Search here">
-                    <button class="search-button">Search</button>
-                </div>
+                <form action="{{route('blog.search')}}" target="_blank" method="get">
+                    <div class="search-container">
+                        <svg class="search-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.414-1.415l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                        <input type="text" class="search-input"  name="title" placeholder="Search here">
+                        <input type="hidden" class="search-input" name="cat" value="all">
+                        <button type="submit" class="search-button">Search</button>
+                    </div>
+                </form>
             </div>
             <div class="recent-articles">
                 <h2>Recent Articles</h2>
