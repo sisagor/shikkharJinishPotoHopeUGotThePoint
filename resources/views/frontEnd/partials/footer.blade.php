@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row footer_content">
-        <div class=" col-sm-12 col-lg-4 mb-4 order-0 order-sm-0" ><a  href="#"><img src="{{asset('/frontEnd/img/Logo.png')}}"  alt="" /></a>
+        <div class=" col-sm-12 col-lg-4 mb-4 order-0 order-sm-0" ><a  href="{{route('home')}}"><img src="{{asset('/frontEnd/img/Logo.png')}}"  alt="" /></a>
             <p class="text-light my-4">Award winning full-service, creative digital agency, collaborating with brands all over the world.</p>
         </div>
         <div class="col-12 col-sm-3 col-lg-2 mb-3 order-3 order-sm-2">
@@ -17,8 +17,8 @@
             <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Quick links</h5>
             <ul class="list-unstyled text-white mb-md-4 mb-lg-0">
                 <li class="lh-lg"><a class="text-white" href="/about-us">About</a></li>
-                <li class="lh-lg"><a class="footer-link text-white" href="/contact-us">Contact US</a></li>
-                <li class="lh-lg"><a class="footer-link text-white" href="/blog/category">Blog</a></li>
+                <li class="lh-lg"><a class="footer-link text-white" href="{{route('contact')}}">Contact US</a></li>
+                <li class="lh-lg"><a class="footer-link text-white" href="{{route('blog.cat')}}">Blog</a></li>
             </ul>
         </div>
         <div class="col-12 col-sm-6 col-lg-3 mb-3 order-2 order-sm-2">
