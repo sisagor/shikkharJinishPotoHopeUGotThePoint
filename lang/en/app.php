@@ -751,5 +751,6 @@ return [
     'admin_author' => 'Author',
     'user_type' => 'User Type',
     'admin_user' => 'Admin User',
+    'docs' => 'Docs',
 
 ];

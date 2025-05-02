@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\SeoPage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Modules\CMS\Entities\Blog;
 use Illuminate\Queue\Jobs\JobName;
@@ -60,6 +61,27 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                 'url_type' => $request->get('url_type'),
                 'created_by' => $created_by
             ]);
+
+            /*create file*/
+            if ($request->hasFile('docs'))
+            {
+                $doc = $request->file('docs');
+                $path = $doc->store('images', 'public');
+                $image = new Image([
+                    'path' => $path,
+                    'name' => $doc->getClientOriginalName(),
+                    'extension' => $doc->getClientOriginalExtension(),
+                    'size' => $doc->getSize(),
+                    'order' => 0,
+                    'image_alter' => null,
+                    'type' => 'blogDoc',
+                    'imageable_id' => $blog->id,
+                    'imageable_type' => Blog::class,
+                ]);
+
+                $blog->images()->save($image);
+            }
+
 
             // Extract details, orders, and images from the request
             $books = $request->get('books');
@@ -158,6 +180,34 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
                 'created_by' => $created_by,
                 'updated_at' => Carbon::now()
             ]);
+
+            /*create file*/
+            if ($request->hasFile('docs'))
+            {
+                $clear = Image::where('imageable_id', $blog->id)->where('imageable_type', Blog::class);
+                if ($clear->count())
+                {
+                    $oldImage = $clear->first();
+                    Storage::disk('public')->delete($oldImage->path);
+                    $clear->delete();
+                }
+
+                $doc = $request->file('docs');
+                $path = $doc->store('images', 'public');
+                $image = new Image([
+                    'path' => $path,
+                    'name' => $doc->getClientOriginalName(),
+                    'extension' => $doc->getClientOriginalExtension(),
+                    'size' => $doc->getSize(),
+                    'order' => 0,
+                    'image_alter' => null,
+                    'type' => 'blogDoc',
+                    'imageable_id' => $blog->id,
+                    'imageable_type' => Blog::class,
+                ]);
+
+                $blog->images()->save($image);
+            }
 
             //Delete Old blog details
             //$blog->details()->delete();
@@ -270,11 +320,6 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
         return true;
     }
 
-
-    public function getJobs($status = Blog::STATUS_OPEN)
-    {
-        return Blog::where('status', $status)->pluck('position', 'id');
-    }
 
 
 }

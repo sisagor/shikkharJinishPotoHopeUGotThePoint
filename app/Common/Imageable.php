@@ -59,6 +59,16 @@ trait Imageable
         return $this->morphOne(Image::class, 'imageable')->where('type', 'logo');
     }
 
+    /**
+     * Return the logo related to the logoable
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function blogDoc()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('type', 'blogDoc');
+    }
+
     public function book()
     {
         return $this->morphOne(Image::class, 'imageable')->where('type', 'book');

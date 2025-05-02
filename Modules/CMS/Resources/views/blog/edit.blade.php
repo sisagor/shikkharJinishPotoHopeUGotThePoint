@@ -3,7 +3,7 @@
 @section('form')
 
 @php
-   //dd($blog);
+   //dd($blog->blogDoc);
 
 @endphp
     <div class="showNotification"></div>
@@ -125,7 +125,7 @@
             </div>--}}
         </div>
         <div class="row">
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-6 col-sm-6">
                 <label class="col-form-label label-align" for="title">
                     {{trans('app.meta_description')}}
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
@@ -133,6 +133,17 @@
                 </label>
                 <div class="item form-group">
                     <input class="form-control" id="meta_description" name="meta_description" value="{{$blog->seo->description ?? ''}}" required placeholder="Meta Description (max 160 characters)">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="title">
+                    {{trans('app.docs')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.docs')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input class="form-control" id="docs" name="docs" type="file">
                 </div>
             </div>
         </div>

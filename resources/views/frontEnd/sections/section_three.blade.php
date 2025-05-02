@@ -17,7 +17,7 @@
         </div> --}}
         <div class="item form-group">
             <div class="select">
-                <select>
+                <select id="category">
                     <option value="">All</option>
                     @foreach($categories as $key => $item)
                         <option value="{{$key}}"> {{$item}}</option>

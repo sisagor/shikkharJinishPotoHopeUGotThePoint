@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-6 col-sm-6">
                 <label class="col-form-label label-align" for="title">
                     {{trans('app.tags')}}
                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
@@ -104,6 +104,17 @@
                 </label>
                 <div class="item form-group">
                     <input class="form-control" id="tags" name="tags" required placeholder="tag1,tag2,tag3,...">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <label class="col-form-label label-align" for="title">
+                    {{trans('app.docs')}}
+                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left"
+                       title="{{ trans('help.docs')}}"></i>
+                </label>
+                <div class="item form-group">
+                    <input class="form-control" id="docs" name="docs" type="file">
                 </div>
             </div>
 

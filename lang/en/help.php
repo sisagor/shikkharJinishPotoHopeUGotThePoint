@@ -191,6 +191,7 @@ return [
     'twitter' => 'Twitter',
     'instagram' => 'Instagram',
     'linkedin' => 'Linkedin',
+    'docs' => 'upload pdf doc here',
 
 
 ];
