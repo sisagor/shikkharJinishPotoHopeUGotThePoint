@@ -36,16 +36,22 @@
                 </div>
                 <div class="right_column">
                     <span>Share: </span>
-                    <a href="#" class="social_icon bg_pinterest">
-                        <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
-                    </a>
-                    <a href="#" class="social_icon bg_facebook">
+
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" class="social_icon bg_facebook">
                         <img src="{{asset('/frontEnd/img/logos_facebook-icon.png')}}" alt="facebook icon"/>
                     </a>
+
+
+                    <a target="_blank" href="https://pinterest.com/pin/create/button/?url={{ urlencode(url()->current()) }}&media={{get_storage_file_url($blog->details[0]->image->path)}}&description={{$blog->title}}" class="social_icon bg_pinterest">
+                        <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
+                    </a>
+
                     <a href="#" class="social_icon bg_instagram">
                         <img src="{{asset('/frontEnd/img/skill-icons_instagram-icon.png')}}" alt="Instagram icon"/>
                     </a>
-                    <a href="#" class="social_icon bg_twitter">
+
+                    <a href="https://x.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($blog->title) }}"
+                       class="social_icon bg_twitter" target="_blank">
                         <img src="{{asset('/frontEnd/img/ant-design_twitter-circle-filled-icon.png')}}" alt="Twitter icon"/>
                     </a>
                 </div>
@@ -59,6 +65,15 @@
 
                     <p class="mt-1">{!! html_entity_decode($detail->details) !!}</p>
                 @endforeach
+
+                @if($blog->blogDoc)
+                    {{--Download files--}}
+                    <div class="" style="text-align: center">
+                        <a href="{{get_storage_file_url(optional($blog->blogDoc)->path)}}" class="download-button mt-3 " style="">
+                            Download PDF
+                        </a>
+                    </div>
+                @endif
 
                 @if($blogBooks)
                     <div class="row">
@@ -330,6 +345,8 @@
         </div>
     </div>
 
+
+    {{--Styles--}}
     <style>
         /* Base Styles */
         * {
@@ -1288,18 +1305,36 @@
         }
     </style>
 
+@endsection
+
+@section('frontJs')
+  {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />--}}
+    {{--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
+
+    <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Owl Carousel JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--}}
 
     <script>
+
         $(document).ready(function() {
             // Reply button logic
             $('button.reply-button').on('click', function() {
                 var parentId = $(this).data('parent-id');
                 $('#parent_id').val(parentId);
+            });
+
+
+            $('.bg_instagram').on('click', function()
+            {
+                alert('Copy the URL and save the image then post it to instagram manually. URL: {{url()->current()}}');
             });
 
             // Owl Carousel
@@ -1319,6 +1354,5 @@
             });
         });
     </script>
-
 
 @endsection
