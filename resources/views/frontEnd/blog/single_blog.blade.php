@@ -69,7 +69,7 @@
                 @if($blog->blogDoc)
                     {{--Download files--}}
                     <div class="" style="text-align: center">
-                        <a href="{{get_storage_file_url(optional($blog->blogDoc)->path)}}" class="download-button mt-3 " style="">
+                        <a href="{{get_storage_file_url(optional($blog->blogDoc)->path)}}" class="download-button mt-3 " style="" download>
                             Download PDF
                         </a>
                     </div>
@@ -102,7 +102,7 @@
 
             @if(!empty($popularBook))
                 <img src="{{get_storage_file_url($popularBook->image)}}" alt="book image">
-                <a href="{{$popularBook->url}}" class="download-button mt-3 ">
+                <a href="{{$popularBook->url}}" class="download-button mt-3">
                     <img src="{{get_storage_file_url($popularBook->image)}}" alt="download icon" class="download_icon">
                     Download this Book
                 </a>
