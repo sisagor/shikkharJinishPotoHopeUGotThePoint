@@ -670,8 +670,7 @@ h2 {
 
 .bg_color_new_book {
   background-color: #5B3AFF;
-  padding: 30px 0;
-  /*height: 800px;*/
+  padding: 20px 0;
 }
 
 /* new book section  */
@@ -697,7 +696,7 @@ h2 {
 }
 .new_book_self{
   position: relative;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 .bg_new_book_section {
   position: absolute;
