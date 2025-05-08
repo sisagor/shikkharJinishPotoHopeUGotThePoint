@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 text-center">
-                <div class="our-author" style="background-color: #EFEBFF;">OUR AUTHOR</div>
-                <h2 class="most_pupolar_title" style="color: #FFFFFF;">Meet Our Amazing Author</h2>
+                <div class="our-author" style="background-color: #EFEBFF;">OUR TEAM</div>
+                <h2 class="most_pupolar_title" style="color: #FFFFFF;">Meet Our Amazing Team</h2>
             </div>
         </div>
         <div class="row mt-5">
@@ -21,16 +21,16 @@
                                     <div class="profession">
                                         <p>{{$author->profile->occupation}}</p>
                                         <div class="right_column">
-                                            <a target="_blank" href="{{$author->profile->facebook}}" style="width: 16px;height: 16px" class="social_icon ">
+                                            <a @if($author->profile->facebook) target="_blank" @endif href="@if($author->profile->facebook){{$author->profile->facebook}}@else#@endif" style="width: 16px;height: 16px" class="social_icon ">
                                                 <img src="{{asset('/frontEnd/img/logos_facebook-icon.png')}}" alt="facebook icon"/>
                                             </a>
-                                            <a target="_blank" href="{{$author->profile->instagram}}" style="width: 16px;height: 16px"  class="social_icon ">
+                                            <a  @if($author->profile->twitter) target="_blank" @endif href="@if($author->profile->instagram) {{$author->profile->instagram}} @else#@endif" style="width: 16px;height: 16px"  class="social_icon ">
                                                 <img src="{{asset('/frontEnd/img/skill-icons_instagram-icon.png')}}" alt="Instagram icon"/>
                                             </a>
-                                            <a target="_blank" href="{{$author->profile->twitter}}" style="width: 16px;height: 16px"  class="social_icon ">
+                                            <a @if($author->profile->twitter) target="_blank" @endif href="@if($author->profile->twitter) {{$author->profile->twitter}} @else#@endif" style="width: 16px;height: 16px"  class="social_icon ">
                                                 <img src="{{asset('/frontEnd/img/logos_pinterest-icon.png')}}" alt="pinterest icon"/>
                                             </a>
-                                            <a target="_blank" href="{{$author->profile->linedin}}" style="width: 16px;height: 16px"  class="social_icon ">
+                                            <a @if($author->profile->linedin) target="_blank" @endif href="@if($author->profile->linedin){{$author->profile->linedin}} @else#@endif" style="width: 16px;height: 16px"  class="social_icon ">
                                                 <img src="{{asset('/frontEnd/img/entypo-social_linkedin-with-circle.png')}}" alt="pinterest icon"/>
                                             </a>
                                         </div>

@@ -78,7 +78,7 @@
                 @if($blogBooks)
                     <div class="row">
                         @foreach($blogBooks as $blogBook)
-                            <div class="col-md-4 text-center text-md-left">
+                            <div class="col-md-4 text-center <!--text-md-left-->">
                                 @if($blogBook->book)
                                     <img src="{{get_storage_file_url(optional($blogBook->book->image)->path)}}"
                                          alt="book image"
@@ -89,9 +89,8 @@
                                        href="{{$blogBook->book->url}}"
                                        class="download-button mt-3 d-inline-flex align-items-center justify-content-center justify-content-md-start">
                                         <img src="{{asset('/frontEnd/img/download-04.png')}}"
-                                             alt="download icon"
-                                             class="download_icon me-2">
-                                        Download this Book
+                                             alt="download icon" class="download_icon me-2">
+                                        Check Out This Book
                                     </a>
                                 @endif
                             </div>
@@ -283,6 +282,7 @@
                 </form>
             </div>
         </div>
+
         <div class="sidebar">
             <div class="recent-articles">
                 <form action="{{route('blog.search')}}" target="_blank" method="get">
