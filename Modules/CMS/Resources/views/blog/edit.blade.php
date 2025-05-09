@@ -204,8 +204,7 @@
                 <div class="dynamic-block-header">
                     Blog Details 
                      <div class="text-end">
-                        {{--<button type="button" class="btn btn-primary btn-sm float-right mr-2" id="add-field">Add More</button>--}}
-                        <button type="button" class="btn btn-danger btn-sm float-right remove-field-exist">Remove</button>
+                         <button type="button" onclick="addDynamicFiled()" class="btn btn-primary btn-sm float-right mr-2" id="add-field">Add More</button>
                     </div>
                 </div>
             <div class="row">
@@ -266,7 +265,6 @@
                 <div class="dynamic-block-header">
                     Blog Details 
                     <div class="text-end">
-                        <button type="button" class="btn btn-primary btn-sm float-right mr-2" id="add-field">Add More</button>
                         <button type="button" class="btn btn-danger btn-sm float-right remove-field">Remove</button>
                     </div>
                 </div>

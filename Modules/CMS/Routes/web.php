@@ -29,6 +29,7 @@ Route::prefix('cms')->name('cms.')->middleware(['auth'])->group(function ()
         Route::get('comments', 'comments')->name('comments');
         Route::get('comments/{comment}/approve',  'approveComment')->name('comments.approve');
         Route::get('comments/{comment}/delete',  'deleteComment')->name('comments.delete');
+        Route::post('blog/getSingleDetails',  'getSingleDetails')->name('blog.getSingleDetails');
     });
 
 

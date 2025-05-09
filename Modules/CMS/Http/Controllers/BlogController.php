@@ -310,6 +310,11 @@ class BlogController extends Controller
      * End section job posting
      */
 
-     
+
+    public function getSingleDetails(Request $request)
+    {
+        $counter = $request->get('counter');
+        return view('cms::blog.partials.detailsSection', compact('counter'));
+    }
   
 }
