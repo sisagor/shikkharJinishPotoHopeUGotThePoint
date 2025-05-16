@@ -162,8 +162,10 @@
                                 </div>
                                 <div class="col-md-7 p-0 m-0">
                                     <div class="slide_author_date">
-                                        <img class="slider_claender_icon" src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
-                                        <p class="slide_author_name">{{ date('d M, Y',strtotime($lblog['created_at']))}}</p>
+                                        <div class="mt-2">
+                                            <img class="slider_claender_icon" src="{{asset('/frontEnd/img/calendar.png')}}" width="16px" height="16px" alt="calendar"/>
+                                        </div>
+                                        <p class="slide_author_name mt-2">{{ date('d M, Y',strtotime($lblog['created_at']))}}</p>
                                     </div>
                                     <div class="card_title">
                                         <h4><a href="/blog/{{ $lblog['slug'] }}">{{ $lblog['title'] }}</a></h4>
@@ -386,7 +388,7 @@
         }
 
         .content {
-            width: 100%;
+            width: 60%;
             padding: 15px;
             background-color: #ffffff;
         }
@@ -399,7 +401,7 @@
         }
 
         .sidebar {
-            width: 100%;
+            width: 40%;
             padding: 15px;
             background-color: #fff;
         }
@@ -1304,6 +1306,7 @@
         .w-100 {
             width: 100%;
         }
+
     </style>
 
 @endsection
