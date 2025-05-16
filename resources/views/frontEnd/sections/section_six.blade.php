@@ -40,7 +40,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12 text-center pt-4">
+        <div class="col-md-12 text-center pt-4 pb-4">
             <div class="our-author" style="background-color: #EFEBFF;">NEW BOOK</div>
             <h2 class="most_pupolar_title text_color">Fresh Arrivals! Dive into Our Newest <br/> Books Now on Amazon!</h2>
             <p class="most_pupolar_text text_color">

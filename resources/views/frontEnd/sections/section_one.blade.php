@@ -1,14 +1,13 @@
 
 
 <div class="row">
-    <div class="col-md-6 col-sm-6 mt-5 pl-5 feature_free_header">
+    <div class="col-md-6 col-sm-12 mt-5 pl-5 feature_free_header">
         <h5>Spark Creativity & Fun:</h5>
         <h1>Free Downloadable <br> Activity Books</h1> <br>
         <p>Welcome to our website where you can download tons of free printable activity books, coloring
             pages, puzzles, and more for kids and adults!</p>
         <form method="get" target="_blank" action="{{route('blog.search')}}">
             <div class="container_btn">
-
                 <div class="select-wrapper">
                     <select name="cat" id="cat" class="left_select">
                         <option value="all">All</option>
@@ -36,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-sm-6">
+    <div class="col-md-6 col-sm-6 d-none d-md-block">
         <div class="row">
             <div class="col-md-12 col-sm-12 mb-5">
                 <div class="frame_group d-flex flex-wrap justify-content-between">
