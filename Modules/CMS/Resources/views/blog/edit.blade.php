@@ -250,7 +250,7 @@
                     </label>
                     <div class="item form-group">
                         <input type="hidden" class="form-control" name="details_id[]" value="{{$detail->id}}">
-                        <textarea class="form-control editor" id="initialEditor" name="details[]" placeholder="{{ trans('app.details') }}">{{ ($detail->details)}}</textarea>
+                        <textarea class="form-control initialEditor" id="initialEditor" name="details[]" placeholder="{{ trans('app.details') }}">{{ ($detail->details)}}</textarea>
                     </div>
                 </div>
             </div>

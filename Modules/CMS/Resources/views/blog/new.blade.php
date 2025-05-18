@@ -235,7 +235,7 @@
                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="left" title="{{ trans('help.details') }}"></i>
                     </label>
                     <div class="item form-group">
-                        <textarea class="form-control editor" id="initialEditor" name="details[]" placeholder="{{ trans('app.details') }}"></textarea>
+                        <textarea class="form-control initialEditor" id="initialEditor" name="details[]" placeholder="{{ trans('app.details') }}"></textarea>
                     </div>
                 </div>
             </div>

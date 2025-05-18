@@ -10,15 +10,15 @@
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 
 <script type="text/javascript">
     ;(function ($, window, document) {
 
         $(document).ready(function() {
 
-            $('#initialEditor').each(function() {
-                initializeCKEditor(this);
+            $('.initialEditor').each(function () {
+                CKEDITOR.replace(this); // ✅ this is a valid DOM element
             });
 
         });
