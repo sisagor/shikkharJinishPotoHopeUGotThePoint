@@ -57,6 +57,9 @@ if (!auth()->user()) {
     Route::post('contact-store', [FrontEndController::class, 'storeContact'])->name('storeContact');
     Route::post('email_subscription', [FrontEndController::class, 'storeEmail'])->name('email_subscription');
     Route::get('filter-blogs', [FrontEndController::class, 'filterBlogs'])->name('filter_blogs');
+
+    //generators
+    Route::get('generators', [\App\Http\Controllers\frontEnd\GeneratorController::class, 'index'])->name('generators');
 }
 /*Route::get('/', function ()
 {

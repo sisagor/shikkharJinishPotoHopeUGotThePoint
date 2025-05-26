@@ -563,6 +563,7 @@
             margin-bottom: 20px;
             font-size: 16px;
             line-height: 1.8;
+            overflow-wrap: break-word;
         }
 
         .single_img {
@@ -1342,7 +1343,7 @@
             });
 
             // Owl Carousel
-            $('.slider').owlCarousel({
+            $('.owl-carousel').owlCarousel({
                 items: 1,
                 margin: 10,
                 loop: true,

@@ -21,6 +21,10 @@
     {!! SEO::generate() !!}
 </head>
 <body>
+<section class="p-0">
+    {{--menu section--}}
+    @include('frontEnd.partials.header')
+</section>
 
 @yield('contents')
 

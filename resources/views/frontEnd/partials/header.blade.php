@@ -15,7 +15,7 @@
                     <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-link" href="#">Kids</a>
                     <a class="nav-link" href="#">Adults</a>
-                    <a class="nav-link" href="#">Generator</a>
+                    <a class="nav-link" href="{{route('generators')}}">Generator</a>
                     <a class="nav-link" href="#">Seasonal</a>
                     <a class="nav-link" href="{{route('blog.cat')}}">Blogs</a>
                 </div>

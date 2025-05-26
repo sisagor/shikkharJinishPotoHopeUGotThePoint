@@ -2,10 +2,10 @@
 
 @section('contents')
 
-        <section class="p-0">
-            {{--menu section--}}
+       {{-- <section class="p-0">
+            --}}{{--menu section--}}{{--
             @include('frontEnd.partials.header')
-        </section>
+        </section>--}}
         <div class="container">
           <section style="padding: 0">
             <div class="breadcrumb_design">

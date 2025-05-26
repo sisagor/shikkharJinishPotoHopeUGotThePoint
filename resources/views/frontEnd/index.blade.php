@@ -1,10 +1,10 @@
 @extends('frontEnd.layouts.app')
 
 @section('contents')
-    <section class="p-0">
-        {{--menu section--}}
+ {{--   <section class="p-0">
+        --}}{{--menu section--}}{{--
         @include('frontEnd.partials.header')
-    </section>
+    </section>--}}
 
     <div class="container">
         <!--  feature free downloadable -->
