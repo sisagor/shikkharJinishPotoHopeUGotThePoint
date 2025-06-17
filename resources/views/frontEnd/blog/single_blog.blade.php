@@ -1,5 +1,9 @@
 @extends('frontEnd.layouts.app')
 
+@section('frontTitle')
+    <title>{{$blog->title}}</title>
+@endsection
+
 @section('contents')
     <section class="p-0">
         {{--menu section--}}
