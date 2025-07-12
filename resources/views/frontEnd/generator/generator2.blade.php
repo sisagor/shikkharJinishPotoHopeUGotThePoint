@@ -1,7 +1,7 @@
 @extends('frontEnd.layouts.app')
 
 @section('contents')
-
+    @include('frontEnd.generator.generatorStyle')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
