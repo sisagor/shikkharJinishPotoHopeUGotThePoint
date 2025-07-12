@@ -8,16 +8,11 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-{{--    <link rel="stylesheet" href="/assets/styles.css">--}}
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f5f5f5;
+        * {
+            box-sizing: border-box;
         }
-
         .colorGrey{
             color: grey;
         }
@@ -81,19 +76,12 @@
             overflow-y: scroll;
         }
 
-        /*.h30V2{*/
-        /*    background-color: white;*/
-        /*    height: 400px;*/
-        /*    border-radius: 10px;*/
-        /*    overflow-y: scroll;*/
-        /*}*/
-
         .h30V2 {
             background-color: white;
-            height: 400px; /* or adjust this to a smaller value if needed */
+            height: 400px;
             border-radius: 10px;
             overflow-y: scroll;
-            margin-bottom: 20px; /* Add some space between the scrollable area and buttons */
+            margin-bottom: 20px;
         }
 
         .h45{
@@ -204,28 +192,6 @@
         .toggle-option:focus {
             outline: none;
         }
-
-        /* Additional styles for the preview */
-        /*.d-flex {*/
-        /*    display: flex;*/
-        /*}*/
-
-        /*.justify-content-end {*/
-        /*    justify-content: flex-end;*/
-        /*}*/
-
-        /*.font-weight-bold {*/
-        /*    font-weight: bold;*/
-        /*}*/
-
-        /*.mt-4 {*/
-        /*    margin-top: 1.5rem;*/
-        /*}*/
-
-        /*.view-content h3 {*/
-        /*    margin-top: 0;*/
-        /*    color: #F01E76;*/
-        /*}*/
     /*==========word select css*/
         .section-title {
             font-size: 20px;
@@ -259,21 +225,6 @@
             background: #c2185b;
         }
 
-        /* Fix dropdown menu positioning */
-        /*.dropdown-menu {*/
-        /*    position: absolute;*/
-        /*    top: 100%;*/
-        /*    right: 0;*/
-        /*    left: auto;*/
-        /*    z-index: 1000;*/
-        /*}*/
-
-        /* If parent container has overflow hidden, override it */
-        /*.dropdown-container {*/
-        /*    overflow: visible !important;*/
-        /*    position: relative;*/
-        /*}*/
-
         .word-label {
             display: flex;
             align-items: center;
@@ -285,7 +236,6 @@
 
         .checkBox {
             margin-right: 8px;
-            /* optional: increase size */
             width: 16px;
             height: 16px;
         }
@@ -325,12 +275,9 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            /*background-color: transparent;*/
-            /*border: 1px solid transparent;*/
             padding: .375rem .75rem;
             font-size: 1rem;
             line-height: 1.5;
-            /*border-radius: .25rem;*/
             transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         }
     </style>
@@ -503,71 +450,109 @@
                                 <div class="p-2 row">
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme1')">
                                         <img id="theme1" class="themeImg" src="{{asset('/frontEnd/img/border-image1.jpg')}}">
-{{--                                        <img id="theme1" class="themeImg" src="assets/img/border-image1.jpg">--}}
                                     </div>
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme2')">
-                                        <img id="theme2" class="themeImg" src="assets/img/border-image2.png">
+                                        <img id="theme2" class="themeImg" src="{{asset('/frontEnd/img/border-image2.png')}}">
                                     </div>
+
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme3')">
-                                        <img id="theme3" class="themeImg" src="assets/img/border-image3.jpg">
+                                        <img id="theme3" class="themeImg" src="{{asset('/frontEnd/img/border-image3.jpg')}}">
                                     </div>
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme4')">
-                                        <img id="theme4" class="themeImg" src="assets/img/border-image4.png">
+                                        <img id="theme4" class="themeImg" src="{{asset('/frontEnd/img/border-image4.png')}}">
                                     </div>
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme5')">
-                                        <img id="theme5" class="themeImg" src="assets/img/border-image5.png">
+                                        <img id="theme5" class="themeImg" src="{{asset('/frontEnd/img/border-image5.png')}}">
                                     </div>
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme6')">
-                                        <img id="theme6" class="themeImg" src="assets/img/border-image6.png">
+                                        <img id="theme6" class="themeImg" src="{{asset('/frontEnd/img/border-image6.png')}}">
                                     </div>
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme7')">
-                                        <img id="theme7" class="themeImg" src="assets/img/border-image7.png">
+                                        <img id="theme7" class="themeImg" src="{{asset('/frontEnd/img/border-image7.png')}}">
                                     </div>
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme8')">
-                                        <img id="theme8" class="themeImg" src="assets/img/border-image8.jpg">
+                                        <img id="theme8" class="themeImg" src="{{asset('/frontEnd/img/border-image8.jpg')}}">
                                     </div>
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme9')">
-                                        <img id="theme9" class="themeImg" src="assets/img/border-image9.png">
+                                        <img id="theme9" class="themeImg" src="{{asset('/frontEnd/img/border-image9.png')}}">
                                     </div>
                                 </div>
                             </div>
                             <!-- END : Theme View -->
                         </div>
                     </div>
-                    <div class="col-md-5 bgOffset" style="border-radius: 10px;">
-                        <div>
-                            <div class="p-3">
-                                <p class="font16w500">Worksheet Preview</p>
-                            </div>
-                            <div class="pl-3 pr-3">
-                                <div class="mt-3 borderRadius bg-white d-flex justify-content-center">
-                                    <button id="worksheet" class="btn_custom m-2 borderRadius bgActive pl-5 pr-5" onclick="onWorksheetPreviewChange('worksheet')">Worksheet</button>
-                                    <button id="answerkey" class="btn_custom m-2 borderRadius bgInActive pl-5 pr-5" onclick="onWorksheetPreviewChange('answerkey')">Answer Key</button>
-                                </div>
-                            </div>
-                            <div class="pl-3 pr-3 " style="height: 500px;">
-                                <div class="h30V2" style="height: calc(100% - 100px); margin-top: 16px;">
-                                    <div id="worksheetPreview" class="p-2 ml-1 mt-2 font12w400">
-                                        <!-- Worksheet content will go here -->
-                                    </div>
-                                </div>
+                    <div class="col-md-5 bgOffset d-flex flex-column mb-4" style="border-radius: 10px; height: 100%;">
+                        <div class="p-3">
+                            <p class="font16w500">Worksheet Preview</p>
+                        </div>
 
-                                <!-- Buttons positioned at bottom -->
-                                <div class=" bgOffset bottom-0 w-100 pr-3 pl-2">
-                                    <button class="btn_custom m-2 borderRadius bgPink borderOffPink text-white w-100">
-                                        <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="">&nbsp;
-{{--                                        <img src="./assets/img/download-04.png" alt="">&nbsp;--}}
-                                        Download Worksheet
-                                    </button>
-                                    <button class="btn_custom m-2 borderRadius bg-white borderOffPink w-100">
-                                        <img src="./assets/img/download-04.png" alt="">&nbsp;
-                                        Download Answer Key
-                                    </button>
-                                    <button class="btn_custom m-2 borderRadius bg-white borderOffPink w-100 cursorPointer" onclick="preview('previewModal')">Full Preview</button>
+                        <div class="pl-3 pr-3">
+                            <div class="mt-3 borderRadius bg-white d-flex justify-content-center">
+                                <button id="worksheet" class="btn_custom m-2 borderRadius bgActive pl-5 pr-5" onclick="onWorksheetPreviewChange('worksheet')">Worksheet</button>
+                                <button id="answerkey" class="btn_custom m-2 borderRadius bgInActive pl-5 pr-5" onclick="onWorksheetPreviewChange('answerkey')">Answer Key</button>
+                            </div>
+                        </div>
+
+                        <!-- Content Preview and Buttons -->
+                        <div class="pl-3 pr-3 d-flex flex-column" style="flex-grow: 1;">
+                            <!-- Preview Section -->
+                            <div class="h30V2" style="flex-grow: 1; margin-top: 16px; overflow-y: auto;">
+                                <div id="worksheetPreview" class="p-2 ml-1 mt-2 font12w400">
+                                    <!-- Worksheet content will go here -->
                                 </div>
+                            </div>
+
+                            <!-- Bottom Buttons -->
+                            <div class="bgOffset">
+                                <button class="btn_custom m-2 borderRadius bgPink borderOffPink text-white w-100">
+                                    <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="">&nbsp;
+                                    Download Worksheet
+                                </button>
+                                <button class="btn_custom m-2 borderRadius bg-white borderOffPink w-100">
+                                    <img src="./assets/img/download-04.png" alt="">&nbsp;
+                                    Download Answer Key
+                                </button>
+                                <button class="btn_custom m-2 borderRadius bg-white borderOffPink w-100 cursorPointer" onclick="preview('previewModal')">
+                                    Full Preview
+                                </button>
                             </div>
                         </div>
                     </div>
+
+                    {{--                    <div class="col-md-5 bgOffset" style="border-radius: 10px; outline: 1px solid red;">--}}
+{{--                        <div>--}}
+{{--                            <div class="p-3">--}}
+{{--                                <p class="font16w500">Worksheet Preview</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="pl-3 pr-3">--}}
+{{--                                <div class="mt-3 borderRadius bg-white d-flex justify-content-center">--}}
+{{--                                    <button id="worksheet" class="btn_custom m-2 borderRadius bgActive pl-5 pr-5" onclick="onWorksheetPreviewChange('worksheet')">Worksheet</button>--}}
+{{--                                    <button id="answerkey" class="btn_custom m-2 borderRadius bgInActive pl-5 pr-5" onclick="onWorksheetPreviewChange('answerkey')">Answer Key</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="pl-3 pr-3 " style="height: 500px;">--}}
+{{--                                <div class="h30V2" style="height: calc(100% - 100px); margin-top: 16px;">--}}
+{{--                                    <div id="worksheetPreview" class="p-2 ml-1 mt-2 font12w400">--}}
+{{--                                        <!-- Worksheet content will go here -->--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+{{--                                <!-- Buttons positioned at bottom -->--}}
+{{--                                <div class=" bgOffset bottom-0 w-100 pr-3 pl-2">--}}
+{{--                                    <button class="btn_custom m-2 borderRadius bgPink borderOffPink text-white w-100">--}}
+{{--                                        <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="">&nbsp;--}}
+{{--                                        <img src="./assets/img/download-04.png" alt="">&nbsp;--}}
+{{--                                        Download Worksheet--}}
+{{--                                    </button>--}}
+{{--                                    <button class="btn_custom m-2 borderRadius bg-white borderOffPink w-100">--}}
+{{--                                        <img src="./assets/img/download-04.png" alt="">&nbsp;--}}
+{{--                                        Download Answer Key--}}
+{{--                                    </button>--}}
+{{--                                    <button class="btn_custom m-2 borderRadius bg-white borderOffPink w-100 cursorPointer" onclick="preview('previewModal')">Full Preview</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <!-- START: Modal -->
