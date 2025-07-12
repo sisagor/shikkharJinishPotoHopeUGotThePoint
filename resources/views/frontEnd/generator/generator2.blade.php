@@ -14,7 +14,200 @@
     <link rel="stylesheet" href="{{asset('frontEnd/css/generator.css')}}">
 
 
-<div class="container">
+    <style>
+        /* Missing CSS classes */
+        .bgActive {
+            background-color: #F01E76 !important;
+            color: white !important;
+        }
+
+        .bgInActive {
+            background-color: #f8f9fa !important;
+            color: #6c757d !important;
+        }
+
+        .borderRadius {
+            border-radius: 8px !important;
+        }
+
+        .borderGrey {
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .borderOffPink {
+            border: 2px solid #F01E76 !important;
+        }
+
+        .borderViolet {
+            border: 3px solid #6f42c1 !important;
+        }
+
+        .borderGolden {
+            border: 2px solid #ffc107 !important;
+        }
+
+        .bgOffset {
+            background-color: #f8f9fa;
+        }
+
+        .bgPink {
+            background-color: #F01E76 !important;
+        }
+
+        .colorGrey {
+            color: #6c757d;
+        }
+
+        .clrPink {
+            color: #F01E76 !important;
+        }
+
+        .font16w500 {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .font14w400 {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .font12w400 {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .font14w500Tab {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .font12w400Tab {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .font10w400Tab {
+            font-size: 10px;
+            font-weight: 400;
+        }
+
+        .h30 {
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .h30V2 {
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        .h30Tab {
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        .h45 {
+            height: 45px;
+        }
+
+        .cursorPointer {
+            cursor: pointer;
+        }
+
+        .checkBox {
+            margin-right: 8px;
+        }
+
+        .themeImg {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .breadcrumb_design {
+            margin: 20px 0;
+        }
+
+        .breadcrumb_item a {
+            color: #F01E76;
+            text-decoration: none;
+        }
+
+        .breadcrumb_item.active a {
+            color: #6c757d;
+        }
+
+        .modal {
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-dialog {
+            position: relative;
+            margin: 50px auto;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .closeModal {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .closeModal:hover {
+            color: #000;
+        }
+
+        table td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #dee2e6;
+            font-weight: bold;
+        }
+
+        .selected-word-item {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        .selected-word-item .remove-word {
+            margin-left: 8px;
+            color: #dc3545;
+            cursor: pointer;
+        }
+    </style>
+
+
+    <div class="container">
     <section style="padding: 0">
         <div class="breadcrumb_design">
             <nav aria-label="breadcrumb">

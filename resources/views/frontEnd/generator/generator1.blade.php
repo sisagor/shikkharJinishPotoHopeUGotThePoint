@@ -8,148 +8,306 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+{{--    <link rel="stylesheet" href="/assets/styles.css">--}}
+{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    .colorGrey{
-        color: grey;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
 
-    .borderRadius{
-        border-radius: 25px;
-    }
+        .colorGrey{
+            color: grey;
+        }
 
-    .borderOffPink{
-        border: 1px solid #FAB9D5;
-    }
+        .borderRadius{
+            border-radius: 25px;
+        }
 
-    .borderGrey{
-        border: 1px solid grey;
-    }
+        .borderOffPink{
+            border: 1px solid #FAB9D5;
+        }
 
-    .bgPink{
-        background-color: #F01E76;
-    }
+        .borderGrey{
+            border: 1px solid grey;
+        }
 
-    .bgOffset{
-        background-color: #F7F5FF;
-        height: fit-content;
-    }
+        .bgPink{
+            background-color: #F01E76;
+        }
 
-    .bgActive{
-        background-color: #F01E76;
-        color: white;
-    }
+        .bgOffset{
+            background-color: #F7F5FF;
+            height: fit-content;
+        }
 
-    .bgInActive{
-        background-color: #FEF6F9;
-        color: black;
-    }
-    .clrPink{
-        color: #F01E76;
-    }
+        .bgActive{
+            background-color: #F01E76;
+            color: white;
+        }
 
-    .font16w500{
-        font-size: 16px;
-        font-weight: 500;
-    }
+        .bgInActive{
+            background-color: #FEF6F9;
+            color: black;
+        }
+        .clrPink{
+            color: #F01E76;
+        }
 
+        .font16w500{
+            font-size: 14px;
+            font-weight: 500;
+        }
 
-    .font14w400{
-        color: #262528;
-        font-size: 14px;
-        font-weight: 400;
-    }
+        .font14w400{
+            color: #262528;
+            font-size: 14px;
+            font-weight: 400;
+        }
 
-    .font12w400{
-        color: #262528;
-        font-size: 12px;
-        font-weight: 400;
-    }
+        .font12w400{
+            color: #262528;
+            font-size: 12px;
+            font-weight: 400;
+        }
 
-    .h30{
-        background-color: white;
-        height: 85%;
-        width: 100%;
-        border-radius: 10px;
-        overflow-y: scroll;
-    }
+        .h30{
+            background-color: white;
+            height: 85%;
+            width: 100%;
+            border-radius: 10px;
+            overflow-y: scroll;
+        }
 
-    .h30V2{
-        background-color: white;
-        height: 400px;
-        border-radius: 10px;
-        overflow-y: scroll;
-    }
+        .h30V2{
+            background-color: white;
+            height: 400px;
+            border-radius: 10px;
+            overflow-y: scroll;
+        }
 
-    .h45{
-        height: 40px;
-    }
+        .h45{
+            height: 40px;
+        }
 
-    .checkBox{
-        border: 1px solid #E9E9EA;
-        height: 16px;
-        width: 16px;
-    }
+        .checkBox{
+            border: 1px solid #E9E9EA;
+            height: 16px;
+            width: 16px;
+        }
 
-    .themeImg{
-        width: 150px;
-        height: 150px;
-        cursor: pointer;
-    }
+        .themeImg{
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+        }
 
-    .borderViolet{
-        border: 1px solid #5B3AFF;
-        border-radius: 15px;
-    }
+        .cursorPointer{
+            cursor: pointer;
+        }
 
-    .cursorPointer{
-        cursor: pointer;
-    }
+        .closeModal{
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            margin-right: -25px;
+            margin-top: -25px;
+            float: right;
+        }
 
-    .closeModal{
-        background-color: white;
-        border: none;
-        border-radius: 50%;
-        margin-right: -25px;
-        margin-top: -25px;
-        float: right;
-    }
+        .borderGolden{
+            border: 1px solid goldenrod;
+        }
 
-    .borderGolden{
-        border: 1px solid goldenrod;
-    }
+        td{
+            padding: 5px;
+        }
+        /* TAB CSS */
+        .font14w500Tab{
+            font-size: 14px;
+            font-weight: 500;
+        }
 
-    td{
-        padding: 5px;
-    }
-    /* TAB CSS */
-    .font14w500Tab{
-        font-size: 14px;
-        font-weight: 500;
-    }
+        .font12w400Tab{
+            color: #262528;
+            font-size: 12px;
+            font-weight: 400;
+        }
 
-    .font12w400Tab{
-        color: #262528;
-        font-size: 12px;
-        font-weight: 400;
-    }
+        .font10w400Tab{
+            color: #262528;
+            font-size: 10px;
+            font-weight: 400;
+        }
 
-    .font10w400Tab{
-        color: #262528;
-        font-size: 10px;
-        font-weight: 400;
-    }
+        .h30Tab{
+            background-color: white;
+            height: 85%;
+            width: 100%;
+            border-radius: 10px;
+            overflow-x: scroll;
+        }
 
-    .h30Tab{
-        background-color: white;
-        height: 85%;
-        width: 100%;
-        border-radius: 10px;
-        overflow-x: scroll;
-    }
-</style>
+        .toggle-container {
+            display: inline-flex;
+            background-color: white;
+            border-radius: 50px;
+            padding: 4px;
+            position: relative;
+            overflow: hidden;
+            gap: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .toggle-option {
+            padding: 10px 20px;
+            border-radius: 46px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            border: none;
+            background: transparent;
+            color: #666;
+            width: 110px;
+            text-align: center;
+        }
+
+        .toggle-option.bgActive {
+            background-color: #F01E76;
+            color: white;
+            box-shadow: 0 2px 8px rgba(240, 30, 118, 0.3);
+        }
+
+        .toggle-option.bgInActive {
+            background-color: transparent;
+            color: #666;
+        }
+
+        .toggle-option.bgInActive:hover {
+            color: #333;
+            background-color: rgba(233, 30, 99, 0.1);
+        }
+
+        .toggle-option:focus {
+            outline: none;
+        }
+
+        /* Additional styles for the preview */
+        /*.d-flex {*/
+        /*    display: flex;*/
+        /*}*/
+
+        /*.justify-content-end {*/
+        /*    justify-content: flex-end;*/
+        /*}*/
+
+        /*.font-weight-bold {*/
+        /*    font-weight: bold;*/
+        /*}*/
+
+        /*.mt-4 {*/
+        /*    margin-top: 1.5rem;*/
+        /*}*/
+
+        /*.view-content h3 {*/
+        /*    margin-top: 0;*/
+        /*    color: #F01E76;*/
+        /*}*/
+    /*==========word select css*/
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-right: 15px;
+        }
+        /* Style the select to match the button */
+        .fruits-select {
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            appearance: none; /* remove default arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D'white'%20height%3D'16'%20viewBox%3D'0%200%2024%2024'%20width%3D'16'%20xmlns%3D'http://www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M7%2010l5%205%205-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            cursor: pointer;
+        }
+
+        /* On focus */
+        .fruits-select:focus {
+            outline: none;
+            box-shadow: none;
+            background: #c2185b;
+        }
+
+        /* Fix dropdown menu positioning */
+        /*.dropdown-menu {*/
+        /*    position: absolute;*/
+        /*    top: 100%;*/
+        /*    right: 0;*/
+        /*    left: auto;*/
+        /*    z-index: 1000;*/
+        /*}*/
+
+        /* If parent container has overflow hidden, override it */
+        /*.dropdown-container {*/
+        /*    overflow: visible !important;*/
+        /*    position: relative;*/
+        /*}*/
+
+        .word-label {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem; /* replaces mt-3 */
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .checkBox {
+            margin-right: 8px;
+            /* optional: increase size */
+            width: 16px;
+            height: 16px;
+        }
+        .tag-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 14px;
+            cursor: default;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        .tag-btn i {
+            margin-left: 8px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .tag-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .tag-btn i:hover {
+            color: #dc3545; /* red close icon on hover */
+        }
+    </style>
 
 
 <div class="container">
@@ -170,18 +328,19 @@
                 <h3 class="d-flex justify-content-center">Enter word search with images content</h3>
                 <h6 class="d-flex justify-content-center colorGrey">30 by 30 is about as big as makes sense help</h6>
             </div>
-
             <div class="mt-4">
-                <div class="d-flex justify-content-start">
-                    <div class="borderRadius borderGrey">
-                        <button id="generator" class="btn m-2 borderRadius bgActive" onclick="onChangeView('generator')">Generator</button>
-                        <button id="theme" class="btn m-2 borderRadius bgInActive"onclick="onChangeView('theme')">Theme</button>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="toggle-container">
+                        <button id="generator" class="toggle-option bgActive" onclick="onChangeView('generator')">Generator</button>
+                        <button id="theme" class="toggle-option bgInActive" onclick="onChangeView('theme')">Theme</button>
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">How to make</span>&nbsp;
+                        <span><i class="fa fa-play" style="color: #F01E76;" aria-hidden="true"></i></span>
                     </div>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <p class="font-weight-bold">How to make</p>&nbsp; <span><i class="fa fa-play" style="color: #F01E76;" aria-hidden="true"></i></span>
-                </div>
             </div>
+
             <!-- START:  Default -->
             <div id="default" style="display: block;" class="mt-4">
                 <div class="row">
@@ -192,52 +351,76 @@
                                 <div class="p-3">
                                     <p class="font16w500">Title Default</p>
                                     <div class="borderRadius bg-white">
-                                        <p class="pt-2 pb-2 pl-2">word search with images</p>
+{{--                                        <p class="pt-2 pb-2 pl-2">word search with images</p>--}}
+                                        <input type="text" placeholder="word search with images">
                                     </div>
                                 </div>
                                 <div class="row mt-3 pl-3">
                                     <div class="col-md-7">
-                                        <div class="row ml-2">
-                                            <div class="col-md-6">
-                                                <p class="font16w500">Select Word</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="d-flex justify-content-end">
-                                                    <select name="type" id="type" class="borderRadius borderGrey font-weight-bold clrPink p-2" onchange="onChangeType()">
-                                                        <option class="font12w400" value="Fruit">Fruit</option>
-                                                        <option class="font12w400" value="Animal">Animal</option>
-                                                        <option class="font12w400" value="Flowers">Flowers</option>
-                                                        <option class="font12w400" value="Country">Country</option>
-                                                    </select>
-                                                    <!-- <div class="dropdown">
-                                                        <button class="btn bg-white dropdown-toggle borderRadius borderGrey font-weight-bold clrPink" type="button" id="select" data-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false">
-                                                                    Select
-                                                        </button>
-                                                        <div class="dropdown-menu" aria-labelledby="select">
-                                                            <a class="dropdown-item Disabled" href="#">Select one</a>
-                                                            <a class="dropdown-item" href="#">Action</a>
-                                                            <a class="dropdown-item" href="#">Disabled action</a>
-                                                            <a class="dropdown-item" href="#">AA</a>
-                                                            <a class="dropdown-item" href="#">BB</a>
-                                                        </div>
-                                                    </div> -->
-                                                </div>
-                                            </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-3 dropdown-container">
+                                            <h3 class="section-title mb-0">Select Word</h3>
+                                            <select class="form-select fruits-select" onchange="onChangeType()">
+                                                <option value="Fruit">Fruits</option>
+                                                <option value="Flowers">Flowers</option>
+                                                <option value="Animal">Animals</option>
+                                            </select>
                                         </div>
                                         <div class="mt-2 h30">
-                                            <div id="typeList" class="ml-3 font14w400">
-                                                <input id="word1" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word1', 'Apple')"> &nbsp; <span class="font14w400">Apple</span> <br>
-                                                <input id="word2" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word2', 'Banana')"> &nbsp; <span class="font14w400">Banana</span> <br>
-                                                <input id="word3" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word3', 'Cranberry')"> &nbsp; <span class="font14w400">Cranberry</span> <br>
-                                                <input id="word4" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word4', 'Blackcurrant')"> &nbsp; <span class="font14w400">Blackcurrant</span> <br>
-                                                <input id="word5" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word5', 'Blueberry')"> &nbsp; <span class="font14w400">Blueberry</span> <br>
-                                                <input id="word6" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word6', 'Avocados')"> &nbsp; <span class="font14w400">Avocados</span> <br>
-                                                <input id="word7" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word7', 'Atemoya')"> &nbsp; <span class="font14w400">Atemoya</span> <br>
-                                                <input id="word8" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word8', 'Rose apple/Water apple')"> &nbsp; <span class="font14w400">Rose apple/Water apple</span> <br>
-                                                <input id="word9" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word9', 'Coconut')"> &nbsp; <span class="font14w400">Coconut</span> <br>
-                                                <input id="word10" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word10', 'Finger lime')"> &nbsp; <span class="font14w400">Finger lime</span> <br>
-                                                <input id="word11" type="checkbox" class="checkBox mt-3" onchange="onSelectWord('word11', 'Cherimoya')"> &nbsp; <span class="font14w400">Cherimoya</span> <br>
+                                            <div id="typeList" class="ml-3">
+                                                <label class="word-label">
+                                                    <input id="word1" type="checkbox" class="checkBox" onchange="onSelectWord('word1', 'Apple')">
+                                                    <span>Apple</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word2" type="checkbox" class="checkBox" onchange="onSelectWord('word2', 'Banana')">
+                                                    <span>Banana</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word3" type="checkbox" class="checkBox" onchange="onSelectWord('word3', 'Cranberry')">
+                                                    <span>Cranberry</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word4" type="checkbox" class="checkBox" onchange="onSelectWord('word4', 'Blackcurrant')">
+                                                    <span>Blackcurrant</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word5" type="checkbox" class="checkBox" onchange="onSelectWord('word5', 'Blueberry')">
+                                                    <span>Blueberry</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word6" type="checkbox" class="checkBox" onchange="onSelectWord('word6', 'Avocados')">
+                                                    <span>Avocados</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word7" type="checkbox" class="checkBox" onchange="onSelectWord('word7', 'Atemoya')">
+                                                    <span>Atemoya</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word8" type="checkbox" class="checkBox" onchange="onSelectWord('word8', 'Rose apple/Water apple')">
+                                                    <span>Rose apple/Water apple</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word9" type="checkbox" class="checkBox" onchange="onSelectWord('word9', 'Coconut')">
+                                                    <span>Coconut</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word10" type="checkbox" class="checkBox" onchange="onSelectWord('word10', 'Finger lime')">
+                                                    <span>Finger lime</span>
+                                                </label>
+
+                                                <label class="word-label">
+                                                    <input id="word11" type="checkbox" class="checkBox" onchange="onSelectWord('word11', 'Cherimoya')">
+                                                    <span>Cherimoya</span>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -247,15 +430,15 @@
                                             <div id="selectedWords" class="ml-1 mt-2 font12w400">
                                                 <ul>
                                                     <li>Use a comma or press enter between words.</li>
-                                                    <li>Minimum word length: 3 letters</li>
-                                                    <li>word length: Maximum20 letters</li>
-                                                    <li>Recommended number of words: 40</li>
+                                                    <li>Minimum word length: letters</li>
+                                                    <li>word length: Maximum20 letters</li>
+                                                    <li>Recommended number of words: 40</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row pl-3">
+                                <div class="row pl-3 mb-4">
                                     <div class="col-md">
                                         <p class="font16w500">Number of letters Down</p>
                                         <div class="borderRadius borderOffPink bg-white d-flex justify-content-around h45">
@@ -280,12 +463,13 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div style="clear: both; margin: 74px 0"></div>
                                 <div class="row pl-2 mt-4 mb-5">
                                     <div class="col-md-6">
-                                        <button class="btn m-2 borderRadius bg-white borderOffPink w-100 cursorPointer" onclick="reset()">Reset</button>
+                                        <button class="btn m-2 borderRadius bg-white borderOffPink w-75 cursorPointer" onclick="reset()">Reset</button>
                                     </div>
                                     <div class="col-md-6">
-                                        <button class="btn m-2 borderRadius borderOffPink w-100 cursorPointer bgActive" onclick="onGenerateWorksheet()">Generate Worksheet</button>
+                                        <button class="btn m-2 borderRadius borderOffPink w-75 cursorPointer bgActive" onclick="onGenerateWorksheet()">Generate Worksheet</button>
                                     </div>
                                 </div>
                             </div>
@@ -325,36 +509,71 @@
                             <!-- END : Theme View -->
                         </div>
                     </div>
+{{--                    <div class="col-md-5">--}}
+{{--                        <div class="bgOffset" style="border-radius: 10px;">--}}
+{{--                            <div class="p-3">--}}
+{{--                                <p class="font16w500">Worksheet Preview</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="pl-3 pr-3">--}}
+{{--                                <div class="mt-3 borderRadius bg-white d-flex justify-content-center">--}}
+{{--                                    <button id="worksheet" class="btn m-2 borderRadius bgActive pl-5 pr-5" onclick="onWorksheetPreviewChange('worksheet')">Worksheet</button>--}}
+{{--                                    <button id="answerkey" class="btn m-2 borderRadius bgInActive pl-5 pr-5" onclick="onWorksheetPreviewChange('answerkey')">Answer Key</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="pl-3 pr-3">--}}
+{{--                                <div class="mt-4 h30V2">--}}
+{{--                                    <div id="worksheetPreview" class="p-2 ml-1 mt-2 font12w400">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="mt-3 pr-3 pl-2">--}}
+{{--                                <button class="btn m-2 borderRadius bgPink borderOffPink text-white w-100">--}}
+{{--                                    <img src="./assets/img/download-04.png" alt="">&nbsp;--}}
+{{--                                    Download Worksheet--}}
+{{--                                </button>--}}
+{{--                                <button class="btn m-2 borderRadius bg-white borderOffPink w-100">--}}
+{{--                                    <img src="./assets/img/download-04.png" alt="">&nbsp;--}}
+{{--                                    Download Answer Key--}}
+{{--                                </button>--}}
+{{--                                <button class="btn m-2 borderRadius bg-white borderOffPink w-100 cursorPointer" onclick="preview('previewModal')">Full Preview</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="col-md-5">
                         <div class="bgOffset" style="border-radius: 10px;">
                             <div class="p-3">
                                 <p class="font16w500">Worksheet Preview</p>
                             </div>
                             <div class="pl-3 pr-3">
-                                <div class="mt-3 borderRadius bg-white d-flex justify-content-center">
+                                <div class="mt-3 borderRadius bg-white d-flex justify-content-center flex-wrap">
                                     <button id="worksheet" class="btn m-2 borderRadius bgActive pl-5 pr-5" onclick="onWorksheetPreviewChange('worksheet')">Worksheet</button>
                                     <button id="answerkey" class="btn m-2 borderRadius bgInActive pl-5 pr-5" onclick="onWorksheetPreviewChange('answerkey')">Answer Key</button>
                                 </div>
                             </div>
                             <div class="pl-3 pr-3">
-                                <div class="mt-4 h30V2">
+                                <div class="mt-4 h30V2" style="min-height: 150px; overflow-y: auto;">
                                     <div id="worksheetPreview" class="p-2 ml-1 mt-2 font12w400">
+                                        <!-- Preview content will be injected here -->
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-3 pr-3 pl-2">
-                                <button class="btn m-2 borderRadius bgPink borderOffPink text-white w-100">
-                                    <img src="./assets/img/download-04.png" alt="">&nbsp;
+                            <div class="mt-3 pr-3 pl-3 pb-3">
+                                <button class="btn mb-2 borderRadius bgPink borderOffPink text-white w-100 d-flex align-items-center justify-content-center">
+                                    <img src="./assets/img/download-04.png" alt="" style="height: 18px;">&nbsp;
+{{--                                    <img src="./assets/img/download-04.png" alt="" style="height: 18px;">&nbsp;--}}
                                     Download Worksheet
                                 </button>
-                                <button class="btn m-2 borderRadius bg-white borderOffPink w-100">
-                                    <img src="./assets/img/download-04.png" alt="">&nbsp;
+                                <button class="btn mb-2 borderRadius bg-white borderOffPink w-100 d-flex align-items-center justify-content-center">
+                                    <img src="./assets/img/download-04.png" alt="" style="height: 18px;">&nbsp;
                                     Download Answer Key
                                 </button>
-                                <button class="btn m-2 borderRadius bg-white borderOffPink w-100 cursorPointer" onclick="preview('previewModal')">Full Preview</button>
+                                <button class="btn borderRadius bg-white borderOffPink w-100 cursorPointer d-flex align-items-center justify-content-center" onclick="preview('previewModal')">
+                                    <i class="fa fa-eye mr-1"></i>&nbsp;Full Preview
+                                </button>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <!-- START: Modal -->
@@ -389,21 +608,22 @@
                             </div>
                             <div class="row mt-3 pl-2">
                                 <div class="col-sm-7">
-                                    <div class="row ml-2">
-                                        <div class="col-sm-6">
-                                            <p class="font14w500Tab">Select Word</p>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="d-flex justify-content-end">
-                                                <select name="type" id="type" class="borderRadius borderGrey font-weight-bold clrPink p-2">
-                                                    <option class="font12w400" value="Animal">Animal</option>
-                                                    <option class="font12w400" value="Fruit">Fruit</option>
-                                                    <option class="font12w400" value="Flowers">Flowers</option>
-                                                    <option class="font12w400" value="Country">Country</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                    <div class="row ml-2">--}}
+{{--                                        <div class="col-sm-6">--}}
+{{--                                            <p class="font14w500Tab">Select Word</p>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-sm-6">--}}
+{{--                                            <div class="d-flex justify-content-end">--}}
+{{--                                                <select name="type" id="type" class="borderRadius borderGrey font-weight-bold clrPink p-2">--}}
+{{--                                                    <option class="font12w400" value="Animal">Animal</option>--}}
+{{--                                                    <option class="font12w400" value="Fruit">Fruit</option>--}}
+{{--                                                    <option class="font12w400" value="Flowers">Flowers</option>--}}
+{{--                                                    <option class="font12w400" value="Country">Country</option>--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
                                     <div class="mt-2 h30">
                                         <div class="ml-2 font12w400Tab">
                                             <input type="checkbox" class="checkBox mt-3"> &nbsp; <span class="font14w400">Apple</span> <br>
@@ -581,33 +801,75 @@
     }
 
 
-    function onSelectWord(id, word){
-        var html = '';
+    // function onSelectWord(id, word){
+    //     var html = '';
+    //
+    //     if(document.getElementById(id).checked){
+    //         this.selectedWordList.push(word)
+    //     }else{
+    //         this.selectedWordList = this.selectedWordList.filter(e => e != word);
+    //     }
+    //
+    //     this.selectedWordList.forEach(e => {
+    //         html += '<p class = "borderRadius borderGrey pl-2 pb-1 pt-1 w-50">'+e+'&nbsp; &nbsp;<i class = "fa fa-x cursorPointer" onclick="onUnSelectWord(\''+e+'\')"></i></p>';
+    //     });
+    //
+    //     document.getElementById('selectedWords').innerHTML = html;
+    // }
+    //
+    // function onUnSelectWord(word){
+    //     var html = '';
+    //
+    //     this.selectedWordList = this.selectedWordList.filter(e => e != word);
+    //
+    //     this.selectedWordList.forEach(e => {
+    //         html += '<p class = "borderRadius borderGrey pl-2 pb-1 pt-1 w-50">'+e+'&nbsp; &nbsp;<i class = "fa fa-x cursorPointer" onclick="onUnSelectWord(\''+e+'\')"></i></p>';
+    //     });
+    //
+    //     document.getElementById('selectedWords').innerHTML = html;
+    //     document.getElementById('word'+(this.words.indexOf(word)+1)).checked = false;
+    // }
 
-        if(document.getElementById(id).checked){
-            this.selectedWordList.push(word)
-        }else{
-            this.selectedWordList = this.selectedWordList.filter(e => e != word);
+
+    function onSelectWord(id, word) {
+        let html = '';
+
+        if (document.getElementById(id).checked) {
+            this.selectedWordList.push(word);
+        } else {
+            this.selectedWordList = this.selectedWordList.filter(e => e !== word);
         }
 
         this.selectedWordList.forEach(e => {
-            html += '<p class = "borderRadius borderGrey pl-2 pb-1 pt-1 w-50">'+e+'&nbsp; &nbsp;<i class = "fa fa-x cursorPointer" onclick="onUnSelectWord(\''+e+'\')"></i></p>';
+            html += `
+            <button class="tag-btn mr-2 mb-2">
+                ${e}
+                <i class="fa fa-times ml-2" onclick="onUnSelectWord('${e}')"></i>
+            </button>
+        `;
         });
 
         document.getElementById('selectedWords').innerHTML = html;
     }
 
-    function onUnSelectWord(word){
-        var html = '';
+    function onUnSelectWord(word) {
+        let html = '';
 
-        this.selectedWordList = this.selectedWordList.filter(e => e != word);
+        this.selectedWordList = this.selectedWordList.filter(e => e !== word);
 
         this.selectedWordList.forEach(e => {
-            html += '<p class = "borderRadius borderGrey pl-2 pb-1 pt-1 w-50">'+e+'&nbsp; &nbsp;<i class = "fa fa-x cursorPointer" onclick="onUnSelectWord(\''+e+'\')"></i></p>';
+            html += `
+            <button class="tag-btn mr-2 mb-2">
+                ${e}
+                <i class="fa fa-times ml-2" onclick="onUnSelectWord('${e}')"></i>
+            </button>
+        `;
         });
 
         document.getElementById('selectedWords').innerHTML = html;
-        document.getElementById('word'+(this.words.indexOf(word)+1)).checked = false;
+
+        // Uncheck the original checkbox
+        document.getElementById('word' + (this.words.indexOf(word) + 1)).checked = false;
     }
 
     function onSelectTheme(id){
