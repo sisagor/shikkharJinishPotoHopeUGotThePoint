@@ -81,11 +81,19 @@
             overflow-y: scroll;
         }
 
-        .h30V2{
+        /*.h30V2{*/
+        /*    background-color: white;*/
+        /*    height: 400px;*/
+        /*    border-radius: 10px;*/
+        /*    overflow-y: scroll;*/
+        /*}*/
+
+        .h30V2 {
             background-color: white;
-            height: 400px;
+            height: 400px; /* or adjust this to a smaller value if needed */
             border-radius: 10px;
             overflow-y: scroll;
+            margin-bottom: 20px; /* Add some space between the scrollable area and buttons */
         }
 
         .h45{
@@ -307,6 +315,24 @@
         .tag-btn i:hover {
             color: #dc3545; /* red close icon on hover */
         }
+        .btn_custom{
+            display: inline-block;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            /*background-color: transparent;*/
+            /*border: 1px solid transparent;*/
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            /*border-radius: .25rem;*/
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
     </style>
 
 
@@ -351,8 +377,7 @@
                                 <div class="p-3">
                                     <p class="font16w500">Title Default</p>
                                     <div class="borderRadius bg-white">
-{{--                                        <p class="pt-2 pb-2 pl-2">word search with images</p>--}}
-                                        <input type="text" placeholder="word search with images">
+                                        <input type="text" placeholder="word search with images" style="width: 100%;border-radius: 25px;border: 1px solid #fff;padding: 0 12px;">
                                     </div>
                                 </div>
                                 <div class="row mt-3 pl-3">
@@ -463,13 +488,12 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div style="clear: both; margin: 74px 0"></div>
                                 <div class="row pl-2 mt-4 mb-5">
                                     <div class="col-md-6">
-                                        <button class="btn m-2 borderRadius bg-white borderOffPink w-75 cursorPointer" onclick="reset()">Reset</button>
+                                        <button class="btn_custom m-2 borderRadius bg-white borderOffPink w-75 cursorPointer" onclick="reset()">Reset</button>
                                     </div>
                                     <div class="col-md-6">
-                                        <button class="btn m-2 borderRadius borderOffPink w-75 cursorPointer bgActive" onclick="onGenerateWorksheet()">Generate Worksheet</button>
+                                        <button class="btn_custom m-2 borderRadius borderOffPink w-75 cursorPointer bgActive" onclick="onGenerateWorksheet()">Generate Worksheet</button>
                                     </div>
                                 </div>
                             </div>
@@ -478,7 +502,8 @@
                             <div id="themeView" style="display: none;">
                                 <div class="p-2 row">
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme1')">
-                                        <img id="theme1" class="themeImg" src="assets/img/border-image1.jpg">
+                                        <img id="theme1" class="themeImg" src="{{asset('/frontEnd/img/border-image1.jpg')}}">
+{{--                                        <img id="theme1" class="themeImg" src="assets/img/border-image1.jpg">--}}
                                     </div>
                                     <div class="col-md-4 mt-2" onclick="onSelectTheme('theme2')">
                                         <img id="theme2" class="themeImg" src="assets/img/border-image2.png">
@@ -509,71 +534,40 @@
                             <!-- END : Theme View -->
                         </div>
                     </div>
-{{--                    <div class="col-md-5">--}}
-{{--                        <div class="bgOffset" style="border-radius: 10px;">--}}
-{{--                            <div class="p-3">--}}
-{{--                                <p class="font16w500">Worksheet Preview</p>--}}
-{{--                            </div>--}}
-{{--                            <div class="pl-3 pr-3">--}}
-{{--                                <div class="mt-3 borderRadius bg-white d-flex justify-content-center">--}}
-{{--                                    <button id="worksheet" class="btn m-2 borderRadius bgActive pl-5 pr-5" onclick="onWorksheetPreviewChange('worksheet')">Worksheet</button>--}}
-{{--                                    <button id="answerkey" class="btn m-2 borderRadius bgInActive pl-5 pr-5" onclick="onWorksheetPreviewChange('answerkey')">Answer Key</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="pl-3 pr-3">--}}
-{{--                                <div class="mt-4 h30V2">--}}
-{{--                                    <div id="worksheetPreview" class="p-2 ml-1 mt-2 font12w400">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="mt-3 pr-3 pl-2">--}}
-{{--                                <button class="btn m-2 borderRadius bgPink borderOffPink text-white w-100">--}}
-{{--                                    <img src="./assets/img/download-04.png" alt="">&nbsp;--}}
-{{--                                    Download Worksheet--}}
-{{--                                </button>--}}
-{{--                                <button class="btn m-2 borderRadius bg-white borderOffPink w-100">--}}
-{{--                                    <img src="./assets/img/download-04.png" alt="">&nbsp;--}}
-{{--                                    Download Answer Key--}}
-{{--                                </button>--}}
-{{--                                <button class="btn m-2 borderRadius bg-white borderOffPink w-100 cursorPointer" onclick="preview('previewModal')">Full Preview</button>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-                    <div class="col-md-5">
-                        <div class="bgOffset" style="border-radius: 10px;">
+                    <div class="col-md-5 bgOffset" style="border-radius: 10px;">
+                        <div>
                             <div class="p-3">
                                 <p class="font16w500">Worksheet Preview</p>
                             </div>
                             <div class="pl-3 pr-3">
-                                <div class="mt-3 borderRadius bg-white d-flex justify-content-center flex-wrap">
-                                    <button id="worksheet" class="btn m-2 borderRadius bgActive pl-5 pr-5" onclick="onWorksheetPreviewChange('worksheet')">Worksheet</button>
-                                    <button id="answerkey" class="btn m-2 borderRadius bgInActive pl-5 pr-5" onclick="onWorksheetPreviewChange('answerkey')">Answer Key</button>
+                                <div class="mt-3 borderRadius bg-white d-flex justify-content-center">
+                                    <button id="worksheet" class="btn_custom m-2 borderRadius bgActive pl-5 pr-5" onclick="onWorksheetPreviewChange('worksheet')">Worksheet</button>
+                                    <button id="answerkey" class="btn_custom m-2 borderRadius bgInActive pl-5 pr-5" onclick="onWorksheetPreviewChange('answerkey')">Answer Key</button>
                                 </div>
                             </div>
-                            <div class="pl-3 pr-3">
-                                <div class="mt-4 h30V2" style="min-height: 150px; overflow-y: auto;">
+                            <div class="pl-3 pr-3 " style="height: 500px;">
+                                <div class="h30V2" style="height: calc(100% - 100px); margin-top: 16px;">
                                     <div id="worksheetPreview" class="p-2 ml-1 mt-2 font12w400">
-                                        <!-- Preview content will be injected here -->
+                                        <!-- Worksheet content will go here -->
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-3 pr-3 pl-3 pb-3">
-                                <button class="btn mb-2 borderRadius bgPink borderOffPink text-white w-100 d-flex align-items-center justify-content-center">
-                                    <img src="./assets/img/download-04.png" alt="" style="height: 18px;">&nbsp;
-{{--                                    <img src="./assets/img/download-04.png" alt="" style="height: 18px;">&nbsp;--}}
-                                    Download Worksheet
-                                </button>
-                                <button class="btn mb-2 borderRadius bg-white borderOffPink w-100 d-flex align-items-center justify-content-center">
-                                    <img src="./assets/img/download-04.png" alt="" style="height: 18px;">&nbsp;
-                                    Download Answer Key
-                                </button>
-                                <button class="btn borderRadius bg-white borderOffPink w-100 cursorPointer d-flex align-items-center justify-content-center" onclick="preview('previewModal')">
-                                    <i class="fa fa-eye mr-1"></i>&nbsp;Full Preview
-                                </button>
+
+                                <!-- Buttons positioned at bottom -->
+                                <div class=" bgOffset bottom-0 w-100 pr-3 pl-2">
+                                    <button class="btn_custom m-2 borderRadius bgPink borderOffPink text-white w-100">
+                                        <img src="{{asset('/frontEnd/img/download-04.png')}}" alt="">&nbsp;
+{{--                                        <img src="./assets/img/download-04.png" alt="">&nbsp;--}}
+                                        Download Worksheet
+                                    </button>
+                                    <button class="btn_custom m-2 borderRadius bg-white borderOffPink w-100">
+                                        <img src="./assets/img/download-04.png" alt="">&nbsp;
+                                        Download Answer Key
+                                    </button>
+                                    <button class="btn_custom m-2 borderRadius bg-white borderOffPink w-100 cursorPointer" onclick="preview('previewModal')">Full Preview</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <!-- START: Modal -->
