@@ -33,7 +33,7 @@ class GeneratorController extends Controller
      */
     public function index(Request $request)
     {
-        return view('frontEnd.generator.generator2');
+        return view('frontEnd.generator.generator3');
     }
 
 }
