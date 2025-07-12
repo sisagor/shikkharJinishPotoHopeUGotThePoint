@@ -463,34 +463,6 @@
     }
 
 
-    // function onSelectWord(id, word){
-    //     var html = '';
-    //
-    //     if(document.getElementById(id).checked){
-    //         this.selectedWordList.push(word)
-    //     }else{
-    //         this.selectedWordList = this.selectedWordList.filter(e => e != word);
-    //     }
-    //
-    //     this.selectedWordList.forEach(e => {
-    //         html += '<p class = "borderRadius borderGrey pl-2 pb-1 pt-1 w-50">'+e+'&nbsp; &nbsp;<i class = "fa fa-x cursorPointer" onclick="onUnSelectWord(\''+e+'\')"></i></p>';
-    //     });
-    //
-    //     document.getElementById('selectedWords').innerHTML = html;
-    // }
-    //
-    // function onUnSelectWord(word){
-    //     var html = '';
-    //
-    //     this.selectedWordList = this.selectedWordList.filter(e => e != word);
-    //
-    //     this.selectedWordList.forEach(e => {
-    //         html += '<p class = "borderRadius borderGrey pl-2 pb-1 pt-1 w-50">'+e+'&nbsp; &nbsp;<i class = "fa fa-x cursorPointer" onclick="onUnSelectWord(\''+e+'\')"></i></p>';
-    //     });
-    //
-    //     document.getElementById('selectedWords').innerHTML = html;
-    //     document.getElementById('word'+(this.words.indexOf(word)+1)).checked = false;
-    // }
 
 
     function onSelectWord(id, word) {
