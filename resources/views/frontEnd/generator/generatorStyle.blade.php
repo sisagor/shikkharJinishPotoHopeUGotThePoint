@@ -276,4 +276,21 @@
         line-height: 1.5;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
+    .wordListTextarea{
+        width: 100%;
+        height: 442px;
+        padding: 15px;
+        font-size: 14px;
+        font-family: inherit;
+        border: none;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        resize: vertical;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    .wordListTextarea:focus {
+        outline: none;
+        background-color: #fff;
+        box-shadow: 0 0 0 2px #cdd5fd;
+    }
 </style>

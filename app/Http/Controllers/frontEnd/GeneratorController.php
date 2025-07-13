@@ -33,7 +33,7 @@ class GeneratorController extends Controller
      */
     public function index(Request $request)
     {
-        return view('frontEnd.generator.generator3');
+        return view('frontEnd.generator.generator4CrosswordDefault');
     }
 
 }
